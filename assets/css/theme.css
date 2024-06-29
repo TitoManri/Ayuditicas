@@ -1,0 +1,26 @@
+/*
+Texto y Iconos: #616D63
+General?: #BCC9B8
+Fondo: #F9F5F2
+#D2AC97
+#827A6F
+#EDE6D3
+*/
+
+
+html {
+    background-color: #F9F5F2;
+    
+}
+
+* {
+    color: #827A6F;
+}
+
+.mainHeader{
+    background-color: #BCC9B8;
+}
+
+.mainfooter{
+    background-color: #BCC9B8;
+}

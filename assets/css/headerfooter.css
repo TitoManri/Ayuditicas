@@ -1,0 +1,84 @@
+.ayuditicaHeader{
+    color: #827A6F;
+    font-size: 30px;
+}
+
+.navbar-nav{
+    margin-right: 20px;
+}
+.nav-item{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-link.icons:hover i{
+    color: white;
+  }
+
+.dropdown-menu {
+  background-color: #f0f0f0;
+  border: 3px solid #d2ac97;
+  border-radius: 15px;
+}
+.dropdown-item:hover,  .dropdown-item:hover i{ 
+  background-color: #d2ac97;
+  color: white;
+}
+
+.dropdown-divider {
+  background-color: #d2ac97;
+}
+
+.nav-item{
+    display: flex;
+}
+.text-body{
+    color:white !important;
+}
+.searchBar{
+    border: none;
+    font-size: 17px;
+    border-radius: 15px;
+    width: 500px;
+  }
+
+nav .searchbar {
+    position: relative;
+  }
+  
+  nav .searchbar input[type="text"] {
+    border: 0;
+    padding: 0;
+    width: 0px; 
+    height: 40px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  nav .searchbar .icon {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 100%;
+    background: none;
+    border-radius: 3px;
+    color: #fff;
+    transition: all 0.5s 0.3s ease;
+  }
+  
+  nav .searchbar .icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  
+  nav .searchbar input[type="text"] {
+    width: 450px; 
+    padding: 0 10px;
+    opacity: 1;
+  }
+  
