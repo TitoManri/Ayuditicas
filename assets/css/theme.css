@@ -10,9 +10,13 @@ Fondo: #F9F5F2
 
 html {
     background-color: #F9F5F2;
-    font-family: 'Source Sans Pro', sans-serif;
-    color: #827a6f;
+    
 }
+
+* {
+    color: #827A6F;
+}
+
 .mainHeader{
     background-color: #BCC9B8;
 }

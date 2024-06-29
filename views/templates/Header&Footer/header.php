@@ -9,45 +9,50 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="navbar-brand" href="#">AYUDITICAS</a>
+          <a class="navbar-brand ayuditicaHeader" href="#">AYUDITICAS</a>
         </li>
       </ul>
-      <form class="d-flex input-group w-auto" role="search">
       <!-- Navbar Derecha-->
       <ul class="navbar-nav">
         <!-- Search Bar -->
+        <li class="nav-item">
+        <div class="searchbar">
+          <input type="text" placeholder="Buscar..">
+          <div class="icon">
+            <i class="fas fa-search fa-xl"></i>
+          </div>
+        </div>
+        </li>
         <!-- Notificaciones -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link icons" href="#">
             <i class="fa-solid fa-bell fa-2xl"></i>
           </a>
         </li>
         <!-- Publicaciones -->
-        <li class="nav-item dropdown-end">
-            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="nav-item dropdown">
+            <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-regular fa-pen-to-square fa-2xl"></i>          
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Crear publicación</a></li>
-              <li><a class="dropdown-item" href="#">Crear denuncia</a></li>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-square-plus" style="color: #000000;"></i> Crear publicación</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> Crear denuncia</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Crear proyecto</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear proyecto</a></li>
             </ul>
-          </li>
-          <li class="nav-item dropdown-end">
-            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+          </div>
+          <div class="nav-item dropdown">
+            <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
             <i class="fa-solid fa-user fa-2xl"></i>
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Perfil</a></li>
-              <li><a class="dropdown-item" href="#">Mensajeria</a></li>
-              <li><a class="dropdown-item" href="#">Ver denuncias</a></li>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user" style="color: #000000;"></i> Perfil</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-message" style="color: #000000;"></i> Mensajeria</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-exclamation" style="color: #000000;"></i> Mis denuncias</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #000000;"></i> Cerrar sesion</a></li>
             </ul>
-          </li>
-
-
+          </div>
         </ul>
       </form>
     </div>
