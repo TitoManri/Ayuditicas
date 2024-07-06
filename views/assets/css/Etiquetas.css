@@ -1,0 +1,25 @@
+.centro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.EtiquetasNav{
+    background-color: #8b9e8f;
+    color: white;
+    width: 28%;
+    border-bottom-right-radius: 45px;
+    height: 54px;
+}
+
+.EtiquetasRecomendados{
+    background-color: #CCD1C8;
+    height: 200px;
+    width: 300px;
+}
+
+.EtiquetasRecomendados a{
+    text-decoration: none;
+    color:white;
+    text-align: center;
+}
