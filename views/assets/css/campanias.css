@@ -1,0 +1,58 @@
+.EtiquetasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    right: 0;
+    background: #ede6d3;
+    padding: 30px 30px 70px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
+.Etiquetas {
+    font-size: 18px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px;
+}
+
+.Etiquetas a {
+    text-decoration: none;
+    color: #827a6f;
+}
+
+.CampaniasNav {
+    background-color: #8b9e8f;
+    color: white;
+    width: 28%;
+    border-bottom-right-radius: 45px;
+    height: 54px;
+}
+
+.centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #616D63 !important;
+    border-color: #616D63 !important;
+    border-radius: 20px !important;
+}
+
+.btn-primary:hover {
+    filter: brightness(85%);
+}
+
+.Opciones {
+    border: none !important;
+    background: none !important;
+}
+
+.Opciones:hover{
+    filter: brightness(85%);
+}
