@@ -46,44 +46,75 @@
         ?>
     </aside>
     <br><br>
+    <!-- Mostrar Campañas usando PHP -->
     <section id="MostrarCampanias" class="container">
-        <section id="Campania1" class="col-5">
-            <div class="d-flex">
-                <h3><i class="bi bi-person-circle" style="color: #d2ac97"></i> Nombre de usuario</h3>
-                <div class="ms-auto p-2">
-                    <div class="dropdown ms-auto p-2">
-                        <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="Opciones">
-                        <i class="bi bi-three-dots-vertical"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+        <!-- Crear Row inicial -->
+        <div class="row">
+            <?php
+            //Por la cantidad de veces que uno quiera
+            //Copiar el codigo. Cambiar numero si se quiere ver el funcionamiento
+            $campanias = 7;
+
+            //Por las veces de la variable, crear secciones
+            for ($i = 1; $i <= $campanias; $i++) {
+                if ($i % 2 != 0 && $i != 1) {
+                    //Crear row para diferenciar entre distintas filas
+                    echo '<div class="row">';
+                }
+
+                //Crear seccion con id de campania
+                echo '<section id="Campania', $i, '" class="col-5">';
+            ?>
+            <!-- Partes de la seccion -->
+                <div class="d-flex">
+                    <h3><i class="bi bi-person-circle" style="color: #d2ac97"></i> Nombre de usuario</h3>
+                    <div class="ms-auto p-2">
+                        <div class="dropdown ms-auto p-2">
+                            <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="Opciones">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ms-5 pe-4">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Excepturi error libero adipisci harum, iure nobis. Nam eaque velit sed vel, at harum mollitia modi fugiat impedit doloribus cum?
-                    Ipsam, doloribus?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi in rerum adipisci eum nesciunt accusantium aliquam dolor iste,
-                    hic dolore a doloribus cum officiis, delectus laborum.
-                    Sequi illo modi debitis.</p>
-                <div class="d-flex justify-content-end pe-4">
-                    <a href="#" class="btn btn-primary">Ingresar</a>
+                <div class="ms-5 pe-4">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Excepturi error libero adipisci harum, iure nobis. Nam eaque velit sed vel, at harum mollitia modi fugiat impedit doloribus cum?
+                        Ipsam, doloribus?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi in rerum adipisci eum nesciunt accusantium aliquam dolor iste,
+                        hic dolore a doloribus cum officiis, delectus laborum.
+                        Sequi illo modi debitis.</p>
+                    <div class="d-flex justify-content-end pe-4">
+                        <a href="#" class="btn btn-primary">Ingresar</a>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <!-- Cerrar seccion de campaña -->
+<?php
+                if ($i % 2 == 0) {
+                    //Cerrar column y darle espacio para el aside
+                    echo '<div class="col-2"></div></div>';
+                } 
+                if ($i == $campanias) {
+                    if($i % 2 != 0) {
+                        //Si no es par, cerrar div de row
+                        echo '</div>';
+                    }
+                    //Si ha llegado a la cantidad maxima, cerrar seccion para mostrar campañas
+                    echo '</section>';
+                }
+            }
+?>
 
-        <div class="col-2"></div>
-    </section>
+<br><br>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-    <footer class="mainfooter">
-        <?php include './templates/Header&Footer/footer.php';
-        ?></footer>
+<footer class="mainfooter">
+    <?php include './templates/Header&Footer/footer.php';
+    ?></footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
