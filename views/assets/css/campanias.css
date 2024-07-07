@@ -12,6 +12,20 @@
     z-index: 1;
 }
 
+.CampanasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    left: 0;
+    background: #ede6d3;
+    padding: 30px 30px 30px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
 .Etiquetas {
     font-size: 18px;
     background-color: white;
