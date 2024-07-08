@@ -232,7 +232,7 @@
 
             <section id="infoPostCamp" class="container">
                 <div class="container d-flex justify-content-center">
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="275px" height="250px">
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" class="img-fluid">
                 </div>
                 <div class="row">
                     <div class="col-1"></div>

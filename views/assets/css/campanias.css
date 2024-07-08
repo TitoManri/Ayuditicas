@@ -84,3 +84,21 @@
 .containerD{
     max-width: 900px !important;
 }
+
+section form div div div textarea,
+section form div div div input{
+    border-radius: 25px !important;
+    background-color: #e0c6b8 !important;
+}
+
+.CrearCampFormBTN{
+    background-color: #a38878 !important;
+    border-radius: 25px;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    border: none;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
