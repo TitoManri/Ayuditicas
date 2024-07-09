@@ -52,17 +52,17 @@
     justify-content: center;
 }
 
-.btn-primary {
+.btn-warning {
     background-color: #616D63 !important;
     border-color: #616D63 !important;
     border-radius: 20px !important;
 }
 
-.btn-primary:hover {
+.btn-warning:hover {
     filter: brightness(85%);
 }
 
-.btn-success{
+.btn-light{
     background-color: #bcc9b8 !important;
     border-color: #bcc9b8 !important;
     border-radius: 45px !important;
@@ -85,6 +85,7 @@
     max-width: 900px !important;
 }
 
+section form div div div select,
 section form div div div textarea,
 section form div div div input{
     border-radius: 25px !important;

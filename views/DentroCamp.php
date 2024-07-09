@@ -93,7 +93,7 @@
         <br>
         <div class="row">
             <div class="col-7">
-                <a href="" class="btn btn-success">
+                <a href="" class="btn btn-light">
                     Crear Publicacion
                 </a>
             </div>
