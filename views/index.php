@@ -15,23 +15,12 @@
 </head>
 
 <body>
-    <header class="mainHeader">
-        <?php
-        include './templates/Header&Footer/header.php';
-        ?>
-    </header>
 
-    <br><br><br><br><br>
     <?php
     #include './verTYC.php';
     include 'modalTYC.php';
     ?>
 
-
-    <footer class="mainfooter">
-        <?php include './templates/Header&Footer/footer.php';
-        ?>
-    </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

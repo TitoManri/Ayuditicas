@@ -1,3 +1,11 @@
+<header class="mainHeader">
+        <?php
+        include './templates/Header&Footer/header.php';
+        ?>
+    </header>
+
+    <br><br><br><br><br>
+
 <form method="post" action="" id="registro">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -30,3 +38,8 @@
     </div>
   </div>
 </div>
+
+<footer class="mainfooter">
+        <?php include './templates/Header&Footer/footer.php';
+        ?>
+    </footer>
