@@ -36,7 +36,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end">
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-square-plus" style="color: #000000;"></i> Crear publicación</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> Crear denuncia</a></li>
+              <li><a class="dropdown-item" href="../views/crearDenuncia.php"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> Crear denuncia</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear proyecto</a></li>
             </ul>
