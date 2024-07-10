@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="navbar-brand ayuditicaHeader" href="#">AYUDITICAS</a>
+          <a class="navbar-brand ayuditicaHeader" href="../../../../../SC502_2C2024_M_G3/views/index.php">AYUDITICAS</a>
         </li>
       </ul>
       <!-- Navbar Derecha-->
@@ -19,7 +19,7 @@
         <div class="searchbar">
           <input type="text" placeholder="Buscar..">
           <div class="icon">
-            <i class="fas fa-search fa-xl"></i>
+          <i class="fas fa-search fa-xl"></i>
           </div>
         </div>
         </li>
@@ -41,6 +41,7 @@
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear proyecto</a></li>
             </ul>
           </div>
+          <!-- Perfil -->
           <div class="nav-item dropdown">
             <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
             <i class="fa-solid fa-user fa-2xl"></i>
