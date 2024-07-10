@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
     <!-- Bootstrap & Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/theme.css">
-    <link rel="stylesheet" href="../assets/css/headerfooter.css">
+    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <style>
         .btn-xl {
             padding: 10px 20px;
@@ -41,30 +42,28 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/yupbbhuuyscm4xceitjo" class="d-block w-100 rounded" alt="Imagen_Voluntariado_1">
-                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark position-absolute bottom-0 start-50 translate-middle-x">
+                            <img src="https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/yupbbhuuyscm4xceitjo" class="d-block w-100 rounded" alt="Imagen_Voluntariado_1" style="height: 600px;">
+                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
                                 <!-- Arreglar -->
                                 <h5 style="color: #616D63">Únete a una causa y transforma nuestro pais</h5>
                                 <p>Registrate y participa en proyectos comunitarios.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/hdaeh8moxirgvluxdpew" class="d-block w-100 rounded" alt="Imagen_Voluntariado_2">
-                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark">
+                            <img src="https://blog.vicensvives.com/wp-content/uploads/2019/12/Voluntariado.png" class="d-block w-100 rounded" alt="Imagen_Voluntariado_2" style="height: 600px; object-fit: cover;">
+                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
                                 <!-- Arreglar -->
-                                <h5 style="color: #616D63">Inspira y lidera: Crea tus propias campañas de voluntariado</h5>
+                                <h5 style="color: #616D63">Crea tus propias campañas de voluntariado</h5>
                                 <p>Regístrate como 'Jefe de Campañas' y empieza a crear un impacto</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Voluntourism_teaching-english-GettyImages-148900387.jpg" class="d-block w-100 rounded" alt="Imagen_Voluntariado_3">
-                            <div class="carousel-caption d-none d-md-block">
+                            <img src="https://res.cloudinary.com/tearfund/image/fetch/c_scale,w_1280/f_auto/https://learn.tearfund.org/-/media/learn/resources/footsteps/images/footsteps-101-110/107/107-setting-up-community-waste-collection-banner.jpg" class="d-block w-100 rounded" alt="Imagen_Voluntariado_3" style="height: 600px;">
                                 <!-- Arreglar -->
-                                <div class="bg-light w-25 rounded border-dark">
+                                <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
                                     <h5 style="color: #616D63">Denuncia prácticas irresponsables y protege el medio ambiente</h5>
                                     <p>Registrate y ayuda a la comunidad a darse cuenta.</p>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -85,18 +84,6 @@
         <div id="BotonesYExplicacion">
             <section class="container">
                 <div class="row">
-                    <div class="col-5 d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary btn-xl">Pagina Principal</a>
-                    </div>
-                    <div class="col-2"></div>
-                    <div class="col-5  d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary btn-xl">Ver Blogs</a>
-                    </div>
-                </div>
-            </section>
-            <br>
-            <section class="container">
-                <div class="row">
                     <div class="col-6 d-flex justify-content-start">
                         <h1 class="text-start">Participa en la conversacion</h1>
                     </div>
@@ -114,6 +101,24 @@
                     <div class="col-2"></div>
                     <div class="col-5">
                         <p class="text-end">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt deserunt enim necessitatibus. Molestiae culpa fugit pariatur dolore quae recusandae, laboriosam consectetur distinctio architecto earum veritatis fuga, eum excepturi est corporis!</p>
+                    </div>
+                </div>
+            </section>
+            <br>
+            <section class="container">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="d-flex justify-content-center">
+                        <a href="#" class="btn-xl d-flex justify-content-center"><i class="bi bi-chat-right-heart h1"></i></a>
+                        </div>
+                        <h5 class="text-center">Entra a la red social</h5>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-5">
+                        <div class="d-flex justify-content-center">
+                        <a href="#" class=" btn-xl d-flex justify-content-center"><i class="bi bi-newspaper h1"></i></a>
+                        </div>
+                        <h5 class="text-center">Lee blogs</h5>
                     </div>
                 </div>
             </section>
@@ -141,7 +146,7 @@
                 <div class="col-5">
                     <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam reiciendis aliquam cumque amet. Libero repellendus amet alias. Corporis cupiditate ullam quia est eos ratione dolor exercitationem omnis ipsum laboriosam! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt atque, corporis nobis adipisci neque id vero molestias rerum iure qui, fugiat error commodi veniam. Doloribus praesentium iure vero facere maxime.</p>
                 </div>
-                <div class="col-2 d-flex justify-content-center"><img src="../assets/img/logoAyuditicas.png" alt="Logo_Ayuditica" class="img-fluid"></div>
+                <div class="col-2 d-flex justify-content-center"><img src="./assets/img/logoAyuditicas_Verde.png" alt="Logo_Ayuditica" class="img-fluid"></div>
                 <div class="col-5">
                     <p class="text-end">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt deserunt enim necessitatibus. Molestiae culpa fugit pariatur dolore quae recusandae, laboriosam consectetur distinctio architecto earum veritatis fuga, eum excepturi est corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis voluptatum ipsam sunt, corrupti similique atque expedita excepturi facere quos commodi assumenda odit, adipisci recusandae aut provident modi harum porro aliquam.</p>
                 </div>
@@ -231,6 +236,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="../assets/js/searchBar.js"></script>
+<script src="./assets/js/searchBar.js"></script>
 
 </html>
