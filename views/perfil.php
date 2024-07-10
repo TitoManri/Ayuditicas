@@ -58,17 +58,19 @@
 
                 <!--Cositas que estan arriba de mis publicaciones-->
                 <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
-                    <li class="nav-item" role="presentation">
-                    <a class="nav-link px-4 active" data-bs-toggle="tab" href="#" role="tab" aria-selected="false" tabindex="-1">
-                        <i class="fa-regular fa-rectangle-list fa-xl" style="color: #616d63;"></i>
-                    </a>
-                    </li><!-- end li -->
-                    <li class="nav-item" role="presentation">
-                    <a class="nav-link px-4"  href="#" >
-                    <i class="fa-solid fa-clipboard fa-xl" style="color: #616d63;"></i>
-                    </a>
-                    </li><!-- end li -->
+                  <!--Publicaciones-->
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                    <i class="fa-regular fa-rectangle-list fa-xl" style="color: #616d63;"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                    <i class="fa-solid fa-clipboard fa-xl" style="color: #616d63;"></i></a>
+                  </li>
                 </ul><!-- fin ul -->
+
+
+
 
                 <!--Mis publicaciones-->
                 <div class="card">
@@ -95,13 +97,12 @@
                                                 </div>
                                                 <div class="dropdown ms-2">
                                                     <a href="#"><img src="https://static.vecteezy.com/system/resources/thumbnails/010/145/455/small/heart-icon-sign-symbol-design-free-png.png" alt="" class="corazonEj"></a>
-                                                    <a href="#" class="dropdown-toggle font-size-16 text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                    
+                                                    <a href="#" class="dropdown font-size-16 text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa-solid fa-ellipsis-vertical" style="color: #827a6f;"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item" href="javascript: void(0);" data-bs-toggle="modal" data-bs-target=".bs-example-new-project" onclick="editProjects('project-items-2')">Reportar</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete-item" href="javascript:void(0);" onclick="deleteProjects('project-items-2')" data-id="project-items-2">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,13 +128,12 @@
                                         </div>
                                         <div class="dropdown ms-2">
                                           <a href="#"><img src="https://static.vecteezy.com/system/resources/thumbnails/010/145/455/small/heart-icon-sign-symbol-design-free-png.png" alt="" class="corazonEj"></a>
-                                          <a href="#" class="dropdown-toggle font-size-16 text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-dots-horizontal"></i>
+                                          
+                                          <a href="#" class="dropdown font-size-16 text-muted" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <i class="fa-solid fa-ellipsis-vertical" style="color: #827a6f;"></i>
                                           </a>
                                           <div class="dropdown-menu dropdown-menu-end">
                                           <a class="dropdown-item" href="javascript: void(0);" data-bs-toggle="modal" data-bs-target=".bs-example-new-project" onclick="editProjects('project-items-2')">Reportar</a>
-                                          <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item delete-item" href="javascript:void(0);" onclick="deleteProjects('project-items-2')" data-id="project-items-2">Delete</a>
                                           </div>
                                         </div>
                                       </div>
@@ -148,11 +148,6 @@
                         </div><!-- end tab pane -->
                     </div>
                 </div><!-- fin card -->
-
-                <!--Mis campañas-->
-                <div>
-                    
-                </div>
 
             </div><!-- fin col -->
             </div><!-- fin col -->

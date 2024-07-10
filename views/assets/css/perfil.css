@@ -2,6 +2,10 @@ body{
     background:#f9f5f2;
  }
  
+ .nav-item{
+    margin-right: 5px;
+ }
+
  .avatar-xxl {
      height: 7rem;
      width: 7rem;
