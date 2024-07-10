@@ -66,6 +66,7 @@
             </div>
         </div>
     </section>
+    <br><br><br>
 <br><br><br>
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
