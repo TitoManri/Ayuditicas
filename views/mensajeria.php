@@ -30,6 +30,11 @@
                     <hr>
                     <!-- SECCION DE GRUPOS-->
                     <h3 class="text-center">Grupos</h3>
+                    <!-- Botón para abrir el modal -->
+                    <button type="button" class="btn btn-success my-1" data-bs-toggle="modal"
+                        data-bs-target="#grupoModal">
+                        Agregar Grupo
+                    </button>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <!-- Dentro del bucle que genera la lista de grupos -->
                         <li class="nav-item">
@@ -139,4 +144,24 @@
     </div>
 </div>
 
-
+<!-- Modal de Agregar Grupo  (VER CÓMO PASAR LOS USUARIOS)-->
+<div class="modal fade" id="grupoModal" tabindex="-1" aria-labelledby="grupoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="grupoModalLabel">Crea un grupo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="nombreGrupo" class="col-form-label">Nombre del grupo:</label>
+                    <input type="text" class="form-control" id="nombreGrupo">
+            </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success my-2">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

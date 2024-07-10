@@ -241,3 +241,62 @@ document.querySelector('#usernameModal .btn-success').addEventListener('click', 
     const modal = bootstrap.Modal.getInstance(document.getElementById('usernameModal'));
     modal.hide();
 });
+
+
+// Función para agregar un grupo
+document.querySelector('#grupoModal .btn-success').addEventListener('click', function () {
+    let nomGrupo = document.getElementById('nombreGrupo').value.trim();
+
+    // Verificar si ya existe en la estructura de mensajes
+    if (!mensajesPorUsuario[nomGrupo]) {
+        mensajesPorUsuario[nomGrupo] = [];
+
+        Swal.fire({
+            title: "¡Todo listo!",
+            text: "Grupo agregado correctamente",
+            icon: "success"
+        });
+
+        // Añadir el nuevo usuario a la lista de usuarios
+        const nuevoGrupoElemento = document.createElement('li');
+        nuevoGrupoElemento.classList.add('nav-item');
+        nuevoGrupoElemento.innerHTML = `
+                <a href="#" class="nav-link" data-usuario="${nomGrupo}" data-imagen="https://github.com/mdo.png">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>${nomGrupo}</strong>
+                </a>
+            `;
+
+        document.querySelector('.nav-pills').appendChild(nuevoGrupoElemento);
+
+        // Agregar evento click al nuevo usuario
+        nuevoGrupoElemento.querySelector('.nav-link').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Remover la clase 'active' de todos los usuarios y añadirla al seleccionado
+            usuarios.forEach(u => u.classList.remove('active'));
+            this.classList.add('active');
+
+            const nombre = this.getAttribute('data-usuario');
+            const imagenUrl = this.getAttribute('data-imagen');
+
+            // Llamar a la función para actualizar el chat con el nuevo usuario
+            actualizarChat(nombre, imagenUrl);
+
+            // Habilitar los controles de mensajes
+            inputMensaje.disabled = false;
+            btnEnviar.disabled = false;
+            btnSubirImagen.disabled = false;
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Hubo un error...",
+            text: "El grupo ya está agregado"
+        });
+    }
+
+    // Cerrar el modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('grupoModal'));
+    modal.hide();
+});
