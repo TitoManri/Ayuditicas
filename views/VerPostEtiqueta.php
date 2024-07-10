@@ -24,7 +24,7 @@
         <!-- Titulo y ver todas las etiquetas -->
         <h3>Etiquetas</h3>
         <div class="text-center">
-            <a href="" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
+            <a href="./VerEtiquetas.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
         </div>
 
         <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
@@ -44,7 +44,7 @@
     <aside id="CampanasAside" class="CampanasAside">
         <h3>Campañas</h3>
         <div class="text-center">
-            <a href="./index.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
+            <a href="./Camps.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
         </div>
 
         <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
@@ -78,7 +78,7 @@
     <br><br>
 
     <section id="PostCamp" class="container containerD">
-        <h1>Post sobre la campaña</h1><br>
+        <h1>Post sobre la etiqueta</h1><br>
         <section class="container Post">
             <div id="infoUsuario" class="row">
                 <div class="col-1">

@@ -28,7 +28,7 @@
     <br>
 
     <section id="BusquedaEtiqueta" class="container">
-        <form action="" method="GET">
+        <form action="./VerPostEtiqueta.php" method="GET">
             <div style="width: 30%;">
                 <!--Preguntar cual de las dos les parece
             <div class="input-group mb-3">
@@ -62,7 +62,7 @@
             if ($i % 3 == 0 || $i == 0) {
                 echo '<div class="row pb-5">';
             }
-            echo '<div class="col-1"></div><a class="EtiquetasRecomendados col-3 text-center" href="#">
+            echo '<div class="col-1"></div><a class="EtiquetasRecomendados col-3 text-center" href="./VerPostEtiqueta.php">
                 <br>
                 <br>
                 <h3>', $opcionesEtiquetas[$i][0], '</h3>

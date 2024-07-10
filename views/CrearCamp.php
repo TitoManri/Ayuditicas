@@ -24,7 +24,7 @@
     </nav>
     <br><br>
     <section id="CrearCamp" class="container">
-        <form action="" method="POST">
+        <form action="./Camps.php" method="POST">
             <div>
             <div class="row">
                 <div class="col-1"></div>

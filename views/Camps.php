@@ -89,7 +89,7 @@
                         hic dolore a doloribus cum officiis, delectus laborum.
                         Sequi illo modi debitis.</p>
                     <div class="d-flex justify-content-end pe-4">
-                        <a href="#" class="btn btn-warning">Ingresar</a>
+                        <a href="./DentroCamp.php" class="btn btn-warning">Ingresar</a>
                     </div>
                 </div>
             </section>
