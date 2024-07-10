@@ -53,6 +53,7 @@
 }
 
 .btn-warning {
+    color: white !important;
     background-color: #616D63 !important;
     border-color: #616D63 !important;
     border-radius: 20px !important;
@@ -63,6 +64,7 @@
 }
 
 .btn-light{
+    color: white !important;
     background-color: #bcc9b8 !important;
     border-color: #bcc9b8 !important;
     border-radius: 45px !important;
