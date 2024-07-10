@@ -24,7 +24,7 @@
 <!--Nombre del usuario-->
       <div class="col-sm-6">
         <label for="firstName" class="form-label">Nombre</label>
-        <input type="text" class="form-control escribir border-2" id="firstName" placeholder="" value="" required="">
+        <input type="text" class="form-control escribir" id="firstName" placeholder="" value="" required="">
           <div class="invalid-feedback">Porfavor ingrese un nombre.</div> <!--Sirven para validar que el campo este completo-->
       </div>
 
@@ -49,7 +49,7 @@
 <!--Fecha de nacimiento-->
       <div class="col-sm-8">
         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-        <input type="number" class="form-control escribir" id="fechaNacimiento" placeholder="XX/XX/XXXX" value="" required="">
+        <input type="date" class="form-control escribir" id="fechaNacimiento" placeholder="XX/XX/XXXX" value="" required="">
           <div class="invalid-feedback">Porfavor ingrese su fecha de nacimiento.</div>
       </div>
 
@@ -105,7 +105,7 @@
         <div class="col-sm-3">
         <!--Checkbox para el Aceptar Terminos y Condiciones-->
         <div class="checkbox mb-3">
-          <label> <input type="checkbox" value="remember-me">Aceptar Terminos y Condiciones</label>
+          <label> <input type="checkbox" value="remember-me">&nbsp;Aceptar Terminos y Condiciones</label>
         </div>
         <button class="w-100 btn btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>

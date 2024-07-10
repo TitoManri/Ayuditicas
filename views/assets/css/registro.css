@@ -1,3 +1,7 @@
+body{
+    background-color: #f9f5f2 !important;
+}
+
 .form-signin {
     width: 100%;
     max-width: 330px;
@@ -27,7 +31,7 @@ form {
 
 .escribir{
     background-color: #e7e5e2;
-    border: #d2ac97;
+    border: 1.5px solid #d2ac97;
     border-radius: 20px;
 }
 
