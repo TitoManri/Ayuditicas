@@ -1,0 +1,107 @@
+.EtiquetasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    right: 0;
+    background: #ede6d3;
+    padding: 30px 30px 70px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
+.CampanasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    left: 0;
+    background: #ede6d3;
+    padding: 30px 30px 30px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
+.Etiquetas {
+    font-size: 18px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px;
+}
+
+.Etiquetas a {
+    text-decoration: none;
+    color: #827a6f;
+}
+
+.CampaniasNav {
+    background-color: #8b9e8f;
+    color: white;
+    width: 28%;
+    border-bottom-right-radius: 45px;
+    height: 54px;
+}
+
+.centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-warning {
+    color: white !important;
+    background-color: #616D63 !important;
+    border-color: #616D63 !important;
+    border-radius: 20px !important;
+}
+
+.btn-warning:hover {
+    filter: brightness(85%);
+}
+
+.btn-light{
+    color: white !important;
+    background-color: #bcc9b8 !important;
+    border-color: #bcc9b8 !important;
+    border-radius: 45px !important;
+    font-size: 30px !important; 
+    font-weight: bold !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.Opciones {
+    border: none !important;
+    background: none !important;
+}
+
+.Opciones:hover{
+    filter: brightness(85%);
+}
+
+.containerD{
+    max-width: 900px !important;
+}
+
+section form div div div select,
+section form div div div textarea,
+section form div div div input{
+    border-radius: 25px !important;
+    background-color: #e0c6b8 !important;
+}
+
+.CrearCampFormBTN{
+    background-color: #a38878 !important;
+    border-radius: 25px;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    border: none;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
