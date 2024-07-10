@@ -1,0 +1,47 @@
+body{
+    background:#f9f5f2;
+ }
+ 
+ .nav-item{
+    margin-right: 5px;
+ }
+
+ .avatar-xxl {
+     height: 7rem;
+     width: 7rem;
+ }
+ 
+ .card {
+     margin-bottom: 20px;
+     -webkit-box-shadow: 0 2px 3px #eaedf2;
+     box-shadow: 0 2px 3px #eaedf2;
+     width: 922px;
+ }
+
+ .card-top{
+    margin-top: 60px;
+ }
+
+ .card-2 {
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 2px 3px #eaedf2;
+    box-shadow: 0 2px 3px #eaedf2;
+    background-color: #f6eae1;
+    border-radius: 15px;
+    width: 385px;
+}
+
+ .rounded-circle {
+     border-radius: 50%!important;
+ }
+ 
+ .corazonEj{
+ width: 16px;
+ height: 14.76px;
+ }
+
+ .btn-success{
+    background-color: #bcc9b8; 
+    border: #bcc9b8;
+    color: #827a6f;
+}
