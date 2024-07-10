@@ -4,7 +4,7 @@ const listUsuario = {
     'Usuario 3': 'Usuario 3'
 };
 
-// Estructura para almacenar mensajes por usuario
+// Guardar mensajes por usuario
 const mensajesPorUsuario = {
     'Usuario 1': [],
     'Usuario 2': [],
@@ -12,7 +12,7 @@ const mensajesPorUsuario = {
     'Grupo 2': []
 };
 
-//Estructura para almacenar miembros de grupos
+//Guardar miembros del grupo
 const miembrosDeGrupo = {
     'Grupo 1': ['Miembro 1', 'Miembro 2'],
     'Grupo 2': ['Miembro 2', 'Miembro 1']
@@ -137,7 +137,7 @@ const formularioSubida = document.querySelector('#cargarModal form');
 formularioSubida.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const inputArchivo = document.getElementById('formFileSm');
+    const inputArchivo = document.getElementById('imgForm');
     if (inputArchivo.files.length === 0) {
         Swal.fire({
             icon: "error",
