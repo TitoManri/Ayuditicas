@@ -13,13 +13,13 @@
 }
 
 .EtiquetasRecomendados{
+    text-decoration: none;
+    color:white;
     background-color: #CCD1C8;
     height: 200px;
     width: 300px;
 }
 
-.EtiquetasRecomendados a{
-    text-decoration: none;
-    color:white;
-    text-align: center;
+.EtiquetasRecomendados:hover{
+    opacity: 85%;
 }
