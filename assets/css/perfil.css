@@ -1,6 +1,5 @@
 body{
-    margin-top:20px;
-    background:#f7f8fa
+    background:#f9f5f2;
  }
  
  .avatar-xxl {
@@ -12,7 +11,21 @@ body{
      margin-bottom: 20px;
      -webkit-box-shadow: 0 2px 3px #eaedf2;
      box-shadow: 0 2px 3px #eaedf2;
+     width: 922px;
  }
+
+ .card-top{
+    margin-top: 60px;
+ }
+
+ .card-2 {
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 2px 3px #eaedf2;
+    box-shadow: 0 2px 3px #eaedf2;
+    background-color: #f6eae1;
+    border-radius: 15px;
+    width: 385px;
+}
  
  .pb-0 {
      padding-bottom: 0!important;
@@ -182,4 +195,8 @@ body{
      background-color: #fff;
      border: 2px solid #038edc
  }
- 
+
+ .corazonEj{
+ width: 16px;
+ height: 14.76px;
+ }
