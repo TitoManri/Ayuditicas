@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-xl-8">
                 <div class="card card-top" >
-                    <div class="card-body pb-0">
+                    <div class="card-body">
                         <div class="row align-items-center">
 
                             <!--Columna del perfil-->
