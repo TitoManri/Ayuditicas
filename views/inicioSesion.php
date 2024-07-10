@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/theme.css">
-  <link rel="stylesheet" href="../assets/css/headerfooter.css">
-  <link rel="stylesheet" href="../assets/css/resgistro.css">
+    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
+    <link rel="stylesheet" href="../views/assets/css/registro.css">
 </head>
 <body>
 <header class="mainHeader">
@@ -31,13 +31,8 @@
         <label for="floatingPassword">Contraseña</label>
       </div>
 
-      <!--Checkbox para el Aceptar Terminos y Condiciones-->
-      <div class="checkbox mb-3">
-        <label> <input type="checkbox" value="remember-me">Aceptar Terminos y Condiciones</label>
-      </div>
-
       <a class="" href="">¿Olvidaste tu contraseña?</a>
-    <button class="w-100 btn btn-primary" type="submit">Iniciar sesión</button>
+      <button class="w-100 btn btn-success" type="submit">Iniciar sesión</button>
     <a class="" href="./registroSesion.php">Registrarse</a>
   </form>
 </div>

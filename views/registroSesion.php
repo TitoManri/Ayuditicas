@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/theme.css">
-  <link rel="stylesheet" href="../assets/css/headerfooter.css">
-  <link rel="stylesheet" href="../assets/css/resgistro.css">
+    <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
+    <link rel="stylesheet" href="../views/assets/css/registro.css">
 </head>
 <body>
 <header class="mainHeader">
@@ -19,7 +19,7 @@
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
         <form class="needs-validation form-container" novalidate="">
-        <div class="row g-3 form-container">
+        <div class="row g-3">
 
 <!--Nombre del usuario-->
       <div class="col-sm-6">
@@ -99,11 +99,15 @@
         <a class="" href="./inicioSesion.php">¿Ya tienes cuenta? Inicia sesion</a>
         </div>
 
-        <div class="col-sm-7"></div>
+        <div class="col-sm-6"></div>
 
 <!--Boton de Registrar-->
-        <div class="col-sm-2">
-        <button class="w-100 btn btn-primary" type="submit" href=""><h4>Registrar</h4></button>
+        <div class="col-sm-3">
+        <!--Checkbox para el Aceptar Terminos y Condiciones-->
+        <div class="checkbox mb-3">
+          <label> <input type="checkbox" value="remember-me">Aceptar Terminos y Condiciones</label>
+        </div>
+        <button class="w-100 btn btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>
     </form>
 </div>
