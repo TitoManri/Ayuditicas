@@ -1,3 +1,10 @@
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 body{
     background-color: #f9f5f2 !important;
 }
@@ -19,7 +26,6 @@ form {
     margin-top: 0em;
     unicode-bidi: isolate;
     background-color: #ffffff;
-    padding: 37px 23px;
     border-radius: 20px;
 }
 
@@ -39,4 +45,8 @@ form {
     padding-top: 25px;
     padding-left: 30px;
     margin-bottom: -10px;
+}
+
+.link{
+    color: black;
 }

@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="navbar-brand ayuditicaHeader" href="../../../../../SC502_2C2024_M_G3/views/index.php">AYUDITICAS</a>
+          <a class="navbar-brand ayuditicaHeader" href="./index.php">AYUDITICAS</a>
         </li>
       </ul>
       <!-- Navbar Derecha-->
@@ -38,7 +38,7 @@
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-square-plus" style="color: #000000;"></i> Crear publicación</a></li>
               <li><a class="dropdown-item" href="../views/crearDenuncia.php"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> Crear denuncia</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="./CrearCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear proyecto</a></li>
+              <li><a class="dropdown-item" href="./CrearCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear campaña</a></li>
             </ul>
           </div>
           <!-- Perfil -->
@@ -51,7 +51,7 @@
               <li><a class="dropdown-item" href="../views/mensajeria.php"><i class="fa-solid fa-message" style="color: #000000;"></i> Mensajeria</a></li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-circle-exclamation" style="color: #000000;"></i> Mis denuncias</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #000000;"></i> Cerrar sesion</a></li>
+              <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #000000;"></i> Cerrar sesion</a></li>
             </ul>
           </div>
         </ul>

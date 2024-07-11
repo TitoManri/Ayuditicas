@@ -57,7 +57,7 @@ aside{
     margin-bottom: 10px;
 }
 .fa-heart-filled {
-    color: red;
+    color: rgb(255, 0, 0);
 }
 .fa-heart {
     transition: color 0.3s ease;

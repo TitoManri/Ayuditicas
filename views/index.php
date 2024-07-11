@@ -109,7 +109,7 @@
                 <div class="row">
                     <div class="col-5">
                         <div class="d-flex justify-content-center">
-                        <a href="#" class="btn-xl d-flex justify-content-center"><i class="bi bi-chat-right-heart h1"></i></a>
+                        <a href="./redSocial.php" class="btn-xl d-flex justify-content-center"><i class="bi bi-chat-right-heart h1"></i></a>
                         </div>
                         <h5 class="text-center">Entra a la red social</h5>
                     </div>
