@@ -1,15 +1,10 @@
 body {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
 }
 
 
-#contenedor {
-    flex: 1;
-    margin: 0;
+.container-fluid {
     padding: 0;
 }
 
@@ -20,7 +15,6 @@ h3 {
 /* aside */
 #aside {
     position: sticky;
-    top: 0;
     height: 100vh; 
     overflow-y: auto;
 }
@@ -30,7 +24,6 @@ h3 {
     position: sticky;
     top: 0;
     background-color: #916a53; 
-    z-index: 1000; /* por encima del contenido desplazable */
 }
 
 
@@ -49,12 +42,14 @@ h3 {
 
 #usuarioActual {
     color: white;
+    
 }
 
 
 #chatContainer {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 /* Cuando no es el usuario loggeado*/

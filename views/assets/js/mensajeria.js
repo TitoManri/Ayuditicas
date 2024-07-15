@@ -133,8 +133,9 @@ usuarios.forEach(usuario => {
         const nombre = this.getAttribute('data-usuario');
         const imagenUrl = this.getAttribute('data-imagen');
 
-        //actualiza el header con ese nombre e imagen
-        actualizarChat(nombre, imagenUrl);
+        if (nombre != null) {
+            actualizarChat(nombre, imagenUrl);
+        }
 
         //habilita el input, botón y foto
         inputMensaje.disabled = false;
@@ -259,7 +260,9 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
                 const imagenUrl = this.getAttribute('data-imagen');
 
                 // Llamar a la función para actualizar el chat con el nuevo usuario
-                actualizarChat(nombre, imagenUrl);
+                if (nombre != null) {
+                    actualizarChat(nombre, imagenUrl);
+                }
 
                 // Habilitar los controles de mensajes
                 inputMensaje.disabled = false;
@@ -327,7 +330,9 @@ document.querySelector('#grupoModal .btn-success').addEventListener('click', fun
             const imagenUrl = this.getAttribute('data-imagen');
 
             // Llamar a la función para actualizar el chat con el nuevo usuario
-            actualizarChat(nombre, imagenUrl);
+            if (nombre != null) {
+                actualizarChat(nombre, imagenUrl);
+            }
 
             // Habilitar los controles de mensajes
             inputMensaje.disabled = false;
