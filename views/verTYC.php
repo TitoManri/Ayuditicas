@@ -11,7 +11,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
-    <link rel="stylesheet" href="./assets/css/verTYC.css">
+    <link rel="stylesheet" href="./assets/css/verTyc.css">
 </head>
 
 <body>
@@ -21,10 +21,10 @@
         ?>
     </header>
 
-    <div id="FORM" class="container-fluid">
-        <div class="container_label">
-            <h5>Ver términos y condiciones</h5>
-        </div>
+    <div class="container_label col-2">
+        <h5>Ver términos y condiciones</h5>
+    </div>
+    <section id="tyc">
         <div class="container">
             <form method="post" action="" id="formDenuncia">
                 <h1 class="text-center">Términos y condiciones</h1>
@@ -38,7 +38,7 @@
                     qui officia deserunt mollit anim id est laborum.</p>
             </form>
         </div>
-    </div>
+    </section>
 
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
