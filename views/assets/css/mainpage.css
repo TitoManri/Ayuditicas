@@ -46,6 +46,7 @@ aside{
 
 .perfil-barra{
     margin: 10px 0 10px 0;
+    color: #000000 !important;
 }
 
 .publicacion{
@@ -88,3 +89,7 @@ aside{
     z-index: 2;
 }
 
+
+.perfil-usuario{
+    color:black;
+}
