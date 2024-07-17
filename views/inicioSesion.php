@@ -36,7 +36,7 @@
     <a class="" href="./registroSesion.php">Registrarse</a>
   </form>
 </div>
-<footer class=" mainfooter">
+<footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
   

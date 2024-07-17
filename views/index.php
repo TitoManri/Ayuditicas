@@ -23,7 +23,7 @@
 <body>
     <header class="mainHeader">
         <?php
-        include './templates/Header&Footer/header.php';
+        include './templates/Header&Footer/header2.php';
         ?></header>
     <br>
     <section class="container" id="Inicio">
@@ -116,7 +116,7 @@
                     <div class="col-2"></div>
                     <div class="col-5">
                         <div class="d-flex justify-content-center">
-                        <a href="#" class=" btn-xl d-flex justify-content-center"><i class="bi bi-newspaper h1"></i></a>
+                        <a href="./mainBlog.php" class=" btn-xl d-flex justify-content-center"><i class="bi bi-newspaper h1"></i></a>
                         </div>
                         <h5 class="text-center">Lee blogs</h5>
                     </div>
