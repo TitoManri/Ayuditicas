@@ -70,7 +70,7 @@
 <!--Numero Telefonico-->
         <div class="col-sm-4">
             <label for="telefono" class="form-label">Telefono</label>
-            <input type="text" class="form-control escribir" id="telefono" placeholder="" value="" required="">
+            <input type="number" class="form-control escribir" id="telefono" placeholder="" value="" required="">
               <div class="invalid-feedback">Porfavor ingrese su numero de telefono.</div>
         </div>
 
@@ -90,7 +90,7 @@
 <!--Confirmar Contraseña-->
         <div class="col-sm-6">
             <label for="ConfContra" class="form-label">Confirmar Contraseña</label>
-            <input type="password" class="form-control escribir" id="ConfContra" placeholder="" value="" required="Porfavor ingresar un valor">
+            <input type="password" class="form-control escribir" id="ConfContra" placeholder="" value="" required="">
               <div class="invalid-feedback">Porfavor ingrese su numero de telefono.</div>
         </div>
 
