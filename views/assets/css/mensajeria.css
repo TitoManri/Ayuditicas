@@ -1,15 +1,10 @@
 body {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
 }
 
 
 .container-fluid {
-    flex: 1;
-    margin: 0;
     padding: 0;
 }
 
@@ -18,19 +13,17 @@ h3 {
 }
 
 /* aside */
-.col-md-3 {
+#aside {
     position: sticky;
-    top: 0;
     height: 100vh; 
     overflow-y: auto;
 }
 
 /* header msj*/
-header {
-    position: relative;
+#msjHeader {
+    position: sticky;
     top: 0;
     background-color: #916a53; 
-    z-index: 1000; /* por encima del contenido desplazable */
 }
 
 
@@ -42,29 +35,21 @@ header {
     z-index: 1000; 
 }
 
+/*Cada chat dentro del aside*/
 .nav-link {
     color: #616d63;
 }
 
-.nav-link.active {
-    background-color: #B1B2B5;
-    color: #616d63; 
-}
-
-.container-fluid .navbar .container-fluid {
-    display: flex;
-    align-items: center;
-    padding: 0;
-}
-
 #usuarioActual {
     color: white;
+    
 }
 
 
 #chatContainer {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 /* Cuando no es el usuario loggeado*/
@@ -97,9 +82,9 @@ header {
     text-align: justify;
 }
 
-/*Color del usaurio cuando está seleciconado*/
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    background-color: #648f7bcc;
+/*Color del usuario cuando está seleciconado*/
+.nav-pills .nav-link.active {
+    background-color: #b5c5be;
 }
 
 #iniciarChat{
