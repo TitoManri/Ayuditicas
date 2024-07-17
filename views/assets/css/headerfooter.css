@@ -82,3 +82,19 @@ nav .searchbar {
     opacity: 1;
   }
   
+.btn-isr{
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  background-color: rgb(97, 109, 99,0.9);
+  border: 1px solid rgb(129, 129, 129);
+  padding: 7px 10px 7px 10px;
+  border-radius: 10px;
+}
+.btn-isr:hover{
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  background-color: rgb(97, 109, 99,0.4);
+  border: 1px solid rgb(129, 129, 129,0.4);
+}
