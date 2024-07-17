@@ -18,13 +18,13 @@
 <div class="container form-container">
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
-        <form class="needs-validation form-container" novalidate="">
+    <form class="needs-validation form-container" novalidate="">
         <div class="row g-3">
 
 <!--Nombre del usuario-->
       <div class="col-sm-6">
         <label for="firstName" class="form-label">Nombre</label>
-        <input type="text" class="form-control escribir" id="firstName" placeholder="" value="" required="">
+        <input type="text" class="form-control escribir" id="firstName" placeholder="" value="" required>
           <div class="invalid-feedback">Porfavor ingrese un nombre.</div> <!--Sirven para validar que el campo este completo-->
       </div>
 
@@ -63,14 +63,14 @@
 <!--Numero de Cedula del usuario-->
         <div class="col-sm-8">
             <label for="numCedula" class="form-label">Numero de cedula</label>
-            <input type="text" class="form-control escribir" id="numCedula" placeholder="" value="" required="">
+            <input type="number" class="form-control escribir" id="numCedula" placeholder="" value="" required="">
               <div class="invalid-feedback">Porfavor ingrese su numero de celuda.</div>
         </div>
 
 <!--Numero Telefonico-->
         <div class="col-sm-4">
             <label for="telefono" class="form-label">Telefono</label>
-            <input type="" class="form-control escribir" id="telefono" placeholder="" value="" required="">
+            <input type="text" class="form-control escribir" id="telefono" placeholder="" value="" required="">
               <div class="invalid-feedback">Porfavor ingrese su numero de telefono.</div>
         </div>
 
@@ -83,14 +83,14 @@
 <!--Contraseña-->
         <div class="col-sm-6">
             <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="text" class="form-control escribir" id="contraseña" placeholder="" value="" required="">
+            <input type="password" class="form-control escribir" id="contraseña" placeholder="" value="" required="">
               <div class="invalid-feedback">Porfavor ingrese su numero de celuda.</div>
         </div>
 
 <!--Confirmar Contraseña-->
         <div class="col-sm-6">
             <label for="ConfContra" class="form-label">Confirmar Contraseña</label>
-            <input type="text" class="form-control escribir" id="ConfContra" placeholder="" value="" required="">
+            <input type="password" class="form-control escribir" id="ConfContra" placeholder="" value="" required="Porfavor ingresar un valor">
               <div class="invalid-feedback">Porfavor ingrese su numero de telefono.</div>
         </div>
 
@@ -109,6 +109,7 @@
         </div>
         <button class="w-100 btn btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>
+        <br><br><br><br><br><br><br><br>
     </form>
 </div>
 
