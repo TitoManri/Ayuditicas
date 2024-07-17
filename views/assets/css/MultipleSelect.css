@@ -1,5 +1,9 @@
 /* No tocar lo que no tiene comentario */
 /* Si se quiere cambiar el color de las etiquetas dentro del input, entrar a MultipleSelect.js */
+/* Codigo de GitHub
+https://github.com/habibmhamadi/multi-select-tag
+// Autor: Habib Mhamadi
+*/
 
 .mult-select-tag {
     display: flex;
@@ -34,7 +38,7 @@
     padding: 0.1rem;
     align-items: center;
     /* Cambio color de Input, donde aparecen las etiquetas seleccionadas */
-    background-color: #D2AC97;
+    background-color: #c89c7d;
 }
 
 .mult-select-tag .input-body {
