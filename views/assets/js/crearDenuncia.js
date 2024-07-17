@@ -1,28 +1,22 @@
+//arreglo del toggle
 let tipos = [null, "Basura en las calles", "Maltrato animal", "Deforestación"];
 
-function llenarSelect() {
-    const select = document.getElementById("selectTipo");
-
-    for (let i = 0; i < tipos.length; i++) {
-        let option = document.createElement("option");
-        option.value = i.toString();
-        option.textContent = tipos[i] === null ? "--Selecciona el tipo de denuncia--" : tipos[i];
-        select.appendChild(option);
-    }
-}
-
-llenarSelect();
-
+//función  para envío del form
 document.getElementById("formDenuncia").addEventListener("submit", function enviarDenuncia(event) {
     event.preventDefault();
 
+    //se traen todos los datos relacionados a la denuncia 
+    //select del tipo
     const selectIndex = document.getElementById("selectTipo").selectedIndex;
     const denunciaSeleccionada = tipos[selectIndex];
-    const descripcion = document.getElementById("IdDetalle").value;
+    //el detalle
+    const detalle = document.getElementById("IdDetalle").value;
+    //la foto
     const foto = document.getElementById("formFile").files[0];
+    //falta la dirección
 
     // Verifica que todos los campos obligatorios estén llenos
-    if (selectIndex === 0 || descripcion.trim() === '' || !foto) {
+    if (selectIndex === 0 || detalle.trim() === '' || !foto) {
         Swal.fire({
             title: "Campos Incompletos",
             text: "Por favor completa todos los campos del formulario.",
@@ -35,10 +29,8 @@ document.getElementById("formDenuncia").addEventListener("submit", function envi
             text: "Revisaremos la solicitud antes de procesarla.",
             icon: "success"
         });
+        //const form = document.getElementById("formDenuncia");
+        //form.submit();
     }
-
-    // Recarga la página después de 2 segundos 
-    setTimeout(function () {
-        window.location.reload();
-    }, 3000);
+    
 });
