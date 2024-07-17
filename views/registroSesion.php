@@ -18,13 +18,13 @@
 <div class="container form-container">
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
-        <form class="needs-validation form-container" novalidate="">
+    <form class="needs-validation form-container" novalidate="">
         <div class="row g-3">
 
 <!--Nombre del usuario-->
       <div class="col-sm-6">
         <label for="firstName" class="form-label">Nombre</label>
-        <input type="text" class="form-control escribir" id="firstName" placeholder="" value="" required="">
+        <input type="text" class="form-control escribir" id="firstName" placeholder="" value="" required>
           <div class="invalid-feedback">Porfavor ingrese un nombre.</div> <!--Sirven para validar que el campo este completo-->
       </div>
 
@@ -109,6 +109,7 @@
         </div>
         <button class="w-100 btn btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>
+        <br><br><br><br><br><br><br><br>
     </form>
 </div>
 
