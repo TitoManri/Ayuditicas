@@ -2,14 +2,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTituloReporte">Enviar Reporte</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="modalTituloReporte">Enviar Reporte</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Gracias por velar por ti y por la comunidad al denunciar contenidos que no cumplen
                     con las normas. Infórmanos de cualquier irregularidad y nos encargaremos de
                     revisarla.</p>
-                <label for="tipoReporte" class="form-label">Esta publicacion se categoriza: </label>
+                <label for="tipoReporte" class="form-label fw-semibold">Esta publicacion se categoriza: </label>
                 <select class="form-select" aria-label="Tipo Reporte" id="tipoReporte">
                     <option selected>Tipo Reporte</option>
                     <option value="1">Contenido inapropiado o ofensivo</option>
@@ -20,7 +20,7 @@
                     <option value="6">Derechos de autor</option>
                 </select>
                 <div class="mb-3 mt-3">
-                    <label for="contenidoReporte" class="form-label">Describenos el problema</label>
+                    <label for="contenidoReporte" class="form-label fw-semibold">Describenos el problema</label>
                     <textarea class="form-control" id="contenidoReporte" rows="5"></textarea>
                 </div>
             </div>
@@ -36,7 +36,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTituloReporte">Muchas Gracias por tu Opinión</h1>
+                <h1 class="modal-title fs-5 fw-semibold" id="modalTituloReporte">Muchas Gracias por tu Opinión</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

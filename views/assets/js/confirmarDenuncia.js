@@ -8,45 +8,47 @@ const datosAutocompletar = {
 
 // Función para autocompletar y deshabilitar campos
 function autocompletarFormulario() {
-    // Autocompletar el tipo de denuncia
+    //autocompletar el tipo de denuncia
     const tipoDenuncia = document.getElementById("tipoDenuncia");
     tipoDenuncia.value = datosAutocompletar.tipoDenuncia;
 
-    // Autocompletar la descripción
-    const descripcion = document.getElementById("IdDetalle");
-    descripcion.value = datosAutocompletar.detalle;
+    //autocompletar el detalle
+    const detalle = document.getElementById("IdDetalle");
+    detalle.value = datosAutocompletar.detalle;
 
     //const ubicacion = document.getElementById("ubicacion");
     //ubicacion.innerHTML = datosAutocompletar.ubicacion;
 
-    // Autocompletar la imagen
-    const imagenPreview = document.getElementById("imagenPreview");
-    imagenPreview.src = datosAutocompletar.imagen;
-    imagenPreview.style.width = "300px"; 
-    imagenPreview.style.height = "150px"; 
+    //autocompletar la imagen
+    const imgDenuncia = document.getElementById("imgDenuncia");
+    imgDenuncia.src = datosAutocompletar.imagen;
+    //se ajusta el tamaño
+    imgDenuncia.style.width = "300px"; 
+    imgDenuncia.style.height = "150px"; 
 
 }
 
-// Ejecutar la función para autocompletar al cargar la página
+//Ejecutar la función para autocompletar al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
     autocompletarFormulario();
 });
 
-// Evitar que el formulario se envíe automáticamente
+//EVITAR QUE EL FORMULARIO SE ENVÍE 
 document.getElementById("formDenuncia").addEventListener("submit", function(event) {
     event.preventDefault();
 
+    //toma el valor del botón presionado
     const botonPresionado = event.submitter.value;
 
     if (botonPresionado === "Aceptar") {
-        // Lógica para confirmar la denuncia
+        //botón para confirmar la denuncia
         Swal.fire({
             title: "Denuncia confirmada",
             text: "La denuncia ha sido confirmada correctamente.",
             icon: "success"
         });
     } else if (botonPresionado === "Eliminar") {
-        // Lógica para eliminar la denuncia
+        //botón para eliminar la denuncia
         Swal.fire({
             title: "Denuncia eliminada",
             text: "La denuncia ha sido eliminada.",
@@ -55,4 +57,3 @@ document.getElementById("formDenuncia").addEventListener("submit", function(even
     }
 
 });
-
