@@ -96,7 +96,7 @@
 
 <!--El "Ya teiene una cuenta"-->
         <div class="col-sm-3">
-        <a class="" href="./inicioSesion.php">¿Ya tienes cuenta? Inicia sesion</a>
+        <a class="link" href="./inicioSesion.php">¿Ya tienes cuenta? Inicia sesion</a>
         </div>
 
         <div class="col-sm-6"></div>
@@ -112,6 +112,9 @@
     </form>
 </div>
 
+<footer class="mainfooter">
+        <?php include './templates/Header&Footer/footer.php';
+        ?></footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

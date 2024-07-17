@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denuncias</title>
+    <title>Confrimar Denuncias</title>
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -20,6 +20,7 @@
         include './templates/Header&Footer/header.php'
             ?>
     </header>
+    
     <div id="FORM" class="container-fluid">
         <div class="container_label">
             <h5>Crear denuncia</h5>
