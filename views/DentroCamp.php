@@ -52,7 +52,6 @@
         <?php
         for ($i = 0; $i < 4; $i++) {
         ?>
-
             <div class="Etiquetas">
                 <a href="">
                     <div class="row">
@@ -77,7 +76,8 @@
     </aside>
     <br><br>
 
-    <section id="NombreCamp" class="container containerD">
+    <section id="NombreCamp" class="container containerD card rounded">
+        <br>
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
@@ -101,149 +101,25 @@
         </div>
         <br>
     </section>
-
-    <section id="PostCamp" class="container containerD">
+    <br>
+    <section id="PostsCamp" class="container containerD">
         <h1>Post sobre la campaña</h1><br>
-        <section class="container">
-            <div id="infoUsuario" class="row">
-                <div class="col-1">
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="40px" height="40px">
+        <?php
+        for ($i = 0; $i < 2; $i++) {
+        ?>
+            <main class="col d-flex justify-content-center">
+                <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 10px;">
+                    <?php
+                    include './templates/Red_Social/publicacion.php';
+                    ?>
                 </div>
-                <div class="col-3">
-                    <p class="h3">Nombre_Usuario</p>
-                </div>
-                <div class="col-8">
-                    <div class="row d-flex justify-content-end">
-                        <div class="col-1">
-                            <button onclick="" class="Opciones">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <div class="col-1">
-                            <button type="button" class="Opciones" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-chat-dots"></i>
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-1 dropdown">
-                            <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="Opciones">
-                                <i class="bi bi-three-dots-vertical"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="infoPostCamp" class="container">
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod necessitatibus perspiciatis minus molestiae, facilis eveniet corporis doloribus amet, aperiam, ex eum error nemo dolores quibusdam iste earum ullam reprehenderit maxime!</p>
-                </div>
-            </div>
-        </section>
-        <hr>
+            </main>
+            <hr>
+        <?php
+        }
+        ?>
     </section>
 
-    
-    <section id="PostCampConIMG" class="container containerD">
-        <section id="Post2">
-            <section class="container">
-                <div id="infoUsuario" class="row">
-                    <div class="col-1">
-                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="40px" height="40px">
-                    </div>
-                    <div class="col-3">
-                        <p class="h3">Nombre_Usuario</p>
-                    </div>
-                    <div class="col-8">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col-1">
-                                <button onclick="" class="Opciones">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                            <!-- Button trigger modal -->
-                            <div class="col-1">
-                                <button type="button" class="Opciones" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="bi bi-chat-dots"></i>
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-1 dropdown">
-                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="Opciones">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="infoPostCamp" class="container">
-                <div class="container d-flex justify-content-center">
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" class="img-fluid">
-                </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod necessitatibus perspiciatis minus molestiae, facilis eveniet corporis doloribus amet, aperiam, ex eum error nemo dolores quibusdam iste earum ullam reprehenderit maxime!</p>
-                    </div>
-                </div>
-            </section>
-        </section>
-        <hr>
-    </section>
 
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';

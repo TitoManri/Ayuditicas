@@ -1,5 +1,6 @@
 //Codigo de GitHub
 //https://github.com/habibmhamadi/multi-select-tag
+// Autor: Habib Mhamadi
 
 
 function MultiSelectTag(el, customs = { shadow: false, rounded: true }) {
