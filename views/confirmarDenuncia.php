@@ -25,31 +25,36 @@
         <h5>Confirmar denuncia</h5>
     </div>
     <section id="confirmCampana" class="container text-center">
+        <!-- formulario-->
         <form method="post" action="" id="formDenuncia">
             <div class="row gx-5">
                 <div class="col">
+                    <!-- tipo de denuncia-->
                     <label for="tipoDenuncia" class="form-label">
                         <h3>Tipo denuncia</h3>
                     </label>
-                    <input class="form-control" id="tipoDenuncia" readonly>
+                    <input class="form-control" id="tipoDenuncia" name="tipoDenuncia" readonly>
                 </div>
                 <div class="col">
+                    <!-- imagen-->
                     <label>
                         <h3>Imágen</h3>
                     </label>
                     <div class="imgDenunciaContainer">
-                        <img id="imgDenuncia" src="" alt="Vista previa de la imagen">
+                        <img id="imgDenuncia" name="imgDenuncia" src="" alt="Vista previa de la imagen">
                     </div>
                 </div>
             </div>
             <div class="row gx-5">
                 <div class="col">
-                    <label for="IdDetalle" class="form-label">
+                    <!-- detalle-->
+                    <label for="detalle" class="form-label">
                         <h3>Detalle</h3>
                     </label>
-                    <textarea class="form-control" id="IdDetalle" rows="4" readonly></textarea>
+                    <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
                 </div>
                 <div class="col">
+                    <!-- ubicación (PENDIENTE)-->
                     <label for="ubicacion" class="form-label">
                         <h3>Ubicación</h3>
                     </label>
