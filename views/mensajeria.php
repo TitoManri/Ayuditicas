@@ -105,12 +105,14 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <!-- form de imagen-->
                                 <form id="imgForm" action="" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="imgInput" class="form-label">Seleccione una imagen para
+                                        <label for="imagen" class="form-label">Seleccione una imagen para
                                             subir</label>
-                                        <input class="form-control form-control-sm" id="imgInput" type="file"
-                                            name="image">
+                                        <!-- imagen -->
+                                        <input class="form-control form-control-sm" id="imagen" type="file"
+                                            name="imagen">
                                     </div>
                                     <button type="submit" class="btn btn-success">Subir</button>
                                 </form>
@@ -127,8 +129,10 @@
 
                 <!-- INPUT -->
                 <div class="mt-auto mx-1 w-99 mb-3" id="enviarMensaje">
+                    <!-- enviarMensaje form-->
                     <form id="enviarMsj" action="" method="post">
                         <div class="input-group">
+                            <!-- Mensaje-->
                             <input type="text" class="form-control" id="mensaje" name="txtMensaje"
                                 placeholder="Escribe tu mensaje aquí..." disabled>
                             <button type="submit" class="btn ms-2" id="btnEnviar" disabled>Enviar</button>
@@ -154,10 +158,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- agregar usuario fromulario-->
                     <form id="agrUsuario" action="" method="post">
                         <div class="mb-3">
                             <label for="username" class="col-form-label">Nombre de usuario:</label>
-                            <input type="text" class="form-control" id="username" name="txtUsername">
+                            <!-- username-->
+                            <input type="text" class="form-control" id="username" name="username">
                         </div>
                     </form>
                 </div>
@@ -177,9 +183,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- agregar grupo formulario-->
                     <form id="agrGrupoForm">
                         <label for="nombreGrupo" class="col-form-label">Nombre del grupo:</label>
-                        <input type="text" class="form-control" id="nombreGrupo" name="txtNombreGrupo">
+                        <!-- nombre del grupo-->
+                        <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo">
                 </div>
                 </form>
                 <div class="modal-footer">

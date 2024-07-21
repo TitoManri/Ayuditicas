@@ -169,7 +169,7 @@ formularioSubida.addEventListener('submit', function (e) {
     e.preventDefault();
 
     //se guarda el input de la imagen 
-    const inputArchivo = document.getElementById('imgInput');
+    const inputArchivo = document.getElementById('imagen');
     //si la longitud del input es 0 (no se subió una imagen) muestra mensaje de error
     if (inputArchivo.files.length === 0) {
         Swal.fire({
