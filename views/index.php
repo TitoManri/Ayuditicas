@@ -23,7 +23,7 @@
 <body>
     <header class="mainHeader">
         <?php
-        include './templates/Header&Footer/header.php';
+        include './templates/Header&Footer/header2.php';
         ?></header>
     <br>
     <section class="container" id="Inicio">
@@ -43,7 +43,7 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/yupbbhuuyscm4xceitjo" class="d-block w-100 rounded" alt="Imagen_Voluntariado_1" style="height: 600px;">
-                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
+                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto opacity-75">
                                 <!-- Arreglar -->
                                 <h5 style="color: #616D63">Únete a una causa y transforma nuestro pais</h5>
                                 <p>Registrate y participa en proyectos comunitarios.</p>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="https://blog.vicensvives.com/wp-content/uploads/2019/12/Voluntariado.png" class="d-block w-100 rounded" alt="Imagen_Voluntariado_2" style="height: 600px; object-fit: cover;">
-                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
+                            <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto opacity-75">
                                 <!-- Arreglar -->
                                 <h5 style="color: #616D63">Crea tus propias campañas de voluntariado</h5>
                                 <p>Regístrate como 'Jefe de Campañas' y empieza a crear un impacto</p>
@@ -60,7 +60,7 @@
                         <div class="carousel-item">
                             <img src="https://res.cloudinary.com/tearfund/image/fetch/c_scale,w_1280/f_auto/https://learn.tearfund.org/-/media/learn/resources/footsteps/images/footsteps-101-110/107/107-setting-up-community-waste-collection-banner.jpg" class="d-block w-100 rounded" alt="Imagen_Voluntariado_3" style="height: 600px;">
                                 <!-- Arreglar -->
-                                <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto">
+                                <div class="carousel-caption d-none d-md-block bg-light w-25 rounded border-dark me-auto opacity-75">
                                     <h5 style="color: #616D63">Denuncia prácticas irresponsables y protege el medio ambiente</h5>
                                     <p>Registrate y ayuda a la comunidad a darse cuenta.</p>
                                 </div>
@@ -116,7 +116,7 @@
                     <div class="col-2"></div>
                     <div class="col-5">
                         <div class="d-flex justify-content-center">
-                        <a href="#" class=" btn-xl d-flex justify-content-center"><i class="bi bi-newspaper h1"></i></a>
+                        <a href="./mainBlog.php" class=" btn-xl d-flex justify-content-center"><i class="bi bi-newspaper h1"></i></a>
                         </div>
                         <h5 class="text-center">Lee blogs</h5>
                     </div>
