@@ -77,7 +77,7 @@
     </section>
 
     <br><br>
-    <footer class="mainfooter">
+    <footer class="mainfooter fixed-bottom">
         <?php
         include './templates/Header&Footer/footer.php'
             ?>
