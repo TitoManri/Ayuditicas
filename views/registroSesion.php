@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
@@ -18,7 +19,7 @@
 <div class="container form-container">
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
-    <form class="needs-validation form-container" novalidate="">
+    <form class="needs-validation form-container" id="registro">
         <div class="row g-3">
 
 <!--Nombre del usuario-->
@@ -111,21 +112,42 @@
 <!--Boton de Registrar-->
         <div class="col-sm-3">
         <!--Checkbox para el Aceptar Terminos y Condiciones-->
-        <div class="checkbox-button mb-3">
-          <input type="checkbox" id="TYCCheck">
-          <label for="TYCCheck" class="" id="TYBbtn" data-bs-toggle="modal" data-bs-target="#exampleModal" name="TYBbtn">
-            Aceptar Términos y Condiciones
-          </label>
-        </div>
-        <?php
-          include './templates/registro/MRegistroSesion.php'
-        ?>
+        <button type="submit" class="btn btn-primary">Submit</button>
 
         <!--Boton de registrarse-->
         <button class="w-100 btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>
         <br><br><br><br><br><br><br><br>
     </form>
+
+    <!-- Modal de terminos y condiciones -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">          
+                <p>Al aceptar estos Términos y Condiciones, usted se compromete a lo siguiente:</p>
+                  <ul>
+                    <li>Procurar el buen uso de los servicios proporcionados en este sitio web.</li>
+                    <li>Respetar la privacidad y los derechos de otros usuarios.</li>
+                    <li>No utilizar el sitio para actividades ilegales o no autorizadas.</li>
+                    <li>No distribuir contenido malicioso o dañino.</li>
+                    <li>Reconocer y aceptar que el incumplimiento de estos términos puede resultar en la suspensión o terminación de su acceso al servicio.</li>
+                  </ul>
+                <p>Si acepta estos Términos y Condiciones, por favor haga clic en "Aceptar" a continuación.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn text-white" style="background:red" id="rechazarBtn"
+                  data-bs-dismiss="modal">Rechazar</button>
+                <button type="button" class="btn text-white" style="background:green" id="aceptarBtn">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 </div>
 
 <footer class="mainfooter">
@@ -136,5 +158,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../assets/js/MTYCRS.js"></script>
+    <script src="./assets/js/searchBar.js"></script>
+    <script src="./assets/js/verTYC.js"></script>
+    <script src="./assets/js/modalTYC.js"></script>
+    
 </html>
