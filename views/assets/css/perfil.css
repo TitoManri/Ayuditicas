@@ -73,3 +73,9 @@ body{
     border-bottom-right-radius: 45px;
     height: 54px;
 }
+
+.centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
