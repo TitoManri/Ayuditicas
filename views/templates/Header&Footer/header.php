@@ -29,7 +29,7 @@
               <i class="fa-solid fa-triangle-exclamation fa-2xl"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-             <li><a class="dropdown-item" href="./camps.php"><i class="fa-solid fa-bullhorn" style="color: #000000;"></i> Ver Mis Denuncias</a></li>
+             <li><a class="dropdown-item" href=""><i class="fa-solid fa-bullhorn" style="color: #000000;"></i> Ver Mis Denuncias</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="./confirmarDenuncia.php"><i class="fa-solid fa-square-check" style="color: #000000;"></i> Confirmar Denuncia</a></li>
               <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Solicitudes Denuncias</a></li>
