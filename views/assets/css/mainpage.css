@@ -1,43 +1,8 @@
-aside{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0; 
-    height: 100vh; 
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-
 .card{
     margin-top: 20px;
     margin-bottom: 0px;
     border-radius: 10px;
     border:1px solid black;
-}
-
-.box-aside-izquierda{
-    border-radius: 0 10px 10px 0;
-    margin-top: 100px;
-    text-align: center;
-    justify-content: start;
-    background-color: #EDE6D3;
-    padding-bottom: 10px;
-}
-
-.proyecto-box{
-   border-radius: 20px;
-   margin: 15px 5px 15px 5px; /* top, derecha, bottom, izquierda*/
-   background-color: white;
-   text-align: start;
-}
-
-.box-aside-derecha{
-    border-radius: 10px 0 0 10px;
-    margin-top: 100px;
-    text-align: center;
-    justify-content: start;
-    background-color: #EDE6D3;
-    padding-bottom: 10px;
 }
 
 .card-img-top{
@@ -92,4 +57,44 @@ aside{
 
 .perfil-usuario{
     color:black;
+}
+
+.EtiquetasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    right: 0;
+    background: #ede6d3 !important;
+    padding: 30px 30px 70px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
+.CampanasAside {
+    position: absolute;
+    color: #827a6f;
+    top: 150px;
+    left: 0;
+    background: #ede6d3 !important;
+    padding: 30px 30px 30px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    max-width: 20%;
+    overflow: auto;
+    z-index: 1;
+}
+
+.Etiquetas {
+    font-size: 18px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 7px;
+}
+
+.Etiquetas a {
+    text-decoration: none;
+    color: #827a6f;
 }
