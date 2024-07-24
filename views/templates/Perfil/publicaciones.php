@@ -1,4 +1,4 @@
-    <div class="card-2" style="width: 385px;">
+    <div class="card-2 pt-0" style="width: 385px;">
         <div class="container publicacion">
             <div class="row perfil-barra">
                 <!--Perfil tipo la "foto de la persona y el nombre"-->
