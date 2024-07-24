@@ -28,7 +28,7 @@
     </nav>
     <br><br>
     <section id="EnviarSoli" class="container">
-        <form action="" method="POST">
+        <form id="formulario" action="" method="POST">
             <div>
                 <div class="row">
                     <div class="col-1"></div>
@@ -44,12 +44,11 @@
                         <div class="d-flex justify-content-center">
                             <select name="SelectEtiqueta" id="SelectEtiqueta" multiple required>
                                 <?php
-                        $opciones = ['Basura', 'Arboles', 'Educacion'];
-
-                        for ($i = 0; $i < count($opciones); $i++) {
-                            echo '<option value="', $opciones[$i], '">', $opciones[$i], '</option>';
-                        }
-                        ?>
+                            $opciones = ['Basura', 'Arboles', 'Educacion'];
+                            foreach ($opciones as $opcion) {
+                                echo '<option value="', $opcion, '">', $opcion, '</option>';
+                            }
+                            ?>
                             </select>
                         </div>
                         <br>
@@ -75,9 +74,11 @@
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="CrearCampFormBTN">Crear Publicacion</button>
                 </div>
+            </div>
         </form>
     </section>
     <br><br>
+
 
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
@@ -97,4 +98,5 @@
 <script>
 new MultiSelectTag('SelectEtiqueta')
 </script>
+
 </html>
