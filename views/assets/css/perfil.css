@@ -6,29 +6,39 @@ body{
     margin-right: 5px;
  }
 
+ aside{
+    float: right;
+    width: 300px;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid #D2D2D2;
+    box-sizing: border-box;
+ }
+
  .avatar-xxl {
      height: 7rem;
      width: 7rem;
  }
  
- .card {
-     margin-bottom: 20px;
-     -webkit-box-shadow: 0 2px 3px #eaedf2;
-     box-shadow: 0 2px 3px #eaedf2;
-     width: 922px;
- }
-
  .card-top{
     margin-top: 60px;
  }
 
  .card-2 {
     margin-bottom: 20px;
+    margin-left: 25px;
     -webkit-box-shadow: 0 2px 3px #eaedf2;
     box-shadow: 0 2px 3px #eaedf2;
     background-color: #f6eae1;
     border-radius: 15px;
     width: 385px;
+}
+
+.card-3 {
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 2px 3px #eaedf2;
+    background-color: #f6eae1;
+    border-radius: 15px;
 }
 
  .rounded-circle {
@@ -45,3 +55,12 @@ body{
     border: #bcc9b8;
     color: #827a6f;
 }
+
+.container-small, .container-large {
+   max-width: 100%;
+}
+
+.perfil-barra{
+    margin: 10px 0 10px 0;
+    margin-top: 15px;
+    color: #000000 !important;

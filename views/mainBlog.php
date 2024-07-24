@@ -21,7 +21,7 @@
         include './templates/Header&Footer/header.php';
         ?></header>
 
-    <main class="container">
+    <main class="container" id="mainBlog-ayuditicas">
         <div class="p-4 p-md-5 mb-4 mt-4 rounded text-body-emphasis fondo-bloque">
             <div class="row">
             <div class="col-lg-9 px-0">
@@ -71,12 +71,12 @@
                          
                 </article>
             </div>
-
+            <aside id="publicaciones-recientes">
             <div class="col-md-4 ">
                 <div class="position-sticky" style="top: 2rem;">
 
                     <div>
-                        <h4 class="fst-italic">Recent posts</h4>
+                        <h4 class="fst-italic">Publicaciones Recientes</h4>
                         <ul class="list-unstyled">
                         <?php
                         for ($i=0; $i<6; $i++){
@@ -88,6 +88,8 @@
                     </div>
                 </div>
             </div>
+            </aside>
+            
         </div>
 
     </main>
