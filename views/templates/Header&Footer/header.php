@@ -23,22 +23,38 @@
           </div>
         </div>
         </li>
-        <!-- Notificaciones -->
-        <li class="nav-item">
-          <a class="nav-link icons" href="#">
-            <i class="fa-solid fa-bell fa-2xl"></i>
-          </a>
-        </li>
+        <!-- Denuncias -->
+        <div class="nav-item dropdown">
+            <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-triangle-exclamation fa-2xl"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+             <li><a class="dropdown-item" href="./camps.php"><i class="fa-solid fa-bullhorn" style="color: #000000;"></i> Ver Mis Denuncias</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Solicitudes Denuncias</a></li>
+            </ul>
+          </div>
+        <!-- Campanias -->
+        <div class="nav-item dropdown">
+            <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-people-roof fa-2xl"></i>          
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+             <li><a class="dropdown-item" href="./camps.php"><i class="fa-solid fa-campground" style="color: #000000;"></i> Ver Campañas</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Solicitudes Campañas</a></li>
+            </ul>
+          </div>
         <!-- Publicaciones -->
         <div class="nav-item dropdown">
             <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-regular fa-pen-to-square fa-2xl"></i>          
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-square-plus" style="color: #000000;"></i> Crear publicación</a></li>
+              <li><a class="dropdown-item" href="./crearPublicacion.php"><i class="fa-solid fa-square-plus" style="color: #000000;"></i> Crear publicación</a></li>
               <li><a class="dropdown-item" href="../views/crearDenuncia.php"><i class="fa-solid fa-triangle-exclamation" style="color: #000000;"></i> Crear denuncia</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="./CrearCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Crear campaña</a></li>
+              <li><a class="dropdown-item" href="./CrearCamp.php"><i class="fa-solid fa-people-group"></i> Crear campaña</a></li>
             </ul>
           </div>
           <!-- Perfil -->
@@ -47,9 +63,9 @@
             <i class="fa-solid fa-user fa-2xl"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user" style="color: #000000;"></i> Perfil</a></li>
-              <li><a class="dropdown-item" href="../views/mensajeria.php"><i class="fa-solid fa-message" style="color: #000000;"></i> Mensajeria</a></li>
-              <li><a class="dropdown-item" href="../views/confirmarDenuncia.php"><i class="fa-solid fa-circle-exclamation" style="color: #000000;"></i> Mis denuncias</a></li>
+              <li><a class="dropdown-item" href="./perfil.php"><i class="fa-solid fa-user" style="color: #000000;"></i> Perfil</a></li>
+              <li><a class="dropdown-item" href="./mensajeria.php"><i class="fa-solid fa-message" style="color: #000000;"></i> Mensajeria</a></li>
+              <li><a class="dropdown-item" href="./perfil.php"><i class="fa-solid fa-bell" style="color: #000000;"></i> Notificaciones</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #000000;"></i> Cerrar sesion</a></li>
             </ul>
