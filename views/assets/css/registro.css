@@ -33,6 +33,7 @@ form {
     background-color: #bcc9b8; 
     border: #bcc9b8;
     color: #827a6f;
+    border-radius: 25px;
 }
 
 .escribir{
@@ -49,4 +50,26 @@ form {
 
 .link{
     color: black;
+}
+
+.tYc{
+    justify-content: right;
+    border: none;
+    background-color: #f9f5f2;
+    color: #000 !important;
+    margin-bottom: 7px;
+}
+
+.aceptbtn{
+    border: none;
+    border-radius: 15px;
+    background-color: #21953a;
+    color: #ffffff;
+}
+
+.rechazarbtn{
+    border: none;
+    border-radius: 15px;
+    background-color: #952121;
+    color: #ffffff;
 }

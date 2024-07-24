@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Registro de Usuario</title>
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
@@ -112,7 +112,7 @@
 <!--Boton de Registrar-->
         <div class="col-sm-3">
         <!--Checkbox para el Aceptar Terminos y Condiciones-->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="w-100 tYc">Aceptar terminos y condiciones</button>
 
         <!--Boton de registrarse-->
         <button class="w-100 btn-success" type="submit" href=""><h4>Registrar</h4></button>
@@ -140,9 +140,9 @@
                 <p>Si acepta estos Términos y Condiciones, por favor haga clic en "Aceptar" a continuación.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn text-white" style="background:red" id="rechazarBtn"
+                <button type="button" class="btn aceptbtn" id="rechazarBtn"
                   data-bs-dismiss="modal">Rechazar</button>
-                <button type="button" class="btn text-white" style="background:green" id="aceptarBtn">Aceptar</button>
+                <button type="button" class="btn rechazarbtn" id="aceptarBtn">Aceptar</button>
               </div>
             </div>
           </div>
