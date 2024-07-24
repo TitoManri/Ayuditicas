@@ -111,14 +111,12 @@
 
 <!--Boton de Registrar-->
         <div class="col-sm-3">
-        <!--Checkbox para el Aceptar Terminos y Condiciones-->
-        <button type="submit" class="w-100 tYc">Aceptar terminos y condiciones</button>
-
+        <!--Boton para el Aceptar Terminos y Condiciones-->
         <!--Boton de registrarse-->
         <button class="w-100 btn-success" type="submit" href=""><h4>Registrar</h4></button>
         </div>
         <br><br><br><br><br><br><br><br>
-    </form>
+    </form> 
 
     <!-- Modal de terminos y condiciones -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,9 +138,9 @@
                 <p>Si acepta estos Términos y Condiciones, por favor haga clic en "Aceptar" a continuación.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn aceptbtn" id="rechazarBtn"
+                <button type="button" class="btn rechazarbtn" id="rechazarBtn"
                   data-bs-dismiss="modal">Rechazar</button>
-                <button type="button" class="btn rechazarbtn" id="aceptarBtn">Aceptar</button>
+                <button type="button" class="btn aceptbtn" id="aceptarBtn">Aceptar</button>
               </div>
             </div>
           </div>
@@ -154,12 +152,15 @@
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/js/searchBar.js"></script>
-    <script src="./assets/js/verTYC.js"></script>
-    <script src="./assets/js/modalTYC.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+  integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./assets/js/searchBar.js"></script>
+<script src="./assets/js/verTYC.js"></script>
+<script src="./assets/js/modalTYC.js"></script>
     
 </html>
