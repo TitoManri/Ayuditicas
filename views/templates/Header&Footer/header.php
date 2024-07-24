@@ -31,6 +31,7 @@
             <ul class="dropdown-menu dropdown-menu-lg-end">
              <li><a class="dropdown-item" href="./camps.php"><i class="fa-solid fa-bullhorn" style="color: #000000;"></i> Ver Mis Denuncias</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="./confirmarDenuncia.php"><i class="fa-solid fa-square-check" style="color: #000000;"></i> Confirmar Denuncia</a></li>
               <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Solicitudes Denuncias</a></li>
             </ul>
           </div>
@@ -42,7 +43,8 @@
             <ul class="dropdown-menu dropdown-menu-lg-end">
              <li><a class="dropdown-item" href="./camps.php"><i class="fa-solid fa-campground" style="color: #000000;"></i> Ver Campañas</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Solicitudes Campañas</a></li>
+              <li><a class="dropdown-item" href="./versolicitud.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Ver Solitud Campañas</a></li>
+              <li><a class="dropdown-item" href="./solicitudCamp.php"><i class="fa-solid fa-people-group" style="color: #000000";></i> Ver Solicitud Creacion Campaña</a></li>
             </ul>
           </div>
         <!-- Publicaciones -->
