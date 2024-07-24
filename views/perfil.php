@@ -60,13 +60,44 @@
                 <!-- Fin card-top -->
 
                 <!-- Mis publicaciones -->
-                <?php include './templates/Perfil/publicaciones.php'; ?>
+                <!--Cositas que estan arriba de mis publicaciones-->
+                <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <i class="fa-regular fa-rectangle-list fa-xl" style="color: #616d63;"></i></a>
+                    </li>
+                </ul><!-- fin ul -->
+                <section class="card">
+                    <div class="tab-content p-3">
+                        <div class="tab-pane active show">
+                            <div class="d-flex"> 
+                                <h4 class="card-title mb-4">Mis Publicaciones</h4> 
+                            </div>
+                            <section class="row">
+                            <?php include './templates/Perfil/publicaciones.php'; ?>
+                            <?php include './templates/Perfil/publicaciones.php'; ?>
+                            <?php include './templates/Perfil/publicaciones.php'; ?>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                <!-- Fin card -->
             </div>
             <!-- Fin col-xl-8 -->
 
             <!-- Mis Campañas -->
             <div class="col-xl-4">
+              <!-- Parte de arriba de la cosita -->
+              <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                  <i class="fa-solid fa-clipboard fa-xl" style="color: #616d63;"></i></a>
+                </li>
+              </ul>
+              <section class="card">
                 <?php include './templates/perfil/campanias.php'; ?>
+                <?php include './templates/perfil/campanias.php'; ?>
+              </section>
             </div>
             <!-- Fin col-xl-4 -->
         </div>
