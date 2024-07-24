@@ -13,5 +13,7 @@
         </li>
       </ul>
 </div>
+<a href="./inicioSesion.php"><button class="btn-isr" src="./inicioSesion.php" type="submit">Inicio Sesion</button></a>
+<a href="./registroSesion.php"><button class="btn-isr" type="submit">Registro</button></a>
   </div>
 </nav>
