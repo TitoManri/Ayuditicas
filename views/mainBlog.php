@@ -76,7 +76,7 @@
                 <div class="position-sticky" style="top: 2rem;">
 
                     <div>
-                        <h4 class="fst-italic">Recent posts</h4>
+                        <h4 class="fst-italic">Publicaciones Recientes</h4>
                         <ul class="list-unstyled">
                         <?php
                         for ($i=0; $i<6; $i++){
