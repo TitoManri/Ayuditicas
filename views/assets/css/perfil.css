@@ -64,3 +64,12 @@ body{
     margin: 10px 0 10px 0;
     margin-top: 15px;
     color: #000000 !important;
+}
+
+.CampaniasNav {
+    background-color: #8b9e8f;
+    color: white;
+    width: 28%;
+    border-bottom-right-radius: 45px;
+    height: 54px;
+}
