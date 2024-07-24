@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="../views/assets/css/perfil.css">
+    <link rel="stylesheet" href="./assets/css/campanias.css">
 </head>
 <body>
     <header class="mainHeader">
