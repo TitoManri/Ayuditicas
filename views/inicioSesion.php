@@ -16,18 +16,18 @@
         ?></header>
 
 <div class="container">
-  <form class="position-absolute top-50 start-50 translate-middle margenes">
+  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion">
     <h3 class="mb-3 text-center">Iniciar sesion</h3>
     <hr>
 
       <!--Forms para el nombre y contraseña-->
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="nombreUsuario">
-        <label for="floatingInput">Nombre Usuario</label>
+        <input type="text" class="form-control" id="nombreUsuario" placeholder="nombreUsuario" name="nombreUsuario">
+        <label for="nombreUsuario">Nombre Usuario</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
-        <label for="floatingPassword">Contraseña</label>
+        <input type="password" class="form-control" id="Contrasenia" placeholder="Contrasenia" name="Contrasenia">
+        <label for="Contrasenia">Contraseña</label>
       </div>
 
       <a class="text-decoration-none text-dark" href="">¿Olvidaste tu contraseña?</a>

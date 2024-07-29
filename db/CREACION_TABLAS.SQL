@@ -38,8 +38,8 @@ create table CAMPANIAS(
     nombre varchar(50) not null,
     descripcion varchar(1024) not null,
     voluntarios_requeridos int not null,
-    fecha_hora_creacion timestamp not null,
-    fecha_hora_culminacion timestamp not null,
+    fecha_hora_creacion datetime DEFAULT CURRENT_TIMESTAMP,
+    fecha_hora_culminacion datetime not null,
     terminada boolean not null,
     primary key(id_campania), 
     FOREIGN KEY (cedula_creador_camp) REFERENCES usuarios(cedula)
@@ -53,7 +53,7 @@ create table PUBLICACIONES(
     num_like int not null,
     descripcion varchar(512),
     inscripcion boolean not null,
-    fecha_hora_creacion timestamp not null,
+    fecha_hora_creacion datetime DEFAULT CURRENT_TIMESTAMP,
     primary key(id_publicacion),
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula),
     FOREIGN KEY (id_campania) REFERENCES campanias(id_campania) 
@@ -66,7 +66,7 @@ create table PUBLICACIONES_BLOG(
     contenido varchar(1024) not null,
     img varchar(512) not null,
     num_like int not null,
-    fecha_hora_creacion timestamp not null,
+    fecha_hora_creacion datetime DEFAULT CURRENT_TIMESTAMP,
     primary key(id_publicacion_blog),
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula)
 );
@@ -96,7 +96,7 @@ create table GRUPO_ROLES(
 create table USUARIOS_GRUPO(
     cedula int not null,
     id_grupo int not null,
-    fecha_ingreso timestamp,
+    fecha_ingreso datetime DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula),
     FOREIGN KEY (id_grupo) REFERENCES grupos(id_grupo) 
 );
@@ -108,7 +108,7 @@ create table MENSAJES(
     cuerpo_mensaje varchar(1024),
     img varchar(512),
     leido boolean not null,
-    fecha_hora_envio timestamp not null,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
     primary key(id_mensaje), 
     FOREIGN KEY (cedula_reminente) REFERENCES usuarios(cedula), 
     FOREIGN KEY (cedula_destinatario) REFERENCES usuarios(cedula) 
@@ -120,7 +120,7 @@ create table MENSAJES_GRUPO(
     id_grupo int not null,
     contenido varchar(1024),
     img varchar(512),
-    fecha_hora_envio timestamp not null,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
     leido boolean not null,
      primary key(id_mensaje_grupo), 
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula),
@@ -137,7 +137,7 @@ create table COMENTARIOS(
     num_like int not null,
     contenido varchar(512) not null,
     img varchar(512),
-    fecha_hora_creacion timestamp not null,
+    fecha_hora_creacion datetime DEFAULT CURRENT_TIMESTAMP,
     primary key(id_comentario),
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula),
     FOREIGN KEY (id_publicacion) REFERENCES publicaciones(id_publicacion),
@@ -157,12 +157,12 @@ create table LIKES(
 );
 
 create table REPORTES(
-    id_reporte int not null not null,
+    id_reporte int not null,
     id_publicacion int not null,
     tipo_reporte varchar(50) not null,
     cuerpo_mensaje varchar(50) not null,
-    fecha_hora_envio timestamp not null,
-    fecha_hora_cierre timestamp,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
+    fecha_hora_cierre datetime,
     primary key(id_reporte),
     FOREIGN KEY (id_publicacion) REFERENCES publicaciones(id_publicacion)
 );
@@ -174,7 +174,7 @@ create table SOLICITUDES_CAMPANIAS(
     contacto int not null,
     razon_interes varchar(50) not null,
     habilidades varchar(150) not null,
-    fecha_hora_envio timestamp not null,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
     aceptada boolean not null,
     primary key(id_solicitud_campania), 
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula), 
@@ -221,8 +221,8 @@ create table SOLICITUD_DENUNCIAS(
     img varchar(512),
     latitud varchar(512),
     longitud varchar(512),
-    fecha_hora_envio timestamp not null,
-    fecha_hora_confirmacion timestamp not null,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
+    fecha_hora_confirmacion datetime not null,
     confirmacion varchar(50),
     primary key(id_denuncia),
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula)
@@ -232,8 +232,8 @@ create table SOLICITUDES_USUARIO_JEFE(
     id_solicitud_u int not null,
     cedula int not null,
     mensaje varchar(512) not null,
-    fecha_hora_envio timestamp not null,
-    fecha_hora_cierre timestamp not null,
+    fecha_hora_envio datetime DEFAULT CURRENT_TIMESTAMP,
+    fecha_hora_cierre datetime not null,
     confirmacion varchar(512) not null,
     primary key(id_solicitud_u),
     FOREIGN KEY (cedula) REFERENCES usuarios(cedula)
