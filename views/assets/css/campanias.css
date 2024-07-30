@@ -105,3 +105,64 @@ section form div div div input{
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.card{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    border:1px solid black;
+}
+
+.card-img-top{
+    border-radius: 0px !important;
+}
+
+.perfil-barra{
+    margin: 10px 0 10px 0;
+    color: #000000 !important;
+}
+
+.publicacion{
+    padding-left: 1px !important;
+    border: 2px gray;
+}
+
+.likes{
+    margin-bottom: 10px;
+}
+.fa-heart-filled {
+    color: rgb(255, 0, 0);
+}
+.fa-heart {
+    transition: color 0.3s ease;
+}
+
+.btn-reporte{
+    color:white;
+    background-color: #616d63;
+    border-radius: 10px;
+}
+
+.etiquetas{
+    text-decoration: none;
+    color:black;
+    margin-left: 15px;
+}
+
+.dropdown-report:hover{ 
+    background-color: #d2ac97;
+    color: white;
+  }
+
+.stretched-link {
+    z-index: 1;
+}
+
+.likes {
+    z-index: 2;
+}
+
+
+.perfil-usuario{
+    color:black;
+}
