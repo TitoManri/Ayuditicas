@@ -18,6 +18,7 @@
 <body>
     <header class="mainHeader">
         <?php
+        $activoPaginaP = 'active';
         include './templates/Header&Footer/header.php';
         ?>
     </header>

@@ -16,6 +16,7 @@
 <body>
     <header class="mainHeader">
         <?php
+        $activoMensajeria = 'active';
         include './templates/Header&Footer/header.php';
         ?>
     </header>
@@ -204,6 +205,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
-<script src="./assets/js/mensajeria.js"></script>
 
 </html>

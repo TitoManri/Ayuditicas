@@ -73,7 +73,6 @@
   integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/searchBar.js"></script>
 <script src="./assets/js/verTYC.js"></script>
 <script src="./assets/js/modalTYC.js"></script>
 
