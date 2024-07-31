@@ -1,0 +1,91 @@
+#Palabras h1{
+    color: white;
+}
+
+#Palabras h5{
+    line-height: 1.5;
+}
+
+#PrimeraParteIndex{
+    background-color: #a9d69e;
+}
+
+#SobrePagina{
+    background-color: #fdf3eb;
+    border-top: 1px solid black;
+}
+
+#ExplicarFunciones{
+  background-color: #fdecdd;
+  border-radius: 25px;
+}
+
+#ExplicarFunciones img{
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+#ExplicarFunciones h3{
+  color: black;
+}
+
+#ExplicarFunciones h1{
+  color: black;
+}
+
+#SobreNosotros{
+  background-color: #fdf3eb;
+}
+
+.RedondearTop{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.card-title{
+    padding: 10px !important;
+    padding-bottom: 2px !important;
+    width: 18%;   
+}
+
+.card{
+  background-color: #faece0 !important;
+}
+
+.btn-Inicio{
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  background-color: #65815E;
+  border: 1px solid #9DAC99;
+  padding: 7px 10px 7px 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.btn-outline-Inicio{
+    margin-right: 10px;
+    margin-left: 10px;
+    color: white;
+    background-color: rgb(97, 109, 99,0.4);
+    border: 1px solid white;
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+.btn-Inicio:hover{
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  background-color: rgb(97, 109, 99,0.4);
+  border: 1px solid rgb(129, 129, 129,0.4);
+}
+
+.btn-outline-Inicio:hover{
+    margin-right: 10px;
+    margin-left: 10px;
+    color: white;
+    background-color: rgba(67, 78, 69, 0.4);
+    border: 1px solid rgb(129, 129, 129,0.4);
+  }
