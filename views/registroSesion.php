@@ -16,10 +16,12 @@
             include './templates/Header&Footer/header2.php';
         ?></header>
 
+<section id="registro-section">
+
 <div class="container form-container">
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
-    <form class="needs-validation form-container" id="registro">
+    <form class="needs-validation form-container" id="registro" method="post">
         <div class="row g-3">
 
 <!--Nombre del usuario-->
@@ -37,7 +39,7 @@
       </div>
 
 <!--Apellido del Usuario-->
-<div class="col-sm-3">
+      <div class="col-sm-3">
         <label for="segundo_apellido" class="form-label">Segundo Apellido</label>
         <input type="text" class="form-control escribir" id="segundo_apellido" placeholder="" value="" required="" name="segundo_apellidop">
           <div class="invalid-feedback">Porfavor ingrese sus apellidos.</div>
@@ -147,7 +149,7 @@
         </div>
 
 </div>
-
+</section>
 <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
@@ -162,5 +164,5 @@
 <script src="./assets/js/searchBar.js"></script>
 <script src="./assets/js/verTYC.js"></script>
 <script src="./assets/js/modalTYC.js"></script>
-    
+<script src="./assets/js/registroSesion.js"></script>
 </html>
