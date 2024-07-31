@@ -34,7 +34,7 @@
                 <h5>Cada pequeño gesto cuenta en la lucha por un planeta más saludable. Únete a nuestro equipo de voluntarios y participa en iniciativas que protegen y mejoran nuestro medio ambiente. Desde la limpieza de playas hasta la plantación de árboles, tu contribución puede marcar una gran diferencia. Juntos, podemos crear un futuro sostenible para las próximas generaciones. ¡Haz parte del cambio hoy!</h5>
                 <div class="pt-3">
                     <a href="./inicioSesion.php" class="btn btn-Inicio btn-success">Iniciar Sesion</a>
-                    <a href="./inicioSesion.php" class="btn btn-lg btn-outline-Inicio">Registrate aca</a>
+                    <a href="./registroSesion.php" class="btn btn-lg btn-outline-Inicio">Registrate aca</a>
                 </div>
             </section>
             <br>

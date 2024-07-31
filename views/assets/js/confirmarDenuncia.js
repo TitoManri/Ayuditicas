@@ -13,7 +13,7 @@ function autocompletarFormulario() {
     tipoDenuncia.value = datosAutocompletar.tipoDenuncia;
 
     //autocompletar el detalle
-    const detalle = document.getElementById("IdDetalle");
+    const detalle = document.getElementById("detalle");
     detalle.value = datosAutocompletar.detalle;
 
     //const ubicacion = document.getElementById("ubicacion");
@@ -23,18 +23,18 @@ function autocompletarFormulario() {
     const imgDenuncia = document.getElementById("imgDenuncia");
     imgDenuncia.src = datosAutocompletar.imagen;
     //se ajusta el tamaño
-    imgDenuncia.style.width = "300px"; 
-    imgDenuncia.style.height = "150px"; 
+    imgDenuncia.style.width = "300px";
+    imgDenuncia.style.height = "150px";
 
 }
 
 //Ejecutar la función para autocompletar al cargar la página
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     autocompletarFormulario();
 });
 
 //EVITAR QUE EL FORMULARIO SE ENVÍE 
-document.getElementById("formDenuncia").addEventListener("submit", function(event) {
+document.getElementById("formDenuncia").addEventListener("submit", function (event) {
     event.preventDefault();
 
     //toma el valor del botón presionado
