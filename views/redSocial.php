@@ -37,23 +37,28 @@
                         include './templates/Red_Social/publicacion.php';
                     } ?>
                 </div>
+                <button id="modalCrearPublicacion" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal" type="button" class="btn p-4 rounded-circle btn-lg sticky-button">
+                    <i class="fa-regular fa-pen-to-square fa-2xl"></i>
+                </button>
             </main>
         </div>
     </section>
-
     <!-- Modal Reporte -->
+    <?php include './templates/Red_Social/crearPublicacionModal.php'; ?>
+    <!-- Modal Crear Publicacion -->
     <?php include './templates/Red_Social/modalReporte.php'; ?>
 
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php'; ?>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./assets/js/like.js"></script>
+    <script src="./assets/js/crearPublicacionModal.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/like.js"></script>
-
 </html>
