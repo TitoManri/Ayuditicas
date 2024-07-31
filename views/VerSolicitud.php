@@ -17,6 +17,7 @@
 <body>
     <header class="mainHeader">
         <?php
+        $activoCampanias='active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
