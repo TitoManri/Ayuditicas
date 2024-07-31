@@ -1,3 +1,4 @@
+
 .ayuditicaHeader{
     color: #827A6F;
     font-size: 30px;
@@ -97,4 +98,35 @@ nav .searchbar {
   color: white;
   background-color: rgb(97, 109, 99,0.4);
   border: 1px solid rgb(129, 129, 129,0.4);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: white !important;
+}
+.icon {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+.nav-link.active {
+  position: relative;
+  color: #000000 !important;
+}
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -20px; 
+  height: 3px; 
+  width: 100%;
+  background-color: #ffffff;
+}
+.nav-link.active .fa {
+  color: #ffffff !important; 
+}
+.desconocido{
+  color: #BCC9B8 !important;
 }

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./assets/css/mainpage.css">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/Etiquetas.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         
     </style>
@@ -20,18 +20,15 @@
 
 <body>
     <header class="mainHeader">
-        <?php include './templates/Header&Footer/header.php'; ?>
+        <?php 
+        $activoPaginaP = 'active';
+        include './templates/Header&Footer/header.php'; 
+        ?>
     </header>
-    <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
+
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
     <?php include './templates/Red_Social/asideIzquierda.php'; ?>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-3">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-bold text-dark">Página Principal</h1>
-            </div>
-        </div>
-    </section>
+
     <section id="pagina-red-social">
         <div class="container-fluid">
             <main>
