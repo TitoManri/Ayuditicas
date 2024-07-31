@@ -1,4 +1,4 @@
-<div class="card" style="width: 35rem;">
+<div class="card" style="width: 50rem;">
     <div class="container publicacion">
         <div class="row perfil-barra">
             <div class="col-auto d-flex align-items-center perfil-usuario">
@@ -24,7 +24,8 @@
     <div class="card-body position-relative">
         <div class="col-auto d-flex align-items-center likes position-relative" style="z-index: 2;">
             <i class="fa-regular fa-heart fa-lg heart-icon "></i>
-            <h5 class="mb-0 ml-3 pl-2 perfil-usuario">&nbsp; 10</h5>
+            <h5 class="mb-0 ml-3 pl-2 perfil-usuario">&nbsp; 10 &nbsp;</h5>
+            <i class="fa-regular fa-comments"></i>
         </div>
         <h5 class="card-title">Tratamos de Ayudar al medio ambiente, tambien puedes hacerlo!</h5>
         <a href="../../../../../SC502_2C2024_M_G3/views/paginaPublicacion.php"

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="./assets/css/mainpage.css">
     <link rel="stylesheet" href="./assets/css/theme.css">
-    
+    <link rel="stylesheet" href="./assets/css/Etiquetas.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         
     </style>
@@ -19,32 +20,17 @@
 
 <body>
     <header class="mainHeader">
-        <?php include './templates/Header&Footer/header.php'; ?>
+        <?php 
+        $activoPaginaP = 'active';
+        include './templates/Header&Footer/header.php'; 
+        ?>
     </header>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-3">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-bold text-dark">Página Principal</h1>
-            </div>
-        </div>
-    </section>
+
+    <?php include './templates/Red_Social/asideDerecha.php'; ?>
+    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
+
     <section id="pagina-red-social">
         <div class="container-fluid">
-            <!-- Aside de etiquetas -->
-            <aside id="EtiquetaAside" class="EtiquetasAside">
-                <h3>Etiquetas</h3>
-                <div class="text-center">
-                    <a href="./VerEtiquetas.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-                </div>
-                <br>
-                <?php for ($i = 0; $i < 5; $i++) { ?>
-                    <div class="Etiquetas">
-                        <a href=""><i class="bi bi-tag-fill" style="color: #bcc9b8;"></i> Nombre</a>
-                    </div>
-                    <br>
-                <?php } ?>
-            </aside>
-
             <main>
                 <div class="d-flex flex-column align-items-center" style="padding-top: 10px;">
                     <?php for ($i = 0; $i < 5; $i++) {
@@ -52,35 +38,6 @@
                     } ?>
                 </div>
             </main>
-
-            <!-- Aside de campañas -->
-            <aside id="CampanasAside" class="CampanasAside">
-                <h3>Campañas</h3>
-                <div class="text-center">
-                    <a href="./Camps.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-                </div>
-                <br>
-                <?php for ($i = 0; $i < 4; $i++) { ?>
-                    <div class="Etiquetas">
-                        <a href="">
-                            <div class="row">
-                                <div class="col d-flex justify-content-center">
-                                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="60px" height="60px">
-                                </div>
-                                <div class="col">
-                                    <div class="row" style="height: 30%;">
-                                        <p>Nombre</p>
-                                    </div>
-                                    <div class="row">
-                                        <p style="font-size: 14px; opacity: 47%;" class="text-truncate">Descripcion</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <br>
-                <?php } ?>
-            </aside>
         </div>
     </section>
 

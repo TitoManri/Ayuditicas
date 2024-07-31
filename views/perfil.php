@@ -12,7 +12,9 @@
 </head>
 <body>
     <header class="mainHeader">
-        <?php include './templates/Header&Footer/header.php'; ?>
+        <?php
+        $activoPerfil='active';
+         include './templates/Header&Footer/header.php'; ?>
     </header>
 
     <nav id="CampaniasNav" class="CampaniasNav centro">
@@ -111,6 +113,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../assets/js/searchBar.js"></script>
 </body>
 </html>
