@@ -25,13 +25,15 @@
         <h5>Crear denuncia</h5>
     </div>
     <section id="crearDenuncia" class="container">
+        <!-- formulario de denuncia -->
         <form method="post" action="" id="formDenuncia">
             <div class="row gx-5 align-items-start custom-gap">
                 <div class="col">
+                    <!-- select tipo denuncia-->
                     <label for="selectTipo" class="form-label">
                         <h3>Tipo denuncia</h3>
                     </label>
-                    <select class="form-select" aria-label="Tipo denuncia" id="selectTipo">
+                    <select class="form-select" aria-label="Tipo denuncia" id="selectTipo" name="selectTipo">
                         <option value="0">--Selecciona el tipo de denuncia--</option>
                         <option value="1">Basura en las calles</option>
                         <option value="2">Maltrato animal</option>
@@ -39,22 +41,25 @@
                     </select>
                 </div>
                 <div class="col">
+                    <!-- imagen-->
                     <label for="formFile" class="form-label">
                         <h3>Imágen</h3>
                     </label>
                     <div class="mb-3">
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" id="formFile" name="formFile">
                     </div>
                 </div>
             </div>
             <div class="row gx-5 align-items-start custom-gap2">
                 <div class="col">
-                    <label for="IdDetalle" class="form-label">
+                    <!-- detalle text-->
+                    <label for="detalle" class="form-label">
                         <h3>Detalle</h3>
                     </label>
-                    <textarea class="form-control" id="IdDetalle" rows="4"></textarea>
+                    <textarea class="form-control" id="detalle" rows="4" name="detalle"></textarea>
                 </div>
                 <div class="col">
+                    <!-- ubicación (PENDIENTE)-->
                     <label for="ubicacion" class="form-label">
                         <h3>Ubicación</h3>
                     </label>
