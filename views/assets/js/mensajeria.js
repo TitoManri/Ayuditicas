@@ -169,7 +169,7 @@ formularioSubida.addEventListener('submit', function (e) {
     e.preventDefault();
 
     //se guarda el input de la imagen 
-    const inputArchivo = document.getElementById('imgInput');
+    const inputArchivo = document.getElementById('imagen');
     //si la longitud del input es 0 (no se subió una imagen) muestra mensaje de error
     if (inputArchivo.files.length === 0) {
         Swal.fire({
@@ -352,3 +352,26 @@ document.querySelector('#grupoModal .btn-success').addEventListener('click', fun
     const modal = bootstrap.Modal.getInstance(document.getElementById('grupoModal'));
     modal.hide();
 });
+
+//función para autorefrescar el chat actual
+function autorefrescarChat() {
+    if (chatActual != null) {
+        //prueba (quitar esto desués de la prueba)
+        console.log('Refrescando chat para:', chatActual);
+
+        //borrar el contenido del chat actual
+        contenedorChat.innerHTML = '';
+
+        //vuelve a cargar los mensajes del usuario actual
+        mensajesPorUsuario[chatActual].forEach(mensaje => {
+            const mensajeElemento = crearMensajeElemento(mensaje);
+            contenedorChat.appendChild(mensajeElemento);
+        });
+
+        //hacer scroll automático al final del chat
+        contenedorChat.scrollTop = contenedorChat.scrollHeight;
+    }
+}
+
+//cada 5 segundos se refrecsa el chat 
+setInterval(autorefrescarChat, 5000);
