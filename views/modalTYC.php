@@ -22,6 +22,7 @@
 
   <br><br><br><br><br>
 
+  <!-- ignorá esto, es solo para hacer el equivalente al formulario de registo-->
   <form method="post" action="" id="registro">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -36,7 +37,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-  <!-- Modal -->
+  <!-- Modal TÉRMINOS Y CONDICIONES (esto queda igual)-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -50,11 +51,6 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn text-white" style="background:red" id="rechazarBtn"
-            data-bs-dismiss="modal">Rechazar</button>
-          <button type="button" class="btn text-white" style="background:green" id="aceptarBtn">Aceptar</button>
         </div>
       </div>
     </div>
