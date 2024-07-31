@@ -24,27 +24,9 @@
         <h2>Campañas</h2>
     </nav>
 
-    <!-- Aside de etiquetas -->
-    <aside id="EtiquetaAside" class="EtiquetasAside">
-        <!-- Titulo y ver todas las etiquetas -->
-        <h3>Etiquetas</h3>
-        <div class="text-center">
-            <a href="" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-        </div>
-
-        <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
-        <br>
-        <?php
-        for ($i = 0; $i < 5; $i++) {
-        ?>
-            <div class="Etiquetas">
-                <a href=""><i class="bi bi-tag-fill" style="color: #bcc9b8;"></i> Nombre</a>
-            </div>
-            <br>
-        <?php
-        }
-        ?>
-    </aside>
+    <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
+    <?php include './templates/Red_Social/asideDerecha.php'; ?>
+    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
     <!-- Mostrar Campañas usando PHP -->
     <section id="MostrarCampanias" class="container">
