@@ -183,7 +183,7 @@ formularioSubida.addEventListener('submit', function (e) {
     //recopila toda la info del form en un objeto tipo formdata y permite enviarlo
     const formData = new FormData(formularioSubida);
     //se crea una url temporal para mostrar la imagen 
-    const imagenUrl = URL.createObjectURL(formData.get('image'));
+    const imagenUrl = URL.createObjectURL(formData.get('imagen'));
 
     //muestra el mensaje en el contenedor de mensajes (el true es de que es una imagen)
     agregarMensaje('Usuario Logueado', chatActual, imagenUrl, true);
@@ -200,6 +200,11 @@ formularioSubida.addEventListener('submit', function (e) {
 function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, esImagen = false) {
     //a los mensajes del usuario destinatario se le agrega un mensaje más usando push
     mensajesPorUsuario[usuarioDestinatario].push({ remitente: usuarioRemitente, mensaje, esImagen });
+
+    // Agregar mensaje al historial del remitente (si no es el mismo usuario)
+    //if (usuarioRemitente !== usuarioDestinatario) {
+      //  mensajesPorUsuario[usuarioRemitente].push({ remitente: usuarioRemitente, mensaje, esImagen });
+    //}
 
     if (usuarioDestinatario === chatActual) {
         //si el destinatario es igual al chat actual se crea un elemento visible de mensaje 

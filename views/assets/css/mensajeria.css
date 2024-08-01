@@ -15,6 +15,7 @@ h3 {
 /* aside */
 #aside {
     position: sticky;
+    top: 0;
     height: 100vh; 
     overflow-y: auto;
 }
@@ -84,7 +85,7 @@ h3 {
 
 /*Color del usuario cuando está seleciconado*/
 .nav-pills .nav-link.active {
-    background-color: #b5c5be;
+    background-color: #b5c5be !important;
 }
 
 #iniciarChat{

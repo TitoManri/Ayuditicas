@@ -16,7 +16,7 @@
 <body>
     <header class="mainHeader">
         <?php
-        $activoMensajeria = 'active';
+        //$activoMensajeria = 'active';
         include './templates/Header&Footer/header.php';
         ?>
     </header>
