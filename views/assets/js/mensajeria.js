@@ -23,6 +23,8 @@ const miembrosDeGrupo = {
 const usuarios = document.querySelectorAll('.nav-link');
 //variable que cambia dependiendo del usuario/grupo con el que se esté chateando
 let chatActual = null; 
+//variable que contiene al usuario logueado para facilitar pruebas
+let usuarioLogueado = 'Usuario Logueado';
 
 //formulario para envío de mensajes
 const enviarFormulario = document.getElementById('enviarMsj');
@@ -91,7 +93,7 @@ function crearMensajeElemento(mensaje) {
     //dentro del div de mensajes se crea un nuevo div
     const mensajeElemento = document.createElement('div');
     //si el usuario es igual a usuario logeado (esto habría que pasarlo con una variable de sesión)
-    if (mensaje.remitente === 'Usuario Logueado') {
+    if (mensaje.remitente === usuarioLogueado) {
         //se le asigna el estilo al mensaje del css del usuario logueado
         mensajeElemento.classList.add('chat-message', 'user-message');
     } else {
@@ -154,7 +156,7 @@ enviarFormulario.addEventListener('submit', function (e) {
     //si no está vacío
     if (mensaje !== '') {
         //se agrega el mensaje al contenedor del chat
-        agregarMensaje('Usuario Logueado', chatActual, mensaje); 
+        agregarMensaje(usuarioLogueado, chatActual, mensaje); 
         //limpia el input después de enviar el mensaje
         inputMensaje.value = ''; 
     }
@@ -186,7 +188,7 @@ formularioSubida.addEventListener('submit', function (e) {
     const imagenUrl = URL.createObjectURL(formData.get('imagen'));
 
     //muestra el mensaje en el contenedor de mensajes (el true es de que es una imagen)
-    agregarMensaje('Usuario Logueado', chatActual, imagenUrl, true);
+    agregarMensaje(usuarioLogueado, chatActual, imagenUrl, true);
 
     //Cerrar el modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('cargarModal'));
@@ -200,11 +202,6 @@ formularioSubida.addEventListener('submit', function (e) {
 function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, esImagen = false) {
     //a los mensajes del usuario destinatario se le agrega un mensaje más usando push
     mensajesPorUsuario[usuarioDestinatario].push({ remitente: usuarioRemitente, mensaje, esImagen });
-
-    // Agregar mensaje al historial del remitente (si no es el mismo usuario)
-    //if (usuarioRemitente !== usuarioDestinatario) {
-      //  mensajesPorUsuario[usuarioRemitente].push({ remitente: usuarioRemitente, mensaje, esImagen });
-    //}
 
     if (usuarioDestinatario === chatActual) {
         //si el destinatario es igual al chat actual se crea un elemento visible de mensaje 
