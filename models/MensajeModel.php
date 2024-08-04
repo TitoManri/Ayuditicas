@@ -159,10 +159,12 @@ class MensajeModel extends Conexion
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
+            $cedulaReminente = $this -> getCedulaReminente();
             $resultado->bindParam(':cedulaReminentePDO', $cedulaReminente, PDO::PARAM_INT);
+            $cedulaDestinatario = $this -> getCedulaDestinatario();
             $resultado->bindParam(':cedulaDestinatarioPDO', $cedulaDestinatario, PDO::PARAM_INT);
             $resultado->execute();
-
+            self::desconectar();
             foreach ($resultado->fetchAll() as $encontrado) {
                 $mensaje = new MensajeModel();
                 $mensaje->setIdMensaje($encontrado['idMensaje']);
@@ -181,6 +183,27 @@ class MensajeModel extends Conexion
             ;
             return json_encode($error);
         }
+    }
+
+    //CAMBIAR LEÍDO
+    public function updateLeido(){
+        $idMensaje = $this->getIdMensaje();
+            $query = "UPDATE `mensajes` SET `leido`=1 WHERE id_mensaje=:idMensaje";
+           try {
+             self::getConexion();
+              $resultado = self::$cnx->prepare($query);
+              $resultado->bindParam(":idMensaje",$idMensaje,PDO::PARAM_INT);
+              self::$cnx->beginTransaction();
+              $resultado->execute();
+              self::$cnx->commit();
+              self::desconectar();
+              return $resultado->rowCount();
+             } catch (PDOException $Exception) {
+               self::$cnx->rollBack();
+               self::desconectar();
+               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+               return $error;
+             }
     }
 
 }

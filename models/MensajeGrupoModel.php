@@ -155,10 +155,12 @@ class MensajeGrupoModel extends Conexion
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
+            $cedula = $this -> getCedula();
             $resultado->bindParam(':cedulaPDO', $cedula, PDO::PARAM_INT);
+            $idGrupo = $this -> getIdGrupo();
             $resultado->bindParam(':id_grupoPDO', $idGrupo, PDO::PARAM_INT);
             $resultado->execute();
-
+            self::desconectar();
             foreach ($resultado->fetchAll() as $encontrado) {
                 $mensaje = new MensajeGrupoModel();
                 $mensaje->setIdMensajeGrupo($encontrado['idMensajeGrupo']);
@@ -177,6 +179,27 @@ class MensajeGrupoModel extends Conexion
             ;
             return json_encode($error);
         }
+    }
+
+    //CAMBIAR LEÍDO
+    public function updateLeido(){
+        $idMensajeGrupo = $this->getIdMensajeGrupo();
+            $query = "UPDATE `mensajes_grupo` SET `leido`=1 WHERE id_mensaje_grupo=:idMensajeGrupo";
+           try {
+             self::getConexion();
+              $resultado = self::$cnx->prepare($query);
+              $resultado->bindParam(":idMensajeGrupo",$idMensajeGrupo,PDO::PARAM_INT);
+              self::$cnx->beginTransaction();
+              $resultado->execute();
+              self::$cnx->commit();
+              self::desconectar();
+              return $resultado->rowCount();
+             } catch (PDOException $Exception) {
+               self::$cnx->rollBack();
+               self::desconectar();
+               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+               return $error;
+             }
     }
 
 }
