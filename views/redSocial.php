@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/Etiquetas.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        
-    </style>
 </head>
 
 <body>
@@ -25,40 +22,88 @@
         include './templates/Header&Footer/header.php'; 
         ?>
     </header>
-
-    <?php include './templates/Red_Social/asideDerecha.php'; ?>
-    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
-
-    <section id="pagina-red-social">
-        <div class="container-fluid">
-            <main>
-                <div class="d-flex flex-column align-items-center" style="padding-top: 10px;">
-                    <?php for ($i = 0; $i < 5; $i++) {
-                        include './templates/Red_Social/publicacion.php';
-                    } ?>
-                </div>
-                <button id="modalCrearPublicacion" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal" type="button" class="btn p-4 rounded-circle btn-lg sticky-button">
-                    <i class="fa-regular fa-pen-to-square fa-2xl"></i>
-                </button>
-            </main>
+    <div class="row row-personalizada">
+        <div class="col-3">
+            <nav id="CampaniasNav" class="CampaniasNav centro">
+                <h2>Red Social</h2>
+            </nav>
         </div>
-    </section>
-    <!-- Modal Reporte -->
-    <?php include './templates/Red_Social/crearPublicacionModal.php'; ?>
-    <!-- Modal Crear Publicacion -->
+        <div class="col-9">
+            <nav id="SubHeader" class="SubHeader centro ms-5">
+            </nav>
+        </div>
+    </div>
+
+    <div class="row row-personalizada">
+        <div class="col-8">
+            <section id="pagina-red-social">
+                <div class="container-fluid">
+                    <main>
+                        <div class="d-flex flex-column align-items-center" style="padding-top: 10px;">
+                            <div class="card" style="width: 50rem;">
+                                <div class="container publicacion">
+                                    <div class="row perfil-barra">
+                                        <div class="col-12 d-flex align-items-center perfil-usuario">
+                                            <i class="fa-solid fa-user fa-lg " style="color: #000000;"></i>
+                                            <h5 class="mb-0 ml-3 pl-2">&nbsp; Crear Publicacion</h5>
+                                            <form class="form-inline">
+                                                <input class="form-control ms-5" size="50" type="search"
+                                                    placeholder="¿Quieres crear una publicacion?" aria-label="Search">
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <?php for ($i = 0; $i < 5; $i++) {
+                        include './templates/Red_Social/publicacion.php';?><br><?php 
+                    } ?>
+                        </div>
+                    </main>
+                </div>
+            </section>
+        </div>
+        <div class="col-4 sticky-column">
+        <div class="sticky-content">
+            <center><h1>Campañas</h1></center>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            <center><h1>Etiquetas</h1></center>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">An item</li>
+            </ul>
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+
     <?php include './templates/Red_Social/modalReporte.php'; ?>
 
-    <footer class="mainfooter">
-        <?php include './templates/Header&Footer/footer.php'; ?>
-    </footer>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./assets/js/like.js"></script>
     <script src="./assets/js/crearPublicacionModal.js"></script>
 </body>
+
 </html>
