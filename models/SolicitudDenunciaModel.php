@@ -122,7 +122,7 @@ class SolicitudDenuncia extends Conexion
     //para conectar
     public static function getConexion()
     {
-        self::$cnx = Conexion::conectar(); 
+        self::$cnx = Conexion::conectar();
     }
 
     //para desconectar
@@ -134,16 +134,25 @@ class SolicitudDenuncia extends Conexion
     //CREAR UNA DENUNCIA
     public function crearSoliDenuncia()
     {
-        $query = "INSERT INTO `solicitud_denuncias`(`id_denuncia`, `cedula`, `tipo_denuncia`, `detalle`, `img`, `latitud`, `longitud`, `fecha_hora_envio`, `fecha_hora_confirmacion`, `confirmacion`) 
-        VALUES (:idDenunciaPDO, :cedulaPDO, :tipoDenunciaPDO, :detallePDO, :imgPDO, :latitudPDO, :longitudPDO, :fechaHoraEnvioPDO, :fechaHoraConfirmacionPDO, :confirmacionPDO)";
+        $query = "INSERT INTO `solicitud_denuncias`(`cedula`, `tipo_denuncia`, `detalle`, `img`, `latitud`, `longitud`, `fecha_hora_envio`, `fecha_hora_confirmacion`, `confirmacion`) 
+        VALUES (:cedulaPDO, :tipoDenunciaPDO, :detallePDO, :imgPDO, :latitudPDO, :longitudPDO, :fechaHoraEnvioPDO, :fechaHoraConfirmacionPDO, :confirmacionPDO)";
 
         try {
             //conectarse
             self::getConexion();
+            //obtener datos
+            $cedula = $this->getCedula();
+            $tipoDenuncia = $this->getTipoDenuncia();
+            $detalle = $this->getDetalle();
+            $img = $this->getImg();
+            $latitud = $this->getLatitud();
+            $longitud = $this->getLongitud();
+            $fechaHoraEnvio = $this->getFechaHoraEnvio();
+            $fechaHoraConfirmacion = $this->getFechaHoraConfirmacion();
+            $confirmacion = $this->getConfirmacion();
             //preparar el query
             $resultado = self::$cnx->prepare($query);
             //reemplazar el parámetro 
-            $resultado->bindParam(":idDenunciaPDO", $idDenuncia, PDO::PARAM_INT);
             $resultado->bindParam(":cedulaPDO", $cedula, PDO::PARAM_INT);
             $resultado->bindParam(":tipoDenunciaPDO", $tipoDenuncia, PDO::PARAM_STR);
             $resultado->bindParam(":detallePDO", $detalle, PDO::PARAM_STR);
@@ -160,40 +169,25 @@ class SolicitudDenuncia extends Conexion
         } catch (PDOException $ex) {
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode($error);
+            return json_encode(["error" => $error]);
         }
     }
 
-    //VER TODAS LAS DENUNCIAS
-    public function verSolicitudesDenuncia()
+    //VER DENUNCIA ESPECÍFICA
+    public function verSolicitudDenunciaEspec($idDenuncia)
     {
-        $query = "SELECT * FROM `solicitud_denuncias`";
-        $arr = array();
+        $query = "SELECT * FROM `solicitud_denuncias` WHERE id_denuncia = :idDenuncia";
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":idDenuncia", $idDenuncia, PDO::PARAM_INT);
             $resultado->execute();
             self::desconectar();
-            foreach ($resultado->fetchAll() as $encontrado) {
-                $soliDen = new SolicitudDenuncia();
-                $soliDen->setIdDenuncia($encontrado['id_denuncia']);
-                $soliDen->setCedula($encontrado['cedula']);
-                $soliDen->setTipoDenuncia($encontrado['tipo_denuncia']);
-                $soliDen->setDetalle($encontrado['detalle']);
-                $soliDen->setImg($encontrado['img']);
-                $soliDen->setLatitud($encontrado['latitud']);
-                $soliDen->setLongitud($encontrado['longitud']);
-                $soliDen->setFechaHoraEnvio($encontrado['fecha_hora_envio']);
-                $soliDen->setFechaHoraConfirmacion($encontrado['fecha_hora_confirmacion']);
-                $soliDen->setConfirmacion($encontrado['confirmacion']);
-                $arr[] = $soliDen;
-            }
-            return $arr;
+            return $resultado->fetch();
         } catch (PDOException $Exception) {
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            ;
-            return json_encode($error);
+            return $error;
         }
     }
 
@@ -219,10 +213,10 @@ class SolicitudDenuncia extends Conexion
         }
     }
 
-    //VER DENUNCIAS ACEPTADAS
-    public function verDenunciasAceptadas()
+    //VER TODAS LAS DENUNCIAS 
+    public function verDenuncias()
     {
-        $query = "SELECT * FROM `solicitud_denuncias` WHERE confirmacion='Aceptada'";
+        $query = "SELECT * FROM `solicitud_denuncias` WHERE confirmacion != 'Rechazada'";
         $arr = array();
         try {
             self::getConexion();
@@ -252,59 +246,27 @@ class SolicitudDenuncia extends Conexion
         }
     }
 
-    //VER DENUNCIAS PENDIENTES
-    public function verDenunciasPendientes()
-    {
-        $query = "SELECT * FROM `solicitud_denuncias` WHERE confirmacion='Pendiente'";
-        $arr = array();
-        try {
-            self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->execute();
-            self::desconectar();
-            foreach ($resultado->fetchAll() as $encontrado) {
-                $soliDen = new SolicitudDenuncia();
-                $soliDen->setIdDenuncia($encontrado['id_denuncia']);
-                $soliDen->setCedula($encontrado['cedula']);
-                $soliDen->setTipoDenuncia($encontrado['tipo_denuncia']);
-                $soliDen->setDetalle($encontrado['detalle']);
-                $soliDen->setImg($encontrado['img']);
-                $soliDen->setLatitud($encontrado['latitud']);
-                $soliDen->setLongitud($encontrado['longitud']);
-                $soliDen->setFechaHoraEnvio($encontrado['fecha_hora_envio']);
-                $soliDen->setFechaHoraConfirmacion($encontrado['fecha_hora_confirmacion']);
-                $soliDen->setConfirmacion($encontrado['confirmacion']);
-                $arr[] = $soliDen;
-            }
-            return $arr;
-        } catch (PDOException $Exception) {
-            self::desconectar();
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            ;
-            return json_encode($error);
-        }
-    }
 
     //ACEPTAR DENUNCIA (ACTIVAR)
     public function aceptarSolicitudDenuncia()
     {
         $id = $this->getIdDenuncia();
-            $query = "UPDATE `solicitud_denuncias` SET `fecha_hora_confirmacion`=NOW(),`confirmacion`='Aceptada' WHERE `id_denuncia`= :idDenuncia";
-           try {
-             self::getConexion();
-              $resultado = self::$cnx->prepare($query);
-              $resultado->bindParam(":idDenuncia",$id,PDO::PARAM_INT);
-              self::$cnx->beginTransaction();
-              $resultado->execute();
-              self::$cnx->commit();
-              self::desconectar();
-              return $resultado->rowCount();
-             } catch (PDOException $Exception) {
-               self::$cnx->rollBack();
-               self::desconectar();
-               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
-               return $error;
-             }
+        $query = "UPDATE `solicitud_denuncias` SET `fecha_hora_confirmacion`=NOW(),`confirmacion`='Aceptada' WHERE `id_denuncia`= :idDenuncia";
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":idDenuncia", $id, PDO::PARAM_INT);
+            self::$cnx->beginTransaction();
+            $resultado->execute();
+            self::$cnx->commit();
+            self::desconectar();
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
     }
 }
 ?>
