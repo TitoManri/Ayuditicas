@@ -27,7 +27,6 @@
 
     <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
-    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
     <!-- Mostrar Campañas usando PHP -->
     <section id="MostrarCampanias" class="container">
@@ -76,6 +75,7 @@
                         <a href="./DentroCamp.php" class="btn btn-warning">Ingresar</a>
                     </div>
                 </div>
+                <br>
             </section>
             <!-- Cerrar seccion de campaña -->
 <?php

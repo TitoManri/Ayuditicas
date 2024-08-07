@@ -36,52 +36,6 @@
 .text-body{
     color:white !important;
 }
-.searchBar{
-    border: none;
-    font-size: 17px;
-    border-radius: 15px;
-    width: 300px;
-  }
-
-nav .searchbar {
-    position: relative;
-  }
-  
-  nav .searchbar input[type="text"] {
-    border: 0;
-    padding: 0;
-    width: 0px; 
-    height: 40px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  nav .searchbar .icon {
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 35px;
-    height: 100%;
-    background: none;
-    border-radius: 3px;
-    color: #fff;
-    transition: all 0.5s 0.3s ease;
-  }
-  
-  nav .searchbar .icon i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-  }
-  
-  nav .searchbar input[type="text"] {
-    width: 350px; 
-    padding: 0 10px;
-    opacity: 1;
-  }
   
 .btn-isr{
   margin-right: 10px;
@@ -129,4 +83,7 @@ nav .searchbar {
 }
 .desconocido{
   color: #BCC9B8 !important;
+}
+.row-personalizada{
+  --bs-gutter-x: 0rem;
 }
