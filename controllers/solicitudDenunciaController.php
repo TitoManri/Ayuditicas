@@ -58,7 +58,16 @@ switch ($_GET["op"]) {
         foreach ($soliDen as $reg) {
             $data[] = array(
                 //cambiar esto para que muestre la denuncia específica
-                "0" => "<form method='post' action='./detalleDenuncia.php'>
+                "0" => ($reg->getConfirmacion()=='Aceptada') ? "<form method='post' action='./detalleDenuncia.php'>
+                            <input type='hidden' id='idDenuncia' name='idDenuncia' value='" . $reg->getIdDenuncia() . "'>
+                            <button type='submit' id='enviarIdDenuncia'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye-fill'
+                                    viewBox='0 0 16 16'>
+                                    <path d='M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0' />
+                                    <path d='M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7' />
+                                </svg>
+                            </button>
+                        </form>" : "<form method='post' action='./confirmarDenuncia.php'>
                             <input type='hidden' id='idDenuncia' name='idDenuncia' value='" . $reg->getIdDenuncia() . "'>
                             <button type='submit' id='enviarIdDenuncia'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye-fill'
@@ -84,13 +93,13 @@ switch ($_GET["op"]) {
         break;
     case 'rechazarSolicitudDenuncia':
         $ul = new SolicitudDenuncia();
-        $ul->setIdDenuncia(trim($_POST['idDenuncia']));
+        $ul->setIdDenuncia(trim($_POST['idDenunciaR']));
         $rspta = $ul->rechazarSolicitudDenuncia();
         echo $rspta;
         break;
     case 'aceptarSolicitudDenuncia':
         $ul = new SolicitudDenuncia();
-        $ul->setIdDenuncia(trim($_POST['idDenuncia']));
+        $ul->setIdDenuncia(trim($_POST['idDenunciaA']));
         $rspta = $ul->aceptarSolicitudDenuncia();
         echo $rspta;
         break;

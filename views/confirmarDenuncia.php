@@ -29,6 +29,11 @@
         <form method="post" action="" id="formDenuncia">
             <div class="row gx-5">
                 <div class="col">
+                    <!-- id denuncia-->
+                    <?php
+                    $idDen = $_POST['idDenuncia'];
+                    echo "<input type='hidden' value='" . $idDen . "' id='idDenunciaEsp' name='idDenunciaEsp'>";
+                    ?>
                     <!-- tipo de denuncia-->
                     <label for="tipoDenuncia" class="form-label">
                         <h3>Tipo denuncia</h3>

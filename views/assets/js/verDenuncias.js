@@ -22,4 +22,10 @@ function listarDenuncias() {
 //FUNCION PRINCIPAL
 $(function () {
     listarDenuncias();
+
+    //refrescar la página cada 5 seg
+    setTimeout(function(){
+        window.location.reload(1);
+     }, 3000);
 });
+
