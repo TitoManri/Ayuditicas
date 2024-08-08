@@ -11,7 +11,6 @@ class SolicitudDenuncia extends Conexion
         VARIABLES SOLICITUD DENUNCIA
     -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-*/
     private $idDenuncia = null;
-    private $cedula = null;
     private $tipoDenuncia = null;
     private $detalle = null;
     private $img = null;
@@ -27,10 +26,6 @@ class SolicitudDenuncia extends Conexion
     public function getIdDenuncia()
     {
         return $this->idDenuncia;
-    }
-    public function getCedula()
-    {
-        return $this->cedula;
     }
     public function getTipoDenuncia()
     {
@@ -72,10 +67,6 @@ class SolicitudDenuncia extends Conexion
     public function setIdDenuncia($idDenuncia)
     {
         $this->idDenuncia = $idDenuncia;
-    }
-    public function setCedula($cedula)
-    {
-        $this->cedula = $cedula;
     }
     public function setTipoDenuncia($tipoDenuncia)
     {
@@ -134,14 +125,13 @@ class SolicitudDenuncia extends Conexion
     //CREAR UNA DENUNCIA
     public function crearSoliDenuncia()
     {
-        $query = "INSERT INTO `solicitud_denuncias`(`cedula`, `tipo_denuncia`, `detalle`, `img`, `latitud`, `longitud`, `fecha_hora_envio`, `fecha_hora_confirmacion`, `confirmacion`) 
-        VALUES (:cedulaPDO, :tipoDenunciaPDO, :detallePDO, :imgPDO, :latitudPDO, :longitudPDO, :fechaHoraEnvioPDO, :fechaHoraConfirmacionPDO, :confirmacionPDO)";
+        $query = "INSERT INTO `solicitud_denuncias`(`tipo_denuncia`, `detalle`, `img`, `latitud`, `longitud`, `fecha_hora_envio`, `fecha_hora_confirmacion`, `confirmacion`) 
+        VALUES (:tipoDenunciaPDO, :detallePDO, :imgPDO, :latitudPDO, :longitudPDO, :fechaHoraEnvioPDO, :fechaHoraConfirmacionPDO, :confirmacionPDO)";
 
         try {
             //conectarse
             self::getConexion();
             //obtener datos
-            $cedula = $this->getCedula();
             $tipoDenuncia = $this->getTipoDenuncia();
             $detalle = $this->getDetalle();
             $img = $this->getImg();
@@ -153,7 +143,6 @@ class SolicitudDenuncia extends Conexion
             //preparar el query
             $resultado = self::$cnx->prepare($query);
             //reemplazar el parámetro 
-            $resultado->bindParam(":cedulaPDO", $cedula, PDO::PARAM_INT);
             $resultado->bindParam(":tipoDenunciaPDO", $tipoDenuncia, PDO::PARAM_STR);
             $resultado->bindParam(":detallePDO", $detalle, PDO::PARAM_STR);
             $resultado->bindParam(":imgPDO", $img, PDO::PARAM_STR);
@@ -182,14 +171,31 @@ class SolicitudDenuncia extends Conexion
             $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":idDenuncia", $idDenuncia, PDO::PARAM_INT);
             $resultado->execute();
+
+            $denEspec = $resultado->fetch();
             self::desconectar();
-            return $resultado->fetch();
+
+            if ($denEspec) {
+                $denuncia = new SolicitudDenuncia();
+                $denuncia->setIdDenuncia($denEspec['id_denuncia']);
+                $denuncia->setTipoDenuncia($denEspec['tipo_denuncia']);
+                $denuncia->setDetalle($denEspec['detalle']);
+                $denuncia->setImg($denEspec['img']);
+                $denuncia->setLatitud($denEspec['latitud']);
+                $denuncia->setLongitud($denEspec['longitud']);
+                $denuncia->setFechaHoraEnvio($denEspec['fecha_hora_envio']);
+                $denuncia->setFechaHoraConfirmacion($denEspec['fecha_hora_confirmacion']);
+                $denuncia->setConfirmacion($denEspec['confirmacion']);
+                return $denuncia;
+            }
+            return null;
         } catch (PDOException $Exception) {
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return $error;
         }
     }
+
 
     //"ELIMINAR DENUNCIA" (INACTIVAR)
     public function rechazarSolicitudDenuncia()
@@ -226,7 +232,6 @@ class SolicitudDenuncia extends Conexion
             foreach ($resultado->fetchAll() as $encontrado) {
                 $soliDen = new SolicitudDenuncia();
                 $soliDen->setIdDenuncia($encontrado['id_denuncia']);
-                $soliDen->setCedula($encontrado['cedula']);
                 $soliDen->setTipoDenuncia($encontrado['tipo_denuncia']);
                 $soliDen->setDetalle($encontrado['detalle']);
                 $soliDen->setImg($encontrado['img']);

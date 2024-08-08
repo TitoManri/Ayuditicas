@@ -24,11 +24,17 @@
     <div class="container_label col-2">
         <h5>Detalle denuncia</h5>
     </div>
+
     <section id="confirmCampana" class="container text-center">
         <!-- formulario-->
         <form method="post" action="" id="formDenuncia">
             <div class="row gx-5">
                 <div class="col">
+                    <!-- id denuncia-->
+                    <?php
+                    $idDen = $_POST['idDenuncia'];
+                    echo "<input type='hidden' value='" . $idDen . "' id='idDenunciaEsp' name='idDenunciaEsp'>";
+                    ?>
                     <!-- tipo de denuncia-->
                     <label for="tipoDenuncia" class="form-label">
                         <h3>Tipo denuncia</h3>
@@ -88,6 +94,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
-<script src="./assets/js/confirmarDenuncia.js"></script>
+<script src="./assets/js/detalleDenuncia.js"></script>
 
 </html>

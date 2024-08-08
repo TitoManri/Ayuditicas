@@ -26,7 +26,7 @@
     </div>
     <section id="crearDenuncia" class="container">
         <!-- formulario de denuncia -->
-        <form method="post" action="" id="formDenuncia">
+        <form method="post" action="" name="formDenuncia" id="formDenuncia">
             <div class="row gx-5 align-items-start custom-gap">
                 <div class="col">
                     <!-- select tipo denuncia-->
@@ -34,19 +34,19 @@
                         <h3>Tipo denuncia</h3>
                     </label>
                     <select class="form-select" aria-label="Tipo denuncia" id="selectTipo" name="selectTipo">
-                        <option value="0">--Selecciona el tipo de denuncia--</option>
-                        <option value="1">Basura en las calles</option>
-                        <option value="2">Maltrato animal</option>
-                        <option value="3">Deforestación</option>
+                        <option value="">--Selecciona el tipo de denuncia--</option>
+                        <option value="Basura en las calles">Basura en las calles</option>
+                        <option value="Maltrato animal">Maltrato animal</option>
+                        <option value="Deforestación">Deforestación</option>
                     </select>
                 </div>
                 <div class="col">
                     <!-- imagen-->
-                    <label for="formFile" class="form-label">
+                    <label for="imgDen" class="form-label">
                         <h3>Imágen</h3>
                     </label>
                     <div class="mb-3">
-                        <input class="form-control" type="file" id="formFile" name="formFile">
+                        <input class="form-control" type="file" id="imgDen" name="imgDen">
                     </div>
                 </div>
             </div>
