@@ -10,10 +10,10 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="./assets/css/denuncias.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="./assets/css/theme.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css"> 
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <div class="row m-3">
         <!-- listado -->
         <div class="col-md-12">
-            <div class="card card-dark">
+            <div class="card card-dark p-3">
                 <div class="card-header">
                     <h3 class="card-title">Denuncias</h3>
                 </div>
@@ -86,7 +86,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- DataTables JS -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="./plugins/DataTables/datatables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
 <!-- <script src="./assets/js/confirmarDenuncia.js"></script>-->
 <script src="./assets/js/verDenuncias.js"></script>
 
