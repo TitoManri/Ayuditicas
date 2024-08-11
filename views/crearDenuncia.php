@@ -26,7 +26,7 @@
     </div>
     <section id="crearDenuncia" class="container">
         <!-- formulario de denuncia -->
-        <form method="post" action="" name="formDenuncia" id="formDenuncia">
+        <form method="post" action="" name="formDenuncia" id="formDenuncia" enctype="multipart/form-data">
             <div class="row gx-5 align-items-start custom-gap">
                 <div class="col">
                     <!-- select tipo denuncia-->

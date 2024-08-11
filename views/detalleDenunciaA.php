@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página principal | Administrador</title>
+  <title>Detalle denuncia | Administrador</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="./assets/css/adminlte.min.css">
-  <!-- datatable-->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="./assets/css/detDen.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -23,7 +23,15 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <h3 class="m-2"><strong>Apartado de administrador</strong></h3>
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="./verDenuncias.php" class="nav-link">Volver a ver denuncias</a>
+        </li>
+      </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
@@ -127,7 +135,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <h1 class="ml-5 mt-3">Ver todas las denuncias</h1>
+              <h1 class="ml-5 mt-3">Detalle de la denuncia</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -135,38 +143,54 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
-      <div class="card card-dark mx-5 mb-5">
-        <div class="card-header">
-          <h3 class="card-title">Denuncias aceptadas</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-              <table id="listadoDenuncias" class="table table-striped table-bordered table-hover">
-                <thead>
-                  <th>Ver más</th>
-                  <th>Tipo Denuncia</th>
-                  <th>Latitud</th>
-                  <th>Longitud</th>
-                  <th>Confirmación</th>
-                </thead>
-                <tbody>
-                </tbody>
-                <tfooter>
-                  <th>Ver más</th>
-                  <th>Tipo Denuncia</th>
-                  <th>Latitud</th>
-                  <th>Longitud</th>
-                  <th>Confirmación</th>
-                </tfooter>
-              </table>
+      <section id="confirmCampana" class="container text-center">
+        <!-- formulario-->
+        <form method="post" action="" id="formDenuncia">
+          <div class="row gx-5">
+            <div class="col">
+              <!-- id denuncia-->
+              <?php
+              $idDen = $_POST['idDenuncia'];
+              echo "<input type='hidden' value='" . $idDen . "' id='idDenunciaEsp' name='idDenunciaEsp'>";
+              ?>
+              <!-- tipo de denuncia-->
+              <label for="tipoDenuncia" class="form-label text-white">
+                <h3>Tipo denuncia</h3>
+              </label>
+              <input class="form-control" id="tipoDenuncia" name="tipoDenuncia" readonly>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col">
+              <!-- imagen-->
+              <label class="text-white">
+                <h3>Imágen</h3>
+              </label>
+              <div class="imgDenunciaContainer">
+                <img id="imgDenuncia" name="imgDenuncia" src="" alt="Vista previa de la imagen">
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+          <div class="row gx-5">
+            <div class="col">
+              <!-- detalle-->
+              <label for="detalle" class="form-label text-white">
+                <h3>Detalle</h3>
+              </label>
+              <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
+            </div>
+            <div class="col">
+              <!-- ubicación (PENDIENTE)-->
+              <label for="ubicacion" class="form-label text-white">
+                <h3>Ubicación</h3>
+              </label>
+              <br>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d780739.7870962442!2d-4.508766387499999!3d40.14752270238211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287bd0788e65%3A0xa28363ebaaa7adae!2sTeatro%20Real!5e0!3m2!1ses-419!2scr!4v1720387958264!5m2!1ses-419!2scr"
+                width="300" height="150" style="border:0;" allowfullscreen=""
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </form>
+      </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -196,10 +220,7 @@
 <script src="./assets/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="./assets/js/adminlte.min.js"></script>
-<!-- DataTable -->
-<script type="text/javascript" charset="utf8" src="./plugins/DataTables/datatables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
 <!-- ver denuncias-->
-<script src="./assets/js/verDen.js"></script>
+<script src="./assets/js/detalleDenuncia.js"></script>
 
 </html>

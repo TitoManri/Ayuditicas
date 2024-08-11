@@ -1,9 +1,9 @@
 /*Funcion para cargar el listado en el Datatable*/
 function listarDenuncias() {
     tabla = $('#listadoDenuncias').dataTable({
-        aProcessing: true, //actiavmos el procesamiento de datatables
-        aServerSide: true, //paginacion y filtrado del lado del serevr
-        dom: 'Bfrtip', //definimos los elementos del control de tabla
+        aProcessing: true, 
+        aServerSide: true, 
+        dom: 'Bfrtip', 
         buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdf'],
         ajax: {
             url: '../controllers/solicitudDenunciaController.php?op=verDenuncias',
@@ -19,8 +19,13 @@ function listarDenuncias() {
 }
 
 
-//FUNCION PRINCIPAL
+
 $(function () {
     listarDenuncias();
-});
 
+    //refrescar la página cada 5 seg
+    setTimeout(function () {
+        tabla.ajax.reload(null, false);
+    }, 3000);
+    
+});

@@ -5,8 +5,14 @@ switch ($_GET["op"]) {
     case 'crearSoliDenuncia':
         $tipoDenuncia =filter_input(INPUT_POST, 'selectTipo', FILTER_SANITIZE_STRING);
         $detalle = isset($_POST["detalle"]) ? trim($_POST["detalle"]) : "";
-        //$img = isset($_FILES["imgDen"]) ? trim($_POST["imgDen"]) : "./direccion/img";
-        $img = "./direccion/img";
+        $img = $_FILES["imgDen"];
+        $imgArr = guardarFotoNombre($img);
+        if ($imgArr['exito'] == 1) {
+            $imgDir = $imgArr['contenido'];
+        } else {
+            echo json_encode($imgArr);
+            return;
+        }
         //$latitud = isset($_POST["latitud"]) ? trim($_POST["latitud"]) : "34.052235";
         $latitud = "34.052235";
         //$longitud = isset($_POST["longitud"]) ? trim($_POST["longitud"]) : "-118.243683";
@@ -19,7 +25,7 @@ switch ($_GET["op"]) {
 
         $soliDen->setTipoDenuncia($tipoDenuncia);
         $soliDen->setDetalle($detalle);
-        $soliDen->setImg($img);
+        $soliDen->setImg($imgDir);
         $soliDen->setLatitud($latitud);
         $soliDen->setLongitud($longitud);
         $soliDen->setFechaHoraEnvio($fechaHoraEnvio);
@@ -58,7 +64,7 @@ switch ($_GET["op"]) {
         foreach ($soliDen as $reg) {
             $data[] = array(
                 //cambiar esto para que muestre la denuncia específica
-                "0" => ($reg->getConfirmacion()=='Aceptada') ? "<form method='post' action='./detalleDenuncia.php'>
+                "0" => ($reg->getConfirmacion()=='Aceptada') ? "<form method='post' action='./detalleDenunciaA.php'>
                             <input type='hidden' id='idDenuncia' name='idDenuncia' value='" . $reg->getIdDenuncia() . "'>
                             <button type='submit' id='enviarIdDenuncia'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye-fill'
@@ -67,7 +73,7 @@ switch ($_GET["op"]) {
                                     <path d='M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7' />
                                 </svg>
                             </button>
-                        </form>" : "<form method='post' action='./confirmarDenuncia.php'>
+                        </form>" : "<form method='post' action='./confirmarDenunciaA.php'>
                             <input type='hidden' id='idDenuncia' name='idDenuncia' value='" . $reg->getIdDenuncia() . "'>
                             <button type='submit' id='enviarIdDenuncia'>
                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye-fill'
@@ -103,6 +109,34 @@ switch ($_GET["op"]) {
         $rspta = $ul->aceptarSolicitudDenuncia();
         echo $rspta;
         break;
+}
+
+function guardarFotoNombre($img){
+    $imgName = $img['name'];
+    $imgTmp = $img['tmp_name'];
+    $imgError = $img['error'];
+
+    $imgExt = explode('.', $imgName);
+    $imgActualExt = strtolower(end($imgExt));
+
+    $permitir = array('jpg', 'jpeg', 'png');
+
+    if (in_array($imgActualExt, $permitir)) {
+        if ($imgError === 0) {
+            //reemplazar por el id de la denuncia
+            $imgNameNew = uniqid('', true) . "." . $imgActualExt;
+            $imgDestination = '../views/assets/img/' . $imgNameNew;
+            move_uploaded_file($imgTmp, $imgDestination);
+            $datos= array("exito" => "1", "contenido" => "./assets/img/". $imgNameNew."");
+            return $datos;
+        } else {
+            $datos= array("exito" => "0", "contenido" => "Hubo un error al cargar la imagen");
+            return $datos;
+        }
+    } else {
+        $datos= array("exito" => "0", "contenido" => "No se permite este tipo de archivo");
+        return $datos;
+    }
 }
 
 ?>

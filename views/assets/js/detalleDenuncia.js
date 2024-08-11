@@ -26,8 +26,7 @@ $(document).ready(function () {
 
                     //autocompletar la imagen
                     const imgDenuncia = document.getElementById("imgDenuncia");
-                    //imgDenuncia.src = datosAutocompletar[0].img; //ruta dinámica falta
-                    imgDenuncia.src = "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/tsah7c9evnal289z5fig/Entrada%3A%20IMG%20Worlds%20of%20Adventure.jpg";
+                    imgDenuncia.src = datosAutocompletar[0].img; 
                     imgDenuncia.style.width = "300px";
                     imgDenuncia.style.height = "150px";
                 }
