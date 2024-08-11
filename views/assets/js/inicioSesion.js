@@ -1,8 +1,8 @@
-document.getElementById('iniciarSesionBtn').addEventListener('click', function(event) {
-    event.preventDefault();
+$(document).getElementById('iniciarSesionBtn').addEventListener('click', function(e) {
+    e.preventDefault();
     var formData = new FormData(document.getElementById('formIniciarSesion'));
     $.ajax({ 
-        url: '../controllers/tuController.php?action=iniciarSesion', 
+        url: '../controllers/inicioSesionController.php', 
         type: 'POST', 
         data: formData, 
         contentType: false,

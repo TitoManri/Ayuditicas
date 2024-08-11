@@ -120,7 +120,7 @@
         <br><br><br><br><br><br><br><br>
     </form> 
 
-    <!-- Modal de terminos y condiciones -->
+    <!-- Modal de terminos y condiciones-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">

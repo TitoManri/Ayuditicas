@@ -132,100 +132,89 @@ d.Le decimos al usuario que todo salio correctamente.
 
 Cuando ya todos estos datos se validen despues de tiene que hacer un insert sobre la base de datos.
 */
-    public function validarDatos() {
-        //Query's de Validacion
-        $queryCedula = "SELECT count(`cedula`) FROM `usuarios` WHERE cedula = ;";
-        $queryNombreUsuario = "SELECT count(`nombre_usuario`) FROM `usuarios` WHERE nombre_usuario = :nombreUsuariaValPDO;";
-        $queryTelefono = "SELECT count(`telefono`) FROM `usuarios` WHERE telefono = :telefonoValPDO;";
-        $queryCorreo = "SELECT count(`correo`) FROM `usuarios` WHERE correo = :correoValPDO;";
+public function guardarUsuario() {
+    // Consultas para validación
+    $queryCedula = "SELECT COUNT(*) FROM usuarios WHERE cedula = :cedulaValPDO;";
+    $queryNombreUsuario = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = :nombreUsuariaValPDO;";
+    $queryTelefono = "SELECT COUNT(*) FROM usuarios WHERE telefono = :telefonoValPDO;";
+    $queryCorreo = "SELECT COUNT(*) FROM usuarios WHERE correo = :correoValPDO;";
 
-        //Variables de Validacion
-        $cedulaValidacion = $this->getCedula();
-        $nombreUsuarioValidacion = $this->getNombreUsuario();
-        $telefonoValidacion = $this->getTelefono();
-        $correoValidacion = $this->getCorreo();
+    // Variables de validación
+    $cedulaValidacion = $this->getCedula();
+    $nombreUsuarioValidacion = $this->getNombreUsuario();
+    $telefonoValidacion = $this->getTelefono();
+    $correoValidacion = $this->getCorreo();
 
-        try{
-            self::getConexion();
-            $resultadoCedula = self::$cnx->prepare($queryCedula);
-            $resultadoCedula->bindParam(':cedulaValPDO', $cedulaValidacion);
-            $resultadoCedula->execute();
-            $countCedula = $resultadoCedula->fetchColumn();
-            if($countCedula == 0){
-                $resultadoNU = self::$cnx->prepare($queryNombreUsuario);
-                $resultadoNU->bindParam(':nombreUsuariaValPDO', $nombreUsuarioValidacion);
-                $resultadoNU->execute();
-                $countNU = $resultadoNU->fetchColumn();
-                if($countNU == 0){
-                    $resultadoTelefono = self::$cnx->prepare($queryTelefono);
-                    $resultadoTelefono->bindParam(':telefonoValPDO', $telefonoValidacion);
-                    $resultadoTelefono->execute();
-                    $countTelefono = $resultadoTelefono->fetchColumn();
-                    if($countTelefono == 0){
-                        $resultadoCorreo = self::$cnx->prepare($queryCorreo);
-                        $resultadoCorreo->bindParam(':correoValPDO', $correoValidacion); 
-                        $resultadoCorreo->execute();
-                        $countCorreo = $resultadoCorreo->fetchColumn(); 
-                        if($countCorreo == 0){
-                            //o que cuando se temine de validar se guarde
-                        }else{
-                            throw new Exception("Utiliza otro correo, ese parece ya estar en uso");
-                        }
-                    }else{
-                        throw new Exception("Utiliza otro telefono, ese ya esta siendo utilizado");
-                    }
-                }else{
-                    throw new Exception("Ese nombre de usuario ya esta en uso");
-                }
-            }else{
-                throw new Exception("Revisa tu cedula, esa ya se encuentra en uso");
-            }
-        }catch(PDOException $ex){
-            self::desconectar();
-            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode($error);
+    try {
+        self::getConexion();
+
+        // Validar cédula
+        $resultadoCedula = self::$cnx->prepare($queryCedula);
+        $resultadoCedula->bindParam(':cedulaValPDO', $cedulaValidacion);
+        $resultadoCedula->execute();
+        $countCedula = $resultadoCedula->fetchColumn();
+        if ($countCedula > 0) {
+            throw new Exception("Revisa tu cédula, esa ya se encuentra en uso");
         }
-    }
 
-    public function guardarRegistro() {
-        $this->validarDatos();
-
-        $query = "INSERT INTO USUARIOS (cedula, nombre, primer_apellido, segundo_apellido, genero,fecha_nacimiento, nombre_usuario, telefono, correo, contrasena) 
-        VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO ,STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO);";
-
-        try {
-            self::getConexion();
-            $cedula = $this->getCedula();
-            $nombrePersona = $this->getNombrePersona();
-            $PrimerApellido = $this->getPrimerApellido();
-            $SegundoApellido = $this->getSegundoApellido();
-            $Genero = $this->getGenero();
-            $FechaNacimiento = $this->getFechaNacimiento();
-            $nombreUsuario = $this->getNombreUsuario();
-            $Telefono = $this->getTelefono();
-            $Correo = $this->getCorreo();
-            $contrasenia = $this->getContrasenia();
-
-            $resultado = self::$cnx->prepare($query);
-
-            $resultado->bindParam(":cedulaPDO", $cedula, PDO::PARAM_STR);
-            $resultado->bindParam(":nombrePersonaPDO", $nombrePersona, PDO::PARAM_STR);
-            $resultado->bindParam(":primerApellidoPDO", $PrimerApellido, PDO::PARAM_STR);
-            $resultado->bindParam(":segundoApellidoPDO", $SegundoApellido, PDO::PARAM_STR);
-            $resultado->bindParam(":generoPDO", $Genero, PDO::PARAM_STR);
-            $resultado->bindParam(":fechaNacimientoPDO", $FechaNacimiento, PDO::PARAM_STR);
-            $resultado->bindParam(":nombreUsuarioPDO", $nombreUsuario, PDO::PARAM_STR);
-            $resultado->bindParam(":telefonoPDO", $Telefono, PDO::PARAM_STR);
-            $resultado->bindParam(":correoPDO", $Correo, PDO::PARAM_STR);
-            $resultado->bindParam(":contraseniaPDO", $contrasenia, PDO::PARAM_STR);
-
-            $resultado->execute();
-            self::desconectar();
-        } catch (PDOException $ex) {
-            self::desconectar();
-            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode($error);
+        // Validar nombre de usuario
+        $resultadoNU = self::$cnx->prepare($queryNombreUsuario);
+        $resultadoNU->bindParam(':nombreUsuariaValPDO', $nombreUsuarioValidacion);
+        $resultadoNU->execute();
+        $countNU = $resultadoNU->fetchColumn();
+        if ($countNU > 0) {
+            throw new Exception("Ese nombre de usuario ya está en uso");
         }
+
+        // Validar teléfono
+        $resultadoTelefono = self::$cnx->prepare($queryTelefono);
+        $resultadoTelefono->bindParam(':telefonoValPDO', $telefonoValidacion);
+        $resultadoTelefono->execute();
+        $countTelefono = $resultadoTelefono->fetchColumn();
+        if ($countTelefono > 0) {
+            throw new Exception("Utiliza otro teléfono, ese ya está siendo utilizado");
+        }
+
+        // Validar correo
+        $resultadoCorreo = self::$cnx->prepare($queryCorreo);
+        $resultadoCorreo->bindParam(':correoValPDO', $correoValidacion);
+        $resultadoCorreo->execute();
+        $countCorreo = $resultadoCorreo->fetchColumn();
+        if ($countCorreo > 0) {
+            throw new Exception("Utiliza otro correo, ese parece ya estar en uso");
+        }
+
+        // Insertar registro si todo está bien
+        $queryInsert = "INSERT INTO usuarios (cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena) 
+                        VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO, STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO);";
+
+        $resultadoInsert = self::$cnx->prepare($queryInsert);
+        $resultadoInsert->bindParam(":cedulaPDO", $cedulaValidacion);
+        $resultadoInsert->bindParam(":nombrePersonaPDO", $this->getNombrePersona());
+        $resultadoInsert->bindParam(":primerApellidoPDO", $this->getPrimerApellido());
+        $resultadoInsert->bindParam(":segundoApellidoPDO", $this->getSegundoApellido());
+        $resultadoInsert->bindParam(":generoPDO", $this->getGenero());
+        $resultadoInsert->bindParam(":fechaNacimientoPDO", $this->getFechaNacimiento());
+        $resultadoInsert->bindParam(":nombreUsuarioPDO", $nombreUsuarioValidacion);
+        $resultadoInsert->bindParam(":telefonoPDO", $telefonoValidacion);
+        $resultadoInsert->bindParam(":correoPDO", $correoValidacion);
+        $resultadoInsert->bindParam(":contraseniaPDO", $this->getContrasenia());
+
+        $resultadoInsert->execute();
+        self::desconectar();
+
+        // Respuesta exitosa
+        return json_encode(array("exito" => true, "msg" => "Usuario registrado correctamente"));
+
+    } catch (PDOException $ex) {
+        self::desconectar();
+        // Respuesta de error en caso de problema con la base de datos
+        return json_encode(array("exito" => false, "msg" => "Error en la base de datos: " . $ex->getMessage()));
+    } catch (Exception $ex) {
+        self::desconectar();
+        // Respuesta de error en caso de excepción general
+        return json_encode(array("exito" => false, "msg" => $ex->getMessage()));
     }
+}
 }
 ?>
