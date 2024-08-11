@@ -38,10 +38,10 @@ class inicioSesionModel extends conexion {
         $arr = array();
         try {
             self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->execute();
+            $encontrado = self::$cnx->prepare($query);
+            $encontrado->execute();
             self::desconectar();
-            foreach ($resultado->fetchAll() as $encontrado) {
+            foreach ($encontrado->fetchAll() as $encontrado) {
                 $user = new inicioSesionModel();
                 $user->setNombreUsuario($encontrado['nombre_usuario']);
                 $user->setContrasenia($encontrado['contrasena']);
@@ -56,7 +56,7 @@ class inicioSesionModel extends conexion {
     }
 
     public function verificarExistenciaDb($nombreUsuario, $contrasenia){
-        $query = "SELECT * FROM usuarios where nombre_usuario = :nombreUsuario AND contrasena = :contrasenia";
+        $query = "SELECT * FROM `usuarios` where nombre_usuario = :nombreUsuario AND contrasena = :contrasenia";
      try {
          self::getConexion();
 
@@ -69,7 +69,7 @@ class inicioSesionModel extends conexion {
                 $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
                 
                 //Comparacion de contraseña, si la contraseña es igual a la que esta con el usuario todo bien
-                if (password_verify($contrasenia, $usuario['contrasena'])) {
+                if ($usuario['contrasena'] === $contrasenia) {
                     self::desconectar();
                     return true;
                 }

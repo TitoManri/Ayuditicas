@@ -146,39 +146,40 @@ Cuando ya todos estos datos se validen despues de tiene que hacer un insert sobr
         $correoValidacion = $this->getCorreo();
 
         try{
-        $resultadoCedula = self::$cnx->prepare($queryCedula);
-        $resultadoCedula->bindParam(':cedulaValPDO', $cedulaValidacion);
-        $resultadoCedula->execute();
-        $countCedula = $resultadoCedula->fetchColumn();
-        if($countCedula == 0){
-            $resultadoNU = self::$cnx->prepare($queryNombreUsuario);
-            $resultadoNU->bindParam(':nombreUsuariaValPDO', $nombreUsuarioValidacion);
-            $resultadoNU->execute();
-            $countNU = $resultadoNU->fetchColumn();
-            if($countNU == 0){
-                $resultadoTelefono = self::$cnx->prepare($queryTelefono);
-                $resultadoTelefono->bindParam(':telefonoValPDO', $telefonoValidacion);
-                $resultadoTelefono->execute();
-                $countTelefono = $resultadoTelefono->fetchColumn();
-                if($countTelefono == 0){
-                    $resultadoCorreo = self::$cnx->prepare($queryCorreo);
-                    $resultadoCorreo->bindParam(':correoValPDO', $correoValidacion); 
-                    $resultadoCorreo->execute();
-                    $countCorreo = $resultadoCorreo->fetchColumn(); 
-                    if($countCorreo == 0){
-                        //o que cuando se temine de validar se guarde
+            self::getConexion();
+            $resultadoCedula = self::$cnx->prepare($queryCedula);
+            $resultadoCedula->bindParam(':cedulaValPDO', $cedulaValidacion);
+            $resultadoCedula->execute();
+            $countCedula = $resultadoCedula->fetchColumn();
+            if($countCedula == 0){
+                $resultadoNU = self::$cnx->prepare($queryNombreUsuario);
+                $resultadoNU->bindParam(':nombreUsuariaValPDO', $nombreUsuarioValidacion);
+                $resultadoNU->execute();
+                $countNU = $resultadoNU->fetchColumn();
+                if($countNU == 0){
+                    $resultadoTelefono = self::$cnx->prepare($queryTelefono);
+                    $resultadoTelefono->bindParam(':telefonoValPDO', $telefonoValidacion);
+                    $resultadoTelefono->execute();
+                    $countTelefono = $resultadoTelefono->fetchColumn();
+                    if($countTelefono == 0){
+                        $resultadoCorreo = self::$cnx->prepare($queryCorreo);
+                        $resultadoCorreo->bindParam(':correoValPDO', $correoValidacion); 
+                        $resultadoCorreo->execute();
+                        $countCorreo = $resultadoCorreo->fetchColumn(); 
+                        if($countCorreo == 0){
+                            //o que cuando se temine de validar se guarde
+                        }else{
+                            throw new Exception("Utiliza otro correo, ese parece ya estar en uso");
+                        }
                     }else{
-                        throw new Exception("Utiliza otro correo, ese parece ya estar en uso");
+                        throw new Exception("Utiliza otro telefono, ese ya esta siendo utilizado");
                     }
                 }else{
-                    throw new Exception("Utiliza otro telefono, ese ya esta siendo utilizado");
+                    throw new Exception("Ese nombre de usuario ya esta en uso");
                 }
             }else{
-                throw new Exception("Ese nombre de usuario ya esta en uso");
+                throw new Exception("Revisa tu cedula, esa ya se encuentra en uso");
             }
-        }else{
-            throw new Exception("Revisa tu cedula, esa ya se encuentra en uso");
-        }
         }catch(PDOException $ex){
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
@@ -187,7 +188,8 @@ Cuando ya todos estos datos se validen despues de tiene que hacer un insert sobr
     }
 
     public function guardarRegistro() {
-        //nombre funcion validar
+        $this->validarDatos();
+
         $query = "INSERT INTO USUARIOS (cedula, nombre, primer_apellido, segundo_apellido, genero,fecha_nacimiento, nombre_usuario, telefono, correo, contrasena) 
         VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO ,STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO);";
 

@@ -15,8 +15,8 @@
             include './templates/Header&Footer/header2.php';
         ?></header>
 
-<div class="container">
-  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion" method="post">
+<div class="container">                                                                                               <!--redirije al controller-->
+  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion" method="post" action="../views/redSocial.php">
     <h3 class="mb-3 text-center">Iniciar sesion</h3>
     <hr>
 
@@ -32,7 +32,7 @@
 
       <a class="text-decoration-none text-dark" href="">¿Olvidaste tu contraseña?</a>
       <br>
-      <button class="w-100 btn boton-inicio" type="submit">Iniciar sesión</button>
+      <button id="iniciarSesionBtn" class="w-100 btn boton-inicio" type="submit">Iniciar sesión</button>
       <br>
     <a class="text-decoration-none text-dark" href="./registroSesion.php">¿No tienes una cuenta? Registrate</a>
   </form>
