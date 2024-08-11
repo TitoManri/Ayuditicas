@@ -15,7 +15,7 @@
         <?php
             include './templates/Header&Footer/header2.php';
         ?></header>
-
+<div id="response"></div>
 <section id="registro-section">
 
 <div class="container form-container">
@@ -41,7 +41,7 @@
 <!--Apellido del Usuario-->
       <div class="col-sm-3">
         <label for="segundo_apellido" class="form-label">Segundo Apellido</label>
-        <input type="text" class="form-control escribir" id="segundo_apellido" placeholder="" value="" required="" name="segundo_apellidop">
+        <input type="text" class="form-control escribir" id="segundo_apellido" placeholder="" value="" required="" name="segundo_apellido">
           <div class="invalid-feedback">Porfavor ingrese sus apellidos.</div>
       </div>
 

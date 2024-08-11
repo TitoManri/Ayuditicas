@@ -12,7 +12,6 @@ function validarContrasenia(){
 contrasenia.onchange = validarContrasenia;
 confirmar_contrasenia.onkeyup = validarContrasenia;
 
-
 $(document).ready(function () { 
     $('#registro').on('submit', function (e) { 
         e.preventDefault(); 
@@ -25,10 +24,10 @@ $(document).ready(function () {
             processData  : false, 
 
             success: function(response) { 
-                $('#response').html('<div class="alert alert-success">Cita programada exitosamente!</div>');
+                $('#response').html('<div class="alert alert-success">Usuario registrado exitosamente!</div>');
             }, 
             error: function(err) { 
-                $('#response').html('<div class="alert alert-danger">Error al programar la cita.</div>'); 
+                $('#response').html('<div class="alert alert-danger">Error al registrar el usuario.</div>'); 
             } 
         }); 
     });
