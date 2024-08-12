@@ -13,10 +13,8 @@ switch ($_GET["op"]) {
             echo json_encode($imgArr);
             return;
         }
-        //$latitud = isset($_POST["latitud"]) ? trim($_POST["latitud"]) : "34.052235";
-        $latitud = "34.052235";
-        //$longitud = isset($_POST["longitud"]) ? trim($_POST["longitud"]) : "-118.243683";
-        $longitud = "-118.243683";
+        $latitud = isset($_POST["latitud"]) ? trim($_POST["latitud"]) : "34.052235";
+        $longitud = isset($_POST["longitud"]) ? trim($_POST["longitud"]) : "-118.243683";
         $fechaHoraEnvio = date("Y-m-d H:i:s");
         $fechaHoraConfirmacion = '0000-00-00 00:00:00';
         $confirmacion = 'Pendiente';

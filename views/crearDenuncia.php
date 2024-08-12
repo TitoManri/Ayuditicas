@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Denuncia</title>
+    <!-- css del mapa-->
+    <link rel="stylesheet" href="./assets/css/geocode.css">
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -24,6 +26,7 @@
     <div class="container_label col-2">
         <h5>Crear denuncia</h5>
     </div>
+
     <section id="crearDenuncia" class="container">
         <!-- formulario de denuncia -->
         <form method="post" action="" name="formDenuncia" id="formDenuncia" enctype="multipart/form-data">
@@ -64,10 +67,13 @@
                         <h3>Ubicación</h3>
                     </label>
                     <br>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d780739.7870962442!2d-4.508766387499999!3d40.14752270238211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287bd0788e65%3A0xa28363ebaaa7adae!2sTeatro%20Real!5e0!3m2!1ses-419!2scr!4v1720387958264!5m2!1ses-419!2scr"
-                        width="300" height="150" style="border:0;" allowfullscreen=""
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- MAPA-->
+                    <div id="map">
+                    </div>
+                    <div id="datosLongLat">
+                        <input type="hidden" id="latitud" name="latitud" value="">
+                        <input type="hidden" id="longitud" name="longitud" value="">
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
@@ -96,5 +102,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/crearDenuncia.js"></script>
-
+<!-- api key: AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I-->
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&v=weekly&libraries=marker">
+    </script>
 </html>
