@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./assets/css/adminlte.min.css">
   <link rel="stylesheet" href="./assets/css/detDen.css">
   <!-- MAPA-->
-  <link rel="stylesheet" href="./assets/css/estilo.css">
+  <link rel="stylesheet" href="./assets/css/detDenApi.css">
 
 </head>
 
