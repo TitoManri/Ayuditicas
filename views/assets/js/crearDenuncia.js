@@ -76,9 +76,6 @@ function geocode(request) {
             latitud = results[0].geometry.location.lat();
             longitud = results[0].geometry.location.lng();
 
-            console.log(latitud);
-            console.log(longitud);
-
             document.getElementById("latitud").value=latitud;
             document.getElementById("longitud").value=longitud;
 
