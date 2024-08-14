@@ -32,24 +32,9 @@
                         data-bs-target="#usernameModal">
                         Agregar Usuario
                     </button>
-                    <ul class="nav nav-pills flex-column mb-auto">
+                    <ul id="listaUsuarios" class="nav nav-pills flex-column mb-auto">
                         <!-- Dentro del bucle que genera la lista de usuarios -->
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Usuario 1"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Usuario 1</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Usuario 2"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Usuario 2</strong>
-                            </a>
-                        </li>
+                        
                         <hr>
                         <!-- SECCION DE GRUPOS-->
                         <h3 class="text-center">Grupos</h3>

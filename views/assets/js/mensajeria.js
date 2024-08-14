@@ -1,32 +1,13 @@
-//lista de usuarios (habría que cargarlo de la base de datos)
-const listaUsuarios = {
-    'Usuario 1': 'Usuario 1',
-    'Usuario 2': 'Usuario 2',
-    'Usuario 3': 'Usuario 3'
-};
+//listaUsuarios y mensajesPorUsuario
+const listaUsuarios = {};
+const mensajesPorUsuario = {};
 
-//listas para guardar mensajes por usuario (habría que cargarlo de la base de datos)
-const mensajesPorUsuario = {
-    'Usuario 1': [],
-    'Usuario 2': [],
-    'Grupo 1': [],
-    'Grupo 2': []
-};
-
-//Guardar miembros del grupo (habría que cargarlo de la base de datos)
-const miembrosDeGrupo = {
-    'Grupo 1': ['Miembro 1', 'Miembro 2'],
-    'Grupo 2': ['Miembro 2', 'Miembro 1']
-};
-
-//se recuperan todos los usuarios/grupos (cada nav-link es un chat de la lista)
-const usuarios = document.querySelectorAll('.nav-link');
 //variable que cambia dependiendo del usuario/grupo con el que se esté chateando
-let chatActual = null; 
-//variable que contiene al usuario logueado para facilitar pruebas
-let usuarioLogueado = 'Usuario Logueado';
+let chatActual = null;
+//variable que contiene al usuario logueado en el momento
+let usuarioLogueado = 'mtenorio';
 
-//formulario para envío de mensajes
+//form para envío de mensajes
 const enviarFormulario = document.getElementById('enviarMsj');
 //mensaje (texto que introduce el usuario)
 const inputMensaje = document.getElementById('mensaje');
@@ -34,13 +15,90 @@ const inputMensaje = document.getElementById('mensaje');
 const btnEnviar = document.getElementById('btnEnviar');
 //espacio en blanco donde van los mensajes
 const contenedorChat = document.getElementById('chatContainer');
-//botón para enviar los mensajes
+//botón para subir imágenes
 const btnSubirImagen = document.getElementById('btnImg');
 
-//Deshabilitar input, botón enviar mensaje y botón enviar foto hasta que seleccione un usuario
+//deshabilitar input, botón enviar mensaje y botón enviar foto hasta que seleccione un usuario
 inputMensaje.disabled = true;
 btnEnviar.disabled = true;
 btnSubirImagen.disabled = true;
+
+
+function eventoClick(contacto) {
+    contacto.querySelector('.nav-link').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        //quita la clase activa de todos los usuarios
+        const usuarios = document.querySelectorAll('.nav-link');
+        usuarios.forEach(u => u.classList.remove('active'));
+
+        //agrega la clase activa al usuario seleccionado
+        this.classList.add('active');
+
+        //toma el nombre de usuario y su imagen 
+        const nombre = this.getAttribute('data-usuario');
+        const imagenUrl = this.getAttribute('data-imagen');
+
+        if (nombre != null) {
+            actualizarChat(nombre, imagenUrl);
+        }
+
+        //permite usar el input, botón y foto
+        inputMensaje.disabled = false;
+        btnEnviar.disabled = false;
+        btnSubirImagen.disabled = false;
+    });
+}
+
+function listarUsuariosContactos() {
+    $.ajax({
+        url: '../controllers/mensajeController.php?op=listarContactos',
+        type: 'GET',
+        dataType: 'json',
+        success: function (arr) {
+            const listaUsuarios = document.getElementById("listaUsuarios");
+            const hr = listaUsuarios.querySelector('hr');
+
+
+            arr.forEach(function (usuario) {
+                listaUsuarios[usuario.cedula] = usuario.nombreUsuario;
+                mensajesPorUsuario[usuario.nombreUsuario] = [];
+
+
+                const contacto = document.createElement('li');
+                contacto.classList.add('nav-item', 'my-1');
+                contacto.innerHTML =
+                    "<a href='#' class='nav-link' data-usuario='" + usuario.nombreUsuario + "' data-imagen='https://github.com/mdo.png'>" +
+                    "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+                    "<strong>" + usuario.nombreUsuario + "</strong>" +
+                    "</a>";
+
+                //inserta el usuario antes del hr
+                listaUsuarios.insertBefore(contacto, hr);
+
+                //agregar evento para cada contacto/usuario
+                eventoClick(contacto);
+            });
+
+        },
+        error: function (err) {
+            console.log('Hubo un error al cargar los usuarios en la lista de contactos ', err.responseText);
+        }
+    });
+}
+
+
+//función principal
+document.addEventListener("DOMContentLoaded", function () {
+    listarUsuariosContactos();
+});
+
+
+//guardar miembros del grupo (habría que cargarlo de la base de datos) FALTA !!!!
+const miembrosDeGrupo = {
+    'Grupo 1': ['Miembro 1', 'Miembro 2'],
+    'Grupo 2': ['Miembro 2', 'Miembro 1']
+};
 
 //ACTUALIZAR CHAT CUANDO SE SELECCIONE UN USUARIO
 function actualizarChat(nombre, imagenUrl) {
@@ -53,10 +111,9 @@ function actualizarChat(nombre, imagenUrl) {
     const miembrosGrupo = miembrosDeGrupo[nombre] ? mostrarMiembros(miembrosDeGrupo[nombre]) : '';
 
     //se modifica el código dentro del div para que ahora muestre los datos del usuario seleccionado (se reemplazan)
-    chatActualElemento.innerHTML = `
-            <img src="${imagenUrl}" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong class="text-white">${nombre}</strong> ${miembrosGrupo}
-        `;
+    chatActualElemento.innerHTML = 
+            "<img src=" + imagenUrl +" alt='' width='32' height='32' class='rounded-circle me-2'>" +
+            "<strong class='text-white'>" + nombre + "</strong>" + miembrosGrupo +";"
 
     //borra contenido del chat para que no aparezcan los msj de otro chat
     contenedorChat.innerHTML = '';
@@ -68,23 +125,23 @@ function actualizarChat(nombre, imagenUrl) {
     });
 
     //scroll automático 
-    contenedorChat.scrollTop = contenedorChat.scrollHeight; 
+    contenedorChat.scrollTop = contenedorChat.scrollHeight;
 }
 
 //MOSTRAR MIEMBROS DE UN GRUPO
 function mostrarMiembros(miembros) {
     //se crea la lista para ponerle adentro a los usuarios
-    let miembrosGrupo = '<ul class="list-inline mb-0 text-white">';
+    let miembrosGrupo = "<ul class='list-inline mb-0 text-white'>";
     miembros.forEach((miembro, index) => {
         if (index !== 0) {
             //por cada miembro del arreglo se le pone una ", "
-            miembrosGrupo += ', ';
+            miembrosGrupo += ",";
         }
         //se agrega un list element por cada miembro
-        miembrosGrupo += `<li class="list-inline-item text-white">${miembro}</li>`;
+        miembrosGrupo += "<li class='list-inline-item text-white'>" + miembro + "</li>";
     });
     //se cierra la lista html
-    miembrosGrupo += '</ul>';
+    miembrosGrupo += "</ul>";
     return miembrosGrupo;
 }
 
@@ -103,62 +160,34 @@ function crearMensajeElemento(mensaje) {
 
     if (mensaje.esImagen) {
         //si el mensaje es una imagen se agregar el código hmtl para la imagen
-        mensajeElemento.innerHTML = `
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <img src="${mensaje.mensaje}" alt="Imagen subida" style="max-width: 200px;">
-            `;
+        mensajeElemento.innerHTML = 
+                "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+                "<img src=" + mensaje.mensaje + " alt='Imagen subida' style='max-width: 200px;'>";
     } else {
         //sino solo se agrega el código html para un mensaje de txt
-        mensajeElemento.innerHTML = `
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                ${mensaje.mensaje}
-            `;
+        mensajeElemento.innerHTML = 
+                "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>"
+                +mensaje.mensaje;
     }
 
     //decuelve el código ya completo con los mensajes
     return mensajeElemento;
 }
 
-//EVENTO DE CLICK PARA LOS USUARIOS/GRUPOS
-usuarios.forEach(usuario => {
-    //cuando se le dé click a un usuario se evita que se mande el form
-    usuario.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        //quita la clase activa de todos los usuarios
-        usuarios.forEach(u => u.classList.remove('active'));
-
-        //agregar la clase activa al usuario seleccionado
-        this.classList.add('active');
-
-        //recibe el nombre de usuario que pasa el enlace junto con su imagen 
-        const nombre = this.getAttribute('data-usuario');
-        const imagenUrl = this.getAttribute('data-imagen');
-
-        if (nombre != null) {
-            actualizarChat(nombre, imagenUrl);
-        }
-
-        //habilita el input, botón y foto
-        inputMensaje.disabled = false;
-        btnEnviar.disabled = false;
-        btnSubirImagen.disabled = false;
-    });
-});
 
 //EVENTO PARA ENVIAR MENSAJE
 enviarFormulario.addEventListener('submit', function (e) {
     //evitar que el formulario se envíe y recargue la página
-    e.preventDefault(); 
+    e.preventDefault();
 
     //agarra el valor del input y lo guarda en mensaje
     let mensaje = inputMensaje.value.trim();
     //si no está vacío
     if (mensaje !== '') {
         //se agrega el mensaje al contenedor del chat
-        agregarMensaje(usuarioLogueado, chatActual, mensaje); 
+        agregarMensaje(usuarioLogueado, chatActual, mensaje);
         //limpia el input después de enviar el mensaje
-        inputMensaje.value = ''; 
+        inputMensaje.value = '';
     }
 });
 
@@ -209,9 +238,11 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, esImagen
         //se agrega al contenedor (chat)
         contenedorChat.appendChild(mensajeElemento);
         //se hace scroll hacia abajo automático
-        contenedorChat.scrollTop = contenedorChat.scrollHeight; 
+        contenedorChat.scrollTop = contenedorChat.scrollHeight;
     }
 }
+
+//ARREGLAR LOS DOS AGREGAR GRUPO Y USUARIO
 
 //FUNCIÓN PARA AGREGAR UN USUARIO
 document.getElementById("btnAgrUsuario").addEventListener('click', function () {

@@ -111,30 +111,24 @@ class MensajeModel extends Conexion
     public function createMensaje()
     {
         //método 2 (correcto)
-        $query = "INSERT INTO `mensajes`(`id_mensaje`, `cedula_reminente`, `cedula_destinatario`, `cuerpo_mensaje`, `img`, `leido`, `fecha_hora_envio`) 
-        VALUES (:id_mensajePDO, :cedula_reminentePDO, :cedula_destinatarioPDO, :cuerpo_mensajePDO, :imgPDO, :leidoPDO, :fecha_hora_envioPDO)";
+        $query = "INSERT INTO `mensajes`(`cedula_reminente`, `cedula_destinatario`, `cuerpo_mensaje`, `img`, `leido`, `fecha_hora_envio`) 
+        VALUES (:cedula_reminentePDO, :cedula_destinatarioPDO, :cuerpo_mensajePDO, :imgPDO, 0, now())";
         try {
             //conectarse
             self::getConexion();
             //obtener valores
-            $idMensaje = $this->getIdMensaje();
             $cedulaReminente = $this->getCedulaReminente();
             $cedulaDestinatario = $this->getCedulaDestinatario();
             $cuerpoMensaje = $this->getCuerpoMensaje();
             $img = $this->getImg();
-            $leido = $this->getLeido();
-            $fechaHoraEnvio = $this->getFechaHoraEnvio();
 
             //preparar el query
             $resultado = self::$cnx->prepare($query);
             //reemplazar el parámetro 
-            $resultado->bindParam(":id_mensajePDO", $idMensaje, PDO::PARAM_INT);
             $resultado->bindParam(":cedula_reminentePDO", $cedulaReminente, PDO::PARAM_INT);
             $resultado->bindParam(":cedula_destinatarioPDO", $cedulaDestinatario, PDO::PARAM_INT);
             $resultado->bindParam(":cuerpo_mensajePDO", $cuerpoMensaje, PDO::PARAM_STR);
             $resultado->bindParam(":imgPDO", $img, PDO::PARAM_STR);
-            $resultado->bindParam(":leidoPDO", $leido, PDO::PARAM_INT);
-            $resultado->bindParam(":fecha_hora_envioPDO", $fechaHoraEnvio, PDO::PARAM_STR);
             //para correr el query
             $resultado->execute();
             //desconectar después de hacer la consulta
@@ -180,7 +174,6 @@ class MensajeModel extends Conexion
         } catch (PDOException $Exception) {
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            ;
             return json_encode($error);
         }
     }
