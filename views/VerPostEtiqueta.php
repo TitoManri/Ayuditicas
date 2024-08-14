@@ -54,7 +54,7 @@
     </section>
     <br>
     <section id="PostsCamp" class="container containerD">
-        <h1>Post sobre la campaña</h1><br>
+        <h1>Post sobre la Etiqueta</h1><br>
         <?php
         for ($i = 0; $i < 2; $i++) {
         ?>

@@ -33,7 +33,7 @@
                     <a class="nav-link 
                     <?php 
                       echo $activoMensajeria; 
-                    ?>" href="./mensajeria.php"><i class="fa fa-regular fa-comment fa-2xl"></i></a>
+                    ?>" href="./mensajeria.php"><i class="fa fa-solid fa-comment fa-2xl"></i></a>
                 </li>
             </ul>
         </div>
