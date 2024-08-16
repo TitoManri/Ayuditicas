@@ -227,12 +227,9 @@ enviarFormulario.addEventListener('submit', function (e) {
 const formularioSubida = document.getElementById('imgForm');
 //se le agrega el evento de submit
 formularioSubida.addEventListener('submit', function (e) {
-
     e.preventDefault();
 
-    //se guarda el input de la imagen 
     const inputArchivo = document.getElementById('imagen');
-    //si la longitud del input es 0 (no se subió una imagen) muestra mensaje de error
     if (inputArchivo.files.length === 0) {
         Swal.fire({
             icon: "error",
@@ -242,35 +239,40 @@ formularioSubida.addEventListener('submit', function (e) {
         return;
     }
 
-    //recopila toda la info del form en un objeto tipo formdata y permite enviarlo
-    const formData = new FormData(formularioSubida);
-    //se crea una url temporal para mostrar la imagen 
-    const imagenUrl = URL.createObjectURL(formData.get('imagen'));
+    const imgData = inputArchivo.files[0];
 
-    //muestra el mensaje en el contenedor de mensajes (el true es de que es una imagen)
-    agregarMensaje(usuarioLogueado, chatActual, null, imagenUrl);
+    // Envía la imagen
+    agregarMensaje(usuarioLogueado, chatActualCed, null, imgData);
 
-    //Cerrar el modal
+    // Cerrar el modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('cargarModal'));
     modal.hide();
 
-    //Limpiar input 
+    // Limpiar input 
     inputArchivo.value = '';
 });
 
+
 //AGREGA UN MENSAJE EN EL CONTENEDOR DE CHATS Y LOS AGREGA A LA LISTA DE MENSAJES
-function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imagen) {
+function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData) {
     let datos = null;
-    if (imagen == null) {
+
+    // Verifica si es un mensaje de texto o una imagen
+    if (imgData == null) {
         datos = { cedulaRemitente: usuarioRemitente, cedulaDestinatario: usuarioDestinatario, cuerpoMensaje: mensaje };
     } else {
-        datos = { cedulaRemitente: usuarioRemitente, cedulaDestinatario: usuarioDestinatario, img: imagen };
+        datos = new FormData();
+        datos.append('cedulaRemitente', usuarioRemitente);
+        datos.append('cedulaDestinatario', usuarioDestinatario);
+        datos.append('imagen', imgData);
     }
 
     $.ajax({
         url: '../controllers/mensajeController.php?op=enviarMensaje',
         type: 'POST',
         data: datos,
+        processData: false, // Evita que jQuery procese los datos automáticamente
+        contentType: false, // Evita que jQuery establezca el tipo de contenido
         dataType: 'json',
         success: function (response) {
             if (response.msj) {
@@ -280,10 +282,13 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imagen) 
                 const nuevoMensaje = {
                     remitente: usuarioRemitente,
                     cuerpo: mensaje,
-                    img: imagen
+                    img: response.img ? response.img : null // Asegúrate de recibir la URL de la imagen desde el backend
                 };
+
+                // Actualiza el arreglo de mensajes para el chat actual
                 mensajesPorUsuario[chatActual].push(nuevoMensaje);
 
+                // Crear y añadir el nuevo mensaje al chat
                 const mensajeElemento = crearMensajeElemento(nuevoMensaje);
                 contenedorChat.appendChild(mensajeElemento);
 
@@ -299,6 +304,7 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imagen) 
         }
     });
 }
+
 
 
 

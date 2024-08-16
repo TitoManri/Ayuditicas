@@ -30,16 +30,28 @@ switch ($_GET["op"]) {
         }
         break;
     case 'enviarMensaje':
+        $imgDir = null;
+
         $cedulaRemitente = isset($_POST["cedulaRemitente"]) ? trim($_POST["cedulaRemitente"]) : "";
         $cedulaDestinatario = isset($_POST["cedulaDestinatario"]) ? trim($_POST["cedulaDestinatario"]) : "";
         $cuerpoMensaje = isset($_POST["cuerpoMensaje"]) ? trim($_POST["cuerpoMensaje"]) : null;
-        $img = isset($_POST["img"]) ? trim($_POST["img"]) : null;
+        $img = isset($_FILES["imagen"]) ? $_FILES["imagen"] : null;
+        var_dump($img);
+        if ($img != null) {
+            $imgArr = guardarFotoNombre($img);
+            if ($imgArr['exito'] == 1) {
+                $imgDir = $imgArr['contenido'];
+            } else {
+                echo json_encode($imgArr);
+                return;
+            }
+        }
 
         $mensaje = new MensajeModel();
         $mensaje->setCedulaRemitente($cedulaRemitente);
         $mensaje->setCedulaDestinatario($cedulaDestinatario);
         $mensaje->setCuerpoMensaje($cuerpoMensaje);
-        $mensaje->setImg($img);
+        $mensaje->setImg($imgDir);
 
         $resultado = $mensaje->enviarMensaje();
         if ($resultado === "exito") {
@@ -69,5 +81,34 @@ switch ($_GET["op"]) {
         }
         echo json_encode($arr);
         break;
+}
+
+function guardarFotoNombre($img)
+{
+    $imgName = $img['name'];
+    $imgTmp = $img['tmp_name'];
+    $imgError = $img['error'];
+
+    $imgExt = explode('.', $imgName);
+    $imgActualExt = strtolower(end($imgExt));
+
+    $permitir = array('jpg', 'jpeg', 'png');
+
+    if (in_array($imgActualExt, $permitir)) {
+        if ($imgError === 0) {
+            //reemplazar por el id de la denuncia
+            $imgNameNew = uniqid('', true) . "." . $imgActualExt;
+            $imgDestination = '../views/assets/img/' . $imgNameNew;
+            move_uploaded_file($imgTmp, $imgDestination);
+            $datos = array("exito" => "1", "contenido" => "./assets/img/" . $imgNameNew . "");
+            return $datos;
+        } else {
+            $datos = array("exito" => "0", "contenido" => "Hubo un error al cargar la imagen");
+            return $datos;
+        }
+    } else {
+        $datos = array("exito" => "0", "contenido" => "No se permite este tipo de archivo");
+        return $datos;
+    }
 }
 ?>

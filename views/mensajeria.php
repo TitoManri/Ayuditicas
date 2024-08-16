@@ -92,7 +92,7 @@
                             </div>
                             <div class="modal-body">
                                 <!-- form de imagen-->
-                                <form id="imgForm" action="" method="POST" enctype="multipart/form-data">
+                                <form id="imgForm" action="./controllers/mensajeController?op=enviarMensaje" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="imagen" class="form-label">Seleccione una imagen para
                                             subir</label>
