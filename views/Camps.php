@@ -9,42 +9,27 @@
     <link rel="stylesheet" href="./assets/css/campanias.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
-    <link rel="stylesheet" href="./assets/css/headerfooter.css">
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/campanias.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
 </head>
 
 <body>
     <header class="mainHeader">
         <?php
+        $activoCampanias='active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
     <!-- Barra debajo de navegacion -->
-    <nav id="CampaniasNav" class="CampaniasNav centro">
-        <h2>Campañas</h2>
-    </nav>
-
-    <!-- Aside de etiquetas -->
-    <aside id="EtiquetaAside" class="EtiquetasAside">
-        <!-- Titulo y ver todas las etiquetas -->
-        <h3>Etiquetas</h3>
-        <div class="text-center">
-            <a href="" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-        </div>
-
-        <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
-        <br>
-        <?php
-        for ($i = 0; $i < 5; $i++) {
-        ?>
-            <div class="Etiquetas">
-                <a href=""><i class="bi bi-tag-fill" style="color: #bcc9b8;"></i> Nombre</a>
-            </div>
-            <br>
-        <?php
-        }
-        ?>
-    </aside>
+    <?php 
+            $activoPaginaP = 'active';
+            $nombrePagina = 'Campañas';
+            include './templates/Header&Footer/subheader.php'; 
+    ?>
+    <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
+    <?php include './templates/Red_Social/asideDerecha.php'; ?>
     <br><br>
     <!-- Mostrar Campañas usando PHP -->
     <section id="MostrarCampanias" class="container">
@@ -93,6 +78,7 @@
                         <a href="./DentroCamp.php" class="btn btn-warning">Ingresar</a>
                     </div>
                 </div>
+                <br>
             </section>
             <!-- Cerrar seccion de campaña -->
 <?php
@@ -121,6 +107,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/searchBar.js"></script>
 
 </html>

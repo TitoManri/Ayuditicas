@@ -92,7 +92,6 @@
 </script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/searchBar.js"></script>
 <script src="./assets/js/MultipleSelect.js"></script>
 <script src="./assets/js/crearPublicacion.js"></script>
 <script>

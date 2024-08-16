@@ -8,72 +8,25 @@
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
-    <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./assets/css/campanias.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
 </head>
 
 <body>
     <header class="mainHeader">
         <?php
+        $activoCampanias='active';
         include './templates/Header&Footer/header.php';
         ?></header>
+    <?php 
+            $nombrePagina = 'Campañas';
+            include './templates/Header&Footer/subheader.php'; 
+    ?>
 
-    <!-- Aside de etiquetas -->
-    <aside id="EtiquetaAside" class="EtiquetasAside">
-        <!-- Titulo y ver todas las etiquetas -->
-        <h3>Etiquetas</h3>
-        <div class="text-center">
-            <a href="./VerEtiquetas.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-        </div>
-
-        <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
-        <br>
-        <?php
-        for ($i = 0; $i < 5; $i++) {
-        ?>
-            <div class="Etiquetas">
-                <a href=""><i class="bi bi-tag-fill" style="color: #bcc9b8;"></i> Nombre</a>
-            </div>
-            <br>
-        <?php
-        }
-        ?>
-    </aside>
-
-    <aside id="CampanasAside" class="CampanasAside">
-        <h3>Campañas</h3>
-        <div class="text-center">
-            <a href="./Camps.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>
-        </div>
-
-        <!-- Etiquetas individuales. Uso de PHP para facilitar la creacion -->
-        <br>
-        <?php
-        for ($i = 0; $i < 4; $i++) {
-        ?>
-            <div class="Etiquetas">
-                <a href="">
-                    <div class="row">
-                        <div class="col d-flex justify-content-center">
-                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="60px" height="60px">
-                        </div>
-                        <div class="col">
-                            <div class="row" style="height: 30%;">
-                                <p>Nombre</p>
-                            </div>
-                            <div class="row">
-                                <p style="font-size: 14px; opacity: 47%;" class="text-truncate">Descripcion</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <br>
-        <?php
-        }
-        ?>
-    </aside>
+    <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
+    <?php include './templates/Red_Social/asideDerecha.php'; ?>
+    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
 
     <section id="NombreCamp" class="container containerD card rounded">
@@ -83,7 +36,7 @@
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
             </div>
             <div class="col-9">
-                <p class="h1 font-weight-bold">Nombre de la comunidad</>
+                <p class="h1 font-weight-bold">Nombre de la Campaña</>
                     <br>
                 <p style="font-size: 18px; opacity: 47%;">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora libero enim beatae sint qui iure eos, labore, minima debitis velit voluptatem perspiciatis. Voluptate consequatur quae sunt pariatur quam nostrum.
