@@ -14,9 +14,10 @@
         <?php
             include './templates/Header&Footer/header2.php';
         ?></header>
+<div id="response"></div> 
 
-<div class="container">                                                                                               <!--redirije al controller-->
-  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion" method="post" action="../views/redSocial.php">
+<div class="container">                                                                    
+  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion" method="post">
     <h3 class="mb-3 text-center">Iniciar sesion</h3>
     <hr>
 
@@ -45,6 +46,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script scr="./assets/js/inicioSesion.js"></script>
-    <script src="./assets/js/searchBar.js"></script>
+    <script src="./assets/js/inicioSesion.js"></script>
 </html>

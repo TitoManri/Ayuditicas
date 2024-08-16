@@ -11,6 +11,7 @@ function validarContrasenia(){
 
 contrasenia.onchange = validarContrasenia;
 confirmar_contrasenia.onkeyup = validarContrasenia;
+
 $(document).ready(function () { 
   $('#registro').on('submit', function (e) { 
       e.preventDefault(); 

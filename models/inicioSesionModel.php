@@ -33,56 +33,37 @@ class inicioSesionModel extends conexion {
         self::$cnx = null;
     }
 
-    public function listarTodosDb(){
-        $query = "SELECT * FROM `usuarios`";
-        $arr = array();
+    public function verificarExistenciaDb() {
         try {
             self::getConexion();
-            $encontrado = self::$cnx->prepare($query);
-            $encontrado->execute();
-            self::desconectar();
-            foreach ($encontrado->fetchAll() as $encontrado) {
-                $user = new inicioSesionModel();
-                $user->setNombreUsuario($encontrado['nombre_usuario']);
-                $user->setContrasenia($encontrado['contrasena']);
-                $arr[] = $user;
-            }
-            return $arr;
-        } catch (PDOException $Exception) {
-            self::desconectar();
-            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
-            return json_encode($error);
-        }
-    }
 
-    public function verificarExistenciaDb($nombreUsuario, $contrasenia){
-        $query = "SELECT * FROM `usuarios` where nombre_usuario = :nombreUsuario AND contrasena = :contrasenia";
-     try {
-         self::getConexion();
+            if ($this->getNombreUsuario() && $this->getContrasenia()) {
+                // Verificar existencia de un usuario
+                $query = "SELECT * FROM `usuarios` WHERE nombre_usuario = :nombreUsuario AND contrasena = :contrasenia";
+                $resultado = self::$cnx->prepare($query);
+                $resultado->bindParam(':nombreUsuario', $this->nombreUsuario, PDO::PARAM_STR);
+                $resultado->bindParam(':contrasenia', $this->contrasenia, PDO::PARAM_STR);
+                $resultado->execute();
 
-            $resultado = self::$cnx->prepare($query);	
-            $resultado->bindParam(':nombreUsuario', $nombreUsuario, PDO::PARAM_STR);
-            $resultado->execute();
-            
-            //Verifica si encuentra el usuario
-            if ($resultado->rowCount() > 0) {
-                $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
-                
-                //Comparacion de contraseña, si la contraseña es igual a la que esta con el usuario todo bien
-                if ($usuario['contrasena'] === $contrasenia) {
-                    self::desconectar();
-                    return true;
+                if ($resultado->rowCount() > 0) {
+                    $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
+
+                    if ($usuario['contrasena'] === $this->getContrasenia()) {
+                        self::desconectar();
+                        return true;
+                    }
                 }
+                self::desconectar();
+                return false;
+            } else {
+                return false;
             }
-            self::desconectar();
-            return false;
-
         } catch (PDOException $Exception) {
-            // Manejar cualquier excepción
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
             return $error;
         }
     }
+
 }
 ?>

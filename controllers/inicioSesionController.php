@@ -10,7 +10,7 @@ $usuarioModel->setContrasenia($contrasenia);
 
 try {
     // Verificar si el usuario existe
-    if ($usuarioModel->verificarExistenciaDb($nombreUsuario, $contrasenia)) {
+    if ($usuarioModel->verificarExistenciaDb()) {
         session_start();
         $_SESSION['inicioSesion'] = true;
         $_SESSION['nombreUsuario'] = $nombreUsuario;
@@ -19,8 +19,7 @@ try {
         $response = array("exito" => false, "msg" => "Usuario o contraseña incorrectos");
     }
 } catch (PDOException $e) {
-    $response = array("exito" => false, "msg" => "Error al intentar iniciar sesión");
+    $response = array("exito" => false, "msg" => "Error al intentar iniciar sesión: " . $e->getMessage());
 }
 
 echo json_encode($response);
-?>
