@@ -1,7 +1,6 @@
 <?php
 require_once '../models/registroSesionModel.php';
 
-// Obtener los datos del formulario
 $nombrePersona = isset($_POST["nombre"]) ? $_POST["nombre"] : "";
 $PrimerApellido = isset($_POST["primer_apellido"]) ? $_POST["primer_apellido"] : "";
 $SegundoApellido = isset($_POST["segundo_apellido"]) ? $_POST["segundo_apellido"] : "";
@@ -13,10 +12,8 @@ $Telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : "";
 $NombreUsuario = isset($_POST["nombre_usuario"]) ? $_POST["nombre_usuario"] : "";
 $contrasenia = isset($_POST["contrasenia"]) ? $_POST["contrasenia"] : "";
 
-// Crear una instancia del modelo
 $registroUsu = new registroSesionModel();
 
-// Configurar los datos en el modelo
 $registroUsu->setNombrePersona($nombrePersona);
 $registroUsu->setPrimerApellido($PrimerApellido);
 $registroUsu->setSegundoApellido($SegundoApellido);

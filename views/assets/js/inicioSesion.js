@@ -9,7 +9,7 @@ $(document).ready(function() {
             data: formData,
             contentType: false,
             processData: false,
-            dataType: 'json', // Asegúrate de que el controlador PHP devuelva JSON
+            dataType: 'json', 
             success: function(data) {
                 
                 if (data.exito) {
@@ -17,12 +17,8 @@ $(document).ready(function() {
                     $('#formIniciarSesion').hide();
                     $('#response').html('<div class="alert alert-success">' + data.msg + '</div>');
 
-                    // Cargar el contenido de la nueva página o sección
-                    // $('.container').load('./redSocial.php');
                     $(location).attr('href','redSocial.php')
                 } else {
-                    // Mostrar un mensaje de error si la autenticación falla
-                    
                     $('#response').html('<div class="alert alert-danger">' + data.msg + '</div>');
                 }
             },

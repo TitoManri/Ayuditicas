@@ -135,7 +135,7 @@ Cuando ya todos estos datos se validen despues de tiene que hacer un insert sobr
 public function guardarUsuario() {
     // Consultas para validación
     $queryCedula = "SELECT COUNT(*) FROM usuarios WHERE cedula = :cedulaValPDO;";
-    $queryNombreUsuario = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = :nombreUsuariaValPDO;";
+    $queryNombreUsuario = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = :nombreUsuarioValPDO;";
     $queryTelefono = "SELECT COUNT(*) FROM usuarios WHERE telefono = :telefonoValPDO;";
     $queryCorreo = "SELECT COUNT(*) FROM usuarios WHERE correo = :correoValPDO;";
 
@@ -144,6 +144,7 @@ public function guardarUsuario() {
     $nombreUsuarioValidacion = $this->getNombreUsuario();
     $telefonoValidacion = $this->getTelefono();
     $correoValidacion = $this->getCorreo();
+    $contraseniaEncriptada = password_hash($this->getContrasenia(), PASSWORD_BCRYPT);
 
     try {
         self::getConexion();
@@ -159,7 +160,7 @@ public function guardarUsuario() {
 
         // Validar nombre de usuario
         $resultadoNU = self::$cnx->prepare($queryNombreUsuario);
-        $resultadoNU->bindParam(':nombreUsuariaValPDO', $nombreUsuarioValidacion);
+        $resultadoNU->bindParam(':nombreUsuarioValPDO', $nombreUsuarioValidacion);
         $resultadoNU->execute();
         $countNU = $resultadoNU->fetchColumn();
         if ($countNU > 0) {
@@ -185,20 +186,33 @@ public function guardarUsuario() {
         }
 
         // Insertar registro si todo está bien
-        $queryInsert = "INSERT INTO usuarios (cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena) 
-                        VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO, STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO);";
+        $queryInsert = "INSERT INTO usuarios (cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena,num_seguidores,fecha_creacion) 
+                        VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO, STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO,0,now());";
+
+        $cedulaPDO = $cedulaValidacion;
+        $nombrePersonaPDO = $this->getNombrePersona();
+        $primerApellidoPDO = $this->getPrimerApellido();
+        $segundoApellidoPDO = $this->getSegundoApellido();
+        $generoPDO = $this->getGenero();
+        $fechaNacimientoPDO = $this->getFechaNacimiento();
+        $nombreUsuarioPDO = $nombreUsuarioValidacion;
+        $telefonoPDO = $telefonoValidacion;
+        $correoPDO = $correoValidacion;
+        $contrasenaPDO = $this->getContrasenia();
+        $contrasenaEncriptada = password_hash($contrasenaPDO, PASSWORD_BCRYPT);
+
 
         $resultadoInsert = self::$cnx->prepare($queryInsert);
-        $resultadoInsert->bindParam(":cedulaPDO", $cedulaValidacion);
-        $resultadoInsert->bindParam(":nombrePersonaPDO", $this->getNombrePersona());
-        $resultadoInsert->bindParam(":primerApellidoPDO", $this->getPrimerApellido());
-        $resultadoInsert->bindParam(":segundoApellidoPDO", $this->getSegundoApellido());
-        $resultadoInsert->bindParam(":generoPDO", $this->getGenero());
-        $resultadoInsert->bindParam(":fechaNacimientoPDO", $this->getFechaNacimiento());
-        $resultadoInsert->bindParam(":nombreUsuarioPDO", $nombreUsuarioValidacion);
-        $resultadoInsert->bindParam(":telefonoPDO", $telefonoValidacion);
-        $resultadoInsert->bindParam(":correoPDO", $correoValidacion);
-        $resultadoInsert->bindParam(":contraseniaPDO", $this->getContrasenia());
+        $resultadoInsert->bindParam(":cedulaPDO", $cedulaPDO);
+        $resultadoInsert->bindParam(":nombrePersonaPDO", $nombrePersonaPDO);
+        $resultadoInsert->bindParam(":primerApellidoPDO", $primerApellidoPDO);
+        $resultadoInsert->bindParam(":segundoApellidoPDO", $segundoApellidoPDO);
+        $resultadoInsert->bindParam(":generoPDO", $generoPDO);
+        $resultadoInsert->bindParam(":fechaNacimientoPDO", $fechaNacimientoPDO);
+        $resultadoInsert->bindParam(":nombreUsuarioPDO", $nombreUsuarioPDO);
+        $resultadoInsert->bindParam(":telefonoPDO", $telefonoPDO);
+        $resultadoInsert->bindParam(":correoPDO", $correoPDO);
+        $resultadoInsert->bindParam(":contraseniaPDO", $contrasenaEncriptada);
 
         $resultadoInsert->execute();
         self::desconectar();

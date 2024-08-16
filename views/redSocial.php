@@ -1,3 +1,18 @@
+<?php
+session_start();
+    $cedula = $_SESSION['cedula'];
+    $nombre = $_SESSION['nombre'];
+    $primerApellido = $_SESSION['primerApellido'];
+    $segundoApellido = $_SESSION['segundoApellido'];
+    $genero = $_SESSION['genero'];
+    $fechaNacimiento = $_SESSION['fechaNacimiento'];
+    $nombreUsuario = $_SESSION['nombreUsuario'];
+    $telefono = $_SESSION['telefono'];
+    $correo = $_SESSION['correo'];
+    $numSeguidores = $_SESSION['numSeguidores'];
+    $img = $_SESSION['img'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

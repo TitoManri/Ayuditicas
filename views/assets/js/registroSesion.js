@@ -1,5 +1,5 @@
-var contrasenia = document.getElementById("contrasenia")
-  , confirmar_contrasenia = document.getElementById("confirmar_contrasenia");
+let contrasenia = document.getElementById("contrasenia")
+let confirmar_contrasenia = document.getElementById("confirmar_contrasenia");
 
 function validarContrasenia(){
   if(contrasenia.value != confirmar_contrasenia.value) {
@@ -29,6 +29,8 @@ $(document).ready(function () {
                   if (jsonResponse.exito) {
                       $('#response').html('<div class="alert alert-success">' + jsonResponse.msg + '</div>');
                       $('#registro')[0].reset();
+
+                      $(location).attr('href','inicioSesion.php')
                   } else {
                       $('#response').html('<div class="alert alert-danger">' + jsonResponse.msg + '</div>');
                   }
