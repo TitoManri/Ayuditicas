@@ -1,13 +1,14 @@
 <?php
 require_once '../config/Conexion.php';
 
-class UserModel extends Conexion{
+class UserModel extends Conexion
+{
     //variable para usar la conexión
     protected static $cnx;
 
     //variables de usuario
-    protected $nombreUsuario=null;
-    protected $cedula=null;
+    private $nombreUsuario = null;
+    private $cedula = null;
 
     //getter
     public function getNombreUsuario()
@@ -54,7 +55,8 @@ class UserModel extends Conexion{
         self::$cnx = null;
     }
 
-    public function listarContactos($cedulaUsuarioActual){
+    public function listarContactos($cedulaUsuarioActual)
+    {
         $query = "SELECT DISTINCT u.nombre_usuario, u.cedula 
         FROM mensajes m 
         JOIN usuarios u ON (u.cedula = m.cedula_reminente 
@@ -65,14 +67,14 @@ class UserModel extends Conexion{
         $arr = array();
         try {
             self::getConexion();
-            $resultado = self::$cnx -> prepare($query);
+            $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":cedulaUsActualPDO", $cedulaUsuarioActual, PDO::PARAM_INT);
             $resultado->execute();
             self::desconectar();
 
-            foreach ($resultado-> fetchAll() as $encontrado) {
+            foreach ($resultado->fetchAll() as $encontrado) {
                 $contacto = new UserModel();
-                $contacto -> setCedula($encontrado["cedula"]);
+                $contacto->setCedula($encontrado["cedula"]);
                 $contacto->setNombreUsuario($encontrado["nombre_usuario"]);
                 $arr[] = $contacto;
             }

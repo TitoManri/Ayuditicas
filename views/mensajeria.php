@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
-    <link rel="stylesheet" href="./assets/css/mensajeria.css">
+    <link rel="stylesheet" href="./assets/css/msj.css">
 </head>
 
 <body>
@@ -198,6 +198,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
-<script src="./assets/js/mensajeria.js"></script>
+<script src="./assets/js/msj.js"></script>
 
 </html>

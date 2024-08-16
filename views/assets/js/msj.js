@@ -5,7 +5,7 @@ const mensajesPorUsuario = {};
 //variable que cambia dependiendo del usuario/grupo con el que se esté chateando
 let chatActual = null;
 //variable que contiene al usuario logueado en el momento
-let usuarioLogueado = 'mtenorio';
+let usuarioLogueado = 305590892;
 
 //form para envío de mensajes
 const enviarFormulario = document.getElementById('enviarMsj');
@@ -38,9 +38,11 @@ function eventoClick(contacto) {
         //toma el nombre de usuario y su imagen 
         const nombre = this.getAttribute('data-usuario');
         const imagenUrl = this.getAttribute('data-imagen');
+        const cedula = this.getAttribute('data-cedula');
 
         if (nombre != null) {
             actualizarChat(nombre, imagenUrl);
+            llenarArregloMensajes(nombre ,cedula)
         }
 
         //permite usar el input, botón y foto
@@ -56,25 +58,25 @@ function listarUsuariosContactos() {
         type: 'GET',
         dataType: 'json',
         success: function (arr) {
-            const listaUsuarios = document.getElementById("listaUsuarios");
-            const hr = listaUsuarios.querySelector('hr');
+            const listaU = document.getElementById("listaUsuarios");
+            const hr = listaU.querySelector('hr');
 
 
             arr.forEach(function (usuario) {
-                listaUsuarios[usuario.cedula] = usuario.nombreUsuario;
+                listaU[usuario.cedula] = usuario.nombreUsuario;
                 mensajesPorUsuario[usuario.nombreUsuario] = [];
 
 
                 const contacto = document.createElement('li');
                 contacto.classList.add('nav-item', 'my-1');
                 contacto.innerHTML =
-                    "<a href='#' class='nav-link' data-usuario='" + usuario.nombreUsuario + "' data-imagen='https://github.com/mdo.png'>" +
+                    "<a href='#' id='" + usuario.cedula + "' class='nav-link' data-cedula='" + usuario.cedula + "' data-usuario='" + usuario.nombreUsuario + "' data-imagen='https://github.com/mdo.png'>" +
                     "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>" +
                     "<strong>" + usuario.nombreUsuario + "</strong>" +
                     "</a>";
 
                 //inserta el usuario antes del hr
-                listaUsuarios.insertBefore(contacto, hr);
+                listaU.insertBefore(contacto, hr);
 
                 //agregar evento para cada contacto/usuario
                 eventoClick(contacto);
@@ -87,6 +89,20 @@ function listarUsuariosContactos() {
     });
 }
 
+function llenarArregloMensajes(nombreUsuario, cedula) {
+    $.ajax({
+        url: '../controllers/mensajeController.php?op=mostrarMensajesChat',
+        type: 'POST',
+        data: {usuario2: cedula},
+        dataType: 'json',
+        success: function (mensajes) {
+            mensajesPorUsuario[nombreUsuario] = mensajes;
+        },
+        error: function (err) {
+            console.log('Hubo un error al cargar los usuarios en la lista de contactos ', err.responseText);
+        }
+    });
+}
 
 //función principal
 document.addEventListener("DOMContentLoaded", function () {
@@ -111,9 +127,9 @@ function actualizarChat(nombre, imagenUrl) {
     const miembrosGrupo = miembrosDeGrupo[nombre] ? mostrarMiembros(miembrosDeGrupo[nombre]) : '';
 
     //se modifica el código dentro del div para que ahora muestre los datos del usuario seleccionado (se reemplazan)
-    chatActualElemento.innerHTML = 
-            "<img src=" + imagenUrl +" alt='' width='32' height='32' class='rounded-circle me-2'>" +
-            "<strong class='text-white'>" + nombre + "</strong>" + miembrosGrupo +";"
+    chatActualElemento.innerHTML =
+        "<img src=" + imagenUrl + " alt='' width='32' height='32' class='rounded-circle me-2'>" +
+        "<strong class='text-white'>" + nombre + "</strong>" + miembrosGrupo;
 
     //borra contenido del chat para que no aparezcan los msj de otro chat
     contenedorChat.innerHTML = '';
@@ -150,24 +166,25 @@ function crearMensajeElemento(mensaje) {
     //dentro del div de mensajes se crea un nuevo div
     const mensajeElemento = document.createElement('div');
     //si el usuario es igual a usuario logeado (esto habría que pasarlo con una variable de sesión)
-    if (mensaje.remitente === usuarioLogueado) {
+    if (mensaje.reminente == usuarioLogueado) {
         //se le asigna el estilo al mensaje del css del usuario logueado
         mensajeElemento.classList.add('chat-message', 'user-message');
+        
     } else {
         //sino se le aisgna el estilo al mensaje de cualquier otro usuario
         mensajeElemento.classList.add('chat-message', 'other-message');
     }
 
-    if (mensaje.esImagen) {
+    if (mensaje.img != null) {
         //si el mensaje es una imagen se agregar el código hmtl para la imagen
-        mensajeElemento.innerHTML = 
-                "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>" +
-                "<img src=" + mensaje.mensaje + " alt='Imagen subida' style='max-width: 200px;'>";
+        mensajeElemento.innerHTML =
+            "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+            "<img src=" + mensaje.img + " alt='Imagen subida' style='max-width: 200px;'>";
     } else {
         //sino solo se agrega el código html para un mensaje de txt
-        mensajeElemento.innerHTML = 
-                "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>"
-                +mensaje.mensaje;
+        mensajeElemento.innerHTML =
+            "<img src='https://github.com/mdo.png' alt='' width='32' height='32' class='rounded-circle me-2'>"
+            + mensaje.cuerpo;
     }
 
     //decuelve el código ya completo con los mensajes

@@ -143,62 +143,67 @@ class MensajeModel extends Conexion
     }
 
     //READ
-    public function readMensajes()
+    public function mostrarMensajesChat($usuario1, $usuario2)
+{
+    $query = "SELECT * FROM `mensajes` WHERE cedula_reminente = :usuario1PDO AND cedula_destinatario = :usuario2PDO 
+    OR cedula_reminente = :usuario2PDO AND cedula_destinatario = :usuario1PDO ORDER BY fecha_hora_envio ASC";
+    $arr = array();
+    try {
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindParam(':usuario1PDO', $usuario1, PDO::PARAM_INT);
+        $resultado->bindParam(':usuario2PDO', $usuario2, PDO::PARAM_INT);
+        $resultado->execute();
+        self::desconectar();
+        
+        $resultados = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($resultados as $encontrado) {
+            $mensaje = new MensajeModel();
+            $mensaje->setIdMensaje($encontrado['id_mensaje']);
+            $mensaje->setCedulaReminente($encontrado['cedula_reminente']);
+            $mensaje->setCedulaDestinatario($encontrado['cedula_destinatario']);
+            $mensaje->setCuerpoMensaje($encontrado['cuerpo_mensaje']);
+            $mensaje->setImg($encontrado['img']);
+            $mensaje->setLeido($encontrado['leido']);
+            $mensaje->setFechaHoraEnvio($encontrado['fecha_hora_envio']);
+            $arr[] = $mensaje;
+        }
+        return $arr;
+
+    } catch (PDOException $Exception) {
+        self::desconectar();
+        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+        return json_encode($error);
+    }
+}
+
+
+    //CAMBIAR LEÍDO
+    public function updateLeido()
     {
-        $query = "SELECT * FROM `mensajes` 
-                  WHERE cedula_reminente = :cedulaReminentePDO 
-                     OR cedula_destinatario = :cedulaDestinatarioPDO 
-                  ORDER BY fecha_hora_envio DESC";
-        $arr = array();
+        $idMensaje = $this->getIdMensaje();
+        $query = "UPDATE `mensajes` SET `leido`=1 WHERE id_mensaje=:idMensaje";
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
-            $cedulaReminente = $this -> getCedulaReminente();
-            $resultado->bindParam(':cedulaReminentePDO', $cedulaReminente, PDO::PARAM_INT);
-            $cedulaDestinatario = $this -> getCedulaDestinatario();
-            $resultado->bindParam(':cedulaDestinatarioPDO', $cedulaDestinatario, PDO::PARAM_INT);
+            $resultado->bindParam(":idMensaje", $idMensaje, PDO::PARAM_INT);
+            self::$cnx->beginTransaction();
             $resultado->execute();
+            self::$cnx->commit();
             self::desconectar();
-            foreach ($resultado->fetchAll() as $encontrado) {
-                $mensaje = new MensajeModel();
-                $mensaje->setIdMensaje($encontrado['idMensaje']);
-                $mensaje->setCedulaReminente($encontrado['cedulaReminente']);
-                $mensaje->setCedulaDestinatario($encontrado['cedulaDestinatario']);
-                $mensaje->setCuerpoMensaje($encontrado['cuerpoMensaje']);
-                $mensaje->setImg($encontrado['img']);
-                $mensaje->setLeido($encontrado['leido']);
-                $mensaje->setFechaHoraEnvio($encontrado['fechaHoraEnvio']);
-                $arr[] = $mensaje;
-            }
-            return $arr;
+            return $resultado->rowCount();
         } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
             self::desconectar();
             $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            return json_encode($error);
+            return $error;
         }
     }
 
-    //CAMBIAR LEÍDO
-    public function updateLeido(){
-        $idMensaje = $this->getIdMensaje();
-            $query = "UPDATE `mensajes` SET `leido`=1 WHERE id_mensaje=:idMensaje";
-           try {
-             self::getConexion();
-              $resultado = self::$cnx->prepare($query);
-              $resultado->bindParam(":idMensaje",$idMensaje,PDO::PARAM_INT);
-              self::$cnx->beginTransaction();
-              $resultado->execute();
-              self::$cnx->commit();
-              self::desconectar();
-              return $resultado->rowCount();
-             } catch (PDOException $Exception) {
-               self::$cnx->rollBack();
-               self::desconectar();
-               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
-               return $error;
-             }
-    }
-
 }
+
+//$prueba = new MensajeModel();
+//var_dump($prueba->mostrarMensajesChat(305590892,108070862));
 
 ?>
