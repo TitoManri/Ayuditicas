@@ -12,7 +12,7 @@ class MensajeModel extends Conexion
         VARIABLES MENSAJE
     -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-*/
     private $idMensaje = null;
-    private $cedulaReminente = null;
+    private $cedulaRemitente = null;
     private $cedulaDestinatario = null;
     private $cuerpoMensaje = null;
     private $img = null;
@@ -27,9 +27,9 @@ class MensajeModel extends Conexion
     {
         return $this->idMensaje;
     }
-    public function getCedulaReminente()
+    public function getCedulaRemitente()
     {
-        return $this->cedulaReminente;
+        return $this->cedulaRemitente;
     }
     public function getCedulaDestinatario()
     {
@@ -59,9 +59,9 @@ class MensajeModel extends Conexion
     {
         $this->idMensaje = $idMensaje;
     }
-    public function setCedulaReminente($cedulaReminente)
+    public function setCedulaRemitente($cedulaRemitente)
     {
-        $this->cedulaReminente = $cedulaReminente;
+        $this->cedulaRemitente = $cedulaRemitente;
     }
     public function setCedulaDestinatario($cedulaDestinatario)
     {
@@ -108,75 +108,69 @@ class MensajeModel extends Conexion
     }
 
     //CREATE
-    public function createMensaje()
+    public function enviarMensaje()
     {
-        //método 2 (correcto)
-        $query = "INSERT INTO `mensajes`(`cedula_reminente`, `cedula_destinatario`, `cuerpo_mensaje`, `img`, `leido`, `fecha_hora_envio`) 
-        VALUES (:cedula_reminentePDO, :cedula_destinatarioPDO, :cuerpo_mensajePDO, :imgPDO, 0, now())";
+        $query = "INSERT INTO `mensajes`(`cedula_remitente`, `cedula_destinatario`, `cuerpo_mensaje`, `img`, `leido`, `fecha_hora_envio`) 
+              VALUES (:cedula_remitentePDO, :cedula_destinatarioPDO, :cuerpo_mensajePDO, :imgPDO, 0, now())";
         try {
-            //conectarse
             self::getConexion();
-            //obtener valores
-            $cedulaReminente = $this->getCedulaReminente();
+            $cedulaRemitente = $this->getCedulaRemitente();
             $cedulaDestinatario = $this->getCedulaDestinatario();
             $cuerpoMensaje = $this->getCuerpoMensaje();
             $img = $this->getImg();
 
-            //preparar el query
             $resultado = self::$cnx->prepare($query);
-            //reemplazar el parámetro 
-            $resultado->bindParam(":cedula_reminentePDO", $cedulaReminente, PDO::PARAM_INT);
+            $resultado->bindParam(":cedula_remitentePDO", $cedulaRemitente, PDO::PARAM_INT);
             $resultado->bindParam(":cedula_destinatarioPDO", $cedulaDestinatario, PDO::PARAM_INT);
             $resultado->bindParam(":cuerpo_mensajePDO", $cuerpoMensaje, PDO::PARAM_STR);
             $resultado->bindParam(":imgPDO", $img, PDO::PARAM_STR);
-            //para correr el query
+
             $resultado->execute();
-            //desconectar después de hacer la consulta
-            echo "exito";
             self::desconectar();
+            return "exito";
         } catch (PDOException $ex) {
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode($error);
+            return $error;
         }
-
     }
+
 
     //READ
     public function mostrarMensajesChat($usuario1, $usuario2)
-{
-    $query = "SELECT * FROM `mensajes` WHERE cedula_reminente = :usuario1PDO AND cedula_destinatario = :usuario2PDO 
-    OR cedula_reminente = :usuario2PDO AND cedula_destinatario = :usuario1PDO ORDER BY fecha_hora_envio ASC";
-    $arr = array();
-    try {
-        self::getConexion();
-        $resultado = self::$cnx->prepare($query);
-        $resultado->bindParam(':usuario1PDO', $usuario1, PDO::PARAM_INT);
-        $resultado->bindParam(':usuario2PDO', $usuario2, PDO::PARAM_INT);
-        $resultado->execute();
-        self::desconectar();
-        
-        $resultados = $resultado->fetchAll(PDO::FETCH_ASSOC);
-        
-        foreach ($resultados as $encontrado) {
-            $mensaje = new MensajeModel();
-            $mensaje->setIdMensaje($encontrado['id_mensaje']);
-            $mensaje->setCedulaReminente($encontrado['cedula_reminente']);
-            $mensaje->setCedulaDestinatario($encontrado['cedula_destinatario']);
-            $mensaje->setCuerpoMensaje($encontrado['cuerpo_mensaje']);
-            $mensaje->setImg($encontrado['img']);
-            $mensaje->setLeido($encontrado['leido']);
-            $mensaje->setFechaHoraEnvio($encontrado['fecha_hora_envio']);
-            $arr[] = $mensaje;
-        }
-        return $arr;
+    {
+        $query = "SELECT * FROM `mensajes` WHERE cedula_remitente = :usuario1PDO AND cedula_destinatario = :usuario2PDO 
+    OR cedula_remitente = :usuario2PDO AND cedula_destinatario = :usuario1PDO ORDER BY fecha_hora_envio ASC";
+        $arr = array();
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(':usuario1PDO', $usuario1, PDO::PARAM_INT);
+            $resultado->bindParam(':usuario2PDO', $usuario2, PDO::PARAM_INT);
+            $resultado->execute();
+            self::desconectar();
 
-    } catch (PDOException $Exception) {
-        self::desconectar();
-        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-        return json_encode($error);
+            $resultados = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($resultados as $encontrado) {
+                $mensaje = new MensajeModel();
+                $mensaje->setIdMensaje($encontrado['id_mensaje']);
+                $mensaje->setCedulaRemitente($encontrado['cedula_remitente']);
+                $mensaje->setCedulaDestinatario($encontrado['cedula_destinatario']);
+                $mensaje->setCuerpoMensaje($encontrado['cuerpo_mensaje']);
+                $mensaje->setImg($encontrado['img']);
+                $mensaje->setLeido($encontrado['leido']);
+                $mensaje->setFechaHoraEnvio($encontrado['fecha_hora_envio']);
+                $arr[] = $mensaje;
+            }
+            return $arr;
+
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return json_encode($error);
+        }
     }
-}
 
 
     //CAMBIAR LEÍDO

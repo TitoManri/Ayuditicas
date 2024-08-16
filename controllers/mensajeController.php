@@ -5,7 +5,7 @@ require_once '../models/UserModel.php';
 switch ($_GET["op"]) {
     case 'mostrarMensajesChat':
         //usuario logueado
-        $usuario1 = 305590892;
+        $usuario1 = isset($_POST["usuario1"]) ? trim($_POST["usuario1"]) : "";
         $usuario2 = isset($_POST["usuario2"]) ? trim($_POST["usuario2"]) : "";
 
         $mensaje = new MensajeModel();
@@ -16,7 +16,7 @@ switch ($_GET["op"]) {
             foreach ($todosMensajes as $msj) {
                 $data[] = array(
                     "idMensaje" => $msj->getIdMensaje(),
-                    "reminente" => $msj->getCedulaReminente(),
+                    "remitente" => $msj->getCedulaRemitente(),
                     "destinatario" => $msj->getCedulaDestinatario(),
                     "cuerpo" => $msj->getCuerpoMensaje(),
                     "img" => $msj->getImg(),
@@ -29,20 +29,26 @@ switch ($_GET["op"]) {
             echo json_encode(["error" => "No se pudieron obtener los mensajes."]);
         }
         break;
-    case 'createMensaje':
-        //ahorita hay que modificar los valores de esto
-        $cedulaReminente = isset($_POST["cedulaReminente"]) ? trim($_POST["cedulaReminente"]) : "";
+    case 'enviarMensaje':
+        $cedulaRemitente = isset($_POST["cedulaRemitente"]) ? trim($_POST["cedulaRemitente"]) : "";
         $cedulaDestinatario = isset($_POST["cedulaDestinatario"]) ? trim($_POST["cedulaDestinatario"]) : "";
-        $cuerpoMensaje = isset($_POST["cuerpoMensaje"]) ? trim($_POST["cuerpoMensaje"]) : "";
-        $img = isset($_POST["img"]) ? trim($_POST["img"]) : "";
+        $cuerpoMensaje = isset($_POST["cuerpoMensaje"]) ? trim($_POST["cuerpoMensaje"]) : null;
+        $img = isset($_POST["img"]) ? trim($_POST["img"]) : null;
 
         $mensaje = new MensajeModel();
-        $mensaje->setCedulaReminente($cedulaReminente);
+        $mensaje->setCedulaRemitente($cedulaRemitente);
         $mensaje->setCedulaDestinatario($cedulaDestinatario);
         $mensaje->setCuerpoMensaje($cuerpoMensaje);
         $mensaje->setImg($img);
-        $mensaje->createMensaje();
+
+        $resultado = $mensaje->enviarMensaje();
+        if ($resultado === "exito") {
+            echo json_encode(["msj" => "Se envió el mensaje correctamente."]);
+        } else {
+            echo json_encode(["error" => $resultado]);
+        }
         break;
+
     case 'updateLeido':
         $idMensaje = isset($_POST["idMensaje"]) ? trim($_POST["idMensaje"]) : "";
         $mensaje = new MensajeModel();
@@ -50,8 +56,7 @@ switch ($_GET["op"]) {
         $mensaje->updateLeido();
         break;
     case 'listarContactos':
-        //$cedulaUsuarioActual = isset($_POST["idMensaje"]) ? trim($_POST["idMensaje"]) : "";
-        $cedulaUsuarioActual = 305590892;
+        $cedulaUsuarioActual = isset($_POST["cedulaUsuarioActual"]) ? trim($_POST["cedulaUsuarioActual"]) : "";
         $user = new UserModel();
         $contacto = $user->listarContactos($cedulaUsuarioActual);
         $arr = array();
@@ -59,13 +64,10 @@ switch ($_GET["op"]) {
             $arr[] = array(
                 'cedula' => $reg->getCedula(),
                 'nombreUsuario' => $reg->getNombreUsuario(),
+                'img' => $reg->getImg()
             );
         }
         echo json_encode($arr);
-        if (!$contacto) {
-            echo json_encode(["error" => "No se pudieron obtener los contactos."]);
-            exit;
-        }
         break;
 }
 ?>

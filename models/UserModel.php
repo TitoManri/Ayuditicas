@@ -10,6 +10,8 @@ class UserModel extends Conexion
     private $nombreUsuario = null;
     private $cedula = null;
 
+    private $img = null;
+
     //getter
     public function getNombreUsuario()
     {
@@ -21,6 +23,11 @@ class UserModel extends Conexion
         return $this->cedula;
     }
 
+    public function getImg()
+    {
+        return $this->img;
+    }
+
     //setter
     public function setNombreUsuario($nombreUsuario)
     {
@@ -30,6 +37,11 @@ class UserModel extends Conexion
     public function setCedula($cedula)
     {
         $this->cedula = $cedula;
+    }
+
+    public function setImg($img)
+    {
+        $this->img = $img;
     }
 
     /*-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
@@ -57,11 +69,11 @@ class UserModel extends Conexion
 
     public function listarContactos($cedulaUsuarioActual)
     {
-        $query = "SELECT DISTINCT u.nombre_usuario, u.cedula 
+        $query = "SELECT DISTINCT u.nombre_usuario, u.cedula, u.img 
         FROM mensajes m 
-        JOIN usuarios u ON (u.cedula = m.cedula_reminente 
-        AND m.cedula_reminente != :cedulaUsActualPDO) OR (u.cedula = m.cedula_destinatario AND m.cedula_destinatario != :cedulaUsActualPDO) 
-        WHERE :cedulaUsActualPDO IN (m.cedula_reminente, m.cedula_destinatario) 
+        JOIN usuarios u ON (u.cedula = m.cedula_remitente 
+        AND m.cedula_remitente != :cedulaUsActualPDO) OR (u.cedula = m.cedula_destinatario AND m.cedula_destinatario != :cedulaUsActualPDO) 
+        WHERE :cedulaUsActualPDO IN (m.cedula_remitente, m.cedula_destinatario) 
         ORDER BY m.fecha_hora_envio DESC";
 
         $arr = array();
@@ -76,6 +88,7 @@ class UserModel extends Conexion
                 $contacto = new UserModel();
                 $contacto->setCedula($encontrado["cedula"]);
                 $contacto->setNombreUsuario($encontrado["nombre_usuario"]);
+                $contacto->setImg($encontrado["img"]);
                 $arr[] = $contacto;
             }
             return $arr;
