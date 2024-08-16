@@ -60,7 +60,7 @@ function listarUsuariosContactos() {
     $.ajax({
         url: '../controllers/mensajeController.php?op=listarContactos',
         type: 'POST',
-        data: { cedulaUsuarioActual: usuarioLogueado},
+        data: { cedulaUsuarioActual: usuarioLogueado },
         dataType: 'json',
         success: function (arr) {
             const listaU = document.getElementById("listaUsuarios");
@@ -257,55 +257,106 @@ formularioSubida.addEventListener('submit', function (e) {
 function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData) {
     let datos = null;
 
-    // Verifica si es un mensaje de texto o una imagen
     if (imgData == null) {
-        datos = { cedulaRemitente: usuarioRemitente, cedulaDestinatario: usuarioDestinatario, cuerpoMensaje: mensaje };
+        datos = { cedulaRemitente: usuarioRemitente, cedulaDestinatario: usuarioDestinatario, cuerpoMensaje: mensaje, img: null };
+
+        $.ajax({
+            url: '../controllers/mensajeController.php?op=enviarMensaje',
+            type: 'POST',
+            data: datos,
+            dataType: 'json',
+            success: function (response) {
+                if (response.msj) {
+                    console.log('Mensaje enviado correctamente: ', response.msj);
+
+                    // Crear y añadir el nuevo mensaje al chat
+                    const nuevoMensaje = {
+                        remitente: usuarioRemitente,
+                        cuerpo: response.msj,
+                        img: null
+                    };
+                    mensajesPorUsuario[chatActual].push(nuevoMensaje);
+                    const mensajeElemento = crearMensajeElemento(nuevoMensaje);
+                    contenedorChat.appendChild(mensajeElemento);
+                    contenedorChat.scrollTop = contenedorChat.scrollHeight;
+
+                } else if (response.error) {
+                    console.log('Error al enviar el mensaje: ', response.error);
+                }
+            },
+            error: function (err) {
+                console.log('Error al enviar el mensaje: ', err.responseText);
+            }
+        });
     } else {
-        datos = new FormData();
-        datos.append('cedulaRemitente', usuarioRemitente);
-        datos.append('cedulaDestinatario', usuarioDestinatario);
-        datos.append('imagen', imgData);
+        const formData = new FormData();
+        formData.append('cedulaRemitente', usuarioRemitente);
+        formData.append('cedulaDestinatario', usuarioDestinatario);
+        formData.append('imagen', imgData);
+
+        $.ajax({
+            url: '../controllers/mensajeController.php?op=enviarMensaje',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (response) {
+                if (response.img) {
+                    console.log('Imagen enviada correctamente: ', response.img);
+
+                    // Crear y añadir el nuevo mensaje con imagen al chat
+                    const nuevoMensaje = {
+                        remitente: usuarioRemitente,
+                        cuerpo: '',
+                        img: response.img
+                    };
+                    mensajesPorUsuario[chatActual].push(nuevoMensaje);
+                    const mensajeElemento = crearMensajeElemento(nuevoMensaje);
+                    contenedorChat.appendChild(mensajeElemento);
+                    contenedorChat.scrollTop = contenedorChat.scrollHeight;
+
+                } else if (response.error) {
+                    console.log('Error al enviar la imagen: ', response.error);
+                }
+            },
+            error: function (err) {
+                console.log('Error al enviar la imagen: ', err.responseText);
+            }
+        });
     }
+}
 
+
+function actualizarMensajes() {
     $.ajax({
-        url: '../controllers/mensajeController.php?op=enviarMensaje',
+        url: '../controllers/mensajeController.php?op=mostrarMensajesChat',
         type: 'POST',
-        data: datos,
-        processData: false, // Evita que jQuery procese los datos automáticamente
-        contentType: false, // Evita que jQuery establezca el tipo de contenido
+        data: { usuario1: usuarioLogueado, usuario2: chatActualCed },
         dataType: 'json',
-        success: function (response) {
-            if (response.msj) {
-                console.log('Mensaje enviado correctamente: ', response.msj);
-
-                // Añadir el mensaje enviado al chat actual inmediatamente
-                const nuevoMensaje = {
-                    remitente: usuarioRemitente,
-                    cuerpo: mensaje,
-                    img: response.img ? response.img : null // Asegúrate de recibir la URL de la imagen desde el backend
-                };
-
-                // Actualiza el arreglo de mensajes para el chat actual
-                mensajesPorUsuario[chatActual].push(nuevoMensaje);
-
-                // Crear y añadir el nuevo mensaje al chat
-                const mensajeElemento = crearMensajeElemento(nuevoMensaje);
-                contenedorChat.appendChild(mensajeElemento);
-
+        success: function (mensajes) {
+            if (mensajes) {
+                // Actualiza el arreglo de mensajes
+                mensajesPorUsuario[chatActual] = mensajes;
+                // Limpiar el contenedor del chat
+                contenedorChat.innerHTML = '';
+                // Mostrar los mensajes actualizados
+                mensajes.forEach(mensaje => {
+                    const mensajeElemento = crearMensajeElemento(mensaje);
+                    contenedorChat.appendChild(mensajeElemento);
+                });
                 // Scroll automático al final del chat
                 contenedorChat.scrollTop = contenedorChat.scrollHeight;
-
-            } else if (response.error) {
-                console.log('Error al enviar el mensaje: ', response.error);
             }
         },
         error: function (err) {
-            console.log('Hubo un error al enviar un mensaje: ', err.responseText);
+            console.log('Error al actualizar mensajes: ', err.responseText);
         }
     });
 }
 
-
+// Llamar a la función cada ciertos segundos
+setInterval(actualizarMensajes, 1000); // Actualiza cada 5 segundos
 
 
 //ARREGLAR LOS DOS AGREGAR GRUPO Y USUARIO
@@ -452,25 +503,3 @@ document.querySelector('#grupoModal .btn-success').addEventListener('click', fun
     modal.hide();
 });
 
-//función para autorefrescar el chat actual
-function autorefrescarChat() {
-    if (chatActual != null) {
-        //prueba (quitar esto desués de la prueba)
-        console.log('Refrescando chat para:', chatActual);
-
-        //borrar el contenido del chat actual
-        contenedorChat.innerHTML = '';
-
-        //vuelve a cargar los mensajes del usuario actual
-        mensajesPorUsuario[chatActual].forEach(mensaje => {
-            const mensajeElemento = crearMensajeElemento(mensaje);
-            contenedorChat.appendChild(mensajeElemento);
-        });
-
-        //hacer scroll automático al final del chat
-        contenedorChat.scrollTop = contenedorChat.scrollHeight;
-    }
-}
-
-//cada 5 segundos se refrecsa el chat 
-setInterval(autorefrescarChat, 1000);

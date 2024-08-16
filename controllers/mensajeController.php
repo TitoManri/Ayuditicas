@@ -36,7 +36,7 @@ switch ($_GET["op"]) {
         $cedulaDestinatario = isset($_POST["cedulaDestinatario"]) ? trim($_POST["cedulaDestinatario"]) : "";
         $cuerpoMensaje = isset($_POST["cuerpoMensaje"]) ? trim($_POST["cuerpoMensaje"]) : null;
         $img = isset($_FILES["imagen"]) ? $_FILES["imagen"] : null;
-        var_dump($img);
+
         if ($img != null) {
             $imgArr = guardarFotoNombre($img);
             if ($imgArr['exito'] == 1) {
@@ -55,7 +55,12 @@ switch ($_GET["op"]) {
 
         $resultado = $mensaje->enviarMensaje();
         if ($resultado === "exito") {
-            echo json_encode(["msj" => "Se envió el mensaje correctamente."]);
+            //echo json_encode(["msj" => "Se envió el mensaje correctamente."]);
+            if ($img!=null) {
+                echo json_encode(["img" => $imgDir]);
+            } else {
+                echo json_encode(["contenido" => $cuerpoMensaje]);
+            }
         } else {
             echo json_encode(["error" => $resultado]);
         }
