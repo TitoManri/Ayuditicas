@@ -132,25 +132,3 @@
 .carousel-indicator.active {
     background-color: #007bff;
 }
-
-.CampaniasNav {
-    background-color: #8b9e8f;
-    color: white;
-    width: 100%;
-    border-bottom-right-radius: 45px;
-    height: 54px;
-}
-.SubHeader {
-    background-color: #8b9e8f;
-    color: white;
-    border-bottom-left-radius: 45px;
-    height: 54px;
-}
-
-.sticky-column {
-    position: sticky;
-    top: 0;
-    overflow-y: auto;
-    height: 100vh; 
-    background-color:rgb(237, 230, 211,0.4) ;
-}

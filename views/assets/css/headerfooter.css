@@ -20,6 +20,8 @@
   background-color: #f0f0f0;
   border: 3px solid #d2ac97;
   border-radius: 15px;
+  z-index: 1050;
+
 }
 .dropdown-item:hover,  .dropdown-item:hover i{ 
   background-color: #d2ac97;
@@ -86,4 +88,54 @@
 }
 .row-personalizada{
   --bs-gutter-x: 0rem;
+}
+
+.sticky-column-container {
+  position: fixed; 
+  width: 34%;
+  margin-top: 27px;
+  background-color:rgb(237, 230, 211,0.4) ;
+}
+
+.sticky-column-container h1{
+  text-align: center;
+
+}
+
+.fondo{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.barrabusqueda{
+  width: 30%;
+  margin-left: 30px;
+}
+
+.CampaniasNav {
+  background-color: #8b9e8f;
+  color: white;
+  width: 100%;
+  border-bottom-right-radius: 45px;
+  height: 54px;
+}
+.SubHeader {
+  background-color: #8b9e8f;
+  color: white;
+  border-bottom-left-radius: 45px;
+  height: 54px;
+}
+
+.sticky-column {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  height: 100vh; 
+  background-color:rgb(237, 230, 211,0.4) ;
+}
+
+.asideGeneral{
+  border-bottom-left-radius: 45px;
+  border-top-left-radius: 45px;
 }

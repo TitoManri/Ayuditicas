@@ -1,44 +1,67 @@
-$("#btnEndStep1").click(function () {
-    $("#step1").addClass('hideMe');
-    $("#step2").removeClass('hideMe');
-});
-$("#btnEndStep2").click(function () {
-    $("#step2").addClass('hideMe');
-    $("#step3").removeClass('hideMe');
-});
-$("#btnEndStep3").click(function () {
-    // Whatever your final validation and form submission requires
-    $("#sampleModal").modal("hide");
-});
-function displaySelectedImage(event, elementId) {
-    const selectedImage = document.getElementById(elementId);
-    const fileInput = event.target;
-
-    if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            selectedImage.src = e.target.result;
-        };
-
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-}
-$(document).ready(function() {
-    function updateIndicators(activeModalId) {
-        $('.carousel-indicator').each(function() {
-            if ($(this).data('target') === activeModalId) {
-                $(this).addClass('active');
-            } else {
-                $(this).removeClass('active');
+$(document).ready(function () {
+    $('#crearPublicacionForm').on('submit', function (e) {
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: '../controllers/PublicacionController.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                const respuestaDeJSON = JSON.parse(response);
+                if (respuestaDeJSON.exitoFormulario) {
+                    $('#response').html('<div class="alert alert-success">' + respuestaDeJSON.message + '</div>');
+                    console.log("Publicación creada con éxito");
+                    $('#crearPublicacionModal').modal('hide'); 
+                } else {
+                    $('#response').html('<div class="alert alert-danger">' + respuestaDeJSON.message + '</div>');
+                    console.log("Error al crear la publicación");
+                }
+            },
+            error: function(err) {
+                $('#response').html('<div class="alert alert-danger">Error al crear la publicación.</div>');
+                console.log("Error en la solicitud AJAX");
             }
         });
-    }
-
-    $('.modal').on('show.bs.modal', function() {
-        const modalId = $(this).attr('id');
-        updateIndicators(`#${modalId}`);
     });
 
-    updateIndicators('#crearPublicacionModal');
+    window.displaySelectedImage = function(event, imgElementId) {
+        var input = event.target;
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#' + imgElementId).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
 });
+
+$(document).ready(function() {
+    $('input[name="inlineRadioOptions"]').on('change', function() {
+        if ($('#inlineRadio1').is(':checked')) {
+            $('#comunidadSection').show();
+        } else {
+            $('#comunidadSection').hide();
+        }
+    });
+});
+
+$(document).ready(function() {
+    var input = document.getElementById('tags');
+    var tagify = new Tagify(input, {
+      maxTags: 3,
+      delimiters: ",| ",  
+      dropdown: {
+        enabled: 0 
+      }
+    });
+
+    input.addEventListener('keydown', function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        tagify.addTags(input.value.trim());
+        input.value = '';
+      }
+    });
+  });
