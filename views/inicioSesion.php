@@ -14,26 +14,25 @@
         <?php
             include './templates/Header&Footer/header2.php';
         ?></header>
-<div id="response"></div> 
 
-<div class="container">                                                                    
-  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion" method="post">
+<div class="container">
+  <form class="position-absolute top-50 start-50 translate-middle margenes" id="formIniciarSesion">
     <h3 class="mb-3 text-center">Iniciar sesion</h3>
     <hr>
 
       <!--Forms para el nombre y contraseña-->
-      <div class="form-floating"> 
+      <div class="form-floating">
         <input type="text" class="form-control" id="nombreUsuario" placeholder="nombreUsuario" name="nombreUsuario">
         <label for="nombreUsuario">Nombre Usuario</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="Contrasenia" placeholder="Contrasenia" name="contrasenia">
+        <input type="password" class="form-control" id="Contrasenia" placeholder="Contrasenia" name="Contrasenia">
         <label for="Contrasenia">Contraseña</label>
       </div>
 
       <a class="text-decoration-none text-dark" href="">¿Olvidaste tu contraseña?</a>
       <br>
-      <button id="iniciarSesionBtn" class="w-100 btn boton-inicio" type="submit">Iniciar sesión</button>
+      <button class="w-100 btn boton-inicio" type="submit">Iniciar sesión</button>
       <br>
     <a class="text-decoration-none text-dark" href="./registroSesion.php">¿No tienes una cuenta? Registrate</a>
   </form>
@@ -46,5 +45,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/js/inicioSesion.js"></script>
 </html>

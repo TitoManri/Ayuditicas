@@ -8,11 +8,10 @@
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="./assets/css/mainpage.css">
-    <link rel="stylesheet" href="./assets/css/theme.css">
-    <link rel="stylesheet" href="./assets/css/Etiquetas.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="./assets/css/publicacionCompleta.css">
+    <link rel="stylesheet" href="./assets/css/theme.css">
 
 </head>
 
@@ -23,14 +22,9 @@
         include './templates/Header&Footer/header.php';
         ?>
     </header>
-    <?php 
-            $activoPaginaP = 'active';
-            $nombrePagina = 'Publicacion Completa';
-            include './templates/Header&Footer/subheader.php'; 
-    ?>
     <section id="publicacion-completa">
         <main class="col d-flex justify-content-center">
-            <div class="col d-flex flex-column align-items-center" style="margin-bottom: 30px; padding-top: 10px;">
+            <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 40px;">
                 <?php
                         include './templates/Publicaciones/publicacionCompleta.php';
                     ?>
@@ -44,7 +38,7 @@
     include './templates/Red_Social/modalReporte.php';
     ?>
 
-    <footer class="mainfooter sticky-bottom">
+    <footer class="mainfooter fixed-bottom">
         <?php include './templates/Header&Footer/footer.php';
         ?>
     </footer>
