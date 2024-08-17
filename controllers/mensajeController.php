@@ -56,7 +56,7 @@ switch ($_GET["op"]) {
         $resultado = $mensaje->enviarMensaje();
         if ($resultado === "exito") {
             //echo json_encode(["msj" => "Se envió el mensaje correctamente."]);
-            if ($img!=null) {
+            if ($img != null) {
                 echo json_encode(["img" => $imgDir]);
             } else {
                 echo json_encode(["contenido" => $cuerpoMensaje]);
@@ -86,6 +86,24 @@ switch ($_GET["op"]) {
         }
         echo json_encode($arr);
         break;
+    case 'buscarTodosContactos':
+        $usuario = new UserModel();
+        $todosUsuarios = $usuario->listasTodosUsuarios();
+        $data = array();
+
+        if ($todosUsuarios) {
+            foreach ($todosUsuarios as $usr) {
+                $data[] = array(
+                    "cedula" => $usr->getCedula(),
+                    "nombreUsuario" => $usr->getNombreUsuario(),
+                    "img" => $usr->getImg()
+                );
+            }
+            echo json_encode($data);
+            //var_dump($data);
+        } else{
+            echo json_encode(["error" => "No se pudieron obtener los mensajes."]);
+        }
 }
 
 function guardarFotoNombre($img)

@@ -1,6 +1,7 @@
 //listaUsuarios y mensajesPorUsuario
 const listaUsuarios = {};
 const mensajesPorUsuario = {};
+const usuariosExistentes = {};
 
 //variable que cambia dependiendo del usuario/grupo con el que se esté chateando
 let chatActual = null;
@@ -112,6 +113,7 @@ function llenarArregloMensajes(nombreUsuario, cedula) {
 //función principal
 document.addEventListener("DOMContentLoaded", function () {
     listarUsuariosContactos();
+    llenarListaUsuarios();
 });
 
 
@@ -252,7 +254,6 @@ formularioSubida.addEventListener('submit', function (e) {
     inputArchivo.value = '';
 });
 
-
 //AGREGA UN MENSAJE EN EL CONTENEDOR DE CHATS Y LOS AGREGA A LA LISTA DE MENSAJES
 function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData) {
     let datos = null;
@@ -327,7 +328,6 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData)
     }
 }
 
-
 function actualizarMensajes() {
     $.ajax({
         url: '../controllers/mensajeController.php?op=mostrarMensajesChat',
@@ -358,69 +358,79 @@ function actualizarMensajes() {
 // Llamar a la función cada ciertos segundos
 setInterval(actualizarMensajes, 1000); // Actualiza cada 5 segundos
 
+//----------------------------------------------------------------------------------------------------------------------------------------
+//LLENAR LISTA DE TODOS LOS USUARIOS
+function llenarListaUsuarios() {
+    $.ajax({
+        url: '../controllers/mensajeController.php?op=buscarTodosContactos',
+        type: 'GET',
+        dataType: 'json',
+        success: function (usuarios) {
+            usuarios.forEach(function (usuario) {
+                usuariosExistentes[usuario.nombreUsuario] = usuario;
+                //console.log(usuariosExistentes);
+            });
+        },
+        error: function (err) {
+            console.log('Hubo un error al cargar los usuarios en la lista de contactos ', err.responseText);
+        }
+    });
+}
 
 //ARREGLAR LOS DOS AGREGAR GRUPO Y USUARIO
 
 //FUNCIÓN PARA AGREGAR UN USUARIO
 document.getElementById("btnAgrUsuario").addEventListener('click', function () {
-    //agarra el valor del input del usuario
+    // Obtiene el valor del input del usuario
     let nomUsuario = document.getElementById('username').value.trim();
 
-    // verifica si el usuario está en la lista de usuarios reales
-    if (listaUsuarios[nomUsuario]) {
+    // Verifica si el usuario está en la lista de usuarios reales
+    if (usuariosExistentes[nomUsuario]) {
         // Verifica si no existe en la lista de chats
         if (!mensajesPorUsuario[nomUsuario]) {
-            //agrega un usuario a la lista de chats 
+            // Agrega un usuario a la lista de chats
             mensajesPorUsuario[nomUsuario] = [];
 
-            //mensaje de que se agregó correctamente
+            // Mensaje de que se agregó correctamente
             Swal.fire({
                 title: "¡Todo listo!",
                 text: "Usuario agregado correctamente",
                 icon: "success"
             });
 
-            // Añadir el nuevo usuario a la lista de usuarios creando un list element 
-            const nuevoUsuarioElemento = document.createElement('li');
-            //le agrega un nav item
-            nuevoUsuarioElemento.classList.add('nav-item');
-            //detro del nav item escribe el código del usuario
-            nuevoUsuarioElemento.innerHTML = `
-                <a href="#" class="nav-link" data-usuario="${nomUsuario}" data-imagen="https://github.com/mdo.png">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>${nomUsuario}</strong>
-                </a>
-            `;
+            const listaU = document.getElementById("listaUsuarios");
+            const hr = listaU.querySelector('hr');
 
-            // Encontrar hr después de la sección de chats
-            const hrElement = document.querySelector('.nav-pills').querySelector('hr');
+            const contacto = document.createElement('li');
+            contacto.classList.add('nav-item', 'my-1');
+            contacto.innerHTML =
+                "<a href='#' class='nav-link' data-cedula='" + usuariosExistentes[nomUsuario].cedula + "' data-usuario='" + usuariosExistentes[nomUsuario].nombreUsuario + "' data-img='" + usuariosExistentes[nomUsuario].img + "'>" +
+                "<img src='" + usuariosExistentes[nomUsuario].img + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+                "<strong>" + usuariosExistentes[nomUsuario].nombreUsuario + "</strong>" +
+                "</a>";
 
-            // Insertar el nuevo usuario antes del hr
-            hrElement.parentNode.insertBefore(nuevoUsuarioElemento, hrElement);
+            // Inserta el usuario antes del hr
+            listaU.insertBefore(contacto, hr);
 
-            // Agregar evento click al nuevo usuario
-            nuevoUsuarioElemento.querySelector('.nav-link').addEventListener('click', function (e) {
-                e.preventDefault();
+            // Agregar evento para cada contacto/usuario
+            eventoClick(contacto);
 
-                //quita la clase 'active' de todos los usuarios y añadirla al seleccionado
-                usuarios.forEach(u => u.classList.remove('active'));
-                this.classList.add('active');
+            // Llamar a la función para actualizar el chat con el nuevo usuario
+            let nombre = usuariosExistentes[nomUsuario].nombreUsuario;
+            let imagenUrl = usuariosExistentes[nomUsuario].img;
+            if (nombre && imagenUrl) {
+                actualizarChat(nombre, imagenUrl);
+            }
 
-                const nombre = this.getAttribute('data-usuario');
-                const imagenUrl = this.getAttribute('data-imagen');
+            // Habilitar los controles de mensajes
+            inputMensaje.disabled = false;
+            btnEnviar.disabled = false;
+            btnSubirImagen.disabled = false;
 
-                // Llamar a la función para actualizar el chat con el nuevo usuario
-                if (nombre != null) {
-                    actualizarChat(nombre, imagenUrl);
-                }
+            document.getElementById('username').value = '';
 
-                // Habilitar los controles de mensajes
-                inputMensaje.disabled = false;
-                btnEnviar.disabled = false;
-                btnSubirImagen.disabled = false;
-            });
         } else {
-            //muestra un error si el usuario ya está en los chats
+            // Muestra un error si el usuario ya está en los chats
             Swal.fire({
                 icon: "error",
                 title: "Hubo un error...",
@@ -428,7 +438,7 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
             });
         }
     } else {
-        //da un error si el usuario del todo no existe
+        // Da un error si el usuario del todo no existe
         Swal.fire({
             icon: "error",
             title: "Hubo un error...",
@@ -440,6 +450,7 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
     const modal = bootstrap.Modal.getInstance(document.getElementById('usernameModal'));
     modal.hide();
 });
+
 
 
 //FUNCIÓN PARA AGREGAR UN GRUPO

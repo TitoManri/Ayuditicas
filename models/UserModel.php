@@ -98,5 +98,32 @@ class UserModel extends Conexion
             return json_encode($error);
         }
     }
+
+    //MOSTRAR TODOS LOS CONTACTOS
+    public function listasTodosUsuarios()
+    {
+        $query = "SELECT * FROM `usuarios`";
+
+        $arr = array();
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+
+            foreach ($resultado->fetchAll() as $encontrado) {
+                $contacto = new UserModel();
+                $contacto->setCedula($encontrado["cedula"]);
+                $contacto->setNombreUsuario($encontrado["nombre_usuario"]);
+                $contacto->setImg($encontrado["img"]);
+                $arr[] = $contacto;
+            }
+            return $arr;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return json_encode($error);
+        }
+    }
 }
 ?>
