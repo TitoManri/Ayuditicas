@@ -13,7 +13,6 @@ $(document).ready(function() {
             success: function(data) {
                 
                 if (data.exito) {
-                    // Cambiar el contenido de la página para simular una redirección
                     $('#formIniciarSesion').hide();
                     $('#response').html('<div class="alert alert-success">' + data.msg + '</div>');
 
@@ -22,10 +21,7 @@ $(document).ready(function() {
                     $('#response').html('<div class="alert alert-danger">' + data.msg + '</div>');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-                
-                console.error('Error:', textStatus, errorThrown);
+            error: function(jqXHR, textStatus, errorThrown) {                
                 $('#response').html('<div class="alert alert-danger">Ocurrió un error al intentar iniciar sesión. Inténtalo de nuevo.</div>');
             }
         });
