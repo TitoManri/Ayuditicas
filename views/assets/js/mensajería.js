@@ -9,6 +9,7 @@ let chatActualImg = null;
 let chatActualCed = null;
 //variable que contiene al usuario logueado en el momento
 let usuarioLogueado = 305590892;
+let usuarioLogueadoUser = "mtenorio";
 let logueadoImg = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
 
 //form para envío de mensajes
@@ -401,56 +402,52 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
     let nomUsuario = document.getElementById('username').value.trim();
 
     // Verifica si el usuario está en la lista de usuarios reales
-    if (usuariosExistentes[nomUsuario]) {
-        // Verifica si no existe en la lista de chats
-        if (!mensajesPorUsuario[nomUsuario]) {
-            // Agrega un usuario a la lista de chats
-            mensajesPorUsuario[nomUsuario] = [];
-
-            // Mensaje de que se agregó correctamente
-            Swal.fire({
-                title: "¡Todo listo!",
-                text: "Usuario agregado correctamente",
-                icon: "success"
-            });
-
-            const listaU = document.getElementById("listaUsuarios");
-            const hr = listaU.querySelector('hr');
-
-            const contacto = document.createElement('li');
-            contacto.classList.add('nav-item', 'my-1');
-            contacto.innerHTML =
-                "<a href='#' class='nav-link' data-cedula='" + usuariosExistentes[nomUsuario].cedula + "' data-usuario='" + usuariosExistentes[nomUsuario].nombreUsuario + "' data-img='" + usuariosExistentes[nomUsuario].img + "'>" +
-                "<img src='" + usuariosExistentes[nomUsuario].img + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
-                "<strong>" + usuariosExistentes[nomUsuario].nombreUsuario + "</strong>" +
-                "</a>";
-
-            // Inserta el usuario antes del hr
-            listaU.insertBefore(contacto, hr);
-
-            // Agregar evento para cada contacto/usuario
-            eventoClick(contacto);
-
-            // Llamar a la función para actualizar el chat con el nuevo usuario
-            let nombre = usuariosExistentes[nomUsuario].nombreUsuario;
-            let imagenUrl = usuariosExistentes[nomUsuario].img;
-            if (nombre && imagenUrl) {
-                actualizarChat(nombre, imagenUrl);
+    if (nomUsuario != usuarioLogueadoUser) {
+        if (usuariosExistentes[nomUsuario]) {
+            // Verifica si no existe en la lista de chats
+            if (!mensajesPorUsuario[nomUsuario]) {
+                // Agrega un usuario a la lista de chats
+                mensajesPorUsuario[nomUsuario] = [];
+    
+                // Mensaje de que se agregó correctamente
+                Swal.fire({
+                    title: "¡Todo listo!",
+                    text: "Usuario agregado correctamente",
+                    icon: "success"
+                });
+    
+                const listaU = document.getElementById("listaUsuarios");
+    
+                const contacto = document.createElement('li');
+                contacto.classList.add('nav-item', 'my-1');
+                contacto.innerHTML =
+                    "<a href='#' class='nav-link' data-cedula='" + usuariosExistentes[nomUsuario].cedula + "' data-usuario='" + usuariosExistentes[nomUsuario].nombreUsuario + "' data-img='" + usuariosExistentes[nomUsuario].img + "'>" +
+                    "<img src='" + usuariosExistentes[nomUsuario].img + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+                    "<strong>" + usuariosExistentes[nomUsuario].nombreUsuario + "</strong>" +
+                    "</a>";
+    
+                listaU.appendChild(contacto);
+    
+                // Agregar evento para cada contacto/usuario
+                eventoClick(contacto);
+    
+    
+                document.getElementById('username').value = '';
+    
+            } else {
+                // Muestra un error si el usuario ya está en los chats
+                Swal.fire({
+                    icon: "error",
+                    title: "Hubo un error...",
+                    text: "El usuario ya está agregado"
+                });
             }
-
-            // Habilitar los controles de mensajes
-            inputMensaje.disabled = false;
-            btnEnviar.disabled = false;
-            btnSubirImagen.disabled = false;
-
-            document.getElementById('username').value = '';
-
         } else {
-            // Muestra un error si el usuario ya está en los chats
+            // Da un error si el usuario del todo no existe
             Swal.fire({
                 icon: "error",
                 title: "Hubo un error...",
-                text: "El usuario ya está agregado"
+                text: "El usuario ingresado no existe"
             });
         }
     } else {
@@ -458,75 +455,12 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
         Swal.fire({
             icon: "error",
             title: "Hubo un error...",
-            text: "El usuario ingresado no existe"
+            text: "No puede iniciar un chat con su usuario"
         });
     }
 
     // Cerrar el modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('usernameModal'));
-    modal.hide();
-});
-
-
-
-//FUNCIÓN PARA AGREGAR UN GRUPO
-document.querySelector('#grupoModal .btn-success').addEventListener('click', function () {
-    let nomGrupo = document.getElementById('nombreGrupo').value.trim();
-
-    // Verificar si ya existe en la estructura de mensajes
-    if (!mensajesPorUsuario[nomGrupo]) {
-        mensajesPorUsuario[nomGrupo] = [];
-
-        Swal.fire({
-            title: "¡Todo listo!",
-            text: "Grupo agregado correctamente",
-            icon: "success"
-        });
-
-        // Añadir el nuevo usuario a la lista de usuarios
-        const nuevoGrupoElemento = document.createElement('li');
-        nuevoGrupoElemento.classList.add('nav-item');
-        nuevoGrupoElemento.innerHTML = `
-                <a href="#" class="nav-link" data-usuario="${nomGrupo}" data-imagen="https://github.com/mdo.png">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>${nomGrupo}</strong>
-                </a>
-            `;
-
-        document.querySelector('.nav-pills').appendChild(nuevoGrupoElemento);
-
-        // Agregar evento click al nuevo grupo
-        nuevoGrupoElemento.querySelector('.nav-link').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Remover la clase 'active' de todos los usuarios y añadirla al seleccionado
-            usuarios.forEach(u => u.classList.remove('active'));
-            this.classList.add('active');
-
-            const nombre = this.getAttribute('data-usuario');
-            const imagenUrl = this.getAttribute('data-imagen');
-
-            // Llamar a la función para actualizar el chat con el nuevo usuario
-            if (nombre != null) {
-                actualizarChat(nombre, imagenUrl);
-            }
-
-            // Habilitar los controles de mensajes
-            inputMensaje.disabled = false;
-            btnEnviar.disabled = false;
-            btnSubirImagen.disabled = false;
-        });
-    } else {
-        //muestra un error si ya está agregado
-        Swal.fire({
-            icon: "error",
-            title: "Hubo un error...",
-            text: "El grupo ya está agregado"
-        });
-    }
-
-    // Cerrar el modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('grupoModal'));
     modal.hide();
 });
 
