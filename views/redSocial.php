@@ -1,3 +1,18 @@
+<?php
+session_start();
+    $cedula = $_SESSION['cedula'];
+    $nombre = $_SESSION['nombre'];
+    $primerApellido = $_SESSION['primerApellido'];
+    $segundoApellido = $_SESSION['segundoApellido'];
+    $genero = $_SESSION['genero'];
+    $fechaNacimiento = $_SESSION['fechaNacimiento'];
+    $nombreUsuario = $_SESSION['nombreUsuario'];
+    $telefono = $_SESSION['telefono'];
+    $correo = $_SESSION['correo'];
+    $numSeguidores = $_SESSION['numSeguidores'];
+    $img = $_SESSION['img'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,26 +28,41 @@
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/Etiquetas.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.4/tagify.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header class="mainHeader">
         <?php 
-        $activoPaginaP = 'active';
-        include './templates/Header&Footer/header.php'; 
-        ?>
+            $activoPaginaP = 'active';
+            include './templates/Header&Footer/header.php'; 
+            ?>
+        
     </header>
-    <div class="row row-personalizada">
-        <div class="col-3">
-            <nav id="CampaniasNav" class="CampaniasNav centro">
-                <h2>Red Social</h2>
-            </nav>
+    <?php 
+            $activoPaginaP = 'active';
+            $nombrePagina = 'Red Social';
+            include './templates/Header&Footer/subheader.php'; 
+            
+    ?>
+            <div class="col-9">
+            <div class="">
+                <nav id="SubHeader" class="SubHeader centro ms-5">
+                <button type="button" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal">
+    <i class="fa-regular fa-pen-to-square"></i> Crear Publicación
+</button>
+                    <div class="input-group rounded barrabusqueda">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                            aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+            </div>
         </div>
-        <div class="col-9">
-            <nav id="SubHeader" class="SubHeader centro ms-5">
-            </nav>
-        </div>
+        </nav>
     </div>
+
 
     <div class="row row-personalizada">
         <div class="col-8">
@@ -63,35 +93,14 @@
                 </div>
             </section>
         </div>
-        <div class="col-4 sticky-column">
-        <div class="sticky-content">
-            <center><h1>Campañas</h1></center>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <center><h1>Etiquetas</h1></center>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">An item</li>
-            </ul>
-        </div>
-    </div>
 
-
+        <div class="col-4 ">
+        <?php include './templates/Red_Social/asideDerecha.php'; ?>
     </div>
     </div>
 
     <?php include './templates/Red_Social/modalReporte.php'; ?>
+    <?php include './templates/Red_Social/crearPublicacionModal.php'; ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -102,6 +111,7 @@
     </script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.4/tagify.min.js"></script>
     <script src="./assets/js/like.js"></script>
     <script src="./assets/js/crearPublicacionModal.js"></script>
 </body>
