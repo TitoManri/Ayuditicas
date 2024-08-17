@@ -89,6 +89,7 @@ class PublicacionModel extends Conexion {
         self::$cnx = null;
     }
 
+    //Guardar datos publicaciones
     public function guardarDatosPublicacionRegular() {
         $query = "INSERT INTO `PUBLICACIONES` (`cedula`, `id_campania`, `img`, `titulo`, `num_like`, `descripcion`, `inscripcion`, `fecha_hora_creacion`) 
                   VALUES (:cedulaPDO, :id_campaniaPDO, :imgPDO, :tituloPDO, :num_likePDO, :descripcionPDO, :inscripcionPDO, NOW())";
@@ -116,11 +117,112 @@ class PublicacionModel extends Conexion {
             $resultado->execute();
             
             self::desconectar();
+            return json_encode(array("exitoFormulario" => true, "message" => "Publicación creada exitosamente"));
+        } catch (PDOException $ex) {
+            self::desconectar();
+            return json_encode(array("exitoFormulario" => false, "message" => "Error en la base de datos: " . $ex->getMessage()));
+        }
+    }
+    
+
+    //Mostrar publicaciones sin Campania
+    public function mostrarPublicaciones() {
+        $query = "SELECT p.id_publicacion, p.cedula,  p.id_campania, p.img, p.titulo, p.num_like, p.descripcion, p.inscripcion, p.fecha_hora_creacion, u.nombre_usuario
+        FROM PUBLICACIONES p
+        INNER JOIN  USUARIOS u 
+        ON p.cedula = u.cedula
+        order by fecha_hora_creacion desc";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            
+            $publicaciones = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            
+            self::desconectar();
+            
+            return json_encode($publicaciones);
         } catch (PDOException $ex) {
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
             return json_encode($error);
         }
-    }  
+    } 
+    
+    //Mostrar publicaciones con campania especifica
+    public function mostrarPublicacionesPorCampania($id_campania) {
+        $query = "SELECT `cedula`, `id_campania`, `img`, `titulo`, `num_like`, `descripcion`, `inscripcion`, `fecha_hora_creacion` 
+                  FROM `PUBLICACIONES`
+                  WHERE `id_campania` = :id_campaniaPDO";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id_campaniaPDO", $id_campania, PDO::PARAM_INT);
+            $resultado->execute();
+            
+            $publicaciones = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            
+            self::desconectar();
+            
+            return json_encode($publicaciones);
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
+
+    //Actualizacion de Likes
+    //Aumentar numero de Likes
+    public function aumentarNumLikes($id_publicacion) {
+        $query = "UPDATE `PUBLICACIONES` 
+                  SET `num_like` = `num_like` + 1 
+                  WHERE `id_publicacion` = :id_publicacionPDO";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id_publicacionPDO", $id_publicacion, PDO::PARAM_INT);
+            
+            $resultado->execute();
+            
+            self::desconectar();
+            
+            return json_encode(["success" => true, "message" => "Like incremented successfully"]);
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode(["success" => false, "error" => $error]);
+        }
+    }
+
+    public function reducirNumLikes($id_publicacion) {
+        $query = "UPDATE `PUBLICACIONES` 
+                  SET `num_like` = `num_like` - 1 
+                  WHERE `id_publicacion` = :id_publicacionPDO AND `num_like` > 0";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id_publicacionPDO", $id_publicacion, PDO::PARAM_INT);
+            
+            $resultado->execute();
+            
+            self::desconectar();
+            
+            return json_encode(["success" => true, "message" => "Like decremented successfully"]);
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode(["success" => false, "error" => $error]);
+        }
+    } 
+    
 }
 ?>

@@ -132,3 +132,24 @@
 .carousel-indicator.active {
     background-color: #007bff;
 }
+
+#myBtn {
+    display: block; /* Asegura que el botón esté visible */
+    position: fixed; /* Hace que el botón permanezca en la misma posición incluso al hacer scroll */
+    bottom: 5%; /* Ajusta la distancia desde el fondo de la pantalla, en este caso 20% de la altura de la pantalla */
+    right: 490px; /* Mantén el botón a 30px del borde derecho */
+    z-index: 99; 
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    width: 60px;
+}
+
+
+#myBtn:hover {
+    color: white;  
+}
