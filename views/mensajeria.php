@@ -34,33 +34,6 @@
                     </button>
                     <ul id="listaUsuarios" class="nav nav-pills flex-column mb-auto">
                         <!-- Dentro del bucle que genera la lista de usuarios -->
-                        
-                        <hr>
-                        <!-- SECCION DE GRUPOS-->
-                        <h3 class="text-center">Grupos</h3>
-                        <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-success my-1" data-bs-toggle="modal"
-                            data-bs-target="#grupoModal">
-                            Agregar Grupo
-                        </button>
-
-                        <!-- Dentro del bucle que genera la lista de grupos -->
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Grupo 1"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Grupo 1</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Grupo 2"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Grupo 2</strong>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -198,6 +171,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
-<script src="./assets/js/mensajeria.js"></script>
+<script src="./assets/js/mensajería.js"></script>
 
 </html>

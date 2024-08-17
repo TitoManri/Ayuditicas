@@ -67,10 +67,15 @@ switch ($_GET["op"]) {
         break;
 
     case 'updateLeido':
-        $idMensaje = isset($_POST["idMensaje"]) ? trim($_POST["idMensaje"]) : "";
+        $cedRemitente = isset($_POST["cedRemitente"]) ? trim($_POST["cedRemitente"]) : "";
+        $cedDestinatario = isset($_POST["cedDestinatario"]) ? trim($_POST["cedDestinatario"]) : "";
         $mensaje = new MensajeModel();
-        $mensaje->setIdMensaje($idMensaje);
-        $mensaje->updateLeido();
+        $resultado = $mensaje->updateLeido($cedRemitente, $cedDestinatario);
+        if ($resultado > 0) {
+            echo json_encode(["msj" => "Actualizado correctamente"]);
+        } else {
+            echo json_encode(["err" => "Error al actualizar el estado del mensaje"]);
+        }
         break;
     case 'listarContactos':
         $cedulaUsuarioActual = isset($_POST["cedulaUsuarioActual"]) ? trim($_POST["cedulaUsuarioActual"]) : "";
@@ -101,7 +106,7 @@ switch ($_GET["op"]) {
             }
             echo json_encode($data);
             //var_dump($data);
-        } else{
+        } else {
             echo json_encode(["error" => "No se pudieron obtener los mensajes."]);
         }
 }

@@ -48,6 +48,7 @@ function eventoClick(contacto) {
         if (chatActual != null) {
             actualizarChat(chatActual, chatActualImg);
             llenarArregloMensajes(chatActual, chatActualCed)
+            actualizarLeido();
         }
 
         //permite usar el input, botón y foto
@@ -57,6 +58,22 @@ function eventoClick(contacto) {
     });
 }
 
+function actualizarLeido(){
+    $.ajax({
+        url: '../controllers/mensajeController.php?op=updateLeido',
+        type: 'POST',
+        data: { cedRemitente: chatActualCed, cedDestinatario: usuarioLogueado },
+        dataType: 'json',
+        success: function(response) {
+            console.log('El estado de leído ha sido actualizado correctamente');
+        },
+        error: function () {
+            console.log('Hubo un error al actualizar el estado de leído de los mensajes');
+        }
+    });
+}
+
+
 function listarUsuariosContactos() {
     $.ajax({
         url: '../controllers/mensajeController.php?op=listarContactos',
@@ -65,7 +82,6 @@ function listarUsuariosContactos() {
         dataType: 'json',
         success: function (arr) {
             const listaU = document.getElementById("listaUsuarios");
-            const hr = listaU.querySelector('hr');
 
 
             arr.forEach(function (usuario) {
@@ -82,7 +98,7 @@ function listarUsuariosContactos() {
                     "</a>";
 
                 //inserta el usuario antes del hr
-                listaU.insertBefore(contacto, hr);
+                listaU.appendChild(contacto);
 
                 //agregar evento para cada contacto/usuario
                 eventoClick(contacto);

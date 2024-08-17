@@ -174,14 +174,14 @@ class MensajeModel extends Conexion
 
 
     //CAMBIAR LEÍDO
-    public function updateLeido()
+    public function updateLeido($cedRemitente, $cedDestinatario)
     {
-        $idMensaje = $this->getIdMensaje();
-        $query = "UPDATE `mensajes` SET `leido`=1 WHERE id_mensaje=:idMensaje";
+        $query = "UPDATE `mensajes` SET `leido`= 1 WHERE cedula_remitente = :cedRemitentePDO and cedula_destinatario = :cedDestinatarioPDO";
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":idMensaje", $idMensaje, PDO::PARAM_INT);
+            $resultado->bindParam(":cedRemitentePDO", $cedRemitente, PDO::PARAM_INT);
+            $resultado->bindParam(":cedDestinatarioPDO", $cedDestinatario, PDO::PARAM_INT);
             self::$cnx->beginTransaction();
             $resultado->execute();
             self::$cnx->commit();
