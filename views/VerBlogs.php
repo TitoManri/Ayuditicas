@@ -19,10 +19,29 @@
         $activoBlogs = 'active';
         include './templates/Header&Footer/header3.php';
         ?></header>
-
-    <nav id="BlogsNav" class="BlogsNav centro">
-        <h2>Blog</h2>
-    </nav>
+<?php 
+            $activoPaginaP = 'active';
+            $nombrePagina = 'Blog';
+            include './templates/Header&Footer/subheader.php'; 
+            
+    ?>
+        <div class="col-9">
+            <div class="">
+                <nav id="SubHeader" class="SubHeader centro ms-5">
+                <button type="button" class="btn btn-light ms-5" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal">
+                    <i class="fa-regular fa-pen-to-square"></i> Escribir un Blog
+                </button>
+                <div class="input-group rounded barrabusqueda">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                        aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+                </nav>
+            </div>
+        </div>
+        
 
     <div class="row row-personalizada">
         <div class="col-12">
@@ -35,10 +54,10 @@
                                     <div class="row perfil-barra">
                                         <div class="col-12 d-flex align-items-center perfil-usuario">
                                             <i class="fa-solid fa-user fa-lg " style="color: #000000;"></i>
-                                            <h5 class="mb-0 ml-3 pl-2">&nbsp; Crear Publicacion</h5>
+                                            <h5 class="mb-0 ml-3 pl-2">&nbsp; Un nuevo Blog</h5>
                                             <form class="form-inline">
                                                 <input class="form-control ms-5" size="50" type="search"
-                                                    placeholder="¿Quieres crear una publicacion?" aria-label="Search">
+                                                    placeholder="¿Tienes una Idea? Dinos lo que piensas" aria-label="Search">
                                             </form>
                                         </div>
 

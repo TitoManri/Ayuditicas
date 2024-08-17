@@ -31,9 +31,13 @@
 
 .publicacion{
     padding-left: 1px !important;
-    border: 2px gray;
 }
 
 .perfil-usuario{
     color:black;
 }
+
+.imagen-ajustada {
+    width: 730px;
+    height: 370px;
+  }
