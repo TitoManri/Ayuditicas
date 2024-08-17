@@ -1,0 +1,39 @@
+.BlogsNav{
+    background-color: #8b9e8f;
+    color: white;
+    width: 28%;
+    border-bottom-right-radius: 45px;
+    height: 54px;
+}
+
+.centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    background-color: #ccd1c8;
+    color: #3d3d3d;
+    border-radius: 10px;
+    margin-top: 23px;
+    border: none;
+}
+
+.text{
+    color: #3d3d3d;
+}
+
+.perfil-barra{
+    margin: 10px 0 10px 0;
+    color: #000000 !important;
+}
+
+.publicacion{
+    padding-left: 1px !important;
+    border: 2px gray;
+}
+
+.perfil-usuario{
+    color:black;
+}
