@@ -19,7 +19,14 @@
         //$activoMensajeria = 'active';
         include './templates/Header&Footer/header.php';
         ?>
+
+        <?php
+        session_start();
+        echo "<div id='usuarioActual' data-usuario='" . $_SESSION['nombreUsuario'] . "' data-img='" . $_SESSION['img'] . "' data-ced='" . $_SESSION['cedula'] . "'></div>";
+        ?>
+
     </header>
+
     <div class="container-fluid d-flex flex-column" id="contenedor">
         <div class="row flex-grow-1 m-0">
             <!-- aside -->
@@ -65,7 +72,8 @@
                             </div>
                             <div class="modal-body">
                                 <!-- form de imagen-->
-                                <form id="imgForm" action="./controllers/mensajeController?op=enviarMensaje" method="POST" enctype="multipart/form-data">
+                                <form id="imgForm" action="./controllers/mensajeController?op=enviarMensaje"
+                                    method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="imagen" class="form-label">Seleccione una imagen para
                                             subir</label>
@@ -133,28 +141,6 @@
         </div>
     </div>
 
-    <!-- Modal de Agregar Grupo  (VER CÓMO PASAR LOS MIEMBROS)-->
-    <div class="modal fade" id="grupoModal" tabindex="-1" aria-labelledby="grupoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="grupoModalLabel">Crea un grupo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- agregar grupo formulario-->
-                    <form id="agrGrupoForm">
-                        <label for="nombreGrupo" class="col-form-label">Nombre del grupo:</label>
-                        <!-- nombre del grupo-->
-                        <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo">
-                </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success my-2">Agregar</button>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
@@ -171,6 +157,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
-<script src="./assets/js/mensajería.js"></script>
+<script src="./assets/js/mensajeria.js"></script>
 
 </html>

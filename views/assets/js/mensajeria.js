@@ -8,9 +8,15 @@ let chatActual = null;
 let chatActualImg = null;
 let chatActualCed = null;
 //variable que contiene al usuario logueado en el momento
-let usuarioLogueado = 305590892;
-let usuarioLogueadoUser = "mtenorio";
-let logueadoImg = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg";
+let usuarioDiv = document.getElementById('usuarioActual');
+
+let usuarioLogueadoUser = usuarioDiv.getAttribute('data-usuario');
+let logueadoImg = usuarioDiv.getAttribute('data-img');
+if (logueadoImg == null || logueadoImg == "") {
+    logueadoImg = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+}
+let usuarioLogueado = usuarioDiv.getAttribute('data-ced');
+
 
 //form para envío de mensajes
 const enviarFormulario = document.getElementById('enviarMsj');
@@ -43,7 +49,12 @@ function eventoClick(contacto) {
         //toma el nombre de usuario y su imagen 
         chatActual = this.getAttribute('data-usuario');
         chatActualCed = this.getAttribute('data-cedula');
-        chatActualImg = this.getAttribute('data-img');
+        imagenChat = this.getAttribute("data-img");
+        if (imagenChat != null) {
+            chatActualImg = this.getAttribute('data-img');
+        } else {
+             chatActualImg = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+        }
 
 
         if (chatActual != null) {
@@ -92,9 +103,15 @@ function listarUsuariosContactos() {
 
                 const contacto = document.createElement('li');
                 contacto.classList.add('nav-item', 'my-1');
+
+                let imagenContacto=usuario.img;
+                if (imagenContacto == null || imagenContacto == "") {
+                    imagenContacto= "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                }
+
                 contacto.innerHTML =
-                    "<a href='#' class='nav-link' data-cedula='" + usuario.cedula + "' data-usuario='" + usuario.nombreUsuario + "' data-img='" + usuario.img + "'>" +
-                    "<img src='" + usuario.img + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
+                    "<a href='#' class='nav-link' data-cedula='" + usuario.cedula + "' data-usuario='" + usuario.nombreUsuario + "' data-img='" + imagenContacto + "'>" +
+                    "<img src='" + imagenContacto + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
                     "<strong>" + usuario.nombreUsuario + "</strong>" +
                     "</a>";
 
