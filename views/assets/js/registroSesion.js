@@ -1,5 +1,6 @@
 let contrasenia = document.getElementById("contrasenia")
 let confirmar_contrasenia = document.getElementById("confirmar_contrasenia");
+let cedula = document.getElementById("cedula");
 
 function validarContrasenia(){
   if(contrasenia.value != confirmar_contrasenia.value) {
@@ -9,8 +10,18 @@ function validarContrasenia(){
   }
 }
 
+function validarCedula() {
+    if (cedula.value.length !== 9) {
+      cedula.setCustomValidity("La cédula debe tener exactamente 9 caracteres.");
+    } else {
+      cedula.setCustomValidity("");
+    }
+  }
+
 contrasenia.onchange = validarContrasenia;
 confirmar_contrasenia.onkeyup = validarContrasenia;
+cedula.onkeyup = validarCedula;
+
 
 $(document).ready(function () { 
   $('#registro').on('submit', function (e) { 
