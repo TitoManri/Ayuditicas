@@ -8,10 +8,9 @@
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/theme.css">
-    <link rel="stylesheet" href="./assets/css/headerfooter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./assets/css/campanias.css">
-    <link rel="stylesheet" href="./assets/css/Etiquetas.css">
+    <link rel="stylesheet" href="./assets/css/headerfooter.css">
 </head>
 
 <body>
@@ -20,6 +19,10 @@
         $activoCampanias='active';
         include './templates/Header&Footer/header.php';
         ?></header>
+    <?php 
+            $nombrePagina = 'Campañas';
+            include './templates/Header&Footer/subheader.php'; 
+    ?>
 
     <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
