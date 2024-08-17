@@ -74,11 +74,10 @@ $img = $_SESSION['img'];
                                 <div class="container publicacion">
                                     <div class="row perfil-barra">
                                         <div class="col-12 d-flex align-items-center perfil-usuario">
-                                            <i class="fa-solid fa-user fa-lg " style="color: #000000;"></i>
                                             <h5 class="mb-0 ml-3 pl-2">&nbsp; Crear Publicacion</h5>
                                             <form class="form-inline">
-                                                <input class="form-control ms-5" size="50" type="search"
-                                                    placeholder="¿Quieres crear una publicacion?" aria-label="Search">
+                                                <input class="form-control ms-5" size="50" type="text"
+                                                    placeholder="¿Quieres crear una publicacion?" id="abirModal" aria-label="Search">
                                             </form>
                                         </div>
                                     </div>
@@ -145,14 +144,14 @@ $img = $_SESSION['img'];
                         <button class="btn btn-primary" id="btnNext" type="submit">Crear Publicación</button>
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>
+    
 </div>
 
 
-
+<br><br>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

@@ -20,7 +20,6 @@ $publicacion = new PublicacionModel();
 
 switch ($op) {
     case 'guardar':
-
         $publicacion->setCedula($cedula);
         $publicacion->setTitulo($titulo);
         $publicacion->setDescripcion($descripcion);
@@ -49,7 +48,7 @@ switch ($op) {
 
     case 'mostrarPublicaciones':
         try {
-            $publicaciones = $publicacion->mostrarPublicaciones();
+            $publicaciones = $publicacion->mostrarPublicaciones($cedula);
             echo $publicaciones;
         } catch (Exception $e) {
             echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
@@ -67,7 +66,7 @@ switch ($op) {
 
     case 'aumentarLike':
         try {
-            $response = $publicacion->aumentarNumLikes($id_publicacion);
+            $response = $publicacion->aumentarLike($id_publicacion, $cedula);
             echo $response;
         } catch (Exception $e) {
             echo json_encode(array("success" => false, "message" => $e->getMessage()));
@@ -76,8 +75,17 @@ switch ($op) {
 
     case 'reducirLike':
         try {
-            $response = $publicacion->reducirNumLikes($id_publicacion);
+            $response = $publicacion->reducirLike($id_publicacion, $cedula);
             echo $response;
+        } catch (Exception $e) {
+            echo json_encode(array("success" => false, "message" => $e->getMessage()));
+        }
+        break;
+
+    case 'verificarLike':
+        try {
+            $hasLiked = $publicacion->verificarLike($id_publicacion, $cedula);
+            echo json_encode(["hasLiked" => $hasLiked]);
         } catch (Exception $e) {
             echo json_encode(array("success" => false, "message" => $e->getMessage()));
         }
