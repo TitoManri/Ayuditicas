@@ -107,18 +107,16 @@ class inicioSesionModel extends conexion {
     public function verificarExistenciaDb() {
         try {
             self::getConexion();
-
             if ($this->getNombreUsuario() && $this->getContrasenia()) {
                 $query = "SELECT cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, num_seguidores, img, contrasena 
-                          FROM `usuarios` 
+                          FROM usuarios 
                           WHERE nombre_usuario = :nombreUsuario";
-                $resultado = self::$cnx->prepare($query);
-                $resultado->bindParam(':nombreUsuario', $this->nombreUsuario, PDO::PARAM_STR);
-                $resultado->bindParam(':contrasenia', $this->contrasenia, PDO::PARAM_STR);
-                $resultado->execute();
+                $stmt = self::$cnx->prepare($query);
+                $stmt->bindParam(':nombreUsuario', $this->nombreUsuario, PDO::PARAM_STR);
+                $stmt->execute();
 
-                if ($resultado->rowCount() > 0) {
-                    $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
+                if ($stmt->rowCount() > 0) {
+                    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     if (password_verify($this->getContrasenia(), $usuario['contrasena'])) {
                         $this->setCedula($usuario['cedula']);
@@ -131,20 +129,21 @@ class inicioSesionModel extends conexion {
                         $this->setCorreo($usuario['correo']);
                         $this->setNumSeguidores($usuario['num_seguidores']);
                         $this->setImg($usuario['img']);
-                        
                         self::desconectar();
-                        return true;
+                        return array("exito" => true, "msg" => "Inicio de sesión exitoso");
+                        
+                    } else {
+                        return array("exito" => false, "msg" => "Contraseña incorrecta");
                     }
+                } else {
+                    return array("exito" => false, "msg" => "Usuario no encontrado");
                 }
-                self::desconectar();
-                return false;
             } else {
-                return false;
+                return array("exito" => false, "msg" => "Nombre de usuario y contraseña son requeridos");
             }
-        } catch (PDOException $Exception) {
-            self::desconectar();
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            return $error;
+            
+        } catch (PDOException $e) {
+            return array("exito" => false, "msg" => "Error al intentar iniciar sesión: " . $e->getMessage());
         }
     }
 }
