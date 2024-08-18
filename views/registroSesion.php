@@ -100,7 +100,7 @@
 <!--Confirmar Contraseña-->
         <div class="col-sm-6">
             <label for="confirmar_contrasenia" class="form-label">Confirmar Contraseña</label>
-            <input type="password" class="form-control escribir" id="confirmar_contrasenia" placeholder="" value="" required="" name="confirmar_contrasenia">
+            <input type="password" class="form-control escribir" id="confirmar_contrasenia" placeholder="" value="" required="" name="confirmar_contrasenia" regexp="[0-9]{0,9}">
               <div class="invalid-feedback">Porfavor ingrese su numero de telefono.</div>
         </div>
 
@@ -121,7 +121,7 @@
     </form> 
 
     <!-- Modal de terminos y condiciones-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -146,7 +146,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
 </div>
 </section>
