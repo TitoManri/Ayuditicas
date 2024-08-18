@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (empty($_SESSION['cedula'])) {
+    header('Location: ./inicioSesion.php');
+    exit(); 
+}
+
 $cedula = $_SESSION['cedula'];
 $nombre = $_SESSION['nombre'];
 $primerApellido = $_SESSION['primerApellido'];
@@ -11,6 +17,7 @@ $telefono = $_SESSION['telefono'];
 $correo = $_SESSION['correo'];
 $numSeguidores = $_SESSION['numSeguidores'];
 $img = $_SESSION['img'];
+
 ?>
 
 <!DOCTYPE html>
@@ -147,8 +154,6 @@ $img = $_SESSION['img'];
     </div>
     
 </div>
-
-
 <br><br>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
