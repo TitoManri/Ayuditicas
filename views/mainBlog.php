@@ -18,7 +18,8 @@
 <body>
 <header class="mainHeader">
         <?php
-        include './templates/Header&Footer/header.php';
+        $activoBlogP='active';
+        include './templates/Header&Footer/header3.php';
         ?></header>
 
     <main class="container" id="mainBlog-ayuditicas">
@@ -71,8 +72,7 @@
                          
                 </article>
             </div>
-            <aside id="publicaciones-recientes">
-            <div class="col-md-4 ">
+            <aside id="publicaciones-recientes" class="col-md-4 ">
                 <div class="position-sticky" style="top: 2rem;">
 
                     <div>
@@ -87,7 +87,6 @@
                         </ul>
                     </div>
                 </div>
-            </div>
             </aside>
             
         </div>
