@@ -1,3 +1,7 @@
+<?php
+$ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,20 +39,18 @@
             <div class="col-3 d-flex justify-content-center">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
             </div>
-            <div class="col-9">
-                <p class="h1 font-weight-bold">Nombre de la Campaña</>
-                    <br>
-                <p style="font-size: 18px; opacity: 47%;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora libero enim beatae sint qui iure eos, labore, minima debitis velit voluptatem perspiciatis. Voluptate consequatur quae sunt pariatur quam nostrum.
-                </p>
+            <div class="col-9" id="InfoCamps">
+
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-7">
-                <a href="" class="btn btn-light">
-                    Crear Publicacion
-                </a>
+                <?php
+                echo '<a href="./EnviarSoli.php?ID_Camp='.$ID_Camp.'" class="btn btn-light">
+                    Unirse a la causa
+                </a>';
+                ?>
             </div>
             <div class="col"></div>
         </div>
@@ -78,10 +80,14 @@
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/js/like.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./assets/js/like.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/js/verCampana.js"></script>
 
 </html>

@@ -1,3 +1,15 @@
+<?php
+$nombre = "NombreDeUsuario";
+//$_SESSION["username"]
+//Usar para conseguir nombre de sesion
+$edad = 20;
+//$_SESSION["edad"]
+//Usar para conseguir la edad. O utilizar metodo para conseguir nombre
+$cedula = 11111111;
+//$_SESSION["edad"]
+//usar para conseguir la cedula de la session
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,35 +38,37 @@
     </nav>
     <br><br>
     <section id="CrearCamp" class="container">
-        <form action="./Camps.php" method="POST">
+        <form method="POST" id="EnvioCampana">
             <div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-5">
-                    <label class="h3" for="Nombre_Usuario">Creador de la campaña</label>
-                    <?php
-                    $nombre = "Nombre_Usuario";
-                    echo '<input name="Nombre_Usuario" id="Nombre_Usuario" class="form-control" type="text" readonly value="', $nombre, '" required>';
-                    ?>
-                    <label for="Nombre_Usuario">No editable</label>
-                    <br>
-                    <br>
-                    <label class="h3" for="Descripcion">Descripcion</label>
-                    <textarea class="form-control" name="Descripcion" id="Descripcion" rows="3" style="resize: none;" required></textarea>
-                    <br><br>
-                    <label class="h3" for="FechaFinalizacion">Fecha de Finalizacion de la campaña</label>
-                    <input name="FechaFinalizacion" id="FechaFinalizacion" class="form-control" type="date" required />
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <?php
+                        echo '<input name="cedula" id="cedula" type="hidden" value="' . $cedula . '">';
+                        ?>
+                        <label class="h3" for="Nombre_Usuario">Creador de la campaña</label>
+                        <?php
+                        echo '<input name="Nombre_Usuario" id="Nombre_Usuario" class="form-control" type="text" readonly value="', $nombre, '" required>';
+                        ?>
+                        <label for="Nombre_Usuario">No editable</label>
+                        <br>
+                        <br>
+                        <label class="h3" for="Descripcion">Descripcion</label>
+                        <textarea class="form-control" name="Descripcion" id="Descripcion" rows="3" style="resize: none;" required></textarea>
+                        <br><br>
+                        <label class="h3" for="FechaFinalizacion">Fecha de Finalizacion de la campaña</label>
+                        <input name="FechaFinalizacion" id="FechaFinalizacion" class="form-control" type="date" required />
+                    </div>
+                    <div class="col-5">
+                        <br><br>
+                        <br>
+                        <label class="h3" for="Nombre_Camp">Nombre de la campaña</label>
+                        <input type="text" name="Nombre_Camp" id="Nombre_Camp" class="form-control" required>
+                        <br><br>
+                        <label class="h3" for="Cantidad_Personas">Cantidad de personas requeridas</label>
+                        <input type="number" name="Cantidad_Personas" id="Cantidad_Personas" class="form-control" required min="5" max="50">
+                    </div>
                 </div>
-                <div class="col-5">
-                    <br><br>
-                    <br>
-                    <label class="h3" for="Nombre_Camp">Nombre de la campaña</label>
-                    <input type="text" name="Nombre_Camp" id="Nombre_Camp" class="form-control" required>
-                    <br><br>
-                    <label class="h3" for="Cantidad_Personas">Cantidad de personas requeridas</label>
-                    <input type="number" name="Cantidad_Personas" id="Cantidad_Personas" class="form-control" required min="5" max="50">
-                </div>
-            </div>
             </div>
             <br><br>
             <div class="d-flex justify-content-center">
@@ -72,4 +86,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./assets/js/searchBar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/js/crearCampana.js"></script>
+
 </html>
