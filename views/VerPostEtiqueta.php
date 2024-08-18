@@ -1,3 +1,12 @@
+<?php
+$etiquetas = isset($_GET["SelectEtiqueta"]) ? $_GET["SelectEtiqueta"] : [];
+$etiquetasIDs = [];
+for ($i=0; $i < count($etiquetas); $i++) { 
+    echo '<p>'.$etiquetas[$i].'</p>';
+    $etiquetasIDs[] = $etiquetas[$i];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +64,7 @@
     <section id="PostsCamp" class="container containerD">
         <h1>Post sobre la campaña</h1><br>
         <?php
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < count($etiquetasIDs); $i++) {
         ?>
             <main class="col d-flex justify-content-center">
                 <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 10px;">
@@ -79,5 +88,6 @@
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
+<script src="./assets/js/etiquetasVer.js"></script>
 
 </html>

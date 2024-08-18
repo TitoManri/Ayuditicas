@@ -169,7 +169,7 @@ create table REPORTES(
 create table SOLICITUDES_CAMPANIAS(
     id_solicitud_campania int not null,
     cedula int not null,
-    id_publicacion int not null,
+    id_publicacion int,
     id_campania int not null,
     contacto int not null,
     razon_interes varchar(50) not null,

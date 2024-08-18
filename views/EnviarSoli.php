@@ -1,3 +1,17 @@
+<?php
+$nombre = "NombreDeUsuario";
+//$_SESSION["username"]
+//Usar para conseguir nombre de sesion
+$edad = 20;
+//$_SESSION["edad"]
+//Usar para conseguir la edad. O utilizar metodo para conseguir nombre
+$cedula = 11111111;
+//$_SESSION["edad"]
+//usar para conseguir la cedula de la session
+$apellido = "ApellidoUsuario";
+$ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,14 +39,19 @@
     </nav>
     <br><br>
     <section id="EnviarSoli" class="container">
-        <form action="" method="POST">
+        <form method="POST" id="FormSolicitud">
             <div>
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
+                    <?php
+                        echo '<input name="id_campania" id="id_campania" type="hidden" value="' . $ID_Camp . '">';
+                        ?>
+                    <?php
+                        echo '<input name="cedula" id="cedula" type="hidden" value="' . $cedula . '">';
+                        ?>
                         <label class="h3" for="Nombre_Usuario">Creador de la campaña</label>
                         <?php
-                        $nombre = "NombreReal_Usuario";
                         echo '<input name="Nombre_Usuario" id="Nombre_Usuario" class="form-control" type="text" readonly value="', $nombre, '" required>';
                         ?>
                         <label for="Nombre_Usuario">No editable</label>
@@ -40,7 +59,6 @@
                         <br>
                         <label class="h3" for="Nombre_Usuario">Edad</label>
                         <?php
-                        $edad = 20;
                         echo '<input name="Edad" id="Edad" class="form-control" type="number" readonly value="', $edad, '" required>';
                         ?>
                         <label for="Edad">No editable</label>
@@ -49,9 +67,8 @@
                         <textarea class="form-control" name="RazonInteres" id="RazonInteres" rows="3" style="resize: none;" required></textarea>
                     </div>
                     <div class="col-5">
-                        <label class="h3" for="Nombre_Usuario">Edad</label>
+                        <label class="h3" for="Apellido_Usuario">Apellidos</label>
                         <?php
-                        $apellido = "ApellidoReal_Usuario";
                         echo '<input name="Apellido_Usuario" id="Apellido_Usuario" class="form-control" type="text" readonly value="', $apellido, '" required>';
                         ?>
                         <label for="Edad">No editable</label>
@@ -59,9 +76,9 @@
                         <label class="h3" for="Contacto">Medio a ser contactado</label>
                         <select name="Contacto" id="Contacto" class="form-select">
                             <option hidden disabled selected value>Escoga una opcion</option>
-                            <option value="1">Correo</option>
-                            <option value="2">Mensajeria</option>
-                            <option value="3">Telefono</option>
+                            <option value="Correo">Correo</option>
+                            <option value="Mensajeria">Mensajeria</option>
+                            <option value="Telefono">Telefono</option>
                         </select>
                         <br><br>
                         <label class="h3" for="Habilidades">Habilidades relevantes</label>
@@ -88,4 +105,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/js/enviarSolicitudCamp.js"></script>
 </html>
