@@ -60,6 +60,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/like.js"></script>
 <script src="./assets/js/publicacionCompleta.js"></script>
-
-
+<script src="./assets/js/comentarios.js"></script>
 </html>

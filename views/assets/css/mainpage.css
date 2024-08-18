@@ -132,3 +132,31 @@
 .carousel-indicator.active {
     background-color: #007bff;
 }
+
+#myBtn {
+    display: block;
+    position: fixed; 
+    bottom: 5%;
+    right: 490px; 
+    z-index: 99; 
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    width: 60px;
+}
+
+
+#myBtn:hover {
+    color: white;  
+}
+
+.rojo{
+    color:red;
+}
+.border{
+    border-radius: 100px;
+}

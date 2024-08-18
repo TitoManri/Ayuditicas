@@ -1,0 +1,24 @@
+#map {
+    height: 230px;
+    width: 400px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#floating-panel {
+  background-color: white;
+  border: 1px solid #999;
+  line-height: 30px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 350px;
+}
+
+#latlng {
+  width: 225px;
+}

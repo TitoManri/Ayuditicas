@@ -10,16 +10,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/headerfooter.css">
-    <link rel="stylesheet" href="./assets/css/mensajeria.css">
+    <link rel="stylesheet" href="./assets/css/msj.css">
 </head>
 
 <body>
     <header class="mainHeader">
         <?php
-        $activoMensajeria = 'active';
+        //$activoMensajeria = 'active';
         include './templates/Header&Footer/header.php';
         ?>
+
+        <?php
+        session_start();
+        echo "<div id='usuarioActual' data-usuario='" . $_SESSION['nombreUsuario'] . "' data-img='" . $_SESSION['img'] . "' data-ced='" . $_SESSION['cedula'] . "'></div>";
+        ?>
+
     </header>
+
     <div class="container-fluid d-flex flex-column" id="contenedor">
         <div class="row flex-grow-1 m-0">
             <!-- aside -->
@@ -32,50 +39,8 @@
                         data-bs-target="#usernameModal">
                         Agregar Usuario
                     </button>
-                    <ul class="nav nav-pills flex-column mb-auto">
+                    <ul id="listaUsuarios" class="nav nav-pills flex-column mb-auto">
                         <!-- Dentro del bucle que genera la lista de usuarios -->
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Usuario 1"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Usuario 1</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Usuario 2"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Usuario 2</strong>
-                            </a>
-                        </li>
-                        <hr>
-                        <!-- SECCION DE GRUPOS-->
-                        <h3 class="text-center">Grupos</h3>
-                        <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-success my-1" data-bs-toggle="modal"
-                            data-bs-target="#grupoModal">
-                            Agregar Grupo
-                        </button>
-
-                        <!-- Dentro del bucle que genera la lista de grupos -->
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Grupo 1"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Grupo 1</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item my-1">
-                            <a href="#" class="nav-link" data-usuario="Grupo 2"
-                                data-imagen="https://github.com/mdo.png">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>Grupo 2</strong>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -107,7 +72,8 @@
                             </div>
                             <div class="modal-body">
                                 <!-- form de imagen-->
-                                <form id="imgForm" action="" method="POST" enctype="multipart/form-data">
+                                <form id="imgForm" action="./controllers/mensajeController?op=enviarMensaje"
+                                    method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="imagen" class="form-label">Seleccione una imagen para
                                             subir</label>
@@ -175,28 +141,6 @@
         </div>
     </div>
 
-    <!-- Modal de Agregar Grupo  (VER CÓMO PASAR LOS MIEMBROS)-->
-    <div class="modal fade" id="grupoModal" tabindex="-1" aria-labelledby="grupoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="grupoModalLabel">Crea un grupo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- agregar grupo formulario-->
-                    <form id="agrGrupoForm">
-                        <label for="nombreGrupo" class="col-form-label">Nombre del grupo:</label>
-                        <!-- nombre del grupo-->
-                        <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo">
-                </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success my-2">Agregar</button>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
