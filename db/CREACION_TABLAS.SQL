@@ -142,12 +142,14 @@ CREATE TABLE COMENTARIOS (
 
 CREATE TABLE LIKES (
     id_like INT AUTO_INCREMENT PRIMARY KEY,
+    cedula INT,
     id_publicacion INT,
     id_comentario INT,
     id_publicacion_blog INT,
     FOREIGN KEY (id_publicacion) REFERENCES PUBLICACIONES(id_publicacion),
     FOREIGN KEY (id_comentario) REFERENCES COMENTARIOS(id_comentario),
-    FOREIGN KEY (id_publicacion_blog) REFERENCES PUBLICACIONES_BLOG(id_publicacion_blog)
+    FOREIGN KEY (id_publicacion_blog) REFERENCES PUBLICACIONES_BLOG(id_publicacion_blog),
+    FOREIGN KEY (cedula) REFERENCES USUARIOS(cedula)
 );
 
 CREATE TABLE REPORTES (
