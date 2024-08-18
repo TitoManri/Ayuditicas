@@ -139,6 +139,18 @@ $img = $_SESSION['img'];
                                 <input type="text" id="tags" class="form-control" />
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <center><label for="descripcionPublicacion" class="form-label mt-5">Imagen para la Publicación</label></center>
+                            <div class="mb-4 mt-1 d-flex justify-content-center">
+                                <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" alt="example placeholder" style="width: 300px;" />
+                            </div>
+                            <div class="d-flex justify-content-center mb-4">
+                                <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
+                                    <label class="form-label text-white m-1" for="customFile1">Escoja una Foto</label>
+                                    <input type="file" class="form-control d-none" id="customFile1" name="imagen" onchange="displaySelectedImage(event, 'selectedImage')" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="btnNext" type="submit">Crear Publicación</button>

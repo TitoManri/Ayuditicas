@@ -113,9 +113,10 @@ class PublicacionModel extends Conexion {
             $resultado->bindParam(":inscripcionPDO", $inscripcionPDO, PDO::PARAM_BOOL);
             
             $resultado->execute();
+            $idPublicacion = self::$cnx->lastInsertId();
             
             self::desconectar();
-            return json_encode(array("exitoFormulario" => true, "message" => "Publicación creada exitosamente"));
+            return $idPublicacion;
         } catch (PDOException $ex) {
             self::desconectar();
             return json_encode(array("exitoFormulario" => false, "message" => "Error en la base de datos: " . $ex->getMessage()));
@@ -242,18 +243,25 @@ class PublicacionModel extends Conexion {
         // Devuelve true si el usuario ha dado "like", de lo contrario false
         return $count > 0;
     }
+    public function actualizarImagen($idPublicacion, $nombreImagen) {
+        $query = "UPDATE `PUBLICACIONES` SET `img` = :imgPDO WHERE `id_publicacion` = :id_publicacionPDO";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":imgPDO", $nombreImagen, PDO::PARAM_STR);
+            $resultado->bindParam(":id_publicacionPDO", $idPublicacion, PDO::PARAM_INT);
+            
+            $resultado->execute();
+            
+            self::desconectar();
+            return true;
+        } catch (PDOException $ex) {
+            self::desconectar();
+            return false;
+        }
+    }
     
-
-    //Actualizar Nombre
-    // * update usuarios set nombre = :aosodnas where cedula = 123123123;
-    
-    //Actualizar Apellido 
-    // * update usuarios set apellido = :aosodnas where cedula = 123123123;
-
-    //Ver publicaciones Perfil 
-    //
-
-    //Ver campanias 
-    // 
 }
 ?>
