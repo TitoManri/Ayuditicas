@@ -1,8 +1,18 @@
 <?php
-if (!isset($_GET['id'])) {
-    $idPublicacion = $_GET['id'];
-} else {
-    header('Location: ./redSocial.php');
+session_start();
+
+// Redirigir si la sesión no está iniciada
+if (empty($_SESSION['cedula'])) {
+    header('Location: ./inicioSesion.php');
+    exit();
+}
+
+// Obtener el ID de la publicación desde la URL
+$idPublicacion = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if ($idPublicacion <= 0) {
+    // Manejar el caso cuando el ID no es válido
+    echo "ID de publicación no válido.";
     exit();
 }
 ?>

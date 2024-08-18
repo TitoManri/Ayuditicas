@@ -125,12 +125,16 @@ switch ($op) {
                     throw new Exception("El ID de la publicación es obligatorio.");
                 }
                 $publicacionDetalles = $publicacion->obtenerPublicacion($id_publicacion);
-                echo $publicacionDetalles;
+                if ($publicacionDetalles) {
+                    echo $publicacionDetalles;
+                } else {
+                    throw new Exception("No se encontraron detalles para esta publicación.");
+                }
             } catch (Exception $e) {
-                error_log("ID de la publicación no recibido en la operación: $op");
+                error_log("Error en obtener detalles de la publicación: " . $e->getMessage());
                 echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
             }
-            break;
+        break;
 
     default:
         echo json_encode(array("success" => false, "message" => "Operación no válida"));

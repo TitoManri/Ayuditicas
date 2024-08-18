@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+if (empty($_SESSION['cedula'])) {
+    header('Location: ./inicioSesion.php');
+    exit(); 
+}
+
+$cedula = $_SESSION['cedula'];
+$nombre = $_SESSION['nombre'];
+$primerApellido = $_SESSION['primerApellido'];
+$segundoApellido = $_SESSION['segundoApellido'];
+$genero = $_SESSION['genero'];
+$fechaNacimiento = $_SESSION['fechaNacimiento'];
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$telefono = $_SESSION['telefono'];
+$correo = $_SESSION['correo'];
+$numSeguidores = $_SESSION['numSeguidores'];
+$img = $_SESSION['img'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,7 +176,6 @@
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/searchBar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 <script src="./assets/js/mensajeria.js"></script>
 
