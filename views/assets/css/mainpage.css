@@ -98,3 +98,65 @@
     text-decoration: none;
     color: #827a6f;
 }
+
+.sticky-button {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 1000;
+    background-color: white;
+    border-color: white;
+}
+.sticky-button:hover {
+    background-color: white;
+    border-color: white;
+}
+
+.hideMe {
+    display: none;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.carousel-indicator.active {
+    background-color: #007bff;
+}
+
+#myBtn {
+    display: block;
+    position: fixed; 
+    bottom: 5%;
+    right: 490px; 
+    z-index: 99; 
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    width: 60px;
+}
+
+
+#myBtn:hover {
+    color: white;  
+}
+
+.rojo{
+    color:red;
+}
+.border{
+    border-radius: 100px;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmar Denuncias</title>
+    <title>Detalle Denuncias</title>
     <!-- Bootstrap & Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -22,7 +22,7 @@
     </header>
 
     <div class="container_label col-2">
-        <h5>Confirmar denuncia</h5>
+        <h5>Detalle denuncia</h5>
     </div>
     <section id="confirmCampana" class="container text-center">
         <!-- formulario-->
@@ -65,10 +65,6 @@
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            <div class="row justify-content-center mt-4">
-                <input class="btn_enviar mx-1" type="submit" value="Aceptar">
-                <input class="btn_enviar mx-1" type="submit" value="Eliminar">
-            </div>
         </form>
     </section>
     </div>
@@ -91,6 +87,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 "></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./assets/js/searchBar.js"></script>
 <script src="./assets/js/confirmarDenuncia.js"></script>
 
 </html>

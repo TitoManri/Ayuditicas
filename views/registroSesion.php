@@ -15,11 +15,13 @@
         <?php
             include './templates/Header&Footer/header2.php';
         ?></header>
+<div id="response"></div>
+<section id="registro-section">
 
 <div class="container form-container">
    <h1 class="mb-3 titulo">Registro de Usuario</h1>
     <hr>
-    <form class="needs-validation form-container" id="registro">
+    <form class="needs-validation form-container" id="registro" method="post">
         <div class="row g-3">
 
 <!--Nombre del usuario-->
@@ -37,9 +39,9 @@
       </div>
 
 <!--Apellido del Usuario-->
-<div class="col-sm-3">
+      <div class="col-sm-3">
         <label for="segundo_apellido" class="form-label">Segundo Apellido</label>
-        <input type="text" class="form-control escribir" id="segundo_apellido" placeholder="" value="" required="" name="segundo_apellidop">
+        <input type="text" class="form-control escribir" id="segundo_apellido" placeholder="" value="" required="" name="segundo_apellido">
           <div class="invalid-feedback">Porfavor ingrese sus apellidos.</div>
       </div>
 
@@ -118,7 +120,7 @@
         <br><br><br><br><br><br><br><br>
     </form> 
 
-    <!-- Modal de terminos y condiciones -->
+    <!-- Modal de terminos y condiciones-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -147,7 +149,7 @@
         </div>
 
 </div>
-
+</section>
 <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
@@ -159,8 +161,6 @@
   integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/searchBar.js"></script>
-<script src="./assets/js/verTYC.js"></script>
 <script src="./assets/js/modalTYC.js"></script>
-    
+<script src="./assets/js/registroSesion.js"></script>
 </html>

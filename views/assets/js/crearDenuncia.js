@@ -10,7 +10,7 @@ document.getElementById("formDenuncia").addEventListener("submit", function envi
     const selectIndex = document.getElementById("selectTipo").selectedIndex;
     const denunciaSeleccionada = tipos[selectIndex];
     //el detalle
-    const detalle = document.getElementById("IdDetalle").value;
+    const detalle = document.getElementById("detalle").value;
     //la foto
     const foto = document.getElementById("formFile").files[0];
     //falta la dirección

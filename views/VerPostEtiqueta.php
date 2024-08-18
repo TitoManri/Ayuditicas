@@ -26,6 +26,7 @@ for ($i=0; $i < count($etiquetas); $i++) {
 <body>
     <header class="mainHeader">
         <?php
+         $activoPaginaP = 'active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
@@ -62,7 +63,7 @@ for ($i=0; $i < count($etiquetas); $i++) {
     </section>
     <br>
     <section id="PostsCamp" class="container containerD">
-        <h1>Post sobre la campaña</h1><br>
+        <h1>Post sobre la Etiqueta</h1><br>
         <?php
         for ($i = 0; $i < count($etiquetasIDs); $i++) {
         ?>

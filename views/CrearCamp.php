@@ -29,6 +29,7 @@ $cedula = 11111111;
 <body>
     <header class="mainHeader">
         <?php
+        $activoCampanias='active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
@@ -86,7 +87,6 @@ $cedula = 11111111;
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/crearCampana.js"></script>
