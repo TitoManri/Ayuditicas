@@ -23,32 +23,44 @@
 
     <div class="container container-large">
         <div class="row">
-            <div class="col-xl-8">
+            <div class="col-xl-10 mx-auto">
                 <div class="card card-top">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <!-- Columna del perfil -->
                             <div class="col-md-4">
                                 <div class="text-center">
-                                    <img src="https://pbs.twimg.com/media/FbGqCHeVEAQkb0X.png" class="img-fluid avatar-xxl rounded-circle" alt="">
-                                    <h4 class="font-size-10 mt-3">Nombre Apellido</h4>
+                                    <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" class="img-fluid avatar-xxl rounded-circle" alt="">
+                                    <br>
                                     <h5 class="font-size-13 mb-2">Nombre Usuario</h5>
                                 </div>
                             </div>
                             <!-- Fin col -->
 
                             <!-- Columna de la biografia -->
-                            <div class="col-md-8">
+                            <div id="datosPerfil" class="col-md-8 datosPerfil">
                                 <div class="ms-3">
-                                    <h4 class="card-title mb-2">Biografia</h4>
-                                    <p class="mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <h4 class="card-title mb-2 text-center">Nombre Apellido Apellido</h4>
                                     <div class="row my-4">
                                         <div>
-                                            <p class="text-muted mb-2 fw-medium">Se unio el: XX-XX-XXXX</p>
-                                            <p class="text-muted fw-medium mb-2">Genero: XXXX/XXX</p>
-                                            <p class="text-muted fw-medium mb-0">Seguidores: XXXk</p>
-                                            <br>
-                                            <button type="button" class="btn btn-success">Editar Perfil</button>
+                                        <div class="col-12 d-flex justify-content-between">
+                                            <p class="text-muted mb-2 fw-medium">Se unió el: XX-XX-XXXX</p>
+                                            <p class="text-muted fw-medium mb-2">Fecha Nacimiento: dd-mm-yyyy</p>
+                                        </div>
+
+                                        <div class="col-12 d-flex justify-content-between">
+                                            <p class="text-muted fw-medium mb-2">Género: XXXX/XXX</p>
+                                            <p class="text-muted fw-medium mb-2">Teléfono: 0000-0000</p>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <p class="text-muted fw-medium mb-2">Correo: aswqd@gmail.com</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="text-muted fw-medium mb-2">Contraseña: slsda</p>
+                                        </div>
+                                        <br>
+                                        <button type="button" class="btn btn-success">Editar Perfil</button>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +70,8 @@
                     </div>
                 </div>
                 <!-- Fin card-top -->
-
+            </div>
+            <div class="col-xl-8">
                 <!-- Mis publicaciones -->
                 <!--Cositas que estan arriba de mis publicaciones-->
                 <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
@@ -113,5 +126,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/js/Perfil.js"></script>
 </body>
 </html>

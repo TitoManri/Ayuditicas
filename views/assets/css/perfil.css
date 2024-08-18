@@ -16,8 +16,8 @@ body{
  }
 
  .avatar-xxl {
-     height: 7rem;
-     width: 7rem;
+     height: 10rem;
+     width: 10rem;
  }
  
  .card-top{
@@ -79,3 +79,4 @@ body{
     align-items: center;
     justify-content: center;
 }
+
