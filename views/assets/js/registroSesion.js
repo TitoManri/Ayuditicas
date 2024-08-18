@@ -3,6 +3,7 @@ let confirmar_contrasenia = document.getElementById("confirmar_contrasenia");
 let cedula = document.getElementById("cedula");
 let telefono = document.getElementById("telefono");
 
+
 function validarContrasenia(){
   if(contrasenia.value != confirmar_contrasenia.value) {
     confirmar_contrasenia.setCustomValidity("Las contraseñas no coinciden");
@@ -35,8 +36,6 @@ function validarCedula() {
 contrasenia.onchange = validarContrasenia;
 confirmar_contrasenia.onkeyup = validarContrasenia;
 cedula.onkeyup = validarCedula;
-cedula.onkeyup = validarCedula;
-
 
 $(document).ready(function () { 
   $('#registro').on('submit', function (e) { 

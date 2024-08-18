@@ -1,0 +1,16 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    background-color: rgb(36, 106, 245);
+    border-radius: 10px;
+    padding: 20px;
+    width: 65%; 
+    max-width: 1200px;
+    margin: 1%;
+    margin-left: 18%;
+}
