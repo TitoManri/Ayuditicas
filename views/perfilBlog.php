@@ -64,7 +64,7 @@
                                 <h4 class="card-title mb-4">Mis Blogs</h4> 
                             </div>
                             <section class="row">
-                                <?php include './templates/Blog/cards.php'; ?>
+                                <?php include './templates/Blog/cardsBlog.php'; ?>
                             </section>
                         </div>
                     </div>
