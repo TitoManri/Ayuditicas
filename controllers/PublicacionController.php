@@ -17,6 +17,7 @@ $id_publicacion = isset($_POST["id_publicacion"]) ? $_POST["id_publicacion"] : "
 $id_campania = isset($_POST["id_campania"]) ? $_POST["id_campania"] : "";
 
 $publicacion = new PublicacionModel();
+
 switch ($op) {
     case 'guardar':
         $publicacion->setCedula($cedula);
@@ -37,7 +38,6 @@ switch ($op) {
                 throw new Exception("Todos los campos obligatorios deben ser completados.");
             }
     
-            // Primero guarda la publicación
             $idPublicacion = $publicacion->guardarDatosPublicacionRegular();
             
             if ($idPublicacion) {
@@ -50,11 +50,10 @@ switch ($op) {
                     $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
                     
                     if (in_array($fileExtension, $allowedExts)) {
-                        $newFileName = $idPublicacion . '.' . $fileExtension;
+                        $newFileName = uniqid('img_', true) . '.' . $fileExtension;
                         $destPath = $uploadDir . $newFileName;
                         
                         if (move_uploaded_file($fileTmpPath, $destPath)) {
-                            // Actualiza la publicación con el nombre de la imagen
                             $publicacion->setImg($newFileName);
                             $publicacion->actualizarImagen($idPublicacion, $newFileName); 
                             $resp = array("exitoFormulario" => true, "message" => "Publicación y imagen creadas exitosamente");
@@ -120,6 +119,18 @@ switch ($op) {
             echo json_encode(array("success" => false, "message" => $e->getMessage()));
         }
         break;
+        case 'obtenerPublicacion': 
+            try {
+                if (empty($id_publicacion)) {
+                    throw new Exception("El ID de la publicación es obligatorio.");
+                }
+                $publicacionDetalles = $publicacion->obtenerPublicacion($id_publicacion);
+                echo $publicacionDetalles;
+            } catch (Exception $e) {
+                error_log("ID de la publicación no recibido en la operación: $op");
+                echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
+            }
+            break;
 
     default:
         echo json_encode(array("success" => false, "message" => "Operación no válida"));

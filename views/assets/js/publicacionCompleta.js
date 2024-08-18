@@ -1,42 +1,66 @@
-function agregarNuevoComentario() {
-    //Comentario del textarea
-    const nuevoComentario = document.getElementById('nuevo-comentario-text').value;
-    //Evitar que se pongan espacios en blanco
-    if (nuevoComentario.trim() !== '') {
-        //Lista no ordenada de los comentarios anteriores
-        const listaComentarios = document.getElementById('commentarios-lista');
-        //Se usa para ver si hay comentarios o no, si no muestra el mensaje de No hay comentarios aun.
-        const comentarioNoMensajes = document.getElementById('no-commentarios');
-        //Crea la etiqueta <li> para la lista
-        const nuevoItemComentario = document.createElement('li');
-        //Agregar el css de comentario
-        nuevoItemComentario.classList.add('comentario', 'mt-2');
-        //Agrega el comentario escrito por el usuario
-        nuevoItemComentario.textContent = nuevoComentario;
+$(document).ready(function () {
+    let idPublicacion = $('#idPublicacion').val();
 
-        //Remplaza los saltos de linea del usuario por <br> para simular el salto
-        nuevoItemComentario.innerHTML = nuevoItemComentario.innerHTML.replace(/\n/g, '<br>');
+    // Cargar los detalles de la publicación
+    $.ajax({
+        url: '../controllers/PublicacionController.php',
+        type: 'POST',
+        data: { op: 'obtenerPublicacion', id_publicacion: idPublicacion },
+        success: function(response) {
+            let publicacion = JSON.parse(response);
+            if (publicacion) {
+                let imgHtml = publicacion.img ? `<img src="../views/assets/img_app/publicaciones/${publicacion.img}" class="imagen-publicacion" alt="${publicacion.titulo}">` : '';
 
-        //Agrega el comentario al final de la lista
-        listaComentarios.appendChild(nuevoItemComentario);
+                let likeClase = publicacion.tieneLike ? 'fa-solid' : 'fa-regular';
+                let likeColor = publicacion.tieneLike ? 'red' : '';
 
-        //Limpia el textarea despues de agregar el comentario
-        document.getElementById('nuevo-comentario-text').value = '';
+                let publicacionHtml = `
+                    <div class="col-md-8">
+                        <div class="encabezado-publicacion">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-user fa-lg" style="color:black;"></i>
+                                    <h5 class="mb-0 ml-3 text-dark">&nbsp; ${publicacion.nombre_usuario}</h5>
+                                </div>
+                                <div class="likes d-flex align-items-center mt-2">
+                                    <i class="fa-heart fa-lg ${likeClase}" style="color: ${likeColor};" data-id="${publicacion.id_publicacion}"></i>
+                                    <span class="ml-2 text-dark">&nbsp; ${publicacion.num_like} likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido-publicacion">
+                            ${imgHtml}
+                            <h5 class="mt-3 text-dark">${publicacion.titulo}</h5>
+                            <p class="card-text">${publicacion.descripcion}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 caja-comentarios">
+                        <div class="encabezado-publicacion-comentarios">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="text-dark">Comentarios</h5>
+                            </div>
+                        </div>
+                        <div class="caja-enviar-mensaje">
+                            <div class="no-commentarios" id="no-commentarios">No hay comentarios aún.</div>
+                            <ul id="comentarios-lista" class="list-unstyled mt-2"></ul>
+                        </div>
+                        <div class="nuevo-comentario mt-2">
+                            <textarea id="nuevo-comentario-text" class="form-control" rows="2" placeholder="Escribe un comentario..."></textarea>
+                            <button id="enviar-comentario" class="btn btn-primary mt-2">Enviar</button>
+                        </div>
+                    </div>
+                `;
 
-        //Oculta el mensaje de 'No hay comentarios aun' si si hay comentarios
-        if (comentarioNoMensajes) {
-            comentarioNoMensajes.style.display = 'none';
+                $('#publicacion-detalle').html(publicacionHtml);
+
+            } else {
+                $('#publicacion-detalle').html('<p>No se encontró la publicación.</p>');
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
         }
-
-        //Hace el "scroll" hasta el fondo para ver el comentario nuevp
-        listaComentarios.scrollTop = listaComentarios.scrollHeight;
-    }
-}
-
-//Sirve para que el textarea se pueda mandar con el enter y que si quiere hacer salto de linea lo haga
-document.getElementById('nuevo-comentario-text').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && !event.shiftKey) {  
-        event.preventDefault();
-        agregarNuevoComentario();
-    }
+    });
 });
+
+

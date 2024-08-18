@@ -1,3 +1,11 @@
+<?php
+if (!isset($_GET['id'])) {
+    $idPublicacion = $_GET['id'];
+} else {
+    header('Location: ./redSocial.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,9 +39,9 @@
     <section id="publicacion-completa">
         <main class="col d-flex justify-content-center">
             <div class="col d-flex flex-column align-items-center" style="margin-bottom: 30px; padding-top: 10px;">
-                <?php
-                        include './templates/Publicaciones/publicacionCompleta.php';
-                    ?>
+            <input type="hidden" id="idPublicacion" value="<?php echo $idPublicacion ?>">
+            <div id="publicacion-detalle" class="row">
+            </div>
             </div>
         </main>
     </section>
