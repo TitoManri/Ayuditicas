@@ -11,6 +11,8 @@ $telefono = $_SESSION['telefono'];
 $correo = $_SESSION['correo'];
 $numSeguidores = $_SESSION['numSeguidores'];
 $img = $_SESSION['img'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +133,7 @@ $img = $_SESSION['img'];
                             <div class="d-flex justify-content-center">
                                 <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
                                     <label class="form-label text-white m-1" for="customFile2">Elegir una foto de Perfil</label>
-                                    <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                    <input type="file" class="form-control d-none" id="customFile2" name="img" onchange="displaySelectedImage(event, 'selectedAvatar')" />
                                 </div>
                             </div>
                         </div>

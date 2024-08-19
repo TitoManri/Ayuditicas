@@ -123,9 +123,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     let cedula = $('#cedula').val();    
-
-
-    
     $('#crearPublicacionForm').on('submit', function (e) {
         e.preventDefault();
         let formData = new FormData($(this)[0]);

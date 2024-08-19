@@ -3,53 +3,53 @@ require_once  '../config/conexion.php';
 class perfilModel extends conexion {
     protected static $cnx;
 
-    private $NombrePersona=null;
-    private $PrimerApellido=null;
-    private $SegundoApellido=null;
-    private $Genero=null;
-    private $FechaNacimiento=null;
-    private $Correo=null;
-    private $Cedula=null;
-    private $Telefono=null;
-    private $NombreUsuario=null;
+    private $nombrePersona=null;
+    private $primerApellido=null;
+    private $segundoApellido=null;
+    private $genero=null;
+    private $fechaNacimiento=null;
+    private $correo=null;
+    private $cedula=null;
+    private $telefono=null;
+    private $nombreUsuario=null;
     private $contrasenia=null;
     private $img=null;
-    private $FechaUnion=null;
+    private $fechaUnion=null;
 
     public function getNombrePersona() {
-        return $this->NombrePersona;
+        return $this->nombrePersona;
     }
 
     public function getPrimerApellido() {
-        return $this->PrimerApellido;
+        return $this->primerApellido;
     }
 
     public function getSegundoApellido() {
-        return $this->SegundoApellido;
+        return $this->segundoApellido;
     }
     
     public function getGenero() {
-        return $this->Genero;
+        return $this->genero;
     }
 
     public function getFechaNacimiento() {
-        return $this->FechaNacimiento;
+        return $this->fechaNacimiento;
     }
 
     public function getCorreo() {
-        return $this->Correo;
+        return $this->correo;
     }
 
     public function getCedula() {
-        return $this->Cedula;
+        return $this->cedula;
     }
 
     public function getTelefono() {
-        return $this->Telefono;
+        return $this->telefono;
     }
 
     public function getNombreUsuario() {
-        return $this->NombreUsuario;
+        return $this->nombreUsuario;
     }
 
     public function getContrasenia() {
@@ -61,43 +61,43 @@ class perfilModel extends conexion {
     }
 
     public function getFechaUnion() {
-        return $this->FechaUnion;
+        return $this->fechaUnion;
     }
 
     public function setNombrePersona($NombrePersona) {
-        $this->NombrePersona = $NombrePersona;
+        $this->nombrePersona = $NombrePersona;
     }
 
     public function setPrimerApellido($PrimerApellido) {
-        $this->PrimerApellido = $PrimerApellido;
+        $this->primerApellido = $PrimerApellido;
     }
 
     public function setSegundoApellido($SegundoApellido) {
-        $this->SegundoApellido = $SegundoApellido;
+        $this->segundoApellido = $SegundoApellido;
     }
 
     public function setGenero($Genero) {
-        $this->Genero = $Genero;
+        $this->genero = $Genero;
     }
 
     public function setFechaNacimiento($FechaNacimiento) {
-        $this->FechaNacimiento = $FechaNacimiento;
+        $this->fechaNacimiento = $FechaNacimiento;
     }
 
     public function setCorreo($Correo) {
-        $this->Correo = $Correo;
+        $this->correo = $Correo;
     }
 
     public function setCedula($Cedula) {
-        $this->Cedula = $Cedula;
+        $this->cedula = $Cedula;
     }
 
     public function setTelefono($Telefono) {
-        $this->Telefono = $Telefono;
+        $this->telefono = $Telefono;
     }
 
     public function setNombreUsuario($NombreUsuario) {
-        $this->NombreUsuario = $NombreUsuario;
+        $this->nombreUsuario = $NombreUsuario;
     }
 
     public function setContrasenia($contrasenia) {
@@ -109,7 +109,7 @@ class perfilModel extends conexion {
     }
 
     public function setFechaUnion($FechaUnion) {
-        $this->FechaUnion = $FechaUnion;
+        $this->fechaUnion = $FechaUnion;
     }
 
     public function __construct() {
@@ -143,18 +143,49 @@ class perfilModel extends conexion {
             return json_encode($error);
         }
     }
-    
     public function actualizarPerfil() {
         try {
-            // Obtener los valores actuales del usuario para mantener los no modificados
             self::getConexion();
             $querySelect = "SELECT nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena, img FROM `usuarios` WHERE `cedula` = :cedulaPDO";
             $stmtSelect = self::$cnx->prepare($querySelect);
             $cedulaPDO = $this->getCedula();
             $stmtSelect->bindParam(":cedulaPDO", $cedulaPDO);
             $stmtSelect->execute();
+            
             $valoresViejos = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+            if ($valoresViejos === false) {
+                self::desconectar();
+                return json_encode(["exitoFormulario" => false, "message" => "Error al obtener los valores actuales del usuario."]);
+            }
     
+            $imgPDO = $valoresViejos['img'];
+    
+            if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = '../views/assets/img_app/usuarios/';
+                $fileTmpPath = $_FILES['img']['tmp_name'];
+                $fileName = $_FILES['img']['name'];
+                $fileNameCmps = explode(".", $fileName);
+                $fileExtension = strtolower(end($fileNameCmps));
+                $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+    
+                if (in_array($fileExtension, $allowedExts)) {
+                    $uniqueId = uniqid();
+                    $newFileName = $uniqueId . '.' . $fileExtension;
+                    $destPath = $uploadDir . $newFileName;
+    
+                    if (move_uploaded_file($fileTmpPath, $destPath)) {
+                        $imgPDO = $newFileName; 
+                    } else {
+                        return json_encode(["exitoFormulario" => false, "message" => "Error al mover la imagen subida."]);
+                    }
+                } else {
+                    return json_encode(["exitoFormulario" => false, "message" => "Extensión de archivo no permitida. Solo se permiten JPG, JPEG, PNG y GIF."]);
+                }
+            } else if (isset($_FILES['img']) && $_FILES['img']['error'] !== UPLOAD_ERR_NO_FILE) {
+                return json_encode(["exitoFormulario" => false, "message" => "Error al subir la imagen."]);
+            }
+    
+            // Validar campos
             $nombrePersonaPDO = $this->getNombrePersona() ?: $valoresViejos['nombre'];
             $primerApellidoPDO = $this->getPrimerApellido() ?: $valoresViejos['primer_apellido'];
             $segundoApellidoPDO = $this->getSegundoApellido() ?: $valoresViejos['segundo_apellido'];
@@ -164,8 +195,8 @@ class perfilModel extends conexion {
             $telefonoPDO = $this->getTelefono() ?: $valoresViejos['telefono'];
             $correoPDO = $this->getCorreo() ?: $valoresViejos['correo'];
             $contrasenaPDO = $this->getContrasenia() ?: $valoresViejos['contrasena'];
-            $imgPDO = $this->getImg() ?: $valoresViejos['img'];
     
+            // Actualizar en la base de datos
             $queryUpdate = "UPDATE `usuarios` SET 
                             `nombre`= :nombrePersonaPDO,
                             `primer_apellido`= :primerApellidoPDO,
@@ -193,24 +224,27 @@ class perfilModel extends conexion {
             $usuUpdate->bindParam(":imgPDO", $imgPDO);
             $usuUpdate->bindParam(":cedulaPDO", $cedulaPDO);
     
-            // Ejecución de la actualización
             if ($usuUpdate->execute()) {
                 $filasAfectadas = $usuUpdate->rowCount();
                 if ($filasAfectadas > 0) {
                     self::desconectar();
-                    return json_encode(array("exitoFormulario" => true, "message" => "Perfil actualizado correctamente"));
+                    return json_encode(["exitoFormulario" => true, "message" => "Perfil actualizado correctamente"]);
                 } else {
                     self::desconectar();
-                    return json_encode(array("exitoFormulario" => false, "message" => "No se actualizó el perfil. Verifica si los datos son correctos." . $filasAfectadas));
+                    return json_encode(["exitoFormulario" => false, "message" => "No se actualizó el perfil. Verifica si los datos son correctos."]);
                 }
+            } else {
+                self::desconectar();
+                return json_encode(["exitoFormulario" => false, "message" => "Error en la actualización del perfil."]);
             }
         } catch (PDOException $ex) {
             self::desconectar();
-            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode(array("exitoFormulario" => false, "message" => $error));
+            return json_encode(["exitoFormulario" => false, "message" => "Error " . $ex->getCode() . ": " . $ex->getMessage()]);
         }
     }
     
-   
+    
+    
+    
 }
 ?>

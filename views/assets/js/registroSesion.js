@@ -7,7 +7,7 @@ let telefono = document.getElementById("telefono");
 function validarContrasenia(){
   if(contrasenia.value != confirmar_contrasenia.value) {
     confirmar_contrasenia.setCustomValidity("Las contraseñas no coinciden");
-      if(contrasenia.value.length !== 8){
+      if(contrasenia.value.length > 8){
         contrasenia.setCustomValidity("La contraseña debe tener minimo 8 caracteres.");
       }else{
         contrasenia.setCustomValidity("");
