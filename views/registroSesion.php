@@ -50,9 +50,9 @@
         <label for="genero" class="form-label">Genero</label>
         <select class="form-select escribir" aria-label="Default select example" id="genero" name="genero">
             <option selected>Eliga su genero</option>
-            <option value="1">Femenino</option>
-            <option value="2">Masculino</option>
-            <option value="3">Prefiero no decidir</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="otro">Prefiero no decidir</option>
         </select>
       </div>
 

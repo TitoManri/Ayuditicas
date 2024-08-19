@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../models/perfilModel.php';
 
 $op = isset($_POST['op']) ? $_POST['op'] : '';
@@ -12,16 +16,43 @@ $Cedula = isset($_POST["cedula"]) ? $_POST["cedula"] : "";
 $Telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : "";
 $NombreUsuario = isset($_POST["nombre_usuario"]) ? $_POST["nombre_usuario"] : "";
 $contrasenia = isset($_POST["contrasenia"]) ? $_POST["contrasenia"] : "";
-$imgPDO = isset($_POST["imagen"]) ? $_POST["imagen"] : "";
-$FechaUnionPDO = isset($_POST["fecha_creacion"]) ? $_POST["fecha_creacion"] :
+$img = isset($_POST["imagen"]) ? $_POST["imagen"] : "";
 
-$perfil = new PerfilModel();
+$usuario = new perfilModel();
 
 switch ($op) {
-    case "cambiarDatos":
+    case "mostrarPerfil":
+        $usuario->setNombrePersona($nombrePersona);
+        $usuario->setPrimerApellido($PrimerApellido);
+        $usuario->setSegundoApellido($SegundoApellido);
+        $usuario->setGenero($Genero);
+        $usuario->setFechaNacimiento($FechaNacimiento);
+        $usuario->setCorreo($Correo);
+        $usuario->setCedula($Cedula);
+        $usuario->setTelefono($Telefono);
+        $usuario->setNombreUsuario($NombreUsuario);
+        $usuario->setImg($img);
+        try{
+            $usuarios = $usuario->mostrarPerfil($Cedula);
+            echo $usuarios;
+        } catch (Exception $e) {
+            echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
+        }   
+    break;
+    case "actualizarPerfil":
+        $usuario->setNombrePersona($nombrePersona);
+        $usuario->setPrimerApellido($PrimerApellido);
+        $usuario->setSegundoApellido($SegundoApellido);
+        $usuario->setGenero($Genero);
+        $usuario->setFechaNacimiento($FechaNacimiento);
+        $usuario->setCorreo($Correo);
+        $usuario->setCedula($Cedula);
+        $usuario->setTelefono($Telefono);
+        $usuario->setNombreUsuario($NombreUsuario);
+        $usuario->setImg($img);
         try {
-            $perfil = $perfil->actualizarPerfil($cedula);
-            echo $perfil;
+            $usuarios = $usuario->actualizarPerfil();
+            echo $usuarios;
         } catch (Exception $e) {
             echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
         }
