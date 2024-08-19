@@ -1,50 +1,46 @@
 $(document).ready(function () {
-    let cedula = $('#cedula').val(); //Carga la cedula
+    let perfil = {};
+    let cedula = $('#cedula').val();
 
+    function cargarPerfil() {
         $.ajax({
             url: '../controllers/PerfilController.php',
             type: 'POST',
-            data: { op: 'cambiarDatos', cedula: cedula },
+            data: { op: 'mostrarPerfil', cedula: cedula },
             success: function(response) {
-                let perfil = JSON.parse(response);
-                let container = $('#datosPerfil');
-                container.empty();
+                console.log("Respuesta recibida del servidor:", response);
                 
-                if (Array.isArray(publicaciones)) { 
-                    publicaciones.forEach(function(publicacion) {
-                        //Estructura del card para la publicacion cargado dinamicamente
-                        let datosPerfil = `
-                            <div class="ms-3">
-                                <h4 class="card-title mb-2 text-center">Nombre Apellido Apellido</h4>
-                                <div class="row my-4">
-                                    <div>
-                                        <div class="col-12 d-flex justify-content-between">
-                                            <p class="text-muted mb-2 fw-medium">Se unió el: ${perfil.FechaUnionPDO}</p>
-                                            <p class="text-muted fw-medium mb-2">Fecha Nacimiento: ${perfil.FechaNacimiento}</p>
-                                        </div>
+                perfil = JSON.parse(response);
+                const container = $('#datosPerfil');
+                container.empty();
 
-                                        <div class="col-12 d-flex justify-content-between">
-                                            <p class="text-muted fw-medium mb-2">Género: ${perfil.Genero}</p>
-                                            <p class="text-muted fw-medium mb-2">Teléfono: ${perfil.Telefono}</p>
-                                        </div>
+                if (Array.isArray(perfil)) { 
+                    perfil.forEach(function(perfilD) {
+                        console.log("JSON parseado:", perfil);
 
-                                        <div class="col-md-6">
-                                            <p class="text-muted fw-medium mb-2">Correo: ${perfil.correo}</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="text-muted fw-medium mb-2">Contraseña: ${perfil.contrasenia}</p>
-                                        </div>
-                                        <br>
-                                        <button type="button" class="btn btn-success">Editar Perfil</button>
-                                    </div>
+                        // Estructura los datos del perfil
+                        let datosPerfil_card = `
+                            <h4 class="card-title mb-2 text-center">${perfilD.nombre} ${perfilD.primer_apellido} ${perfilD.segundo_apellido}</h4>
+                            <div class="row my-4">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <p class="text-muted mb-2 fw-medium">Se unió el: ${perfilD.fecha_creacion}</p>
+                                    <p class="text-muted fw-medium mb-2">Fecha Nacimiento: ${perfilD.fecha_nacimiento}</p>
+                                </div>
+
+                                <div class="col-12 d-flex justify-content-between">
+                                    <p class="text-muted fw-medium mb-2">Género: ${perfilD.genero}</p>
+                                    <p class="text-muted fw-medium mb-2">Teléfono: ${perfilD.telefono}</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p class="text-muted fw-medium mb-2">Correo: ${perfilD.correo}</p>
                                 </div>
                             </div>
                         `;
-                        //Agrega la card al contendor para cargarlo dinamicamente
-                        container.append(datosPerfil);
+                        container.append(datosPerfil_card);
                     });
                 } else {
-                    container.html('<p>No se encontraron publicaciones.</p>');
+                    container.html('<p>ALGO SALIO TERRIBLEMENTE MAL</p>');
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -52,10 +48,97 @@ $(document).ready(function () {
             }
         });
     }
-);
 
-$(document).ready(function() {
-    $('#abrirModal').on('focus', function() {
-        $('#createPostModal').modal('show');
-    });
+    cargarPerfil();
+
+
+    $('#editarBtn').on('click',function(e){
+        console.log("Se abrio el modal")
+        console.log(perfil)
+        const containerModal = $('#datosPerfilModal');
+        containerModal.empty();
+
+        const datosPerfil = perfil[0];
+
+        containerModal.append(
+            `<div class="row mb-3">
+                <div class="col">
+                    <input hidden name="cedula" value="${datosPerfil.cedula}">
+                    <label for="nombre" class="col-form-label">Nombre:</label>
+                    <input type="text" name="nombre" class="form-control" value="${datosPerfil.nombre}" id="nombre">
+                </div>
+                <div class="col">
+                    <label for="primer-apellido" class="col-form-label">Primer Apellido:</label>
+                    <input type="text" name="primerApellido" class="form-control" value="${datosPerfil.primer_apellido}" id="primer-apellido">
+                </div>
+                <div class="col">
+                    <label for="segundo-apellido" class="col-form-label">Segundo Apellido:</label>
+                    <input type="text" name="segundoApellido" class="form-control" value="${datosPerfil.segundo_apellido}" id="segundo-apellido">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="telefono" class="col-form-label">Teléfono:</label>
+                    <input type="text" name="telefono" class="form-control" value="${datosPerfil.telefono}" id="telefono">
+                </div>
+                <div class="col">
+                    <label for="correo" class="col-form-label">Correo:</label>
+                    <input type="email" name="correo" class="form-control" value="${datosPerfil.correo}" id="correo">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="fecha-nacimiento" class="col-form-label">Fecha de Nacimiento:</label>
+                    <input type="date" name="fechaNacimiento" class="form-control" value="${datosPerfil.fecha_nacimiento}" id="fecha-nacimiento">
+                </div>
+                <div class="col">
+                    <label for="genero" class="col-form-label">Género:</label>
+                    <select  name="genero" class="form-control" id="genero">
+                      <option value="Masculino">Masculino</option>
+                      <option value="Femenino">Femenino</option>
+                      <option value="otro">Prefiero no decir</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="contrasena-nueva" class="col-form-label">Nombre de Usuario:</label>
+                    <input type="password" name="nombreUsuario" class="form-control" id="contrasena-nueva">
+                </div>
+            </div>`
+        )
+
+        // asigmanos el valor del dropdown de genero        
+        $('#genero').val(datosPerfil.genero)
+    })
+    
+    $('#editarPerfilForm').on('submit',function(e){
+        e.preventDefault();
+        $('#editarPerfilModal').modal('hide');
+        const formData = new FormData(this);
+        for (const pair of formData.entries()) {
+            console.log(pair[0], pair[1]);
+          }
+        formData.append('op','actualizarPerfil');
+        
+        $.ajax({
+            url: '../controllers/perfilController.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json', 
+            success: function(data) {
+                console.log("Se guardaron los datos");
+                console.log(data);
+                cargarPerfil();
+            },
+            error: function(error) {
+                console.log('hereeee');
+                
+                console.log(error);
+                
+            }
+        })
+    })
 });
