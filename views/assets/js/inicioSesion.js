@@ -1,7 +1,7 @@
 $(document).ready(function() {   
     $('#formIniciarSesion').on('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
+        var formData = new FormData(this);
         
         $.ajax({
             url: '../controllers/inicioSesionController.php',

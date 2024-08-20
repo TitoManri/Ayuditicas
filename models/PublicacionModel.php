@@ -262,31 +262,6 @@ class PublicacionModel extends Conexion {
             return false;
         }
     }
-    public function obtenerPublicacion($id_publicacion) {
-        $query = "SELECT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, p.fecha_hora_creacion, u.nombre_usuario
-                  FROM publicaciones p
-                  JOIN usuarios u ON p.cedula = u.cedula
-                  WHERE p.id_publicacion = :id_publicacion";
-    
-        try {
-            self::getConexion();
-    
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":id_publicacion", $id_publicacion, PDO::PARAM_INT);
-            $resultado->execute();
-    
-            $publicacion = $resultado->fetch(PDO::FETCH_ASSOC);
-    
-            self::desconectar();
-    
-            return json_encode($publicacion);
-        } catch (PDOException $ex) {
-            self::desconectar();
-            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode(array("exitoFormulario" => false, "message" => $error));
-        }
-    }
-    
     
 }
 ?>
