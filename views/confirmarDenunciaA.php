@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detalle denuncia | Administrador</title>
+  <title>Confirmar denuncia | Administrador</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -155,14 +155,14 @@
               echo "<input type='hidden' value='" . $idDen . "' id='idDenunciaEsp' name='idDenunciaEsp'>";
               ?>
               <!-- tipo de denuncia-->
-              <label for="tipoDenuncia" class="form-label">
+              <label for="tipoDenuncia" class="form-label text-white">
                 <h3>Tipo denuncia</h3>
               </label>
               <input class="form-control" id="tipoDenuncia" name="tipoDenuncia" readonly>
             </div>
             <div class="col">
               <!-- imagen-->
-              <label>
+              <label for="imgDenuncia" class="form-label text-white">
                 <h3>Imágen</h3>
               </label>
               <div class="imgDenunciaContainer">
@@ -173,14 +173,14 @@
           <div class="row gx-5">
             <div class="col">
               <!-- detalle-->
-              <label for="detalle" class="form-label">
+              <label for="detalle" class="form-label text-white">
                 <h3>Detalle</h3>
               </label>
               <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
             </div>
             <div class="col">
               <!-- ubicación (PENDIENTE)-->
-              <label for="ubicacion" class="form-label">
+              <label for="ubicacion" class="form-label text-white">
                 <h3 class="mt-1">Ubicación</h3>
               </label>
               <br>
@@ -228,7 +228,7 @@
 <!-- AdminLTE App -->
 <script src="./assets/js/adminlte.min.js"></script>
 <!-- ver denuncias-->
-<script src="./assets/js/confDen.js"></script>
+<script src="./assets/js/confirmarDenuncia.js"></script>
 <!-- MAPA-->
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3"></script>

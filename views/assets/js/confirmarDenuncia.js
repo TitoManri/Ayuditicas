@@ -107,7 +107,7 @@ function initMap() {
       infoWindow.setContent(response.results[0].formatted_address);
       infoWindow.open({anchor: marker});
     } catch (e) {
-      window.alert(`Geocoder failed due to: ${e}`);
+      console.log(`Geocoder failed due to: ${e}`);
     }
   }
   

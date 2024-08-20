@@ -1,4 +1,8 @@
-// Cargar el documento
+// Cargar datos de la denuncia
+
+let lat;
+let lng;
+
 $(document).ready(function () {
     var idDenunciaEsp = $("#idDenunciaEsp").val();
 
@@ -7,7 +11,7 @@ $(document).ready(function () {
         type: 'POST',
         data: { idDenunciaEsp: $("#idDenunciaEsp").val() },
         success: function (response) {
-            console.log('Respuesta del servidor:', response);
+            //console.log('Respuesta del servidor:', response);
             try {
                 var datosAutocompletar= JSON.parse(response);
 
@@ -23,6 +27,8 @@ $(document).ready(function () {
                     detalle.value = datosAutocompletar[0].detalle;
 
                     //falta la direccion
+                    lat= datosAutocompletar[0].latitud;
+                    lng= datosAutocompletar[0].longitud;
 
                     //autocompletar la imagen
                     const imgDenuncia = document.getElementById("imgDenuncia");
@@ -40,7 +46,34 @@ $(document).ready(function () {
     });
 });
 
-
+function initMap() {
+    const geocoder = new google.maps.Geocoder();
+    const map = document.querySelector('gmp-map').innerMap;
+    const infoWindow = new google.maps.InfoWindow();
+  
+    geocodeLatLng(geocoder, map, infoWindow);
+  }
+  
+  async function geocodeLatLng(geocoder, map, infoWindow) {
+    const latlng = {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+    };
+  
+    try {
+      const response = await geocoder.geocode({location: latlng});
+      const marker = document.querySelector('gmp-advanced-marker');
+  
+      map.setZoom(11);
+      marker.position = latlng;
+      infoWindow.setContent(response.results[0].formatted_address);
+      infoWindow.open({anchor: marker});
+    } catch (e) {
+      console.log(`Geocoder failed due to: ${e}`);
+    }
+  }
+  
+  window.initMap = initMap;
 
 
 
