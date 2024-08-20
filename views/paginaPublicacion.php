@@ -1,21 +1,3 @@
-<?php
-session_start();
-
-// Redirigir si la sesión no está iniciada
-if (empty($_SESSION['cedula'])) {
-    header('Location: ./inicioSesion.php');
-    exit();
-}
-
-// Obtener el ID de la publicación desde la URL
-$idPublicacion = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-if ($idPublicacion <= 0) {
-    // Manejar el caso cuando el ID no es válido
-    echo "ID de publicación no válido.";
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +31,9 @@ if ($idPublicacion <= 0) {
     <section id="publicacion-completa">
         <main class="col d-flex justify-content-center">
             <div class="col d-flex flex-column align-items-center" style="margin-bottom: 30px; padding-top: 10px;">
-            <input type="hidden" id="idPublicacion" value="<?php echo $idPublicacion ?>">
-            <div id="publicacion-detalle" class="row">
-            </div>
+                <?php
+                        include './templates/Publicaciones/publicacionCompleta.php';
+                    ?>
             </div>
         </main>
     </section>
