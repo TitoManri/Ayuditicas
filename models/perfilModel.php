@@ -1,5 +1,5 @@
 <?php
-require_once '../config/conexion.php';
+require_once  '../config/conexion.php';
 class perfilModel extends conexion {
     protected static $cnx;
 
@@ -124,31 +124,63 @@ class perfilModel extends conexion {
         self::$cnx = null;
     }
 
-    public function actualizarPerfil($Cedula) {
-        $queryUpdate = "UPDATE `usuarios` SET `cedula`=':ceduloPDO',`nombre`=':nombrePersonaPDO',`primer_apellido`=':primerApellidoPDO',
-                        `segundo_apellido`=':segundoApellidoPDO',`genero`=':generoPDO',`fecha_nacimiento`=':fechaNacimientoPDO',
-                        `nombre_usuario`=':nombreUsuarioPDO',`telefono`=':telefonoPDO',`correo`=':correoPDO',`contrasena`=':contraseniaPDO',
-                        `img`=':imgPDO',`fecha_creacion`=':FechaUnionPDO' WHERE 1";
+    public function mostrarPerfil($Cedula){
+        $query = "SELECT * FROM `usuarios` WHERE `cedula`=:cedulaPDO";
 
         try {
-
-            $cedulaPDO = $this->getCedula();
-            $nombrePersonaPDO = $this->getNombrePersona();
-            $primerApellidoPDO = $this->getPrimerApellido();
-            $segundoApellidoPDO = $this->getSegundoApellido();
-            $generoPDO = $this->getGenero();
-            $fechaNacimientoPDO = $this->getFechaNacimiento();
-            $nombreUsuarioPDO = $this->getNombreUsuario();
-            $telefonoPDO = $this->getTelefono();
-            $correoPDO = $this->getCorreo();
-            $contrasenaPDO = $this->getContrasenia();
-            $imgPDO = $this->getImg();
-            $FechaUnionPDO = $this->getFechaUnion();
-
             self::getConexion();
+
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":cedulaPDO", $Cedula, PDO::PARAM_INT);
+            $resultado->execute();
+
+            $usuarios = $resultado->fetchAll(PDO::FETCH_ASSOC); 
             
+            return json_encode($usuarios);
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
+    
+    public function actualizarPerfil() {
+        try {
+            // Obtener los valores actuales del usuario para mantener los no modificados
+            self::getConexion();
+            $querySelect = "SELECT nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena, img FROM `usuarios` WHERE `cedula` = :cedulaPDO";
+            $stmtSelect = self::$cnx->prepare($querySelect);
+            $cedulaPDO = $this->getCedula();
+            $stmtSelect->bindParam(":cedulaPDO", $cedulaPDO);
+            $stmtSelect->execute();
+            $valoresViejos = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+    
+            $nombrePersonaPDO = $this->getNombrePersona() ?: $valoresViejos['nombre'];
+            $primerApellidoPDO = $this->getPrimerApellido() ?: $valoresViejos['primer_apellido'];
+            $segundoApellidoPDO = $this->getSegundoApellido() ?: $valoresViejos['segundo_apellido'];
+            $generoPDO = $this->getGenero() ?: $valoresViejos['genero'];
+            $fechaNacimientoPDO = $this->getFechaNacimiento() ?: $valoresViejos['fecha_nacimiento'];
+            $nombreUsuarioPDO = $this->getNombreUsuario() ?: $valoresViejos['nombre_usuario'];
+            $telefonoPDO = $this->getTelefono() ?: $valoresViejos['telefono'];
+            $correoPDO = $this->getCorreo() ?: $valoresViejos['correo'];
+            $contrasenaPDO = $this->getContrasenia() ?: $valoresViejos['contrasena'];
+            $imgPDO = $this->getImg() ?: $valoresViejos['img'];
+    
+            $queryUpdate = "UPDATE `usuarios` SET 
+                            `nombre`= :nombrePersonaPDO,
+                            `primer_apellido`= :primerApellidoPDO,
+                            `segundo_apellido`= :segundoApellidoPDO,
+                            `genero`= :generoPDO,
+                            `fecha_nacimiento`= :fechaNacimientoPDO,
+                            `nombre_usuario`= :nombreUsuarioPDO,
+                            `telefono`= :telefonoPDO,
+                            `correo`= :correoPDO,
+                            `contrasena`= :contrasenaPDO,
+                            `img`= :imgPDO
+                            WHERE `cedula`= :cedulaPDO";
+    
             $usuUpdate = self::$cnx->prepare($queryUpdate);
-            $usuUpdate->bindParam(":cedulaPDO", $cedulaPDO);
+    
             $usuUpdate->bindParam(":nombrePersonaPDO", $nombrePersonaPDO);
             $usuUpdate->bindParam(":primerApellidoPDO", $primerApellidoPDO);
             $usuUpdate->bindParam(":segundoApellidoPDO", $segundoApellidoPDO);
@@ -157,22 +189,28 @@ class perfilModel extends conexion {
             $usuUpdate->bindParam(":nombreUsuarioPDO", $nombreUsuarioPDO);
             $usuUpdate->bindParam(":telefonoPDO", $telefonoPDO);
             $usuUpdate->bindParam(":correoPDO", $correoPDO);
-            $usuUpdate->bindParam(":contraseniaPDO", $contrasenaPDO);
+            $usuUpdate->bindParam(":contrasenaPDO", $contrasenaPDO);
             $usuUpdate->bindParam(":imgPDO", $imgPDO);
-            $usuUpdate->bindParam(":FechaUnionPDO", $FechaUnionPDO);
-            
-            $usuUpdate->execute();
-            self::desconectar();
-            
-            return json_encode($usuUpdate);
+            $usuUpdate->bindParam(":cedulaPDO", $cedulaPDO);
+    
+            // Ejecución de la actualización
+            if ($usuUpdate->execute()) {
+                $filasAfectadas = $usuUpdate->rowCount();
+                if ($filasAfectadas > 0) {
+                    self::desconectar();
+                    return json_encode(array("exitoFormulario" => true, "message" => "Perfil actualizado correctamente"));
+                } else {
+                    self::desconectar();
+                    return json_encode(array("exitoFormulario" => false, "message" => "No se actualizó el perfil. Verifica si los datos son correctos." . $filasAfectadas));
+                }
+            }
         } catch (PDOException $ex) {
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
-            return json_encode($error);
+            return json_encode(array("exitoFormulario" => false, "message" => $error));
         }
-
     }
-
-
+    
+   
 }
 ?>
