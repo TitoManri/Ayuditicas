@@ -14,6 +14,9 @@ function verSolicitudesDeUsuario() {
             guardarNombre = "";
             numDiv = 0;
             console.log(responseInfo)
+            if(responseInfo.length == 0){
+                section.append("<h1 class='text-center'>No hay solicitudes para aceptar</h1>")
+            }
             $.each(responseInfo, function (index, campania) {
                 codigoSolicitud = "";
 

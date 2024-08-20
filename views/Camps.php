@@ -1,3 +1,26 @@
+<?php
+session_start();
+$cedula = $_SESSION['cedula'];
+$nombre = $_SESSION['nombre'];
+$primerApellido = $_SESSION['primerApellido'];
+$segundoApellido = $_SESSION['segundoApellido'];
+$genero = $_SESSION['genero'];
+$fechaNacimiento = $_SESSION['fechaNacimiento'];
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$telefono = $_SESSION['telefono'];
+$correo = $_SESSION['correo'];
+$numSeguidores = $_SESSION['numSeguidores'];
+$img = $_SESSION['img'];
+
+// Crear un array con los datos
+$data = array(
+    'nombre' => $nombre,
+    'cedula' => $cedula,
+);
+$jsonData = json_encode($data);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +77,9 @@
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
+<script>
+    let userData = <?php echo $jsonData; ?>;
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/listarCampanas.js"></script>

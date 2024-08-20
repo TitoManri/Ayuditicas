@@ -126,7 +126,7 @@ class Campania extends Conexion
 
     public function SelectCampanias()
     {
-        $query = "SELECT c.id_campania, c.cedula_creador_camp, u.nombre_usuario, c.nombre, c.descripcion, c.voluntarios_requeridos, c.fecha_hora_culminacion, c.terminada FROM campanias c JOIN usuarios u ON u.cedula = cedula_creador_camp";
+        $query = "SELECT c.id_campania, c.cedula_creador_camp, u.nombre_usuario, c.nombre, c.descripcion, c.voluntarios_requeridos, c.fecha_hora_culminacion, c.terminada FROM campanias c JOIN usuarios u ON u.cedula = cedula_creador_camp  WHERE c.terminada = 0";
         $campanias = [];
 
         try {
@@ -270,6 +270,50 @@ class Campania extends Conexion
         } catch (Exception $ex) {
             self::desconectar();
             $error = "Hubo un error al conseguir las campañas.\n" . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
+    public function inscrito()
+    {
+        $query = "SELECT s.cedula FROM `voluntarios_campanias` v 
+                  JOIN solicitudes_campanias s ON s.id_solicitud_campania = v.id_solicitud_campania 
+                  WHERE s.id_campania = :id_camp AND s.cedula = :cedula AND s.aceptada = 1";
+
+        $idCamp = $this->getIdCampania();
+        $cedula = $this->getCedulaCreadorCamp();
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id_camp", $idCamp, PDO::PARAM_INT);
+            $resultado->bindParam(":cedula", $cedula, PDO::PARAM_INT);
+            $resultado->execute();
+
+            $existe = $resultado->fetch() !== false;
+
+            self::desconectar();
+            return $existe;
+        } catch (Exception $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
+
+    public function terminarCampana()
+    {
+        $query = "UPDATE `campanias` SET `terminada`= 1 WHERE `id_campania` = :ID_Camp";
+        $idCamp = $this->getIdCampania();
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":ID_Camp", $idCamp, PDO::PARAM_INT);
+            $resultado->execute();
+            $exito = $resultado->rowCount() > 0;
+            self::desconectar();
+            return $exito;
+        } catch (Exception $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
             return json_encode($error);
         }
     }

@@ -10,7 +10,7 @@ function listarCampsAside() {
                 let div = $('#CampanasAside');
                 let codigoHref = "";
                 codigoHref += '<div class="Etiquetas"><a href="./DentroCamp.php?ID_Camp=' + campania.id_campania + '"><div class="row"><div class="col d-flex justify-content-center"><i class="fa fa-solid fa-people-roof fa-4x" ></i></div>'
-                codigoHref += '<div class="col"><div class="row" style="height: 30%;"><p>' + campania.nombre + '</p></div>'
+                codigoHref += '<div class="col"><div class="row mb-3" style="height: 30%;"><p>' + campania.nombre + '</p></div>'
                 codigoHref += '<div class="row"><p style="font-size: 14px; opacity: 47%;" class="text-truncate">' + campania.descripcion + '</p>'
                 codigoHref += '</div></div></div></a></div></br>'
                 div.append(codigoHref);

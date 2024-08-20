@@ -63,7 +63,7 @@ switch ($_GET["op"]) {
             echo json_encode($data);
             break;
         }
-        case 'conseguirCampsAside':{
+    case 'conseguirCampsAside': {
             $camp = new Campania();
             $camps = $camp->SelectCampaniasAside();
             foreach ($camps as $reg) {
@@ -77,4 +77,24 @@ switch ($_GET["op"]) {
             echo json_encode($data);
             break;
         }
+
+    case 'InscritoCamp': {
+            $id = isset($_GET["ID_Camp"]) ? trim($_GET["ID_Camp"]) : "";
+            $cedula = isset($_GET["cedula"]) ? trim($_GET["cedula"]) : "";
+            $camp = new Campania();
+            $camp->setCedulaCreadorCamp($cedula);
+            $camp->setIdCampania($id);
+            $comprobar = $camp->inscrito();
+            echo json_encode($comprobar);
+            break;
+        }
+
+    case 'terminarCampana': {
+        $id = isset($_POST["ID_Camp"]) ? trim($_POST["ID_Camp"]) : "";
+        $camp = new Campania();
+        $camp->setIdCampania($id);
+        $comprobar = $camp -> terminarCampana();
+        echo json_encode($comprobar);
+        break;
+    }
 }

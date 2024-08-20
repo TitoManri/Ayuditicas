@@ -55,6 +55,16 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+                    <li><a class="dropdown-item" href="./crearCamp.php"><i class="fa fa-solid fa-people-roof"
+                                style="color: #000000;"></i> Crear Campaña</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="./verSolicitudesCampanias.php"><i class="fa fa-solid fa-people-roof"
+                                style="color: #000000;"></i> Ver solicitudes de campañas</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket"
                                 style="color: #000000;"></i> Cerrar sesion</a></li>
                 </ul>
