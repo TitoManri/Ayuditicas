@@ -55,7 +55,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket"
+                    <li><a class="dropdown-item" href="./cerrarSesion.php"><i class="fa-solid fa-arrow-right-from-bracket"
                                 style="color: #000000;"></i> Cerrar sesion</a></li>
                 </ul>
             </li>
