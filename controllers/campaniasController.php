@@ -35,6 +35,7 @@ switch ($_GET["op"]) {
             $data = array(
                 "cedula_creador_camp" => $resultado->getCedulaCreadorCamp(),
                 "nombre" => $resultado->getNombre(),
+                'nombre_usuario' => $resultado->getNombreUsuario(),
                 "descripcion" => $resultado->getDescripcion(),
                 "voluntarios" => $resultado->getVoluntariosRequeridos(),
                 "fechaCulminacion" => $resultado->getFechaHoraCulminacion(),
@@ -51,11 +52,26 @@ switch ($_GET["op"]) {
                 $data[] = array(
                     'id_campania' => $reg->getIdCampania(),
                     'cedula_creador_camp' => $reg->getCedulaCreadorCamp(),
+                    'nombre_usuario' => $reg->getNombreUsuario(),
                     'nombre' => $reg->getNombre(),
                     'descripcion' => $reg->getDescripcion(),
                     'voluntarios_requeridos' => $reg->getVoluntariosRequeridos(),
                     'fecha_hora_culminacion' => $reg->getFechaHoraCulminacion(),
                     'terminada' => $reg->getTerminada()
+                );
+            }
+            echo json_encode($data);
+            break;
+        }
+        case 'conseguirCampsAside':{
+            $camp = new Campania();
+            $camps = $camp->SelectCampaniasAside();
+            foreach ($camps as $reg) {
+                $data[] = array(
+                    'id_campania' => $reg->getIdCampania(),
+                    'nombre' => $reg->getNombre(),
+                    'descripcion' => $reg->getDescripcion(),
+                    'voluntarios_requeridos' => $reg->getVoluntariosRequeridos(),
                 );
             }
             echo json_encode($data);

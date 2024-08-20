@@ -85,7 +85,7 @@ class Publicaciones_etiquetas extends Conexion
             $query = 'SELECT p.id_etiqueta, e.nombre, COUNT(*) as NumeroPosts 
                         FROM `publicaciones_etiquetas` p 
                         JOIN `etiquetas` e ON e.id_etiqueta = p.id_etiqueta
-                        WHERE p.`id_publicacion_blog` IS NULL 
+                        WHERE p.`id_publicacion_blog` = 0 
                         GROUP BY e.`id_etiqueta` 
                         ORDER BY e.`id_etiqueta`';
         } //Si es 0. Usar Blogs sin Publicaciones
@@ -93,7 +93,7 @@ class Publicaciones_etiquetas extends Conexion
             $query = 'SELECT p.id_etiqueta, e.nombre, COUNT(*) as NumeroPosts 
                         FROM `publicaciones_etiquetas` p 
                         JOIN `etiquetas` e ON e.id_etiqueta = p.id_etiqueta
-                        WHERE p.`id_etiqueta` IS NULL 
+                        WHERE p.`id_etiqueta` = 0 
                         GROUP BY e.`id_publicacion_blog` 
                         ORDER BY e.`id_publicacion_blog`';
         }

@@ -25,17 +25,18 @@
 }
 
 .EtiquetasAside {
-    position: fixed;
+    position: absolute;
     color: #827a6f;
-    top: 160px;
-    left: 80%;
+    top: 150px;
+    right: 0;
     background: #ede6d3;
-    padding: 30px 30px;
+    padding: 30px 30px 70px;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    width: 25%;
+    max-width: 20%;
     overflow: auto;
-    margin: 0;
+    z-index: 1;
+    width: 20%;
 }
 
 .CampanasAside {

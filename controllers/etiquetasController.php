@@ -15,6 +15,20 @@ switch($_GET["op"]){
         break;
     }
 
+    case 'mostrarEtiquetasAside':{
+        $etiqueta = new Etiqueta();
+        $etiquetas = $etiqueta->SelectEtiquetasNombresAside();
+        $data = [];
+        foreach($etiquetas as $reg){
+            $data[] = array(
+                "id_etiqueta" => $reg->getId_etiqueta(),
+                "nombre" => $reg->getNombre_etiqueta()
+            );
+        }
+        echo json_encode($data);
+        break;
+    }
+
     case 'mostrarPostPorEtiquetas':{
         //$idArray = explode('&',$_SERVER["QUERY_STRING"]);
         $etiquetas = isset($_GET["SelectEtiqueta"]) ? $_GET["SelectEtiqueta"] : [];

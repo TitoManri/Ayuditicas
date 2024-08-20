@@ -28,10 +28,10 @@ switch ($_GET["op"]) {
             break;
         }
     case 'listarSolicitudes': {
-        $cedula = isset($_GET["cedula"]) ? trim($_GET["cedula"]) : "";
+            $cedula = isset($_GET["cedula"]) ? trim($_GET["cedula"]) : "";
 
             $solicitudCreacion = new SolicitudCampania();
-            $solicitudCreacion -> setCedula($cedula);
+            $solicitudCreacion->setCedula($cedula);
             $solicitudes = $solicitudCreacion->conseguirSolicitudesPorCampanas();
             $data = [];
             foreach ($solicitudes as $sol) {
@@ -44,6 +44,50 @@ switch ($_GET["op"]) {
                     'aceptada' => $sol->getAceptada()
                 );
             }
+            echo json_encode($data);
+            break;
+        }
+
+    case 'aceptarSolicitud': {
+            $ID_Solicitud = isset($_POST["ID_Solicitud"]) ? trim($_POST["ID_Solicitud"]) : "";
+            $ID_Camp = isset($_POST["ID_Camp"]) ? trim($_POST["ID_Camp"]) : "";
+            $solicitud = new SolicitudCampania();
+            $solicitud->setIdCampania($ID_Camp);
+            $solicitud->setIdSolicitudCampania($ID_Solicitud);
+            $resultado = $solicitud->aceptarSolicitud();
+            if ($resultado) {
+                echo "Exito";
+            }
+            break;
+        }
+
+    case 'rechazarSolicitud': {
+            $ID_Solicitud = isset($_POST["ID_Solicitud"]) ? trim($_POST["ID_Solicitud"]) : "";
+            $solicitud = new SolicitudCampania();
+            $solicitud->setIdSolicitudCampania($ID_Solicitud);
+            $resultado = $solicitud->rechazarSolicitud();
+            if ($resultado) {
+                echo "Exito";
+            }
+            break;
+        }
+
+    case 'verDetallesSolicitud': {
+            $id_solicitud = isset($_GET["id_solicitud"]) ? trim($_GET["id_solicitud"]) : "";
+            $solicitud = new SolicitudCampania();
+            $solicitud->setIdSolicitudCampania($id_solicitud);
+            $dato = $solicitud->conseguirInfoDeSolicitud();
+
+            $data = array(
+                "id_solicitud" => $id_solicitud,
+                "nombre_usuario" => $dato->getNombreUsuario(),
+                "nombreCompleto" => $dato->getNombreCompleto(),
+                "fecha_nacimiento" => $dato->getFechaNacimiento(),
+                "contacto" => $dato->getContacto(),
+                "razon_interes" => $dato->getRazonInteres(),
+                "habilidades" => $dato->getHabilidades(),
+                "id_campania" => $dato->getIdCampania()
+            );
             echo json_encode($data);
             break;
         }

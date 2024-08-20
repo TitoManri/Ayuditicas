@@ -1,10 +1,5 @@
 <?php
-$etiquetas = isset($_GET["SelectEtiqueta"]) ? $_GET["SelectEtiqueta"] : [];
-$etiquetasIDs = [];
-for ($i=0; $i < count($etiquetas); $i++) { 
-    echo '<p>'.$etiquetas[$i].'</p>';
-    $etiquetasIDs[] = $etiquetas[$i];
-}
+//
 ?>
 
 <!DOCTYPE html>
@@ -33,16 +28,15 @@ for ($i=0; $i < count($etiquetas); $i++) {
 
     <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
-    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
 
-    <section id="NombreCamp" class="container containerD card rounded">
+    <section id="NombreEtiqueta" class=" containerD card rounded"  style="margin-left: 200px;">
         <br>
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
             </div>
-            <div class="col-9">
+            <div class="col-9" id="NombreEtiqueta">
                 <p class="h1 font-weight-bold">Nombre de la etiqueta</>
                     <br>
                 <p style="font-size: 18px; opacity: 47%;">
@@ -52,7 +46,7 @@ for ($i=0; $i < count($etiquetas); $i++) {
         </div>
         <br>
         <div class="row">
-            <div class="col-7">
+            <div class="col-7 px-4">
                 <a href="" class="btn btn-light">
                     Crear Publicacion
                 </a>
@@ -62,22 +56,9 @@ for ($i=0; $i < count($etiquetas); $i++) {
         <br>
     </section>
     <br>
-    <section id="PostsCamp" class="container containerD">
+    <section id="PostsCamp" class="container containerD" style="margin-left: 200px;">
         <h1>Post sobre la Etiqueta</h1><br>
-        <?php
-        for ($i = 0; $i < count($etiquetasIDs); $i++) {
-        ?>
-            <main class="col d-flex justify-content-center">
-                <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 10px;">
-                    <?php
-                    include './templates/Red_Social/publicacion.php';
-                    ?>
-                </div>
-            </main>
-            <hr>
-        <?php
-        }
-        ?>
+
     </section>
 
     <footer class="mainfooter">

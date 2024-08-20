@@ -176,6 +176,7 @@ $img = $_SESSION['img'];
     <script src="./assets/js/like.js"></script>
     <script src="./assets/js/publicaciones.js"></script>
     <script src="./assets/js/botonTop.js"></script>
+    <script src="./assets/js/asideEtiquetasCamps.js"></script>
 </body>
 
 </html>

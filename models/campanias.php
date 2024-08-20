@@ -17,6 +17,8 @@ class Campania extends Conexion
     private $fecha_hora_culminacion = null;
     private $terminada     = null;
 
+    private $nombreUsuario = null;
+
     //Constructor
     public function __construct() {}
 
@@ -57,6 +59,11 @@ class Campania extends Conexion
     public function getTerminada()
     {
         return $this->terminada;
+    }
+
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
     }
 
     //Setters
@@ -110,9 +117,16 @@ class Campania extends Conexion
         self::$cnx = null;
     }
 
+    public function setNombreUsuario($nombreUsuario)
+    {
+        $this->nombreUsuario = $nombreUsuario;
+    }
+
+
+
     public function SelectCampanias()
     {
-        $query = "SELECT `id_campania`,`cedula_creador_camp`, `nombre`, `descripcion`, `voluntarios_requeridos`, `fecha_hora_culminacion`, `terminada` FROM `campanias`";
+        $query = "SELECT c.id_campania, c.cedula_creador_camp, u.nombre_usuario, c.nombre, c.descripcion, c.voluntarios_requeridos, c.fecha_hora_culminacion, c.terminada FROM campanias c JOIN usuarios u ON u.cedula = cedula_creador_camp";
         $campanias = [];
 
         try {
@@ -124,6 +138,7 @@ class Campania extends Conexion
                 $campaniaIndividual = new Campania();
                 $campaniaIndividual->setIdCampania($encontrado['id_campania']);
                 $campaniaIndividual->setCedulaCreadorCamp($encontrado['cedula_creador_camp']);
+                $campaniaIndividual->setNombreUsuario($encontrado['nombre_usuario']);
                 $campaniaIndividual->setNombre($encontrado['nombre']);
                 $campaniaIndividual->setDescripcion($encontrado['descripcion']);
                 $campaniaIndividual->setVoluntariosRequeridos($encontrado['voluntarios_requeridos']);
@@ -134,7 +149,33 @@ class Campania extends Conexion
             return $campanias;
         } catch (Exception $ex) {
             self::desconectar();
-            $error = "Hubo un error al conseguir las etiquetas.\n" . $ex->getCode() . ": " . $ex->getMessage();
+            $error = "Hubo un error al conseguir las campañas.\n" . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
+
+    public function SelectCampaniasAside()
+    {
+        $query = "SELECT `id_campania`, `nombre`, `descripcion`, `voluntarios_requeridos` FROM `campanias` WHERE terminada = 0 ORDER BY `id_campania` DESC LIMIT 2";
+        $campanias = [];
+
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+            foreach ($resultado->fetchAll() as $encontrado) {
+                $campaniaIndividual = new Campania();
+                $campaniaIndividual->setIdCampania($encontrado['id_campania']);
+                $campaniaIndividual->setNombre($encontrado['nombre']);
+                $campaniaIndividual->setDescripcion($encontrado['descripcion']);
+                $campaniaIndividual->setVoluntariosRequeridos($encontrado['voluntarios_requeridos']);
+                $campanias[] = $campaniaIndividual;
+            }
+            return $campanias;
+        } catch (Exception $ex) {
+            self::desconectar();
+            $error = "Hubo un error al conseguir las campañas.\n" . $ex->getCode() . ": " . $ex->getMessage();
             return json_encode($error);
         }
     }
@@ -176,32 +217,32 @@ class Campania extends Conexion
         }
     }
 
-    public function conseguirID() {
-        $query = "SELECT 
-        `cedula_creador_camp`, `nombre`, `descripcion`, `voluntarios_requeridos`, `fecha_hora_culminacion`, `terminada` 
-        FROM `campanias` 
+    public function conseguirID()
+    {
+        $query = "SELECT c.cedula_creador_camp, u.nombre_usuario, c.nombre, c.descripcion, c.voluntarios_requeridos, c.fecha_hora_culminacion, c.terminada FROM campanias c JOIN usuarios u ON u.cedula = cedula_creador_camp
         WHERE `id_campania` = :ID_Camp";
-        $id = $this -> getIdCampania();
-        try{
+        $id = $this->getIdCampania();
+        try {
             self::getConexion();
-            $resultado = self::$cnx ->prepare($query);
-            $resultado -> bindParam(":ID_Camp", $id, PDO::PARAM_INT);
-            $resultado -> execute();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":ID_Camp", $id, PDO::PARAM_INT);
+            $resultado->execute();
             $resultados = null;
             self::desconectar();
-            $datos = $resultado -> fetchAll();
+            $datos = $resultado->fetchAll();
             foreach ($datos as $encontrado) {
                 $campania = new Campania();
-                $campania -> setCedulaCreadorCamp($encontrado['cedula_creador_camp']);
-                $campania -> setNombre($encontrado['nombre']);
-                $campania -> setDescripcion($encontrado['descripcion']);
-                $campania -> setVoluntariosRequeridos($encontrado['voluntarios_requeridos']);
-                $campania -> setFechaHoraCulminacion($encontrado['fecha_hora_culminacion']);
-                $campania -> setTerminada($encontrado['terminada']);
+                $campania->setCedulaCreadorCamp($encontrado['cedula_creador_camp']);
+                $campania->setNombre($encontrado['nombre']);
+                $campania->setNombreUsuario($encontrado['nombre_usuario']);
+                $campania->setDescripcion($encontrado['descripcion']);
+                $campania->setVoluntariosRequeridos($encontrado['voluntarios_requeridos']);
+                $campania->setFechaHoraCulminacion($encontrado['fecha_hora_culminacion']);
+                $campania->setTerminada($encontrado['terminada']);
                 $resultados = $campania;
             }
             return $resultados;
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             self::desconectar();
             $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();;
             return json_encode($error);
@@ -228,7 +269,7 @@ class Campania extends Conexion
             return $campanias;
         } catch (Exception $ex) {
             self::desconectar();
-            $error = "Hubo un error al conseguir las etiquetas.\n" . $ex->getCode() . ": " . $ex->getMessage();
+            $error = "Hubo un error al conseguir las campañas.\n" . $ex->getCode() . ": " . $ex->getMessage();
             return json_encode($error);
         }
     }

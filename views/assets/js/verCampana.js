@@ -11,7 +11,7 @@ function VerInfoCamps() {
             let fechaCortada = fecha.split(" ")[0];
             let escribir = $("#InfoCamps");
             escribir.append($('<p class="h1 font-weight-bold">' + responseInfo.nombre + '</p>'));
-            escribir.append($('<br>'));
+            escribir.append($('<p style="font-size: 18px; opacity: 47%;">Creada por: ' + responseInfo.nombre_usuario + '</p>'));
             escribir.append($('<p style="font-size: 18px; opacity: 47%;">' + responseInfo.descripcion + '</p>'));
             escribir.append($('<p style="font-size: 18px; opacity: 47%;">Se requiere: ' + responseInfo.voluntarios + '</p>'));
             escribir.append($('<p style="font-size: 18px; opacity: 47%;">Termina en: ' + fechaCortada + '</p>'));

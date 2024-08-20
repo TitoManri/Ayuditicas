@@ -30,14 +30,13 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
 
     <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
-    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
 
-    <section id="NombreCamp" class="container containerD card rounded">
+    <section id="NombreCamp" class=" containerD card rounded" style="margin-left: 200px;">
         <br>
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
+            <i class="fa fa-solid fa-people-roof fa-7x" ></i>
             </div>
             <div class="col-9" id="InfoCamps">
 
@@ -45,9 +44,9 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
         </div>
         <br>
         <div class="row">
-            <div class="col-7">
+            <div class="col-7 px-4">
                 <?php
-                echo '<a href="./EnviarSoli.php?ID_Camp='.$ID_Camp.'" class="btn btn-light">
+                echo '<a href="./EnviarSoli.php?ID_Camp='.$ID_Camp.'" class="btn btn-light ">
                     Unirse a la causa
                 </a>';
                 ?>
@@ -57,22 +56,9 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
         <br>
     </section>
     <br>
-    <section id="PostsCamp" class="container containerD">
+    <section id="PostsCamp" class="containerD" style="margin-left: 200px;">
         <h1>Post sobre la campaña</h1><br>
-        <?php
-        for ($i = 0; $i < 2; $i++) {
-        ?>
-            <main class="col d-flex justify-content-center">
-                <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 10px;">
-                    <?php
-                    include './templates/Red_Social/publicacion.php';
-                    ?>
-                </div>
-            </main>
-            <hr>
-        <?php
-        }
-        ?>
+
     </section>
 
 
@@ -89,5 +75,6 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/verCampana.js"></script>
+<script src="./assets/js/asideEtiquetasCamps.js"></script>
 
 </html>
