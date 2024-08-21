@@ -6,7 +6,6 @@ if (empty($_SESSION['cedula'])) {
     exit(); 
 }
 
-
 $cedula = $_SESSION['cedula'];
 $nombre = $_SESSION['nombre'];
 $primerApellido = $_SESSION['primerApellido'];

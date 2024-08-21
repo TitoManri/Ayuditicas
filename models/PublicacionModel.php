@@ -124,6 +124,7 @@ class PublicacionModel extends Conexion {
     }
     
 
+    //Mostrar publicaciones sin Campania
     public function mostrarPublicaciones($cedula) {
         $query = "SELECT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, u.nombre_usuario, 
                  (CASE WHEN l.cedula IS NOT NULL THEN 1 ELSE 0 END) AS tieneLike
@@ -229,7 +230,7 @@ class PublicacionModel extends Conexion {
     
     
     public function verificarLike($id_publicacion, $cedula) {
-        self::getConexion(); 
+        self::getConexion(); // Asegúrate de que la conexión esté establecida
     
         $query = "SELECT COUNT(*) FROM LIKES WHERE id_publicacion = :id_publicacion AND cedula = :cedula";
         $stmt = self::$cnx->prepare($query);
