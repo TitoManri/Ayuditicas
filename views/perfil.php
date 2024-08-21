@@ -1,21 +1,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION['cedula'])) {
-    header('Location: ./inicioSesion.php');
-    exit(); 
-}else{
-    if (isset($_POST['id_rol']) == 1 || isset($_POST['id_rol']) == 2)  {
-        header('Location: ./redSocial.php');
-        exit(); 
-    }elseif (isset($_POST['id_rol']) == 3) {
-        header('Location: ./admin.php');
-        exit(); 
-    }else{
-        header('Location: ./inicioSesion.php');
-        exit(); 
-    }
-}
+
 
 $cedula = $_SESSION['cedula'];
 $nombre = $_SESSION['nombre'];
