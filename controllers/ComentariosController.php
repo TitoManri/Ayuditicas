@@ -19,6 +19,7 @@ switch ($op) {
         $comentario->setCedula($cedula);
         $comentario->setIdPublicacion($id_publicacion);
         $comentario->setIdPadre($id_padre);
+        $comentario->setTipoComentario($tipo_comentario);
         $comentario->setContenido($contenido);
 
         try {
