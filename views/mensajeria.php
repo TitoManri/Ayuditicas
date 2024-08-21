@@ -20,6 +20,7 @@
         include './templates/Header&Footer/header.php';
         ?>
 
+        <!-- pone los datos del usuario en el html-->
         <?php
         session_start();
         echo "<div id='usuarioActual' data-usuario='" . $_SESSION['nombreUsuario'] . "' data-img='" . $_SESSION['img'] . "' data-ced='" . $_SESSION['cedula'] . "'></div>";

@@ -197,7 +197,4 @@ class MensajeModel extends Conexion
 
 }
 
-//$prueba = new MensajeModel();
-//var_dump($prueba->mostrarMensajesChat(305590892,108070862));
-
 ?>
