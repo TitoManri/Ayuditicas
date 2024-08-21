@@ -47,23 +47,15 @@ $img = $_SESSION['img'];
                 <div class="card card-top">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <!-- Columna del perfil -->
-                            <div class="col-md-4">
+                            <!-- Columna del perfil y todo, en general como los datos -->
+                            <div class="col-md-12 datosPerfil">
                             <input type="hidden" id="cedula" value="<?php echo $cedula ?>">
-                                <div class="text-center">
-                                    <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" class="img-fluid avatar-xxl rounded-circle" alt="">
-                                    <br>
-                                    <h5 class="font-size-13 mb-2">Nombre Usuario</h5>
-                                </div>
-                            </div>
-                            <!-- Fin col -->
-
-                            <!-- Columna de la biografia -->
-                            <div class="col-md-8 datosPerfil">
                                 <div id="datosPerfil" class="ms-3">
-                                    
+                                        
                                 </div>
-                                <button id="editarBtn" data-bs-toggle="modal" data-bs-target="#editarPerfilModal" type="button" class="btn btn-success">Editar Perfil</button>
+                                <button id="editarBtn" data-bs-toggle="modal" data-bs-target="#editarPerfilModal" 
+                                type="button" class="btn btn-success">Editar Perfil</button>
+
                             </div>
                             <!-- Fin col -->
                         </div>
@@ -71,52 +63,12 @@ $img = $_SESSION['img'];
                 </div>
                 <!-- Fin card-top -->
             </div>
-            <div class="col-xl-8">
-                <!-- Mis publicaciones -->
-                <!--Cositas que estan arriba de mis publicaciones-->
-                <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
-                            <i class="fa-regular fa-rectangle-list fa-xl" style="color: #616d63;"></i></a>
-                    </li>
-                </ul><!-- fin ul -->
-                <section class="card">
-                    <div class="tab-content p-3">
-                        <div class="tab-pane active show">
-                            <div class="d-flex"> 
-                                <h4 class="card-title mb-4">Mis Publicaciones</h4> 
-                            </div>
-                            <section class="row">
-                            <?php include './templates/Perfil/publicaciones.php'; ?>
-                            <?php include './templates/Perfil/publicaciones.php'; ?>
-                            <?php include './templates/Perfil/publicaciones.php'; ?>
-                            </section>
-                        </div>
-                    </div>
-                </section>
-                <!-- Fin card -->
-            </div>
-            <!-- Fin col-xl-8 -->
-
-            <!-- Mis Campañas -->
-            <div class="col-xl-4">
-              <!-- Parte de arriba de la cosita -->
-              <ul class="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justfied" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                  <i class="fa-solid fa-clipboard fa-xl" style="color: #616d63;"></i></a>
-                </li>
-              </ul>
-              <section class="card">
-                <?php include './templates/perfil/campanias.php'; ?>
-                <?php include './templates/perfil/campanias.php'; ?>
-              </section>
-            </div>
-            <!-- Fin col-xl-4 -->
         </div>
         <!-- Fin row -->
     </div>
     <!-- Fin container -->
+    <div class="espacio">
+    </div>
 
     <!-- Este es el modal para la actualizacion de datos de perfil -->
     <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">

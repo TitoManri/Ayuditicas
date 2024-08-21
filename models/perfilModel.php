@@ -164,22 +164,21 @@ class perfilModel extends conexion {
                 $uploadDir = '../views/assets/img_app/usuarios/';
                 $fileTmpPath = $_FILES['img']['tmp_name'];
                 $fileName = $_FILES['img']['name'];
-                $fileNameCmps = explode(".", $fileName);
-                $fileExtension = strtolower(end($fileNameCmps));
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
                 $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
-    
+            
                 if (in_array($fileExtension, $allowedExts)) {
                     $uniqueId = uniqid();
                     $newFileName = $uniqueId . '.' . $fileExtension;
                     $destPath = $uploadDir . $newFileName;
-    
+            
                     if (move_uploaded_file($fileTmpPath, $destPath)) {
-                        $imgPDO = $newFileName; 
+                        $imgPDO = $destPath; // Aquí se guarda la ruta de la imagen
                     } else {
                         return json_encode(["exitoFormulario" => false, "message" => "Error al mover la imagen subida."]);
                     }
                 } else {
-                    return json_encode(["exitoFormulario" => false, "message" => "Extensión de archivo no permitida. Solo se permiten JPG, JPEG, PNG y GIF."]);
+                    return json_encode(["exitoFormulario" => false, "message" => "Extensión de archivo no permitida."]);
                 }
             } else if (isset($_FILES['img']) && $_FILES['img']['error'] !== UPLOAD_ERR_NO_FILE) {
                 return json_encode(["exitoFormulario" => false, "message" => "Error al subir la imagen."]);
@@ -242,7 +241,25 @@ class perfilModel extends conexion {
             return json_encode(["exitoFormulario" => false, "message" => "Error " . $ex->getCode() . ": " . $ex->getMessage()]);
         }
     }
-    
+    public function actualizarImagen($idPublicacion, $nombreImagen) {
+        $query = "UPDATE `PUBLICACIONES` SET `img` = :imgPDO WHERE `id_publicacion` = :id_publicacionPDO";
+        
+        try {
+            self::getConexion();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":imgPDO", $nombreImagen, PDO::PARAM_STR);
+            $resultado->bindParam(":id_publicacionPDO", $idPublicacion, PDO::PARAM_INT);
+            
+            $resultado->execute();
+            
+            self::desconectar();
+            return true;
+        } catch (PDOException $ex) {
+            self::desconectar();
+            return false;
+        }
+    }
     
     
     
