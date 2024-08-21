@@ -37,7 +37,7 @@ class Publicaciones_etiquetas extends Conexion
 
     public function getNombre()
     {
-        return $this -> nombre;
+        return $this->nombre;
     }
 
     //Setters
@@ -63,7 +63,7 @@ class Publicaciones_etiquetas extends Conexion
 
     public function setNombre($nombre)
     {
-        $this ->nombre = $nombre;
+        $this->nombre = $nombre;
     }
 
     //Conexion
@@ -115,6 +115,86 @@ class Publicaciones_etiquetas extends Conexion
                 $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();;
                 return json_encode($error);
             }
+        }
+    }
+
+    public function insertarEtiquetasPosts($etiquetasJson, $id_publicacion, $tipo)
+    {
+        $query2 = "";
+        if ($tipo = 1) {
+            $query2 = "SELECT `id_etiqueta` FROM `etiquetas` WHERE `nombre` = :nombre AND `tipo_etiqueta` = 'publicacion'";
+        } elseif ($tipo = 0) {
+            $query2 = "SELECT `id_etiqueta` FROM `etiquetas` WHERE `nombre` = :nombre AND `tipo_etiqueta` = 'blog'";
+        }
+        if (is_array($etiquetasJson)) {
+            try {
+                self::getConexion();
+                foreach ($etiquetasJson as $etiqueta) {
+                    $resultado2 = self::$cnx->prepare($query2);
+                    $resultado2->bindParam(':nombre', $etiqueta, PDO::PARAM_STR);
+                    $resultado2->execute();
+                    $etiquetaEncontrada = $resultado2->fetch();
+                    $id_etiqueta = $etiquetaEncontrada['id_etiqueta'];
+                    $cero = NULL;
+                    $query = "INSERT INTO PUBLICACIONES_ETIQUETAS (id_etiqueta, id_publicacion, id_publicacion_blog) 
+                              VALUES (:id_etiqueta, :id_publicacion, :id_publicacion_blog)";
+                    $resultado = self::$cnx->prepare($query);
+                    $resultado->bindParam(':id_etiqueta', $id_etiqueta, PDO::PARAM_INT);
+                    if ($tipo = 1) {
+                        $resultado->bindParam(':id_publicacion', $id_publicacion, PDO::PARAM_INT);
+                        $resultado->bindParam(':id_publicacion_blog', $cero, PDO::PARAM_INT);
+                    } elseif ($tipo = 0) {
+                        $resultado->bindParam(':id_publicacion_blog', $id_publicacion, PDO::PARAM_INT);
+                        $resultado->bindParam(':id_publicacion', $cero, PDO::PARAM_INT);
+                    }
+                    $resultado->execute();
+                }
+                return true;
+            } catch (Exception $ex) {
+
+                self::desconectar();
+                $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+                return json_encode($error);
+            }
+        } else {
+            return json_encode("Error: El formato de etiquetas no es válido.");
+        }
+    }
+
+    public function obtenerIdsPorEtiqueta($id_etiqueta)
+    {
+        try {
+            self::getConexion();
+            $query = "";
+            if (is_array($id_etiqueta)) {
+                $query = "SELECT id_publicacion 
+            FROM PUBLICACIONES_ETIQUETAS 
+            WHERE id_etiqueta IN (";
+                foreach ($id_etiqueta as $id) {
+                    if ($id_etiqueta[0] == $id) {
+                        $query .= $id;
+                    } else {
+                        $query .= ", " . $id;
+                    }
+                }
+                $query .= ")";
+            }else{
+                $query = "SELECT id_publicacion 
+                FROM PUBLICACIONES_ETIQUETAS 
+                WHERE id_etiqueta IN ($id_etiqueta)";
+            }
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            $filas = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            $data = [];
+            foreach ($filas as $dato) {
+                $data[] = $dato['id_publicacion'];
+            }
+            return $data;
+        } catch (Exception $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
         }
     }
 }

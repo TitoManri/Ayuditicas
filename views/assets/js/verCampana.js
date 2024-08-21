@@ -33,12 +33,12 @@ function confirmarSiUsuarioEstaInscrito(cedulaCreador) {
         data: { ID_Camp: id, cedula: cedula},
         dataType: 'json',
         success: function (responseBoolean) {
-            debugger;
             let boton = $('#BotonCampana')
             if(cedulaCreador == cedula){
                 boton.append('<form method="POST" id="TerminarCamp"><input type="hidden" name="ID_Camp" id="ID_Camp" value="'+id+'"></input><button type="submit" class="btn btn-light">Terminar Campaña</button></form>');
+                $('#BotonTerminar').append('<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal">Subir una publicacion</button>');
             }else if(responseBoolean){
-                boton.append('<a href=""class="btn btn-light ">Subir una publicacion</a>');
+                boton.append('<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#crearPublicacionModal">Subir una publicacion</button>');
             }else{
                 boton.append('<a href="./EnviarSoli.php?ID_Camp='+id+'"class="btn btn-light ">Unirse a la causa</a>')
             }

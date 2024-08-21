@@ -185,7 +185,7 @@ class Campania extends Conexion
         $query = "INSERT INTO `campanias`
         (`cedula_creador_camp`, `nombre`, `descripcion`, `voluntarios_requeridos`, `fecha_hora_culminacion`, `terminada`) 
         VALUES (:cedula, :nombre, :descripcion, :voluntarios, :fecha, :terminada)";
-        $query2 = "SELECT LAST_INSERT_ID() as ID";
+        $query2 = "SELECT MAX(id_campania) as ID FROM campanias";
         try {
             self::getConexion();
             $cedula = $this->getCedulaCreadorCamp();

@@ -1,14 +1,16 @@
 function cargarPublicacionesSinCampania() {
+    let params = new URLSearchParams(location.search);
+    let id = params.get("ID_Camp");
     $.ajax({
         url: '../controllers/PublicacionController.php',
         type: 'POST',
-        data: { op: 'mostrarPublicaciones', cedula: $('#cedula').val() }, // Enviar cedula junto con la solicitud
+        data: {op: 'mostrarPublicacionesCamp', id_campania: id, cedula: userData.cedula }, // Enviar cedula junto con la solicitud
         success: function(response) {
             let publicaciones = JSON.parse(response); //Parsea el JSON
             let container = $('#publicacionesContainer'); //Carga el container en una variable 
             container.empty();  //Elimina todo lo del container para asegurarse de que no haya nada adentro
 
-            if (Array.isArray(publicaciones)) { //Verifica que si es un array ya que se hizo un parse
+            if (Array.isArray(publicaciones) && publicaciones.length != 0) { //Verifica que si es un array ya que se hizo un parse
                 publicaciones.forEach(function(publicacion) { //Por cada publicacion carga un card
                     let imgHtml = publicacion.img ? `<img src="../views/assets/img_app/publicaciones/${publicacion.img}" class="card-img-top border-top border-bottom border-black" alt="${publicacion.titulo}">` : '';
                     
@@ -74,7 +76,7 @@ function cargarPublicacionesSinCampania() {
 }
 
 $(document).ready(function () {
-    let cedula = $('#cedula').val(); //Carga la cedula
+    let cedula = userData.cedula //Carga la cedula
 
     //Carga las publicaciones 
     cargarPublicacionesSinCampania();
@@ -171,10 +173,6 @@ $(document).ready(function () {
             $('#comunidadSection').hide();
         }
     });
-});
-
-$('#crearPublicacionModal').on('hidden.bs.modal', function () {
-        cargarPublicacionesSinCampania();
 });
 
 function displaySelectedImage(event, elementId) {

@@ -144,7 +144,7 @@ $img = $_SESSION['img'];
                             </div>
                             <div class="mb-3">
                                 <label for="descripcionPublicacion" class="form-label">Etiquetas (Max.3)</label>
-                                <input type="text" id="tags" class="form-control" />
+                                <input type="text" id="tags" name="tags" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -183,6 +183,7 @@ $img = $_SESSION['img'];
     <script src="./assets/js/publicaciones.js"></script>
     <script src="./assets/js/botonTop.js"></script>
     <script src="./assets/js/asideEtiquetasCamps.js"></script>
+    <script src="./assets/js/rellenarEtiquetas.js"></script>
 </body>
 
 </html>
