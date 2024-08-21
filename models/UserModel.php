@@ -67,6 +67,7 @@ class UserModel extends Conexion
         self::$cnx = null;
     }
 
+    //función para listar los contactos con los que el usuario ha tenido interacción
     public function listarContactos($cedulaUsuarioActual)
     {
         $query = "SELECT DISTINCT u.nombre_usuario, u.cedula, u.img 
@@ -99,7 +100,7 @@ class UserModel extends Conexion
         }
     }
 
-    //MOSTRAR TODOS LOS CONTACTOS
+    //MOSTRAR TODOS LOS CONTACTOS (todos los usuarios existentes)
     public function listasTodosUsuarios()
     {
         $query = "SELECT * FROM `usuarios`";

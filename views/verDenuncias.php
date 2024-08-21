@@ -18,6 +18,19 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
 </head>
 
+<!-- inicio de la session para el usuario logueado-->
+<?php
+session_start();
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$img = $_SESSION['img'];
+
+//valida la imagen, si está vacía se pone otra img temporal
+if (empty($_SESSION['img'])) {
+  $img = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+}
+?>
+
+
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
@@ -65,11 +78,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://secrecyjewels.es/blog/wp-content/uploads/2022/10/esencia-de-una-persona.jpg"
+            <img src="<?php echo $img ?>"
               class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info text-white">
-            <p>Nombre Administrador</p>
+            <p><?php echo $nombreUsuario ?></p>
           </div>
         </div>
 
@@ -85,11 +98,9 @@
           </div>
         </div>
 
-        <!-- Sidebar Menu -->
+        <!-- Aside -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -100,12 +111,14 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <!-- enlace a la página principal-->
                   <a href="./index.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Página Principal</p>
                   </a>
                 </li>
                 <li class="nav-item">
+                  <!-- enlace a la red social-->
                   <a href="./redSocial.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Red Social</p>
@@ -127,6 +140,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
+              <!-- header del contenido principal-->
               <h1 class="ml-5 mt-3">Ver todas las denuncias</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -135,6 +149,7 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
+      <!-- Data table para visualizar los detalles de las denunciasa-->
       <div class="card card-dark mx-5 mb-5">
         <div class="card-header">
           <h3 class="card-title">Denuncias aceptadas</h3>

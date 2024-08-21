@@ -20,6 +20,18 @@
 
 </head>
 
+<!-- inicio de la session para el usuario logueado-->
+<?php
+session_start();
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$img = $_SESSION['img'];
+
+//valida la imagen, si está vacía se pone otra img temporal
+if (empty($_SESSION['img'])) {
+  $img = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+}
+?>
+
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
@@ -75,11 +87,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://secrecyjewels.es/blog/wp-content/uploads/2022/10/esencia-de-una-persona.jpg"
+            <img src="<?php echo $img ?>"
               class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info text-white">
-            <p>Nombre Administrador</p>
+            <p><?php echo $nombreUsuario ?></p>
           </div>
         </div>
 
@@ -150,6 +162,7 @@
         <form method="post" action="" id="formDenuncia">
           <div class="row gx-5">
             <div class="col">
+              <!-- se pasa el id de la denuncia para recuperarlo en el js-->
               <!-- id denuncia-->
               <?php
               $idDen = $_POST['idDenuncia'];
@@ -180,7 +193,7 @@
               <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
             </div>
             <div class="col">
-              <!-- ubicación (PENDIENTE)-->
+              <!-- ubicación-->
               <label for="ubicacion" class="form-label text-white">
                 <h3 class="mt-1">Ubicación</h3>
               </label>
