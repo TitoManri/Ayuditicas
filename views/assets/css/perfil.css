@@ -16,8 +16,8 @@ body{
  }
 
  .avatar-xxl {
-     height: 10rem;
-     width: 10rem;
+    height: 10rem;
+    width: 10rem;
  }
  
  .card-top{
@@ -80,3 +80,6 @@ body{
     justify-content: center;
 }
 
+.espacio{
+    margin-bottom: 50px;
+}

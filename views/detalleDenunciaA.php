@@ -15,8 +15,22 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="./assets/css/adminlte.min.css">
   <link rel="stylesheet" href="./assets/css/detDen.css">
+  <!-- MAPA-->
+  <link rel="stylesheet" href="./assets/css/detDenApi.css">
 
 </head>
+
+<!-- inicio de la session para el usuario logueado-->
+<?php
+session_start();
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$img = $_SESSION['img'];
+
+//valida la imagen, si está vacía se pone otra img temporal
+if (empty($_SESSION['img'])) {
+  $img = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+}
+?>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
@@ -73,11 +87,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://secrecyjewels.es/blog/wp-content/uploads/2022/10/esencia-de-una-persona.jpg"
+            <img src="<?php echo $img ?>"
               class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info text-white">
-            <p>Nombre Administrador</p>
+            <p><?php echo $nombreUsuario ?></p>
           </div>
         </div>
 
@@ -148,6 +162,7 @@
         <form method="post" action="" id="formDenuncia">
           <div class="row gx-5">
             <div class="col">
+              <!-- se pasa el id de la denuncia para recuperarlo en el js-->
               <!-- id denuncia-->
               <?php
               $idDen = $_POST['idDenuncia'];
@@ -178,15 +193,15 @@
               <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
             </div>
             <div class="col">
-              <!-- ubicación (PENDIENTE)-->
+              <!-- ubicación-->
               <label for="ubicacion" class="form-label text-white">
-                <h3>Ubicación</h3>
+                <h3 class="mt-1">Ubicación</h3>
               </label>
               <br>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d780739.7870962442!2d-4.508766387499999!3d40.14752270238211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287bd0788e65%3A0xa28363ebaaa7adae!2sTeatro%20Real!5e0!3m2!1ses-419!2scr!4v1720387958264!5m2!1ses-419!2scr"
-                width="300" height="150" style="border:0;" allowfullscreen=""
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div id="map" class="m-2 ml-5">
+                <gmp-map center="40.731,-73.997" zoom="8" map-id="DEMO_MAP_ID">
+                  <gmp-advanced-marker></gmp-advanced-marker>
+              </div>
             </div>
           </div>
         </form>
@@ -221,6 +236,9 @@
 <!-- AdminLTE App -->
 <script src="./assets/js/adminlte.min.js"></script>
 <!-- ver denuncias-->
-<script src="./assets/js/detalleDenuncia.js"></script>
+<script src="./assets/js/detalleDen.js"></script>
+<!-- MAPA-->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3"></script>
 
 </html>

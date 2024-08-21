@@ -206,9 +206,9 @@ class SolicitudDenuncia extends Conexion
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":idDenuncia", $id, PDO::PARAM_INT);
-            self::$cnx->beginTransaction();//desactiva el autocommit
+            self::$cnx->beginTransaction();
             $resultado->execute();
-            self::$cnx->commit();//realiza el commit y vuelve al modo autocommit
+            self::$cnx->commit();
             self::desconectar();
             return $resultado->rowCount();
         } catch (PDOException $Exception) {

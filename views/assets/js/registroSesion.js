@@ -5,15 +5,16 @@ let telefono = document.getElementById("telefono");
 
 
 function validarContrasenia(){
-  if(contrasenia.value != confirmar_contrasenia.value) {
-    confirmar_contrasenia.setCustomValidity("Las contraseñas no coinciden");
-      if(contrasenia.value.length !== 8){
-        contrasenia.setCustomValidity("La contraseña debe tener minimo 8 caracteres.");
-      }else{
-        contrasenia.setCustomValidity("");
-      }
+  if (contrasenia.value.length < 8) {
+    contrasenia.setCustomValidity("La contraseña debe tener mínimo 8 caracteres.");
   } else {
-    confirmar_contrasenia.setCustomValidity('');
+    contrasenia.setCustomValidity(""); // Restablecer validez personalizada si es válida
+  }
+
+  if (contrasenia.value != confirmar_contrasenia.value) {
+    confirmar_contrasenia.setCustomValidity("Las contraseñas no coinciden.");
+  } else {
+    confirmar_contrasenia.setCustomValidity(''); // Restablecer validez personalizada si es válida
   }
 }
 

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detalle denuncia | Administrador</title>
+  <title>Confirmar denuncia | Administrador</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -18,6 +18,18 @@
   <link rel="stylesheet" href="./assets/css/detDenApi.css">
 
 </head>
+
+<!-- inicio de la session para el usuario logueado-->
+<?php
+session_start();
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$img = $_SESSION['img'];
+
+//valida la imagen, si está vacía se pone otra img temporal
+if (empty($_SESSION['img'])) {
+  $img = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+}
+?>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
@@ -74,11 +86,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://secrecyjewels.es/blog/wp-content/uploads/2022/10/esencia-de-una-persona.jpg"
+            <img src="<?php echo $img ?>"
               class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info text-white">
-            <p>Nombre Administrador</p>
+            <p><?php echo $nombreUsuario ?></p>
           </div>
         </div>
 
@@ -155,14 +167,14 @@
               echo "<input type='hidden' value='" . $idDen . "' id='idDenunciaEsp' name='idDenunciaEsp'>";
               ?>
               <!-- tipo de denuncia-->
-              <label for="tipoDenuncia" class="form-label">
+              <label for="tipoDenuncia" class="form-label text-white">
                 <h3>Tipo denuncia</h3>
               </label>
               <input class="form-control" id="tipoDenuncia" name="tipoDenuncia" readonly>
             </div>
             <div class="col">
               <!-- imagen-->
-              <label>
+              <label for="imgDenuncia" class="form-label text-white">
                 <h3>Imágen</h3>
               </label>
               <div class="imgDenunciaContainer">
@@ -173,14 +185,14 @@
           <div class="row gx-5">
             <div class="col">
               <!-- detalle-->
-              <label for="detalle" class="form-label">
+              <label for="detalle" class="form-label text-white">
                 <h3>Detalle</h3>
               </label>
               <textarea class="form-control" name="detalle" id="detalle" rows="4" readonly></textarea>
             </div>
             <div class="col">
-              <!-- ubicación (PENDIENTE)-->
-              <label for="ubicacion" class="form-label">
+              <!-- ubicación-->
+              <label for="ubicacion" class="form-label text-white">
                 <h3 class="mt-1">Ubicación</h3>
               </label>
               <br>
@@ -228,7 +240,7 @@
 <!-- AdminLTE App -->
 <script src="./assets/js/adminlte.min.js"></script>
 <!-- ver denuncias-->
-<script src="./assets/js/confDen.js"></script>
+<script src="./assets/js/confirmarDenuncia.js"></script>
 <!-- MAPA-->
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3"></script>

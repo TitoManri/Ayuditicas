@@ -1,9 +1,12 @@
 <?php
 session_start();
-
-if (empty($_SESSION['cedula'])) {
+if (!empty($_SESSION['cedula'])) {
+    if (($_SESSION['nombre_rol']) == 'Administrador') {
+        header('Location: ./verDenuncias.php');
+        exit(); 
+    }
+}else{
     header('Location: ./inicioSesion.php');
-    exit(); 
 }
 
 $cedula = $_SESSION['cedula'];
@@ -17,7 +20,7 @@ $telefono = $_SESSION['telefono'];
 $correo = $_SESSION['correo'];
 $numSeguidores = $_SESSION['numSeguidores'];
 $img = $_SESSION['img'];
-
+$rol = $_SESSION['nombre_rol'];
 ?>
 
 <!DOCTYPE html>

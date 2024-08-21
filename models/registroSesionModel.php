@@ -188,7 +188,7 @@ public function guardarUsuario() {
         // Insertar registro si todo está bien
         $queryInsert = "INSERT INTO usuarios (cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, contrasena,num_seguidores,fecha_creacion) 
                         VALUES (:cedulaPDO, :nombrePersonaPDO, :primerApellidoPDO, :segundoApellidoPDO, :generoPDO, STR_TO_DATE(:fechaNacimientoPDO, '%Y-%m-%d'), :nombreUsuarioPDO, :telefonoPDO, :correoPDO, :contraseniaPDO,0,now());";
-
+      
         $cedulaPDO = $cedulaValidacion;
         $nombrePersonaPDO = $this->getNombrePersona();
         $primerApellidoPDO = $this->getPrimerApellido();
@@ -215,8 +215,14 @@ public function guardarUsuario() {
         $resultadoInsert->bindParam(":contraseniaPDO", $contrasenaEncriptada);
 
         $resultadoInsert->execute();
-        self::desconectar();
 
+        $cedula = $cedulaPDO;
+        $queryInsertRol = "INSERT INTO `USUARIO_ROLES`(`cedula`, `id_rol`) VALUES ($cedula,1)";
+
+        $resultadoInsertRol = self::$cnx->prepare($queryInsertRol);
+        $resultadoInsertRol->execute();
+
+        self::desconectar();
         // Respuesta exitosa
         return json_encode(array("exito" => true, "msg" => "Usuario registrado correctamente"));
 

@@ -1,3 +1,4 @@
+// Define cargarPublicacionesSinCampania in a common scope
 function cargarPublicacionesSinCampania() {
     $.ajax({
         url: '../controllers/PublicacionController.php',
@@ -122,9 +123,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     let cedula = $('#cedula').val();    
-
-
-    
     $('#crearPublicacionForm').on('submit', function (e) {
         e.preventDefault();
         let formData = new FormData($(this)[0]);

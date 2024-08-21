@@ -14,46 +14,5 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Navbar Centro -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link 
-                    <?php 
-                      echo $activoBlogP; 
-                    ?>" aria-current="page" href="./mainBlog.php"><i class="fa fa-solid fa-house fa-2xl"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link 
-                    <?php 
-                      echo $activoBlogs; 
-                    ?>" aria-current="page" href="./VerBlogs.php"><fa-2xl class="fa fa-solid fa-folder-open fa-2xl"></i></a>
-                </li>
-            </ul>
-        </div>  
-
-        <!-- Navbar Derecha -->
-        <ul class="navbar-nav">
-            <!-- Perfil --><p class="ayuditicaHeader desconocido" href="">AYUDITICAS</p>
-            <li class="nav-item dropdown ">
-                <a class="nav-link icons 
-                <?php 
-                      echo $activoPerfil; 
-                    ?>" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static"
-                    aria-expanded="false">
-                    <i class="fa fa-solid fa-user fa-2xl"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><a class="dropdown-item" href="./perfilBlog.php"><i class="fa-solid fa-user"
-                                style="color: #000000;"></i> Perfil</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket"
-                                style="color: #000000;"></i> Cerrar sesion</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
     </div>
 </nav>
