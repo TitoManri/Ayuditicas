@@ -62,7 +62,7 @@
                     <textarea class="form-control" id="detalle" rows="4" name="detalle"></textarea>
                 </div>
                 <div class="col">
-                    <!-- ubicación (PENDIENTE)-->
+                    <!-- ubicación-->
                     <label for="ubicacion" class="form-label">
                         <h3>Ubicación</h3>
                     </label>
@@ -101,8 +101,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 "></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- js -->
 <script src="./assets/js/crearDenuncia.js"></script>
-<!-- api key: AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I-->
+ <!-- api maps-->
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&v=weekly&libraries=marker">
     </script>
