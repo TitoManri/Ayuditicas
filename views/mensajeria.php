@@ -19,11 +19,70 @@ session_start();
 
 <body>
     <header class="mainHeader">
-        <?php
-        //$activoMensajeria = 'active';
-        include './templates/Header&Footer/header.php';
-        ?>
+        <!-- Source: https://stackoverflow.com/questions/30038275/change-a-div-in-php-include-->
 
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-custom ">
+            <div class="container-fluid">
+                <!-- Navbar Izquierda -->
+                <a class="navbar-brand" href="./index.php">
+                    <img src="./assets/img/logoAyuditicas_Verde.png" width="55px" alt="Logo_Ayuditicas">
+                </a>
+                <a class="navbar-brand ayuditicaHeader" href="./index.php">AYUDITICAS</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Centro -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./redSocial.php"><i class="fa fa-solid fa-house fa-2xl"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./camps.php"><i class="fa fa-solid fa-people-roof fa-2xl"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./mensajeria.php"><i class="fa fa-solid fa-comment fa-2xl" style="color:white"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Navbar Derecha -->
+                <ul class="navbar-nav">
+                    <!-- Perfil -->
+                    <p class="ayuditicaHeader desconocido" href="">AYUDITICAS</p>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link icons" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static"
+                            aria-expanded="false">
+                            <i class="fa fa-solid fa-user fa-2xl"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="./perfil.php"><i class="fa-solid fa-user"
+                                        style="color: #000000;"></i> Perfil</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./crearCamp.php"><i class="fa fa-solid fa-people-roof"
+                                        style="color: #000000;"></i> Crear Campaña</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./verSolicitudesCampanias.php"><i class="fa fa-solid fa-people-roof"
+                                        style="color: #000000;"></i> Ver solicitudes de campañas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./cerrarSesion.php"><i class="fa-solid fa-arrow-right-from-bracket"
+                                        style="color: #000000;"></i> Cerrar sesion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
     </header>
 
     <?php

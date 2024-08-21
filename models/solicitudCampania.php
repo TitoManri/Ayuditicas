@@ -175,9 +175,6 @@ class SolicitudCampania extends Conexion
             $razon_interes = $this->getRazonInteres();
             $habilidades = $this->getHabilidades();
 
-            if ($id_publicacion == null) {
-                $id_publicacion = 0;
-            }
             $resultado->bindParam(':cedula', $cedula, PDO::PARAM_INT);
             $resultado->bindParam(':id_publicacion', $id_publicacion, PDO::PARAM_INT);
             $resultado->bindParam(':id_campania', $id_campania, PDO::PARAM_INT);

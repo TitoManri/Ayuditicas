@@ -4,7 +4,7 @@ require_once '../models/solicitudCampania.php';
 switch ($_GET["op"]) {
     case 'enviarSolicitud': {
             $cedula = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : "";
-            $id_publicacion = isset($_POST["id_publicacion"]) ? trim($_POST["id_publicacion"]) : "";
+            $id_publicacion = isset($_POST["id_publicacion"]) ? trim($_POST["id_publicacion"]) : NULL;
             $id_campania = isset($_POST["id_campania"]) ? trim($_POST["id_campania"]) : "";
             $contacto = isset($_POST["Contacto"]) ? trim($_POST["Contacto"]) : "";
             $razon_interes = isset($_POST["RazonInteres"]) ? trim($_POST["RazonInteres"]) : "";

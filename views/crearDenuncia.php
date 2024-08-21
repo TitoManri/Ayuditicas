@@ -20,7 +20,7 @@
     <header class="mainHeader">
         <?php
         include './templates/Header&Footer/header.php'
-            ?>
+        ?>
     </header>
 
     <div class="container_label col-2">
@@ -41,6 +41,17 @@
                         <option value="Basura en las calles">Basura en las calles</option>
                         <option value="Maltrato animal">Maltrato animal</option>
                         <option value="Deforestación">Deforestación</option>
+                        <option value="Deforestación_Ilegal">Deforestación Ilegal</option>
+                        <option value="Contaminación_del_Agua">Contaminación del Agua</option>
+                        <option value="Contaminación_del_Aire">Contaminación del Aire</option>
+                        <option value="Caza_y_Pesca_Ilegal">Caza y Pesca Ilegal</option>
+                        <option value="Vertido_de_Residuos_Tóxicos">Vertido de Residuos Tóxicos</option>
+                        <option value="Construcción_Ilegal_en_Áreas_Protegidas">Construcción Ilegal en Áreas Protegidas</option>
+                        <option value="Maltrato_y_Tráfico_de_Fauna_Silvestre">Maltrato y Tráfico de Fauna Silvestre</option>
+                        <option value="Contaminación_del_Suelo">Contaminación del Suelo</option>
+                        <option value="Destrucción_de_Ecosistemas">Destrucción de Ecosistemas</option>
+                        <option value="Ruido_Ambiental">Ruido Ambiental</option>
+
                     </select>
                 </div>
                 <div class="col">
@@ -86,7 +97,7 @@
     <footer class="mainfooter fixed-bottom">
         <?php
         include './templates/Header&Footer/footer.php'
-            ?>
+        ?>
     </footer>
 
 </body>
@@ -102,9 +113,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- js -->
-<script src="./assets/js/crearDenuncia.js"></script>
- <!-- api maps-->
+<script src="./assets/js/crearDen.js"></script>
+<!-- api maps-->
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkOC08uDEy_YWwrv9IGqWQiQHSwIVqY7I&loading=async&callback=initMap&v=weekly&libraries=marker">
-    </script>
+</script>
+
 </html>

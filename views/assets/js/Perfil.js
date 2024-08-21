@@ -107,7 +107,7 @@ $(document).ready(function () {
             <div class="row mb-3">
                 <div class="col">
                     <label for="contrasena-nueva" class="col-form-label">Nombre de Usuario:</label>
-                    <input type="password" name="nombreUsuario" class="form-control" id="contrasena-nueva">
+                    <input type="text" name="nombreUsuario" class="form-control" id="contrasena-nueva" value="${datosPerfil.nombre_usuario}" disabled>
                 </div>
             </div>`
         );

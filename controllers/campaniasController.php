@@ -66,6 +66,7 @@ switch ($_GET["op"]) {
     case 'conseguirCampsAside': {
             $camp = new Campania();
             $camps = $camp->SelectCampaniasAside();
+            $data = [];
             foreach ($camps as $reg) {
                 $data[] = array(
                     'id_campania' => $reg->getIdCampania(),

@@ -30,10 +30,7 @@
                     ?>" href="./camps.php"><i class="fa fa-solid fa-people-roof fa-2xl"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link 
-                    <?php 
-                      echo $activoMensajeria; 
-                    ?>" href="./mensajeria.php"><i class="fa fa-solid fa-comment fa-2xl"></i></a>
+                    <a class="nav-link <?php echo $activoMensajeria; ?>" href="./mensajeria.php"><i class="fa fa-solid fa-comment fa-2xl"></i></a>
                 </li>
             </ul>
         </div>
@@ -65,7 +62,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="./index.php"><i class="fa-solid fa-arrow-right-from-bracket"
+                    <li><a class="dropdown-item" href="./cerrarSesion.php"><i class="fa-solid fa-arrow-right-from-bracket"
                                 style="color: #000000;"></i> Cerrar sesion</a></li>
                 </ul>
             </li>

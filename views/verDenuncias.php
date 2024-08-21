@@ -123,6 +123,10 @@ if (empty($_SESSION['img'])) {
                     <i class="far fa-circle nav-icon"></i>
                     <p>Red Social</p>
                   </a>
+                  <a href="./cerrarSesion.php" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cerrar Sesión</p>
+                  </a>
                 </li>
               </ul>
             </li>

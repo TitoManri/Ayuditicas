@@ -105,7 +105,7 @@ $img = $_SESSION['img'];
         </div>
     </div>
 
-    <footer class="mainfooter">
+    <footer class="mainfooter fixed-bottom">
         <?php include './templates/Header&Footer/footer.php'; ?>
     </footer>
 
