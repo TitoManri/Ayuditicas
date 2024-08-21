@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,13 +24,11 @@
         include './templates/Header&Footer/header.php';
         ?>
 
-        <!-- pone los datos del usuario en el html-->
-        <?php
-        session_start();
-        echo "<div id='usuarioActual' data-usuario='" . $_SESSION['nombreUsuario'] . "' data-img='" . $_SESSION['img'] . "' data-ced='" . $_SESSION['cedula'] . "'></div>";
-        ?>
-
     </header>
+
+    <?php
+    echo "<div id='usuarioActual' data-usuario='" . $_SESSION['nombreUsuario'] . "' data-img='" . $_SESSION['img'] . "' data-ced='" . $_SESSION['cedula'] . "'></div>";
+    ?>
 
     <div class="container-fluid d-flex flex-column" id="contenedor">
         <div class="row flex-grow-1 m-0">
