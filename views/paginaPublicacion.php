@@ -1,17 +1,14 @@
 <?php
 session_start();
 
-// Redirigir si la sesión no está iniciada
 if (empty($_SESSION['cedula'])) {
     header('Location: ./inicioSesion.php');
     exit();
 }
 
-// Obtener el ID de la publicación desde la URL
 $idPublicacion = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
+$cedula = $_SESSION['cedula'];
 if ($idPublicacion <= 0) {
-    // Manejar el caso cuando el ID no es válido
     echo "ID de publicación no válido.";
     exit();
 }
@@ -30,7 +27,8 @@ if ($idPublicacion <= 0) {
     <link rel="stylesheet" href="./assets/css/mainpage.css">
     <link rel="stylesheet" href="./assets/css/theme.css">
     <link rel="stylesheet" href="./assets/css/Etiquetas.css">
-    <link rel="stylesheet" href="./assets/css/publicacionCompleta.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.4/tagify.min.css" rel="stylesheet">
 
 </head>
 
@@ -46,15 +44,31 @@ if ($idPublicacion <= 0) {
             $nombrePagina = 'Publicacion Completa';
             include './templates/Header&Footer/subheader.php'; 
     ?>
-    <section id="publicacion-completa">
-        <main class="col d-flex justify-content-center">
-            <div class="col d-flex flex-column align-items-center" style="margin-bottom: 30px; padding-top: 10px;">
-            <input type="hidden" id="idPublicacion" value="<?php echo $idPublicacion ?>">
-            <div id="publicacion-detalle" class="row">
+<section id="publicacion-completa">
+    <main class="container d-flex align-items-stretch">
+        <div class="row flex-fill">
+            <div class="col-lg-8 d-flex flex-column" style="margin-bottom: 30px; padding-top: 10px;">
+                <input type="hidden" id="idPublicacion" value="<?php echo $idPublicacion ?>">
+                <input type="hidden" id="cedula" value="<?php echo $cedula ?>">
+                <div id="publicacion-detalle" class="flex-fill"></div>
             </div>
+            <div class="col-lg-4 d-flex flex-column" id="caja-comentarios" style="border: 1px solid #000000; margin-bottom: 30px; padding-top: 10px;">
+                <h5>Comentarios</h5>
+                <div id="comentariosContainer" class="mb-3"></div>
+                <form id="formComentario" class="mt-auto">
+                    <div class="mb-3">
+                        <textarea class="form-control" id="nuevoComentario" rows="3" placeholder="Escribe un comentario..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Comentar</button>
+                </form>
             </div>
-        </main>
-    </section>
+        </div>
+    </main>
+</section>
+
+
+
+
 
 
     <!-- Modal Reporte -->
@@ -69,14 +83,14 @@ if ($idPublicacion <= 0) {
 </body>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-</script>
-<script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assets/js/like.js"></script>
-<script src="./assets/js/publicacionCompleta.js"></script>
-<script src="./assets/js/comentarios.js"></script>
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.9.4/tagify.min.js"></script>
+    <script src="./assets/js/botonTop.js"></script>
+    <script src="./assets/js/publicacionesCompleta.js"></script>
 </html>

@@ -27,7 +27,7 @@
             <div class="row">
             <div class="col-lg-9 px-0">
                 <h1 class="display-4 fst-italic letra-bloque">Bienvenidos al Blog Official de Ayuditicas</h1>
-                <p class="lead my-3 letra-bloque">Aqui podras encontrar la informacion mas reciente sobre nuestra red social</p>
+                <p class="lead my-3 letra-bloque">Aqui podras encontrar informacion sobre nuestra red social</p>
             </div>
             <div class="col text-center">
                 <img class="" src="./assets/img/logoAyuditicas_Cafe.png" width="200px" alt="Logo_Ayuditicas">
@@ -42,24 +42,28 @@
                 </h3>
 
                 <article class="blog-post">
-                    <h2 class="display-5 link-body-emphasis mb-1">¿Cual es nuestro proposito?</h2>
-                    <p class="blog-post-meta">Julio 11, 2024 <a href="#">Grupo 4</a></p>
+                    <h2 class="display-5 link-body-emphasis mb-1">¿Quienes somos?</h2>
+                    <p class="blog-post-meta">Agosto 28, 2024 <a href="#">Grupo 4</a></p>
 
                     <p></p>
                     <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis mollis leo. Nunc feugiat est arcu, at hendrerit libero 
-                        efficitur in. Pellentesque nisl tellus, cursus a tincidunt eget, faucibus nec tellus. Ut condimentum enim mauris, eget pulvinar 
-                        ligula posuere sed. Donec iaculis justo in neque rhoncus, sit amet finibus lectus sodales. Aenean vestibulum velit neque, et 
-                        auctor augue tincidunt eu. Donec in lorem id est imperdiet malesuada. Morbi in iaculis felis. Vivamus aliquet, lacus eu 
-                        vehicula semper, nunc enim ultrices diam, at condimentum est urna non tortor. Aliquam consequat nisl eu quam elementum, 
-                        nec posuere lorem iaculis.</p>
-                    <h2>Nosotros</h2>
+                    <p>Somos un grupo de estudiantes apasionados por la tecnología y comprometidos con el desarrollo de nuestro país,
+                        Trabajando en la creación de "Ayuditicas", una red social dedicada a la ayuda al medio ambiente. 
+                        A través de esta plataforma, buscamos fomentar la colaboración de costarricense de todas partes del pais 
+                        y la conciencia ambiental, ofreciendo herramientas y recursos que permitan a todos contribuir a la protección 
+                        y mejora de nuestro entorno.
+                    </p>
+
+                    <h2>¿Cual es nuestro proposito?</h2>
+                    <p></p>
+
                     <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
                          Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.</p>
-                         <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
-                         Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.</p>
+                         Etiam sodales quam vitae quam sodales bibendum.
+                        
+                        </p>
+
+                    <h2>¿Que nos impulso a crear este proyecto?</h2>
                          <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
                          Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
                          Etiam sodales quam vitae quam sodales bibendum.</p>

@@ -20,22 +20,27 @@ $(document).ready(function () {
 
                         // Estructura los datos del perfil
                         let datosPerfil_card = `
-                            <h4 class="card-title mb-2 text-center">${perfilD.nombre} ${perfilD.primer_apellido} ${perfilD.segundo_apellido}</h4>
-                            <div class="row my-4">
-                                <div class="col-12 d-flex justify-content-between">
-                                    <p class="text-muted mb-2 fw-medium">Se unió el: ${perfilD.fecha_creacion}</p>
-                                    <p class="text-muted fw-medium mb-2">Fecha Nacimiento: ${perfilD.fecha_nacimiento}</p>
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-between">
-                                    <p class="text-muted fw-medium mb-2">Género: ${perfilD.genero}</p>
-                                    <p class="text-muted fw-medium mb-2">Teléfono: ${perfilD.telefono}</p>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <p class="text-muted fw-medium mb-2">Correo: ${perfilD.correo}</p>
-                                </div>
+                        <div class="text-center">
+                            <img src="${perfilD.img}" class="img-fluid avatar-xxl rounded-circle" alt="">
+                            <br>
+                            <h5 class="font-size-13 mb-2">Nombre Usuario</h5>
+                        </div>
+                        <h4 class="card-title mb-2 text-center">${perfilD.nombre} ${perfilD.primer_apellido} ${perfilD.segundo_apellido}</h4>
+                        <div class="row my-4">
+                            <div class="col-12 d-flex justify-content-between">
+                                <p class="text-muted mb-2 fw-medium">Se unió el: ${perfilD.fecha_creacion}</p>
+                                <p class="text-muted fw-medium mb-2">Fecha Nacimiento: ${perfilD.fecha_nacimiento}</p>
                             </div>
+
+                            <div class="col-12 d-flex justify-content-between">
+                                <p class="text-muted fw-medium mb-2">Género: ${perfilD.genero}</p>
+                                <p class="text-muted fw-medium mb-2">Teléfono: ${perfilD.telefono}</p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <p class="text-muted fw-medium mb-2">Correo: ${perfilD.correo}</p>
+                            </div>
+                        </div>
                         `;
                         container.append(datosPerfil_card);
                     });
@@ -51,17 +56,16 @@ $(document).ready(function () {
 
     cargarPerfil();
 
-
-    $('#editarBtn').on('click',function(e){
-        console.log("Se abrio el modal")
-        console.log(perfil)
+    $('#editarBtn').on('click', function(e) {
+        console.log("Se abrió el modal");
+        console.log(perfil);
         const containerModal = $('#datosPerfilModal');
         containerModal.empty();
 
         const datosPerfil = perfil[0];
 
-        containerModal.append(
-            `<div class="row mb-3">
+        containerModal.append(`
+            <div class="row mb-3">
                 <div class="col">
                     <input hidden name="cedula" value="${datosPerfil.cedula}">
                     <label for="nombre" class="col-form-label">Nombre:</label>
@@ -93,10 +97,10 @@ $(document).ready(function () {
                 </div>
                 <div class="col">
                     <label for="genero" class="col-form-label">Género:</label>
-                    <select  name="genero" class="form-control" id="genero">
-                      <option value="Masculino">Masculino</option>
-                      <option value="Femenino">Femenino</option>
-                      <option value="otro">Prefiero no decir</option>
+                    <select name="genero" class="form-control" id="genero">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="otro">Prefiero no decir</option>
                     </select>
                 </div>
             </div>
@@ -106,39 +110,55 @@ $(document).ready(function () {
                     <input type="password" name="nombreUsuario" class="form-control" id="contrasena-nueva">
                 </div>
             </div>`
-        )
+        );
 
-        // asigmanos el valor del dropdown de genero        
-        $('#genero').val(datosPerfil.genero)
-    })
-    
-    $('#editarPerfilForm').on('submit',function(e){
+        // Asignamos el valor del dropdown de género
+        $('#genero').val(datosPerfil.genero);
+    });
+
+    $('#editarPerfilForm').on('submit', function(e) {
         e.preventDefault();
         $('#editarPerfilModal').modal('hide');
+
         const formData = new FormData(this);
-        for (const pair of formData.entries()) {
-            console.log(pair[0], pair[1]);
-          }
-        formData.append('op','actualizarPerfil');
-        
+
+        // Agrega la imagen solo si se ha seleccionado una nueva imagen
+        if ($('#customFile2')[0].files.length > 0) {
+            formData.append('img', $('#customFile2')[0].files[0]);
+        }
+
+        formData.append('op', 'actualizarPerfil');
+
         $.ajax({
             url: '../controllers/perfilController.php',
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
-            dataType: 'json', 
+            dataType: 'json',
             success: function(data) {
                 console.log("Se guardaron los datos");
                 console.log(data);
                 cargarPerfil();
             },
             error: function(error) {
-                console.log('hereeee');
-                
-                console.log(error);
-                
+                console.log('Error en la solicitud AJAX:', error);
             }
-        })
-    })
+        });
+    });
 });
+
+function displaySelectedImage(event, elementId) {
+    const selectedImage = document.getElementById(elementId);
+    const fileInput = event.target;
+
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            selectedImage.src = e.target.result;
+        };
+
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
