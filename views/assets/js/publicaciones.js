@@ -1,4 +1,3 @@
-// Define cargarPublicacionesSinCampania in a common scope
 function cargarPublicacionesSinCampania() {
     $.ajax({
         url: '../controllers/PublicacionController.php',
@@ -19,38 +18,38 @@ function cargarPublicacionesSinCampania() {
 
                     //Estructura del card para la publicacion cargado dinamicamente
                     let publicacion_card = `
-                        <div class="card" style="width: 50rem;">
-                            <div class="container publicacion">
-                                <div class="row perfil-barra">
-                                    <div class="col-auto d-flex align-items-center perfil-usuario">
-                                        <i class="fa-solid fa-user fa-lg" style="color: #000000;"></i>
-                                        <h5 class="mb-0 ml-3 pl-2">&nbsp; ${publicacion.nombre_usuario}  </h5> <!--/ ${publicacion.id_campania}-->
-                                    </div>
-                                    <div class="col ml-auto d-flex justify-content-end align-items-center">
-                                        <div class="nav-item dropdown">
-                                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                                <i class="fa-solid fa-ellipsis-vertical fa-lg" style="color: #000000;"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-lg-end dropdown-report">
-                                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportar" href="#"><i class="fa-regular fa-flag"></i> Reportar </a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="card" style="width: 50rem;">
+                    <div class="container publicacion">
+                        <div class="row perfil-barra">
+                            <div class="col-auto d-flex align-items-center perfil-usuario">
+                                <i class="fa-solid fa-user fa-lg" style="color: #000000;"></i>
+                                <h5 class="mb-0 ml-3 pl-2">&nbsp; ${publicacion.nombre_usuario}  </h5> <!--/ ${publicacion.id_campania}-->
                             </div>
-                            ${imgHtml}
-                            <div class="card-body position-relative">
-                                <div class="col-auto d-flex align-items-center likes position-relative" style="z-index: 2;">
-                                    <i class="fa-heart fa-lg ${likeClase}" style="color: ${likeColor};"></i>
-                                    <h5 class="mb-0 ml-3 pl-2 perfil-usuario">&nbsp; ${publicacion.num_like} &nbsp;</h5>
-                                    <a href="./paginaPublicacion.php?id=${publicacion.id_publicacion}">
-                                        <i class="fa-regular fa-comment fa-lg" data-id="${publicacion.id_publicacion}"></i>
+                            <div class="col ml-auto d-flex justify-content-end align-items-center">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis-vertical fa-lg" style="color: #000000;"></i>
                                     </a>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end dropdown-report">
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#reportar" href="#"><i class="fa-regular fa-flag"></i> Reportar </a></li>
+                                    </ul>
                                 </div>
-                                <h5 class="card-title">${publicacion.titulo}</h5>
-                                <p class="card-text">${publicacion.descripcion}</p>
                             </div>
                         </div>
+                    </div>
+                    ${imgHtml}
+                    <div class="card-body position-relative">
+                        <div class="col-auto d-flex align-items-center likes position-relative" style="z-index: 2;">
+                            <i class="fa-heart fa-lg ${likeClase}" data-id="${publicacion.id_publicacion}" style="color: ${likeColor};" ></i>
+                            <h5 class="mb-0 ml-3 pl-2 perfil-usuario">&nbsp; ${publicacion.num_like} &nbsp;</h5>
+                            <a href="./paginaPublicacion.php?id=${publicacion.id_publicacion}">
+                                <i class="fa-regular fa-comment fa-lg" data-id="${publicacion.id_publicacion}"></i>
+                            </a>
+                        </div>
+                        <h5 class="card-title">${publicacion.titulo}</h5>
+                        <p class="card-text">${publicacion.descripcion}</p>
+                    </div>
+                </div>
                     `;
                     //Agrega la card al contendor para cargarlo dinamicamente
                     container.append(publicacion_card);
@@ -119,6 +118,11 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+$('#abirModal').on('click', function () {
+    var myModal = new bootstrap.Modal(document.getElementById('crearPublicacionModal'), {});
+    myModal.show();
 });
 
 $(document).ready(function () {
@@ -202,6 +206,6 @@ function displaySelectedImage(event, elementId) {
 
         reader.readAsDataURL(fileInput.files[0]);
     } else {
-        selectedImage.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'; // Resetea la imagen si no hay archivo seleccionado
+        selectedImage.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
     }
 }
