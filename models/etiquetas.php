@@ -92,7 +92,7 @@ class Etiqueta extends Conexion{
     }
 
     public function SelectEtiquetasNombresAside(){
-        $query = "SELECT `id_etiqueta`,`nombre` FROM `etiquetas` LIMIT 3";
+        $query = "SELECT `id_etiqueta`,`nombre` FROM `etiquetas` WHERE `tipo_etiqueta` = 'publicacion' LIMIT 3";
         $etiquetas = [];
 
         try{

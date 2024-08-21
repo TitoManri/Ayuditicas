@@ -24,8 +24,6 @@ function listarCamps() {
                 codigoHref += '<section id="Campania' + campania.id_campania + '" class="col-4 mb-5 Etiquetas">';
                 codigoHref += '<div class="d-flex justify-content-center"><h3><i class="bi bi-person-circle" style="color: #d2ac97"></i> ' + campania.nombre_usuario + '</h3><div class="ms-auto p-2">';
                 codigoHref += '<div class="dropdown ms-auto p-2"><button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="Opciones">';
-                codigoHref += '<i class="bi bi-three-dots-vertical"></i></button><ul class="dropdown-menu">';
-                codigoHref += '<li><a class="dropdown-item" href="#">Action</a></li><li><a class="dropdown-item" href="#">Another action</a></li><li><a class="dropdown-item" href="#">Something else here</a></li>';
                 codigoHref += '</ul></div></div></div>';
                 codigoHref += '<div class="ms-5 pe-4">';
                 codigoHref += '<h3>'+campania.nombre+'</h3>'

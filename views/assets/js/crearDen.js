@@ -10,7 +10,10 @@ let longitud;
 let latitud;
 
 //arreglo del toggle
-let tipos = [null, "Basura en las calles", "Maltrato animal", "Deforestación"];
+let tipos = [null, "Basura en las calles", "Maltrato animal", "Deforestación", "Contaminación del Agua", "Contaminación del Aire", 
+    "Caza y Pesca Ilegal", "Vertido de Residuos Tóxicos", "Construcción Ilegal en Áreas Protegidas", "Contaminación del Suelo", 
+    "Destrucción de Ecosistemas", "Ruido Ambiental"
+];
 
 //función que inicia el mapa
 function initMap() {

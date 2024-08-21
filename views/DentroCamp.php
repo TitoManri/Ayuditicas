@@ -105,6 +105,7 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
                             </div>
                             <div class="mb-3">
                                 <label for="descripcionPublicacion" class="form-label">¿Esta publicación es para alguna campaña? </label>
+                                <br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
                                     <label class="form-check-label" for="inlineRadio1">Sí</label>

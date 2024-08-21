@@ -13,6 +13,7 @@ $descripcion = isset($_POST["descripcion"]) ? $_POST["descripcion"] : "";
 $inscripcion = isset($_POST["inscripcion"]) ? $_POST["inscripcion"] : "";
 $campaniaSeleccionada = isset($_POST["campaniaSeleccionada"]) ? $_POST["campaniaSeleccionada"] : "";
 $tags = isset($_POST["tags"]) ? $_POST["tags"] : "";
+$valoresEtiquetas = [];
 if($tags != ""){
     $etiquetasArray = json_decode($tags, true);
     $valoresEtiquetas = [];
@@ -68,17 +69,23 @@ switch ($op) {
                             $publicacion->setImg($newFileName);
                             $publicacion->actualizarImagen($idPublicacion, $newFileName); 
                             $resp = array("exitoFormulario" => true, "message" => "Publicación y imagen creadas exitosamente");
-                            $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                            if(count($valoresEtiquetas) != 0){
+                                $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                            }
                         } else {
                             $resp = array("exitoFormulario" => true, "message" => "Publicación creada, pero no se pudo subir la imagen.");
-                            $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                            if(count($valoresEtiquetas) != 0){
+                                $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                            }
                         }
                     } else {
                         $resp = array("exitoFormulario" => false, "message" => "Extensión de archivo no permitida.");
                     }
                 } else {
                     $resp = array("exitoFormulario" => true, "message" => "Publicación creada exitosamente, sin imagen.");
-                    $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                    if(count($valoresEtiquetas) != 0){
+                        $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
+                    }
                 }
             } else {
                 $resp = array("exitoFormulario" => false, "message" => "Error al crear la publicación.");
@@ -147,6 +154,22 @@ switch ($op) {
         } catch (Exception $e) {
             echo json_encode(array("success" => false, "message" => $e->getMessage()));
         }
+        break;
+        case 'obtenerPublicacion': 
+            try {
+                if (empty($id_publicacion)) {
+                    throw new Exception("El ID de la publicación es obligatorio.");
+                }
+                $publicacionDetalles = $publicacion->obtenerPublicacion($id_publicacion);
+                if ($publicacionDetalles) {
+                    echo $publicacionDetalles;
+                } else {
+                    throw new Exception("No se encontraron detalles para esta publicación.");
+                }
+            } catch (Exception $e) {
+                error_log("Error en obtener detalles de la publicación: " . $e->getMessage());
+                echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
+            }
         break;
 
     default:

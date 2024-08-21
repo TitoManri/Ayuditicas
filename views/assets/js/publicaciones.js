@@ -41,7 +41,7 @@ function cargarPublicacionesSinCampania() {
                             ${imgHtml}
                             <div class="card-body position-relative">
                                 <div class="col-auto d-flex align-items-center likes position-relative" style="z-index: 2;">
-                                    <i class="fa-heart fa-lg ${likeClase}" style="color: ${likeColor};"></i>
+                                    <i class="fa-heart fa-lg ${likeClase}" data-id="${publicacion.id_publicacion}" style="color: ${likeColor};"></i>
                                     <h5 class="mb-0 ml-3 pl-2 perfil-usuario">&nbsp; ${publicacion.num_like} &nbsp;</h5>
                                     <a href="./paginaPublicacion.php?id=${publicacion.id_publicacion}">
                                         <i class="fa-regular fa-comment fa-lg" data-id="${publicacion.id_publicacion}"></i>

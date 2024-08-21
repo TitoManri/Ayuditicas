@@ -68,7 +68,7 @@ $jsonData = json_encode($data);
     <br><br><br><br><br><br><br><br><br><br><br><br>
     
     <div class="row"></div>
-    <footer class="mainfooter">
+    <footer class="mainfooter fixed-bottom">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
 </body>

@@ -1,4 +1,4 @@
-<aside id="EtiquetaAside" class="EtiquetasAside">
+<aside id="EtiquetaAside" class="EtiquetasAside" style="position: fixed !important">
     <h3 class="text-center">Campañas</h3>
     <div class="text-center">
         <a href="./Camps.php" style="color: #827a6f; opacity: 47%;" class="text-center">Ver todo</a>

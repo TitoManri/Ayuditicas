@@ -28,10 +28,4 @@ switch($_GET["op"]){
         echo json_encode($data);
         break;
     }
-
-    case 'mostrarPostPorEtiquetas':{
-        //$idArray = explode('&',$_SERVER["QUERY_STRING"]);
-        $etiquetas = isset($_GET["SelectEtiqueta"]) ? $_GET["SelectEtiqueta"] : [];
-        echo json_encode($etiquetas);
-    }
 }

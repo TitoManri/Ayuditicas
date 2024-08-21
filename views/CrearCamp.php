@@ -70,6 +70,8 @@ $img = $_SESSION['img'];
                         <br><br>
                         <label class="h3" for="Cantidad_Personas">Cantidad de personas requeridas</label>
                         <input type="number" name="Cantidad_Personas" id="Cantidad_Personas" class="form-control" required min="5" max="50">
+                        <label class="h3" for="Cantidad_Personas">Minimo 5. Maximo 50</label>
+
                     </div>
                 </div>
             </div>
