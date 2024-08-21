@@ -205,3 +205,4 @@ function displaySelectedImage(event, elementId) {
         selectedImage.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg'; // Resetea la imagen si no hay archivo seleccionado
     }
 }
+//linea para resolver conflictos :)
