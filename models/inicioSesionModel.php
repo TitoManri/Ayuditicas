@@ -14,6 +14,7 @@ class inicioSesionModel extends conexion {
     private $correo = null;
     private $numSeguidores = null;
     private $img = null;
+    private $rol = null;
 
     public function getNombreUsuario() {
         return $this->nombreUsuario;
@@ -90,11 +91,29 @@ class inicioSesionModel extends conexion {
         $this->correo = $correo; 
     }
 
-    public function getNumSeguidores() { return $this->numSeguidores; }
-    public function setNumSeguidores($numSeguidores) { $this->numSeguidores = $numSeguidores; }
+    public function getNumSeguidores() { 
+        return $this->numSeguidores; 
+    }
 
-    public function getImg() { return $this->img; }
-    public function setImg($img) { $this->img = $img; }
+    public function setNumSeguidores($numSeguidores) { 
+        $this->numSeguidores = $numSeguidores; 
+    }
+
+    public function getImg() { 
+        return $this->img; 
+    }
+
+    public function setImg($img) { 
+        $this->img = $img; 
+    }
+
+    public function getRol() { 
+        return $this->rol; 
+    }
+
+    public function setRol($rol) { 
+        $this->rol = $rol; 
+    }
 
     public static function getConexion() {
         self::$cnx = conexion::conectar();
@@ -108,9 +127,15 @@ class inicioSesionModel extends conexion {
         try {
             self::getConexion();
             if ($this->getNombreUsuario() && $this->getContrasenia()) {
-                $query = "SELECT cedula, nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, correo, num_seguidores, img, contrasena 
-                          FROM usuarios 
+                $query = "SELECT U.cedula, U.nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento, nombre_usuario, telefono, 
+                                correo, num_seguidores, img, contrasena, R.nombre as nombre_rol
+                          FROM usuarios U 
+                          inner join usuario_roles UR 
+                            on U.cedula = UR.cedula 
+                          inner join roles R 
+                            on UR.id_rol = R.id_rol
                           WHERE nombre_usuario = :nombreUsuario";
+
                 $stmt = self::$cnx->prepare($query);
                 $stmt->bindParam(':nombreUsuario', $this->nombreUsuario, PDO::PARAM_STR);
                 $stmt->execute();
@@ -129,6 +154,7 @@ class inicioSesionModel extends conexion {
                         $this->setCorreo($usuario['correo']);
                         $this->setNumSeguidores($usuario['num_seguidores']);
                         $this->setImg($usuario['img']);
+                        $this->setRol($usuario['nombre_rol']);
                         self::desconectar();
                         return array("exito" => true, "msg" => "Inicio de sesión exitoso");
                         

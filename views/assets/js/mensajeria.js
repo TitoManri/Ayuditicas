@@ -10,6 +10,7 @@ let chatActualCed = null;
 //variable que contiene al usuario logueado en el momento
 let usuarioDiv = document.getElementById('usuarioActual');
 
+//obtiene los datos del usuario, valida si la imagen está vacía y asigna una temporal
 let usuarioLogueadoUser = usuarioDiv.getAttribute('data-usuario');
 let logueadoImg = usuarioDiv.getAttribute('data-img');
 if (logueadoImg == null || logueadoImg == "") {
@@ -56,7 +57,7 @@ function eventoClick(contacto) {
              chatActualImg = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
         }
 
-
+        //si hay un chat seleccionadp actualiza el chat, llena el arreglo de mensajes y actualiza el leido
         if (chatActual != null) {
             actualizarChat(chatActual, chatActualImg);
             llenarArregloMensajes(chatActual, chatActualCed)
@@ -71,6 +72,7 @@ function eventoClick(contacto) {
 }
 
 function actualizarLeido(){
+    //actualiza el estado de leido
     $.ajax({
         url: '../controllers/mensajeController.php?op=updateLeido',
         type: 'POST',
@@ -87,6 +89,7 @@ function actualizarLeido(){
 
 
 function listarUsuariosContactos() {
+    //lista a todos los usuarios 
     $.ajax({
         url: '../controllers/mensajeController.php?op=listarContactos',
         type: 'POST',
@@ -95,20 +98,22 @@ function listarUsuariosContactos() {
         success: function (arr) {
             const listaU = document.getElementById("listaUsuarios");
 
-
+            //añade cada usuario del arreglo de usuarios 
             arr.forEach(function (usuario) {
                 listaU[usuario.cedula] = usuario.nombreUsuario;
                 mensajesPorUsuario[usuario.nombreUsuario] = [];
 
-
+                //por cada usuario se crea un elemento de chat
                 const contacto = document.createElement('li');
                 contacto.classList.add('nav-item', 'my-1');
 
+                //valida si tiene imagen y si no se le asigna una temporal
                 let imagenContacto=usuario.img;
                 if (imagenContacto == null || imagenContacto == "") {
                     imagenContacto= "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 }
 
+                //se agrega al la vista el código html del contacto
                 contacto.innerHTML =
                     "<a href='#' class='nav-link' data-cedula='" + usuario.cedula + "' data-usuario='" + usuario.nombreUsuario + "' data-img='" + imagenContacto + "'>" +
                     "<img src='" + imagenContacto + "' alt='' width='32' height='32' class='rounded-circle me-2'>" +
@@ -130,6 +135,7 @@ function listarUsuariosContactos() {
 }
 
 function llenarArregloMensajes(nombreUsuario, cedula) {
+    //busca todos los mensajes entre el usuario logueado y el actual
     $.ajax({
         url: '../controllers/mensajeController.php?op=mostrarMensajesChat',
         type: 'POST',
@@ -258,7 +264,7 @@ enviarFormulario.addEventListener('submit', function (e) {
     }
 });
 
-//EVENTO PARA SUBIR UNA IMAGEN !!FALTA
+//EVENTO PARA SUBIR UNA IMAGEN 
 //se almacena el formulario en una variable
 const formularioSubida = document.getElementById('imgForm');
 //se le agrega el evento de submit
@@ -290,11 +296,14 @@ formularioSubida.addEventListener('submit', function (e) {
 
 //AGREGA UN MENSAJE EN EL CONTENEDOR DE CHATS Y LOS AGREGA A LA LISTA DE MENSAJES
 function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData) {
+    //crea una variable con los datos que se van a pasar 
     let datos = null;
 
+    //si hay una imagen se llena la variable con los datos
     if (imgData == null) {
         datos = { cedulaRemitente: usuarioRemitente, cedulaDestinatario: usuarioDestinatario, cuerpoMensaje: mensaje, img: null };
 
+        //se usa el ajax para enviar un mensaje 
         $.ajax({
             url: '../controllers/mensajeController.php?op=enviarMensaje',
             type: 'POST',
@@ -310,6 +319,8 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData)
                         cuerpo: response.msj,
                         img: null
                     };
+
+                    //se inserta el mensaje al arreglo de mensajes (temporal para la vista previa)
                     mensajesPorUsuario[chatActual].push(nuevoMensaje);
                     const mensajeElemento = crearMensajeElemento(nuevoMensaje);
                     contenedorChat.appendChild(mensajeElemento);
@@ -324,11 +335,13 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData)
             }
         });
     } else {
+        //se recolectan los datos del mensaje 
         const formData = new FormData();
         formData.append('cedulaRemitente', usuarioRemitente);
         formData.append('cedulaDestinatario', usuarioDestinatario);
         formData.append('imagen', imgData);
 
+        //se usan el ajax para enviar el mensaje  y se le pasa la data
         $.ajax({
             url: '../controllers/mensajeController.php?op=enviarMensaje',
             type: 'POST',
@@ -346,6 +359,8 @@ function agregarMensaje(usuarioRemitente, usuarioDestinatario, mensaje, imgData)
                         cuerpo: '',
                         img: response.img
                     };
+
+                    //se añade a la lista de mensajes del usuario para mostrar una vista previa 
                     mensajesPorUsuario[chatActual].push(nuevoMensaje);
                     const mensajeElemento = crearMensajeElemento(nuevoMensaje);
                     contenedorChat.appendChild(mensajeElemento);
@@ -389,8 +404,8 @@ function actualizarMensajes() {
     });
 }
 
-// Llamar a la función cada ciertos segundos
-setInterval(actualizarMensajes, 1000); // Actualiza cada 5 segundos
+// Llamar a la función para actualizar los mensajes
+setInterval(actualizarMensajes, 1000); // Actualiza cada segundo
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 //LLENAR LISTA DE TODOS LOS USUARIOS
@@ -401,8 +416,8 @@ function llenarListaUsuarios() {
         dataType: 'json',
         success: function (usuarios) {
             usuarios.forEach(function (usuario) {
+                //llena la lista con los usuarios que se le pasan
                 usuariosExistentes[usuario.nombreUsuario] = usuario;
-                //console.log(usuariosExistentes);
             });
         },
         error: function (err) {
@@ -411,7 +426,6 @@ function llenarListaUsuarios() {
     });
 }
 
-//ARREGLAR LOS DOS AGREGAR GRUPO Y USUARIO
 
 //FUNCIÓN PARA AGREGAR UN USUARIO
 document.getElementById("btnAgrUsuario").addEventListener('click', function () {
@@ -433,8 +447,10 @@ document.getElementById("btnAgrUsuario").addEventListener('click', function () {
                     icon: "success"
                 });
     
+                //se busca la lista de usuarios
                 const listaU = document.getElementById("listaUsuarios");
     
+                //se añade el contacto a la lista 
                 const contacto = document.createElement('li');
                 contacto.classList.add('nav-item', 'my-1');
                 contacto.innerHTML =

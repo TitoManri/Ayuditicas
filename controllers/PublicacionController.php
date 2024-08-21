@@ -47,6 +47,7 @@ switch ($op) {
                 throw new Exception("Todos los campos obligatorios deben ser completados.");
             }
     
+            // Primero guarda la publicación
             $idPublicacion = $publicacion->guardarDatosPublicacionRegular();
             $id_publicacionUltima = $publicacion -> conseguirUltimoID();
             if ($idPublicacion) {
@@ -59,10 +60,11 @@ switch ($op) {
                     $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
                     
                     if (in_array($fileExtension, $allowedExts)) {
-                        $newFileName = uniqid('img_', true) . '.' . $fileExtension;
+                        $newFileName = $idPublicacion . '.' . $fileExtension;
                         $destPath = $uploadDir . $newFileName;
                         
                         if (move_uploaded_file($fileTmpPath, $destPath)) {
+                            // Actualiza la publicación con el nombre de la imagen
                             $publicacion->setImg($newFileName);
                             $publicacion->actualizarImagen($idPublicacion, $newFileName); 
                             $resp = array("exitoFormulario" => true, "message" => "Publicación y imagen creadas exitosamente");
@@ -145,22 +147,6 @@ switch ($op) {
         } catch (Exception $e) {
             echo json_encode(array("success" => false, "message" => $e->getMessage()));
         }
-        break;
-        case 'obtenerPublicacion': 
-            try {
-                if (empty($id_publicacion)) {
-                    throw new Exception("El ID de la publicación es obligatorio.");
-                }
-                $publicacionDetalles = $publicacion->obtenerPublicacion($id_publicacion);
-                if ($publicacionDetalles) {
-                    echo $publicacionDetalles;
-                } else {
-                    throw new Exception("No se encontraron detalles para esta publicación.");
-                }
-            } catch (Exception $e) {
-                error_log("Error en obtener detalles de la publicación: " . $e->getMessage());
-                echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
-            }
         break;
 
     default:

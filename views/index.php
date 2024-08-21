@@ -145,11 +145,24 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-5">
-                                <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero magnam reiciendis aliquam cumque amet. Libero repellendus amet alias. Corporis cupiditate ullam quia est eos ratione dolor exercitationem omnis ipsum laboriosam! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt atque, corporis nobis adipisci neque id vero molestias rerum iure qui, fugiat error commodi veniam. Doloribus praesentium iure vero facere maxime.</p>
+                                <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                    Vero magnam reiciendis aliquam cumque amet. Libero repellendus amet alias. 
+                                    Corporis cupiditate ullam quia est eos ratione dolor exercitationem omnis 
+                                    ipsum laboriosam! Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                    Sunt atque, corporis nobis adipisci neque id vero molestias rerum iure qui, 
+                                    fugiat error commodi veniam. Doloribus praesentium iure vero facere maxime.
+                                </p>
                             </div>
                             <div class="col-2 d-flex justify-content-center"><img src="./assets/img/logoAyuditicas_Verde.png" alt="Logo_Ayuditica" class="img-fluid"></div>
                             <div class="col-5">
-                                <p class="text-end">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt deserunt enim necessitatibus. Molestiae culpa fugit pariatur dolore quae recusandae, laboriosam consectetur distinctio architecto earum veritatis fuga, eum excepturi est corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis voluptatum ipsam sunt, corrupti similique atque expedita excepturi facere quos commodi assumenda odit, adipisci recusandae aut provident modi harum porro aliquam.</p>
+                                <p class="text-end">En "Ayuditicas", nuestro plan es crear una plataforma 
+                                    dinámica que permita a las personas participar activamente en la protección 
+                                    del medio ambiente. Queremos empoderar a nuestra comunidad para que pueda 
+                                    organizar y apoyar proyectos ambientales, desde la limpieza de ríos y playas 
+                                    hasta la reforestación y la educación ecológica. Nuestra red social será un 
+                                    espacio donde las ideas se conviertan en acciones concretas, facilitando la 
+                                    colaboración y el intercambio de recursos.
+                                </p>
                             </div>
                         </div>
                     </div>
