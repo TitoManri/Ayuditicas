@@ -29,6 +29,7 @@ try {
         $_SESSION['correo'] = $usuarioModel->getCorreo();
         $_SESSION['numSeguidores'] = $usuarioModel->getNumSeguidores();
         $_SESSION['img'] = $usuarioModel->getImg();
+        $_SESSION['nombre_rol'] = $usuarioModel->getRol();
 
         $response = array("exito" => true, "msg" => "Inicio de sesión exitoso");
     } else {

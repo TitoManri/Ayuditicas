@@ -17,7 +17,7 @@ $telefono = $_SESSION['telefono'];
 $correo = $_SESSION['correo'];
 $numSeguidores = $_SESSION['numSeguidores'];
 $img = $_SESSION['img'];
-
+$rol = $_SESSION['nombre_rol'];
 ?>
 
 <!DOCTYPE html>
