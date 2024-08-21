@@ -57,22 +57,42 @@
                     <h2>¿Cual es nuestro proposito?</h2>
                     <p></p>
 
-                    <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
-                         Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.
-                        
+                    <p>En "Ayuditicas", nuestro propósito es utilizar la tecnología para hacer una diferencia 
+                        significativa en la sociedad, especialmente en el ámbito ambiental. Creemos firmemente 
+                        en el poder de la tecnología para conectar a las personas y movilizar recursos hacia 
+                        causas importantes. Por ello, hemos creado una plataforma que facilita la colaboración 
+                        y el compromiso consciente con iniciativas que beneficien al medio ambiente.
+                        </p>
+
+                    <p>Nuestra red social está diseñada para ofrecer un espacio donde los usuarios puedan 
+                        descubrir, apoyar y participar en proyectos ambientales. Ya sea que se trate de 
+                        iniciativas de conservación, educación ambiental o acción comunitaria, "Ayuditicas" 
+                        actúa como un puente entre aquellos que desean contribuir y las causas que necesitan apoyo.
                         </p>
 
                     <h2>¿Que nos impulso a crear este proyecto?</h2>
-                         <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
-                         Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.</p>
-                         <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
-                         Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.</p>
-                         <p>Sed orci enim, molestie vitae nisl ut, condimentum fringilla mi. Morbi lobortis bibendum hendrerit. Ut dictum venenatis leo, vel lacinia urna blandit ut. Quisque scelerisque nibh sit amet tempor facilisis. Nullam faucibus libero quis leo semper consectetur. Nam in laoreet nibh, nec tincidunt dolor. Mauris porta aliquet erat, euismod sodales elit. In pretium mauris a urna ultricies faucibus. Nunc eget tincidunt nisl. Donec molestie libero ante, ac condimentum orci mattis sed.
-                         Donec nibh mauris, consequat facilisis nisl sit amet, aliquam placerat ipsum. 
-                         Etiam sodales quam vitae quam sodales bibendum.</p>
+                         <p>
+                         Lo que nos impulsó a crear "Ayuditicas" fue la preocupación por el estado actual de 
+                         nuestro país, donde las calles, los ríos y otros entornos naturales están cada vez más 
+                         afectados por la contaminación y el deterioro ambiental. Observamos que, a pesar de los 
+                         esfuerzos individuales y de las pequeñas iniciativas, nada parecía ser lo suficientemente 
+                         grande como para generar un impacto significativo o concienciar a la población sobre la 
+                         importancia de proteger nuestro medio ambiente.
+                         </p>
+                         <p>
+                         Esta realidad nos motivó a buscar una solución que pudiera reunir y amplificar esos esfuerzos 
+                         dispersos. Queríamos crear una plataforma que no solo facilitara la acción, sino que 
+                         también inspirara a otros a unirse al movimiento. Así nació "Ayuditicas", con la visión 
+                         de ser un espacio donde cualquier persona, sin importar su capacidad o recursos, pudiera 
+                         contribuir al cuidado del planeta y hacer una diferencia real.
+                         </p>
+                         <p>
+                         Nosotros creemos que, al unir fuerzas y hacer uso de la tecnología, podemos 
+                         transformar la apatía en acción y crear una comunidad comprometida con la sostenibilidad 
+                         y la protección de nuestro entorno. Nuestro deseo es que "Ayuditicas" se convierta en 
+                         el motor que impulse cambios visibles y duraderos en la forma en que tratamos y valoramos 
+                         nuestro medio ambiente.
+                         </p>
                          
                 </article>
             </div>
@@ -80,14 +100,60 @@
                 <div class="position-sticky" style="top: 2rem;">
 
                     <div>
-                        <h4 class="fst-italic">Publicaciones Recientes</h4>
+                        <h4 class="fst-italic">Nuestro Equipo</h4>
                         <ul class="list-unstyled">
-                        <?php
-                        for ($i=0; $i<6; $i++){
-                            
-                            include './templates/Blog/nuevasPubli.php';
-                            }
-                        ?>
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                                href="#">
+                                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#a3d494" />
+                                </svg>
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">Scrum Master</h6>
+                                    <small class="text-body-secondary">Manrique A. Carazo Nieto</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                                href="#">
+                                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#DDBC95" />
+                                </svg>
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">Desarrolladora Full Stack</h6>
+                                    <small class="text-body-secondary">Maripaz Tenorio Baldi</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                                href="#">
+                                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#00703C" />
+                                </svg>
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">Especialista en Base de datos</h6>
+                                    <small class="text-body-secondary">Jorge Abarca Coto</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                                href="#">
+                                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#B38867" />
+                                </svg>
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">Diseñadora de IU</h6>
+                                    <small class="text-body-secondary">Ana Maria Castro</small>
+                                </div>
+                            </a>
+                        </li>
                         </ul>
                     </div>
                 </div>

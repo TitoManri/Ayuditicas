@@ -23,7 +23,7 @@ $(document).ready(function () {
                         <div class="text-center">
                             <img src="${perfilD.img}" class="img-fluid avatar-xxl rounded-circle" alt="">
                             <br>
-                            <h5 class="font-size-13 mb-2">Nombre Usuario</h5>
+                            <h5 class="font-size-13 mb-2">${perfilD.nombre_usuario}</h5>
                         </div>
                         <h4 class="card-title mb-2 text-center">${perfilD.nombre} ${perfilD.primer_apellido} ${perfilD.segundo_apellido}</h4>
                         <div class="row my-4">
