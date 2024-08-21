@@ -1,10 +1,25 @@
 <?php
+session_start();
+$cedula = $_SESSION['cedula'];
+$nombre = $_SESSION['nombre'];
+$primerApellido = $_SESSION['primerApellido'];
+$segundoApellido = $_SESSION['segundoApellido'];
+$genero = $_SESSION['genero'];
+$fechaNacimiento = $_SESSION['fechaNacimiento'];
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$telefono = $_SESSION['telefono'];
+$correo = $_SESSION['correo'];
+$numSeguidores = $_SESSION['numSeguidores'];
+$img = $_SESSION['img'];
+
+// Crear un array con los datos
+$data = array(
+    'nombre' => $nombre,
+    'cedula' => $cedula,
+);
+$jsonData = json_encode($data);
 $etiquetas = isset($_GET["SelectEtiqueta"]) ? $_GET["SelectEtiqueta"] : [];
-$etiquetasIDs = [];
-for ($i=0; $i < count($etiquetas); $i++) { 
-    echo '<p>'.$etiquetas[$i].'</p>';
-    $etiquetasIDs[] = $etiquetas[$i];
-}
+$etiquetasData = json_encode($etiquetas);
 ?>
 
 <!DOCTYPE html>
@@ -33,53 +48,12 @@ for ($i=0; $i < count($etiquetas); $i++) {
 
     <!-- Asides de Etiquetas(Derecha) y Campannas (Izquierda) -->
     <?php include './templates/Red_Social/asideDerecha.php'; ?>
-    <?php include './templates/Red_Social/asideIzquierda.php'; ?>
     <br><br>
-
-    <section id="NombreCamp" class="container containerD card rounded">
-        <br>
-        <div class="row">
-            <div class="col-3 d-flex justify-content-center">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" width="175px">
-            </div>
-            <div class="col-9">
-                <p class="h1 font-weight-bold">Nombre de la etiqueta</>
-                    <br>
-                <p style="font-size: 18px; opacity: 47%;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora libero enim beatae sint qui iure eos, labore, minima debitis velit voluptatem perspiciatis. Voluptate consequatur quae sunt pariatur quam nostrum.
-                </p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-7">
-                <a href="" class="btn btn-light">
-                    Crear Publicacion
-                </a>
-            </div>
-            <div class="col"></div>
-        </div>
-        <br>
-    </section>
-    <br>
-    <section id="PostsCamp" class="container containerD">
+    <section id="PublicacionesEtiquetas" class="container containerD" style="margin-left: 200px;">
         <h1>Post sobre la Etiqueta</h1><br>
-        <?php
-        for ($i = 0; $i < count($etiquetasIDs); $i++) {
-        ?>
-            <main class="col d-flex justify-content-center">
-                <div class="col d-flex flex-column align-items-center" style="padding-bottom: 20px; padding-top: 10px;">
-                    <?php
-                    include './templates/Red_Social/publicacion.php';
-                    ?>
-                </div>
-            </main>
-            <hr>
-        <?php
-        }
-        ?>
-    </section>
 
+    </section>
+    <br><br><br>
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
@@ -88,7 +62,13 @@ for ($i=0; $i < count($etiquetas); $i++) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    let userData = <?php echo $jsonData; ?>;
+    let etiquetas = <?php echo $etiquetasData?>
+</script>
 <script src="./assets/js/searchBar.js"></script>
 <script src="./assets/js/etiquetasVer.js"></script>
+<script src="./assets/js/verPublicacionesEtiqueta.js"></script>
+<script src="./assets/js/asideEtiquetasCamps.js"></script>
 
 </html>

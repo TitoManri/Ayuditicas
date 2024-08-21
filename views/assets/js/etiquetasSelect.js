@@ -28,6 +28,7 @@ function listarPostsPorEtiquetas(){
             var select = $('#EtiquetasPopularesConBD');
             let numDiv = 0;
             $.each(responseHref, function(index, etiqueta_post) {
+                debugger;
                 if(index % 3 == 0 || index == 0){
                     numDiv++;
                     select.append('<div class="row pb-5" id="Div'+numDiv+'">');

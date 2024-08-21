@@ -1,3 +1,12 @@
+<?php
+$ID_Solicitud = isset($_POST["ID_Solicitud"]) ? trim($_POST["ID_Solicitud"]) : "";
+
+$data = array(
+    'id_solicitud' => $ID_Solicitud
+);
+$jsonData = json_encode($data);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +26,7 @@
 <body>
     <header class="mainHeader">
         <?php
-        $activoCampanias='active';
+        $activoCampanias = 'active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
@@ -34,46 +43,34 @@
                     <?php ?>
                     <img src="https://cdn.iconscout.com/icon/free/png-256/free-gallery-187-902099.png?f=webp" alt="" class="img-fluid" width="250px" height="250px">
                 </div>
-                <div class="text-center">
-                    <?php
-                    $nombreCompleto = 'Nombre_Apellido';
-                    $nombreUsuario = 'Nombre_Usuario';
-                    $edad = 22;
-                    $contacto = rand(0, 2);
-                    $contactoFormas = ['Correo', 'Mensajeria', 'Telefono'];
-
-                    echo '<p class="h3">', $nombreCompleto, '</p>';
-                    echo '<p>Usuario: ', $nombreUsuario, '</p>';
-                    echo '<p>Edad: ', $edad, '</p>';
-                    echo '<p>Contacto: ', $contactoFormas[$contacto], '</p>';
-                    ?>
+                <div class="text-center" id="DatosPersona">
                 </div>
             </div>
             <div class="col-1"><br></div>
             <div class="col-6">
                 <p class="h1 fw-bold">Razón de interés en el proyecto</p>
-                <?php 
-                $descripcion = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis unde perspiciatis, impedit maxime quos exercitationem veritatis? Distinctio unde voluptatum aliquid laboriosam dolor cum accusamus laudantium doloremque numquam, recusandae consequuntur laborum.";
-                echo '<p>',$descripcion,'</p>';
-                ?>
+                <div id="RazonInteres">
+
+                </div>
                 <br>
                 <p class="h1 fw-bold">Habilidades relevantes </p>
-                <?php 
-                $habilidades = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis unde perspiciatis, impedit maxime quos exercitationem veritatis? Distinctio unde voluptatum aliquid laboriosam dolor cum accusamus laudantium doloremque numquam, recusandae consequuntur laborum.";
-                echo '<p>',$habilidades,'</p>';
-                ?>
+                <div id="Habilidades">
+
+                </div>
+                <br><br>
                 <div class="d-flex justify-content-end">
-                    <div class="col-2">
-                    <button class="btn btn-success">Aceptar</button>
+                    <div class="col-2" id="AceptarDiv">
+
                     </div>
-                    <div class="col-2">
-                    <button class="btn btn-danger">Eliminar</button>
+                    <div class="col-1"></div>
+                    <div class="col-2" id="DenegarDiv">
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<br><br><br>
+    <br><br><br>
     <footer class="mainfooter">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
@@ -83,5 +80,11 @@
 <script src="https://kit.fontawesome.com/c723dfe3cd.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./assets/js/searchBar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let userData = <?php echo $jsonData; ?>;
+</script>
+<script src="./assets/js/verSolicitudDetalle.js"></script>
 
 </html>

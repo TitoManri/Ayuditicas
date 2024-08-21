@@ -90,4 +90,27 @@ class Etiqueta extends Conexion{
             return json_encode($error);
         } 
     }
+
+    public function SelectEtiquetasNombresAside(){
+        $query = "SELECT `id_etiqueta`,`nombre` FROM `etiquetas` LIMIT 3";
+        $etiquetas = [];
+
+        try{
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+            foreach($resultado-> fetchAll() as $encontrado){
+                $etiquetasIndividual = new Etiqueta();
+                $etiquetasIndividual -> setId_etiqueta($encontrado['id_etiqueta']);
+                $etiquetasIndividual -> setNombre_etiqueta($encontrado['nombre']);
+                $etiquetas[] = $etiquetasIndividual;
+            }
+            return $etiquetas;
+        }catch (Exception $ex){
+            self::desconectar();
+            $error = "Hubo un error al conseguir las etiquetas.\n".$ex->getCode().": ".$ex->getMessage();
+            return json_encode($error);
+        } 
+    }
 }

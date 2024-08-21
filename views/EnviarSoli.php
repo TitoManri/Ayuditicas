@@ -1,15 +1,18 @@
 <?php
-$nombre = "NombreDeUsuario";
-//$_SESSION["username"]
-//Usar para conseguir nombre de sesion
-$edad = 20;
-//$_SESSION["edad"]
-//Usar para conseguir la edad. O utilizar metodo para conseguir nombre
-$cedula = 11111111;
-//$_SESSION["edad"]
-//usar para conseguir la cedula de la session
-$apellido = "ApellidoUsuario";
+session_start();
+$cedula = $_SESSION['cedula'];
+$nombre = $_SESSION['nombre'];
+$primerApellido = $_SESSION['primerApellido'];
+$segundoApellido = $_SESSION['segundoApellido'];
+$genero = $_SESSION['genero'];
+$fechaNacimiento = $_SESSION['fechaNacimiento'];
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$telefono = $_SESSION['telefono'];
+$correo = $_SESSION['correo'];
+$numSeguidores = $_SESSION['numSeguidores'];
+$img = $_SESSION['img'];
 $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
+//var_dump($_SESSION)
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +34,7 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
 <body>
     <header class="mainHeader">
         <?php
-        $activoCampanias='active';
+        $activoCampanias = 'active';
         include './templates/Header&Footer/header.php';
         ?></header>
 
@@ -45,10 +48,10 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                    <?php
+                        <?php
                         echo '<input name="id_campania" id="id_campania" type="hidden" value="' . $ID_Camp . '">';
                         ?>
-                    <?php
+                        <?php
                         echo '<input name="cedula" id="cedula" type="hidden" value="' . $cedula . '">';
                         ?>
                         <label class="h3" for="Nombre_Usuario">Creador de la campaña</label>
@@ -60,7 +63,14 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
                         <br>
                         <label class="h3" for="Nombre_Usuario">Edad</label>
                         <?php
-                        echo '<input name="Edad" id="Edad" class="form-control" type="number" readonly value="', $edad, '" required>';
+                        // Asignar la fecha actual
+                        $fechaActual = date("Y-m-d");
+                        $fechaActual = new DateTime($fechaActual);
+                        $fechaNacimiento = $_SESSION['fechaNacimiento'];
+                        $fechaNacimientoDate = new DateTime($fechaNacimiento);
+
+                        $edad = $fechaNacimientoDate->diff($fechaActual);
+                        echo '<input name="Edad" id="Edad" class="form-control" type="number" readonly value="', $edad->y, '" required>';
                         ?>
                         <label for="Edad">No editable</label>
                         <br><br>
@@ -70,6 +80,7 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
                     <div class="col-5">
                         <label class="h3" for="Apellido_Usuario">Apellidos</label>
                         <?php
+                        $apellido = $primerApellido . " " . $segundoApellido;
                         echo '<input name="Apellido_Usuario" id="Apellido_Usuario" class="form-control" type="text" readonly value="', $apellido, '" required>';
                         ?>
                         <label for="Edad">No editable</label>
@@ -108,4 +119,5 @@ $ID_Camp = isset($_GET["ID_Camp"]) ? $_GET["ID_Camp"] : "";
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="./assets/js/enviarSolicitudCamp.js"></script>
+
 </html>

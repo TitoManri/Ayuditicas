@@ -4,6 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once '../models/PublicacionModel.php';
+require_once "../models/Publicaciones_etiquetas.php";
 
 $op = isset($_POST['op']) ? $_POST['op'] : '';
 $cedula = isset($_POST["cedula"]) ? $_POST["cedula"] : "";
@@ -12,11 +13,20 @@ $descripcion = isset($_POST["descripcion"]) ? $_POST["descripcion"] : "";
 $inscripcion = isset($_POST["inscripcion"]) ? $_POST["inscripcion"] : "";
 $campaniaSeleccionada = isset($_POST["campaniaSeleccionada"]) ? $_POST["campaniaSeleccionada"] : "";
 $tags = isset($_POST["tags"]) ? $_POST["tags"] : "";
+if($tags != ""){
+    $etiquetasArray = json_decode($tags, true);
+    $valoresEtiquetas = [];
+    foreach ($etiquetasArray as $etiqueta) {
+        $valoresEtiquetas[] = $etiqueta['value'];
+    }
+}
 $img = isset($_FILES["imagen"]) ? $_FILES["imagen"] : null; 
 $id_publicacion = isset($_POST["id_publicacion"]) ? $_POST["id_publicacion"] : "";
 $id_campania = isset($_POST["id_campania"]) ? $_POST["id_campania"] : "";
 
 $publicacion = new PublicacionModel();
+$pub_eti = new Publicaciones_etiquetas();
+
 switch ($op) {
     case 'guardar':
         $publicacion->setCedula($cedula);
@@ -39,7 +49,7 @@ switch ($op) {
     
             // Primero guarda la publicación
             $idPublicacion = $publicacion->guardarDatosPublicacionRegular();
-            
+            $id_publicacionUltima = $publicacion -> conseguirUltimoID();
             if ($idPublicacion) {
                 if ($img && $img['error'] == UPLOAD_ERR_OK) {
                     $uploadDir = '../views/assets/img_app/publicaciones/';
@@ -58,14 +68,17 @@ switch ($op) {
                             $publicacion->setImg($newFileName);
                             $publicacion->actualizarImagen($idPublicacion, $newFileName); 
                             $resp = array("exitoFormulario" => true, "message" => "Publicación y imagen creadas exitosamente");
+                            $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
                         } else {
                             $resp = array("exitoFormulario" => true, "message" => "Publicación creada, pero no se pudo subir la imagen.");
+                            $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
                         }
                     } else {
                         $resp = array("exitoFormulario" => false, "message" => "Extensión de archivo no permitida.");
                     }
                 } else {
                     $resp = array("exitoFormulario" => true, "message" => "Publicación creada exitosamente, sin imagen.");
+                    $pub_eti -> insertarEtiquetasPosts($valoresEtiquetas, $id_publicacionUltima, 1);
                 }
             } else {
                 $resp = array("exitoFormulario" => false, "message" => "Error al crear la publicación.");
@@ -85,14 +98,29 @@ switch ($op) {
         }
         break;
 
-    case 'mostrarPorCampania':
+        case 'mostrarPublicacionesCamp':{
+            try {
+                $publicaciones = $publicacion -> mostrarPublicacionesPorCampania($id_campania, $cedula);
+                echo $publicaciones;
+            } catch (Exception $e) {
+                echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
+            }
+            break; 
+        }
+
+    case 'verPublicacionesPorEtiqueta':{
+        $etiquetas = "";
         try {
-            $publicaciones = $publicacion->mostrarPublicacionesPorCampania($id_campania);
-            echo $publicaciones;
+            $idEtiqueta = isset($_POST["ID_Etiqueta"]) ? $_POST["ID_Etiqueta"] : "";
+            $ids = $pub_eti->obtenerIdsPorEtiqueta($idEtiqueta);
+            $publicacionesEtiqueta = $publicacion -> mostrarPublicacionesPorIds($ids, $cedula);
+            echo $publicacionesEtiqueta;
         } catch (Exception $e) {
             echo json_encode(array("exitoFormulario" => false, "message" => $e->getMessage()));
         }
-        break;
+        break; 
+
+    }
 
     case 'aumentarLike':
         try {

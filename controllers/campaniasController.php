@@ -35,6 +35,7 @@ switch ($_GET["op"]) {
             $data = array(
                 "cedula_creador_camp" => $resultado->getCedulaCreadorCamp(),
                 "nombre" => $resultado->getNombre(),
+                'nombre_usuario' => $resultado->getNombreUsuario(),
                 "descripcion" => $resultado->getDescripcion(),
                 "voluntarios" => $resultado->getVoluntariosRequeridos(),
                 "fechaCulminacion" => $resultado->getFechaHoraCulminacion(),
@@ -51,6 +52,7 @@ switch ($_GET["op"]) {
                 $data[] = array(
                     'id_campania' => $reg->getIdCampania(),
                     'cedula_creador_camp' => $reg->getCedulaCreadorCamp(),
+                    'nombre_usuario' => $reg->getNombreUsuario(),
                     'nombre' => $reg->getNombre(),
                     'descripcion' => $reg->getDescripcion(),
                     'voluntarios_requeridos' => $reg->getVoluntariosRequeridos(),
@@ -61,4 +63,38 @@ switch ($_GET["op"]) {
             echo json_encode($data);
             break;
         }
+    case 'conseguirCampsAside': {
+            $camp = new Campania();
+            $camps = $camp->SelectCampaniasAside();
+            foreach ($camps as $reg) {
+                $data[] = array(
+                    'id_campania' => $reg->getIdCampania(),
+                    'nombre' => $reg->getNombre(),
+                    'descripcion' => $reg->getDescripcion(),
+                    'voluntarios_requeridos' => $reg->getVoluntariosRequeridos(),
+                );
+            }
+            echo json_encode($data);
+            break;
+        }
+
+    case 'InscritoCamp': {
+            $id = isset($_GET["ID_Camp"]) ? trim($_GET["ID_Camp"]) : "";
+            $cedula = isset($_GET["cedula"]) ? trim($_GET["cedula"]) : "";
+            $camp = new Campania();
+            $camp->setCedulaCreadorCamp($cedula);
+            $camp->setIdCampania($id);
+            $comprobar = $camp->inscrito();
+            echo json_encode($comprobar);
+            break;
+        }
+
+    case 'terminarCampana': {
+        $id = isset($_POST["ID_Camp"]) ? trim($_POST["ID_Camp"]) : "";
+        $camp = new Campania();
+        $camp->setIdCampania($id);
+        $comprobar = $camp -> terminarCampana();
+        echo json_encode($comprobar);
+        break;
+    }
 }

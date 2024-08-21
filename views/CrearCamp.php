@@ -1,13 +1,16 @@
 <?php
-$nombre = "NombreDeUsuario";
-//$_SESSION["username"]
-//Usar para conseguir nombre de sesion
-$edad = 20;
-//$_SESSION["edad"]
-//Usar para conseguir la edad. O utilizar metodo para conseguir nombre
-$cedula = 11111111;
-//$_SESSION["edad"]
-//usar para conseguir la cedula de la session
+session_start();
+$cedula = $_SESSION['cedula'];
+$nombre = $_SESSION['nombre'];
+$primerApellido = $_SESSION['primerApellido'];
+$segundoApellido = $_SESSION['segundoApellido'];
+$genero = $_SESSION['genero'];
+$fechaNacimiento = $_SESSION['fechaNacimiento'];
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$telefono = $_SESSION['telefono'];
+$correo = $_SESSION['correo'];
+$numSeguidores = $_SESSION['numSeguidores'];
+$img = $_SESSION['img'];
 ?>
 
 <!DOCTYPE html>

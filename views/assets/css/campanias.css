@@ -87,6 +87,27 @@
     max-width: 900px !important;
 }
 
+#myBtn {
+    display: block;
+    position: fixed; 
+    bottom: 5%;
+    right: 490px; 
+    z-index: 99; 
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    width: 60px;
+}
+
+
+#myBtn:hover {
+    color: white;  
+}
+
 section form div div div select,
 section form div div div textarea,
 section form div div div input{

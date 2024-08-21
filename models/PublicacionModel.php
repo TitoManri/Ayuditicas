@@ -156,16 +156,21 @@ class PublicacionModel extends Conexion {
     
     
     //Mostrar publicaciones con campania especifica
-    public function mostrarPublicacionesPorCampania($id_campania) {
-        $query = "SELECT `cedula`, `id_campania`, `img`, `titulo`, `num_like`, `descripcion`, `inscripcion`, `fecha_hora_creacion` 
-                  FROM `PUBLICACIONES`
-                  WHERE `id_campania` = :id_campaniaPDO";
+    public function mostrarPublicacionesPorCampania($id_campania, $cedula) {
+        $query = "SELECT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, u.nombre_usuario, 
+                 (CASE WHEN l.cedula IS NOT NULL THEN 1 ELSE 0 END) AS tieneLike
+            FROM publicaciones p
+            LEFT JOIN likes l ON p.id_publicacion = l.id_publicacion AND l.cedula = :cedula
+            JOIN usuarios u ON p.cedula = u.cedula
+            WHERE `id_campania` = :id_campaniaPDO
+            ORDER BY p.fecha_hora_creacion DESC";
         
         try {
             self::getConexion();
             
             $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":id_campaniaPDO", $id_campania, PDO::PARAM_INT);
+            $resultado->bindParam(":cedula", $cedula, PDO::PARAM_INT);
             $resultado->execute();
             
             $publicaciones = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -286,7 +291,52 @@ class PublicacionModel extends Conexion {
             return json_encode(array("exitoFormulario" => false, "message" => $error));
         }
     }
+
+    public function conseguirUltimoID(){
+        $query = "SELECT MAX(id_publicacion) as ID FROM publicaciones";
+        try {
+            self::getConexion();
     
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();  
+            $fila = $resultado->fetch();  
+            self::desconectar();
+    
+            return $fila['ID'];
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode(array("exitoFormulario" => false, "message" => $error));
+        }
+    }
+    
+    public function mostrarPublicacionesPorIds($IDS, $cedula)
+    {
+        $listaIds = implode(',', array_map('intval', $IDS));
+            $query = "SELECT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, u.nombre_usuario, 
+                         (CASE WHEN l.cedula IS NOT NULL THEN 1 ELSE 0 END) AS tieneLike
+                  FROM publicaciones p
+                  LEFT JOIN likes l ON p.id_publicacion = l.id_publicacion AND l.cedula = :cedula
+                  RIGHT JOIN publicaciones_etiquetas e ON e.id_publicacion = p.id_publicacion
+                  JOIN usuarios u ON p.cedula = u.cedula
+                  WHERE e.id_publicacion IN ($listaIds)
+                  ORDER BY p.fecha_hora_creacion DESC";  
+    
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(':cedula', $cedula, PDO::PARAM_STR);
+            $resultado->execute();
+            $publicaciones = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            self::desconectar();
+            return json_encode($publicaciones);
+    
+        } catch (PDOException $ex) {
+            self::desconectar();
+            $error = "Error " . $ex->getCode() . ": " . $ex->getMessage();
+            return json_encode($error);
+        }
+    }
     
 }
 ?>
