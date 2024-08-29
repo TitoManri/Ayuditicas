@@ -193,7 +193,7 @@ class SolicitudCampania extends Conexion
 
     public function conseguirSolicitudesPorCampanas()
     {
-        $query = "SELECT s.`id_solicitud_campania`, s.`cedula`, s.`id_campania`, s.`aceptada`, s.`fecha_hora_envio` FROM `solicitudes_campanias` s JOIN campanias c ON c.id_campania = s.id_campania WHERE c.cedula_creador_camp = :ID_Creador AND s.`aceptada`=0 ORDER BY s.`id_campania`";
+        $query = "SELECT s.`id_solicitud_campania`, c.`nombre`, s.`cedula`, s.`id_campania`, s.`aceptada`, s.`fecha_hora_envio` FROM `solicitudes_campanias` s JOIN campanias c ON c.id_campania = s.id_campania WHERE c.cedula_creador_camp = :ID_Creador AND s.`aceptada`=0 ORDER BY s.`id_campania`";
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
@@ -207,6 +207,7 @@ class SolicitudCampania extends Conexion
                 $solicitud = new SolicitudCampania();
 
                 $solicitud->setIdSolicitudCampania($encontrado['id_solicitud_campania']);
+                $solicitud->setNombreCompleto($encontrado['nombre']);
                 $solicitud->setCedula($encontrado['cedula']);
                 $solicitud->setIdCampania($encontrado['id_campania']);
                 $solicitud->setAceptada($encontrado['aceptada']);

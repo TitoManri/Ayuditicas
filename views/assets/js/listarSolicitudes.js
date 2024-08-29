@@ -23,7 +23,7 @@ function verSolicitudesDeUsuario() {
                 if(campania.id_campania != guardarNombre || guardarNombre == ""){
                     numDiv++;
                     guardarNombre = campania.id_campania;
-                    codigoSolicitud+='<h1>'+campania.id_campania+'</h1>'
+                    codigoSolicitud+='<h1>'+campania.nombre+'</h1>'
                     section.append('<div class="row" id="Div' + numDiv + '">');
                 }
                 let divID = $('#Div' + numDiv);

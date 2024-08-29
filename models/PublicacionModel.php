@@ -313,14 +313,14 @@ class PublicacionModel extends Conexion {
     public function mostrarPublicacionesPorIds($IDS, $cedula)
     {
         $listaIds = implode(',', array_map('intval', $IDS));
-            $query = "SELECT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, u.nombre_usuario, 
-                         (CASE WHEN l.cedula IS NOT NULL THEN 1 ELSE 0 END) AS tieneLike
-                  FROM publicaciones p
-                  LEFT JOIN likes l ON p.id_publicacion = l.id_publicacion AND l.cedula = :cedula
-                  RIGHT JOIN publicaciones_etiquetas e ON e.id_publicacion = p.id_publicacion
-                  JOIN usuarios u ON p.cedula = u.cedula
-                  WHERE e.id_publicacion IN ($listaIds)
-                  ORDER BY p.fecha_hora_creacion DESC";  
+            $query = "SELECT DISTINCT p.id_publicacion, p.titulo, p.descripcion, p.img, p.num_like, u.nombre_usuario, 
+                (CASE WHEN l.cedula IS NOT NULL THEN 1 ELSE 0 END) AS tieneLike
+                FROM publicaciones p
+                LEFT JOIN likes l ON p.id_publicacion = l.id_publicacion AND l.cedula = :cedula
+                INNER JOIN publicaciones_etiquetas e ON e.id_publicacion = p.id_publicacion
+                JOIN usuarios u ON p.cedula = u.cedula
+                WHERE e.id_publicacion IN ($listaIds)
+                ORDER BY p.fecha_hora_creacion DESC;";  
     
         try {
             self::getConexion();

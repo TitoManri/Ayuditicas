@@ -49,7 +49,7 @@
     <br>
     <br>
     <section id="EtiquetasPopularesConBD" class="container">
-    <h2 class="text-center">Etiquetas Populares con BD</h2>
+    <h2 class="text-center">Etiquetas Populares</h2>
     <br>
         <div id="EtiquetasHref">
             
@@ -58,7 +58,7 @@
 
     <br><br>
 
-    <footer class="mainfooter">
+    <footer class="mainfooter fixed-bottom">
         <?php include './templates/Header&Footer/footer.php';
         ?></footer>
 </body>

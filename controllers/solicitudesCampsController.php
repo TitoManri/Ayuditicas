@@ -37,6 +37,7 @@ switch ($_GET["op"]) {
             foreach ($solicitudes as $sol) {
                 $data[] = array(
                     'id_solicitud_campania' => $sol->getIdSolicitudCampania(),
+                    'nombre' => $sol->getNombreCompleto(),
                     'cedula' => $sol->getCedula(),
                     'id_publicacion' => $sol->getIdPublicacion(),
                     'id_campania' => $sol->getIdCampania(),

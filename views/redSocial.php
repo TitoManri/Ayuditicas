@@ -130,7 +130,7 @@ $rol = $_SESSION['nombre_rol'];
                             <div class="mb-3">
                                 <label for="descripcionPublicacion" class="form-label">¿Esta publicación es para alguna campaña? </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" disabled>
                                     <label class="form-check-label" for="inlineRadio1">Sí</label>
                                 </div>
                                 <div class="form-check form-check-inline">

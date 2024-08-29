@@ -8,7 +8,6 @@ function cargarPublicacionesSinCampania() {
         success: function (response) {
             let publicaciones = JSON.parse(response); //Parsea el JSON
             let container = $('#PublicacionesEtiquetas'); //Carga el container en una variable 
-
             if (Array.isArray(publicaciones) && publicaciones.length != 0) { //Verifica que si es un array ya que se hizo un parse
                 publicaciones.forEach(function (publicacion) { //Por cada publicacion carga un card
                     let imgHtml = publicacion.img ? `<img src="../views/assets/img_app/publicaciones/${publicacion.img}" class="card-img-top border-top border-bottom border-black" alt="${publicacion.titulo}">` : '';
